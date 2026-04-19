@@ -142,6 +142,27 @@ require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/php_interface/constants.php");
 
 Правовой режим использования кода задайте в файле `LICENSE` при необходимости. В метаданных модуля указан партнёр **Sporina** (см. языковые файлы в `lang/`).
 
+## Публикация на GitHub
+
+В каталоге модуля уже инициализирован Git и сделан первый коммит (ветка `master`). Дальше:
+
+1. На [GitHub](https://github.com/new) создайте **пустой** репозиторий (без README, без `.gitignore`), например `sporina.easysite`.
+2. В корне проекта выполните (подставьте свой URL):
+
+   ```text
+   git remote add origin https://github.com/<ваш-логин>/sporina.easysite.git
+   git push -u origin master
+   ```
+
+   При использовании SSH:
+
+   ```text
+   git remote add origin git@github.com:<ваш-логин>/sporina.easysite.git
+   git push -u origin master
+   ```
+
+3. Чтобы имя и email автора коммитов совпадали с аккаунтом GitHub, один раз настройте `git config user.name` и `user.email` (глобально или только в этом репозитории) и при необходимости сделайте `git commit --amend --reset-author`.
+
 ## Поддержка
 
 Вопросы по развёртыванию и доработкам — к автору решения или вашему интегратору Битрикс.
