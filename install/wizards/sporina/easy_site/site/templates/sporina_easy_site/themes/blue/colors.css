@@ -1,0 +1,6 @@
+:root {
+  --main-color: #18008f;
+  --main-color-hover: #3d30b5;
+  --arrow-color: invert(10%) sepia(87%) saturate(6921%) hue-rotate(256deg) brightness(55%) contrast(115%);
+  --gradient: linear-gradient(135deg, #3d30b5 0%, #18008f 100%);
+}

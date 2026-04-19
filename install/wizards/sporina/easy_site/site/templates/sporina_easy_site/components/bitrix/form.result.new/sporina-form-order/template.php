@@ -1,0 +1,138 @@
+<?php
+
+if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true)
+{
+	die();
+}
+
+/**
+ * @var array $arResult
+ * @var string $templateFolder
+ */
+
+// Подключаем стили и скрипты для popup
+$this->addExternalCss($templateFolder."/style.css");
+$this->addExternalJs($templateFolder."/script.js");
+
+// Если форма успешно отправлена, показываем сообщение в popup вместо обычного текста
+if ($arResult["isFormNote"] == "Y" && !empty($arResult["FORM_NOTE"])) {
+	?>
+
+	<div id="form-success-popup" class="form-popup-overlay">
+		<div class="form-popup-content">
+			<span class="form-popup-close">&times;</span>
+			<div class="form-popup-body">
+				<div class="form-popup-icon">✓</div>
+				<div class="form-popup-message"><?=$arResult["FORM_NOTE"]?></div>
+			</div>
+		</div>
+	</div>
+	<?
+}
+?>
+<?if ($arResult["isFormNote"] != "Y")
+{
+?>
+<div class="block-form">
+<?=$arResult["FORM_HEADER"]?>
+
+
+<br />
+
+<div class="form-table data-table">
+
+	<?
+	if ($arResult["isFormDescription"] == "Y" || $arResult["isFormTitle"] == "Y" || $arResult["isFormImage"] == "Y")
+	{
+	?>
+		<div class="form-title">
+					<?
+			if ($arResult["isFormTitle"])
+			{
+			?>
+				<h3><?=$arResult["FORM_TITLE"]?></h3>
+			<?
+			} //endif ;
+
+				if ($arResult["isFormImage"] == "Y")
+				{
+				?>
+				<a href="<?=$arResult["FORM_IMAGE"]["URL"]?>" target="_blank" alt="<?=GetMessage("FORM_ENLARGE")?>"><img src="<?=$arResult["FORM_IMAGE"]["URL"]?>" <?if($arResult["FORM_IMAGE"]["WIDTH"] > 300):?>width="300" <?elseif($arResult["FORM_IMAGE"]["HEIGHT"] > 200):?>height="200"<?else:?><?=$arResult["FORM_IMAGE"]["ATTR"]?><?endif;?> hspace="3" vscape="3" border="0" alt=""/></a>
+				<?//=$arResult["FORM_IMAGE"]["HTML_CODE"]?>
+				<?
+				} //endif
+				?>		
+		</div>
+		<?
+	} // endif
+		?>
+	<?	
+	if ($arResult["isFormErrors"] == "Y"):?><?=$arResult["FORM_ERRORS_TEXT"];?><?endif;?>
+	
+	<table class="table">
+	<thead>
+		<tr>
+			<th colspan="2">&nbsp;</th>
+		</tr>
+	</thead>
+	<tbody>
+	<?
+	foreach ($arResult["QUESTIONS"] as $FIELD_SID => $arQuestion)
+	{
+		if ($arQuestion['STRUCTURE'][0]['FIELD_TYPE'] == 'hidden')
+		{
+			echo $arQuestion["HTML_CODE"];
+		}
+		else
+		{
+	?>
+		<tr>
+			<td>
+				<?if (isset($arResult["FORM_ERRORS"][$FIELD_SID])):?>
+				<span class="error-fld" title="<?=htmlspecialcharsbx($arResult["FORM_ERRORS"][$FIELD_SID])?>"></span>
+				<?endif;?>
+				<?=$arQuestion["CAPTION"]?><?if ($arQuestion["REQUIRED"] == "Y"):?><?=$arResult["REQUIRED_SIGN"];?><?endif;?>
+				<?=$arQuestion["IS_INPUT_CAPTION_IMAGE"] == "Y" ? "<br />".$arQuestion["IMAGE"]["HTML_CODE"] : ""?>
+			</td>
+			<td><?=$arQuestion["HTML_CODE"]?></td>
+		</tr>
+	<?
+		}
+	} //endwhile
+	?>
+<?
+if($arResult["isUseCaptcha"] == "Y")
+{
+?>
+		<tr>
+			<th colspan="2"><b><?=GetMessage("FORM_CAPTCHA_TABLE_TITLE")?></b></th>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td><input type="hidden" name="captcha_sid" value="<?=htmlspecialcharsbx($arResult["CAPTCHACode"]);?>" /><img src="/bitrix/tools/captcha.php?captcha_sid=<?=htmlspecialcharsbx($arResult["CAPTCHACode"]);?>" width="180" height="40" alt=""/></td>
+		</tr>
+		<tr>
+			<td><?=GetMessage("FORM_CAPTCHA_FIELD_TITLE")?><?=$arResult["REQUIRED_SIGN"];?></td>
+			<td><input type="text" name="captcha_word" size="30" maxlength="50" value="" class="inputtext" /></td>
+		</tr>
+<?
+} // isUseCaptcha
+?>
+	</tbody>
+	<tfoot>
+		<tr>
+			<th colspan="2">
+				<input <?=(intval($arResult["F_RIGHT"]) < 10 ? "disabled=\"disabled\"" : "");?> type="submit" name="web_form_submit" value="<?=htmlspecialcharsbx(trim($arResult["arForm"]["BUTTON"]) == '' ? GetMessage("FORM_ADD") : $arResult["arForm"]["BUTTON"]);?>" />
+
+			</th>
+		</tr>
+	</tfoot>
+	</table>
+</div>
+<p>
+<?=$arResult["REQUIRED_SIGN"];?> - <?=GetMessage("FORM_REQUIRED_FIELDS")?>
+</p>
+<?=$arResult["FORM_FOOTER"]?>
+</div>
+<?
+} //endif (isFormNote)

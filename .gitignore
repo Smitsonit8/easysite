@@ -1,0 +1,12 @@
+# IDE / OS
+.idea/
+.vscode/
+*.sublime-*
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Logs and local debug (модуль может писать отладочные файлы)
+*.log
+debug_i.txt
+errors.log
