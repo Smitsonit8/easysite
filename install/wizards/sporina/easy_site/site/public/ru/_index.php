@@ -6,7 +6,7 @@ $APPLICATION->SetPageProperty("keywords", "Путь‑Экспресс");
 $APPLICATION->SetPageProperty("description", "Главная страница АО \"Путь‑Экспресс\"");
 $APPLICATION->SetTitle("Главная");
 ?>
-<!-- слайдер с текстом на нем-->
+<!--Баннер-->
 <?$APPLICATION->IncludeComponent("bitrix:main.include", "sporina-slider-index", Array(
 	"AREA_FILE_SHOW" => "page",
 		"AREA_FILE_SUFFIX" => "inc",
