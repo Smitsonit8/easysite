@@ -4,6 +4,11 @@ if(!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true)
 
 // Получаем выбранную тему из настроек сайта
 $theme = COption::GetOptionString("main", "wizard_sporina_easy_site_theme_id", "blue", SITE_ID);
+$headerTemplate = (string)$APPLICATION->GetPageProperty("HEADER_TEMPLATE");
+if (!in_array($headerTemplate, array("overlay", "default", "sticky"), true))
+{
+	$headerTemplate = "default";
+}
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -20,13 +25,13 @@ $theme = COption::GetOptionString("main", "wizard_sporina_easy_site_theme_id", "
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/dist/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/dist/assets/owl.theme.default.min.css">
 </head>
-<body class="bx-theme-<?=$theme?>">
+<body class="bx-theme-<?=$theme?> header-template-<?=$headerTemplate?>">
     <div id="panel">
 		<?$APPLICATION->ShowPanel();?>
     </div>
 
 <!-- шапка -->
-    <section class="container header_mobile">
+    <section class="container header_mobile site-header site-header--<?=$headerTemplate?>">
         <header class="block">
             <?$APPLICATION->IncludeComponent(
                 "bitrix:menu",

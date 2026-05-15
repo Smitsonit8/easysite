@@ -23,6 +23,40 @@ width:100%;
   z-index: 99;
 }
 
+@media screen and (min-width: 993px) {
+  .site-header {
+    position: relative;
+    z-index: 120;
+    transition: background-color 0.25s ease, box-shadow 0.25s ease, backdrop-filter 0.25s ease;
+  }
+
+  .site-header--default {
+    position: relative;
+    background: rgba(235, 125, 54, 0.92);
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.18);
+  }
+
+  .site-header--overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: transparent;
+  }
+
+  .site-header--sticky {
+    position: sticky;
+    top: 0;
+    background: rgba(235, 125, 54, 0.92);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+  }
+
+  .site-header--sticky nav ul::before {
+    border-bottom-color: rgba(0, 0, 0, 0.18);
+  }
+}
+
 #bg_slider-main {
   position: absolute;
   z-index: 5;
