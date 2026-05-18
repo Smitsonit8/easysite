@@ -239,6 +239,7 @@ header {
   min-height: 69px;
   padding-left: 20px;
   padding-right: 20px;
+  box-shadow: 0 14px 35px rgba(16, 46, 78, 0.08);
 }
 .block_tg h3 {
   color: black;
@@ -258,6 +259,7 @@ header {
   margin: 0 10px 20px;
   width: 27%;
   height: 256px;
+  box-shadow: 0 14px 35px rgba(16, 46, 78, 0.08);
 }
 .block_info a {
   height: 100%;
@@ -455,6 +457,7 @@ nav ul::before {
   margin: 0 10px 20px;
   padding: 20px;
   background-color: rgb(255, 255, 255);
+  box-shadow: 0 14px 35px rgba(16, 46, 78, 0.08);
 
 }
 .card_padding > a {

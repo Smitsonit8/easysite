@@ -18,20 +18,20 @@ $this->setFrameMode(true);
 <?if($arParams["DISPLAY_TOP_PAGER"]):?>
 	<?=$arResult["NAV_STRING"]?><br />
 <?endif;?>
-<?foreach($arResult["ITEMS"] as $arItem):?>
+<?foreach($arResult["ITEMS"] as $index => $arItem):?>
 	<?
 	$this->AddEditAction($arItem['ID'], $arItem['EDIT_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_EDIT"));
 	$this->AddDeleteAction($arItem['ID'], $arItem['DELETE_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_DELETE"), array("CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM')));
 	?>
 	<?if($arItem["PREVIEW_PICTURE"]["SRC"]):?>
-		<p class="news-item" id="<?=$this->GetEditAreaId($arItem['ID']);?>">
-			<div class="block_info block_info--bgImg bgImg_schedule bgImg">
-				<a href='<?=$arItem["DISPLAY_PROPERTIES"]["LINK_CARD"]["VALUE"]?>' class="svg">
+		<p class="news-item sporina-cards-bayinfo__item" id="<?=$this->GetEditAreaId($arItem['ID']);?>" style="animation-delay: <?=($index * 0.08)?>s;">
+			<div class="block_info block_info--bgImg bgImg_schedule bgImg sporina-cards-bayinfo__card sporina-cards-bayinfo__card--image">
+				<a href='<?=$arItem["DISPLAY_PROPERTIES"]["LINK_CARD"]["VALUE"]?>' class="svg sporina-cards-bayinfo__link">
 					<div class="block">
                         <div>
                             <h2><?echo $arItem["NAME"]?></h2>
                         </div>
-                        <div class="icon_top">
+                        <div class="icon_top sporina-cards-bayinfo__icon">
                             <img src="<?=SITE_TEMPLATE_PATH?>/img/arrow.svg" alt="" class="svg_color">
                         </div>
                     </div>
@@ -43,9 +43,9 @@ $this->setFrameMode(true);
 						</p>
 
                     </div>
-                    <div class="bgImg-position">
+                    <div class="bgImg-position sporina-cards-bayinfo__media">
 						<img
-							class="preview_picture"
+							class="preview_picture sporina-cards-bayinfo__image"
 							border="0"
 							src="<?=$arItem["PREVIEW_PICTURE"]["SRC"]?>"
 
@@ -58,14 +58,14 @@ $this->setFrameMode(true);
 			</div>
 		</p>
 		<?else:?>
-		<p class="news-item" id="<?=$this->GetEditAreaId($arItem['ID']);?>">
-			<div class="block_info block_info--bgWhite">
-				<a href='<?=$arItem["DISPLAY_PROPERTIES"]["LINK_CARD"]["VALUE"]?>' class="svg">
+		<p class="news-item sporina-cards-bayinfo__item" id="<?=$this->GetEditAreaId($arItem['ID']);?>" style="animation-delay: <?=($index * 0.08)?>s;">
+			<div class="block_info block_info--bgWhite sporina-cards-bayinfo__card">
+				<a href='<?=$arItem["DISPLAY_PROPERTIES"]["LINK_CARD"]["VALUE"]?>' class="svg sporina-cards-bayinfo__link">
 					<div class="block">
                         <div>
                             <h2><?echo $arItem["NAME"]?></h2>
                         </div>
-                        <div class="icon_top">
+                        <div class="icon_top sporina-cards-bayinfo__icon">
                             <img src="<?=SITE_TEMPLATE_PATH?>/img/arrow.svg" alt="" class="svg_color">
                         </div>
                     </div>
