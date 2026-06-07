@@ -2,7 +2,6 @@
 if(!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true)
 	die();
 
-// Получаем выбранную тему из настроек сайта
 $theme = COption::GetOptionString("main", "wizard_sporina_easy_site_theme_id", "blue", SITE_ID);
 $headerTemplate = (string)$APPLICATION->GetPageProperty("HEADER_TEMPLATE");
 if (!in_array($headerTemplate, array("overlay", "default", "sticky"), true))
@@ -18,44 +17,31 @@ if (!in_array($headerTemplate, array("overlay", "default", "sticky"), true))
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/themes/<?=$theme?>/colors.css">
-    <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/style/style.css"> 
+    <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/style/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/dist/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/dist/assets/owl.theme.default.min.css">
 </head>
-<body class="bx-theme-<?=$theme?> header-template-<?=$headerTemplate?>">
+<body class="bx-theme-<?=$theme?>">
     <div id="panel">
 		<?$APPLICATION->ShowPanel();?>
     </div>
 
-<!-- шапка -->
-    <section class="container header_mobile site-header site-header--<?=$headerTemplate?>">
-        <header class="block">
-            <?$APPLICATION->IncludeComponent(
-                "bitrix:menu",
-                "sporina-top-menu",
-                Array(
-                    "ALLOW_MULTI_SELECT" => "N",
-                    "CHILD_MENU_TYPE" => "left",
-                    "DELAY" => "N",
-                    "MAX_LEVEL" => "1",
-                    "MENU_CACHE_GET_VARS" => array(""),
-                    "MENU_CACHE_TIME" => "3600",
-                    "MENU_CACHE_TYPE" => "N",
-                    "MENU_CACHE_USE_GROUPS" => "Y",
-                    "ROOT_MENU_TYPE" => "top",
-                    "USE_EXT" => "N"
-                )
-            );?>
-            <div class="block">
-                <div>
-                    <a href="<?=SITE_DIR?>poisk/" class="svg block_center svg_search">
-                        <img src="<?=SITE_TEMPLATE_PATH?>/img/search.svg" class="svg_color">
-                    </a>
-                </div>
-            </div>
-        </header>
-
-    </section>
+    <?$APPLICATION->IncludeComponent(
+        "sporina:header",
+        $headerTemplate,
+        Array(
+            "LOGO_LINK" => SITE_DIR,
+            "LOGO_SRC" => "img/logo.svg",
+            "LOGO_ALT" => "",
+            "SEARCH_LINK" => SITE_DIR . "poisk/",
+            "ROOT_MENU_TYPE" => "top",
+            "CHILD_MENU_TYPE" => "left",
+            "MAX_LEVEL" => "1",
+            "MENU_CACHE_TYPE" => "N",
+            "MENU_CACHE_TIME" => "3600"
+        ),
+        false
+    );?>

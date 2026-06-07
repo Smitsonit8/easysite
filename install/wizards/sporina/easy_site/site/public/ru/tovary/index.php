@@ -79,7 +79,7 @@ $APPLICATION->SetTitle("Товары");
 		"PAGER_TEMPLATE" => ".default",
 		"PAGER_TITLE" => "Товары",
 		"PREVIEW_TRUNCATE_LEN" => "",
-		"SEF_FOLDER" => SITE_DIR."tovary/",
+		"SEF_FOLDER" => "#SITE_DIR#tovary/",
 		"SEF_MODE" => "Y",
 		"SET_LAST_MODIFIED" => "N",
 		"SET_STATUS_404" => "N",

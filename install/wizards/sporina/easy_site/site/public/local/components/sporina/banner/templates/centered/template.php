@@ -19,8 +19,8 @@ if ($arResult["BACKGROUND_IMAGE_SRC"] !== "")
 <section class="sporina-banner-centered"<?php if ($bannerStyle !== ""): ?> style="<?=$bannerStyle?>"<?php endif; ?>>
 	<div class="container sporina-banner-centered__container">
 		<?php if ($arResult["SHOW_IMAGE"]): ?>
-			<div class="sporina-banner-centered__backdrop"<?php if ($bannerStyle !== ""): ?> style="<?=$bannerStyle?>"<?php endif; ?>>
-				<img src="<?=htmlspecialcharsbx($arResult["IMAGE_SRC"])?>" alt="<?=htmlspecialcharsbx($arResult["TITLE"])?>">
+			<div class="sporina-banner-centered__backdrop">
+				
 			</div>
 		<?php endif; ?>
 		<div class="sporina-banner-centered__card">

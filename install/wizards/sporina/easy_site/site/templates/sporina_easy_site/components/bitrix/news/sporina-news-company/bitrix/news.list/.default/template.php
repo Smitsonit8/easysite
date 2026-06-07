@@ -18,6 +18,20 @@ $this->setFrameMode(true);
 <?if($arParams["DISPLAY_TOP_PAGER"]):?>
 	<?=$arResult["NAV_STRING"]?><br />
 <?endif;?>
+<?
+// DEBUG LOG
+$logFile = $_SERVER['DOCUMENT_ROOT'] . '/debug_chpu.log';
+$logData = date('Y-m-d H:i:s') . ' - Template loaded, items count: ' . count($arResult["ITEMS"]) . "\n";
+foreach ($arResult["ITEMS"] as $idx => $arItem) {
+    $logData .= sprintf("Item %d: ID=%s, CODE=%s, DETAIL_PAGE_URL=%s\n",
+        $idx,
+        $arItem['ID'] ?? 'null',
+        $arItem['CODE'] ?? 'null',
+        $arItem['DETAIL_PAGE_URL'] ?? 'null'
+    );
+}
+file_put_contents($logFile, $logData, FILE_APPEND);
+?>
 <?foreach($arResult["ITEMS"] as $arItem):?>
 	<?
 	$this->AddEditAction($arItem['ID'], $arItem['EDIT_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_EDIT"));

@@ -79,7 +79,7 @@ $APPLICATION->SetTitle("Услуги");
 				"PAGER_TEMPLATE" => ".default",
 				"PAGER_TITLE" => "Услуги",
 				"PREVIEW_TRUNCATE_LEN" => "",
-				"SEF_FOLDER" => SITE_DIR."uslugi/",
+				"SEF_FOLDER" => "#SITE_DIR#uslugi/",
 				"SEF_MODE" => "Y",
 				"SET_LAST_MODIFIED" => "N",
 				"SET_STATUS_404" => "N",

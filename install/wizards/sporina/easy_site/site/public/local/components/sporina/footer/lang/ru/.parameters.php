@@ -1,0 +1,21 @@
+<?php
+$MESS["SPORINA_FOOTER_PHONE_1_VALUE"] = "Телефон 1";
+$MESS["SPORINA_FOOTER_PHONE_1_LABEL"] = "Подпись телефона 1";
+$MESS["SPORINA_FOOTER_PHONE_2_VALUE"] = "Телефон 2";
+$MESS["SPORINA_FOOTER_PHONE_2_LABEL"] = "Подпись телефона 2";
+$MESS["SPORINA_FOOTER_EMAIL_VALUE"] = "Email";
+$MESS["SPORINA_FOOTER_EMAIL_LABEL"] = "Подпись email";
+$MESS["SPORINA_FOOTER_ADDRESS_VALUE"] = "Адрес";
+$MESS["SPORINA_FOOTER_ADDRESS_LABEL"] = "Подпись адреса";
+$MESS["SPORINA_FOOTER_LICENSE_TEXT"] = "Текст лицензии";
+$MESS["SPORINA_FOOTER_LICENSE_LINK"] = "Ссылка лицензии";
+$MESS["SPORINA_FOOTER_POLICY_TEXT"] = "Текст политики";
+$MESS["SPORINA_FOOTER_POLICY_LINK"] = "Ссылка политики";
+$MESS["SPORINA_FOOTER_COPYRIGHT_PRIMARY"] = "Основной copyright";
+$MESS["SPORINA_FOOTER_COPYRIGHT_SECONDARY_PREFIX"] = "Текст copyright до ссылки";
+$MESS["SPORINA_FOOTER_COPYRIGHT_SECONDARY_LINK_TEXT"] = "Текст ссылки copyright";
+$MESS["SPORINA_FOOTER_COPYRIGHT_SECONDARY_LINK"] = "Ссылка copyright";
+$MESS["SPORINA_FOOTER_COPYRIGHT_SECONDARY_SUFFIX"] = "Текст copyright после ссылки";
+$MESS["SPORINA_FOOTER_TELEGRAM_LINK"] = "Ссылка Telegram";
+$MESS["SPORINA_FOOTER_GOOGLE_PLAY_LINK"] = "Ссылка Google Play";
+$MESS["SPORINA_FOOTER_APP_STORE_LINK"] = "Ссылка App Store";

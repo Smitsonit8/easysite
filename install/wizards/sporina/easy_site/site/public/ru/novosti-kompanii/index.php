@@ -12,10 +12,8 @@ $APPLICATION->SetTitle("Новости компании");
 <!--меню, контент-->
 <section class="container content_flex">
 
-    <div class="content">
-        <h2><?$APPLICATION->ShowTitle()?></h2>
-		
-		<?$APPLICATION->IncludeComponent(
+    <div class="content-no-menu">
+	<?$APPLICATION->IncludeComponent(
 	"bitrix:news", 
 	"sporina-news-company", 
 	array(
@@ -78,7 +76,7 @@ $APPLICATION->SetTitle("Новости компании");
 		"PAGER_TEMPLATE" => ".default",
 		"PAGER_TITLE" => "Новости",
 		"PREVIEW_TRUNCATE_LEN" => "",
-		"SEF_FOLDER" => SITE_DIR."novosti-kompanii/",
+		"SEF_FOLDER" => "#SITE_DIR#novosti-kompanii/",
 		"SEF_MODE" => "Y",
 		"SET_LAST_MODIFIED" => "N",
 		"SET_STATUS_404" => "N",

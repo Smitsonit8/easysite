@@ -18,45 +18,6 @@ li {
 width:100%;
 }
 
-.header_mobile {
-  position: relative;
-  z-index: 99;
-}
-
-@media screen and (min-width: 993px) {
-  .site-header {
-    position: relative;
-    z-index: 120;
-    transition: background-color 0.25s ease, box-shadow 0.25s ease, backdrop-filter 0.25s ease;
-  }
-
-  .site-header--default {
-    position: relative;
-    background: rgba(235, 125, 54, 0.92);
-    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.18);
-  }
-
-  .site-header--overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: transparent;
-  }
-
-  .site-header--sticky {
-    position: sticky;
-    top: 0;
-    background: rgba(235, 125, 54, 0.92);
-    backdrop-filter: blur(14px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
-  }
-
-  .site-header--sticky nav ul::before {
-    border-bottom-color: rgba(0, 0, 0, 0.18);
-  }
-}
-
 #bg_slider-main {
   position: absolute;
   z-index: 5;
@@ -124,7 +85,6 @@ width:100%;
 .button {
   cursor: pointer;
   position: relative;
-  z-index: 100;
   height: 48px;
   width: 202px;
   background-color: var(--main-color);
@@ -165,14 +125,6 @@ width:100%;
   margin: auto;
 }
 
-.logo {
-  margin-top: 12px;
-}
-
-.logo img{
-  width: 35px;
-}
-
 h1 {
   font-size: 40px;
   line-height: 48px;
@@ -205,14 +157,6 @@ h4 {
   filter: var(--arrow-color);
 }
 
-header {
-  font-size: 12px;
-  line-height: 14.58px;
-  color: rgb(255, 255, 255);
-  padding-top: 13px;
-  padding-bottom: 13px;
-}
-
 .block {
   display: flex;
   justify-content: space-between;
@@ -231,7 +175,7 @@ header {
   color: black;
 }
 .block a:hover {
-  color: var(--main-color-hover);
+  color: var(--link-color-hover);
 }
 .block_tg {
   margin-top: 20px;
@@ -248,12 +192,12 @@ header {
 }
 .block_between {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   flex-wrap: wrap;
 }
-.block_between--margin {
+/*.block_between--margin {
   margin: 40px -10px;
-}
+}*/
 .block_info {
   flex: 1 1 auto;
   margin: 0 10px 20px;
@@ -305,45 +249,6 @@ header {
   background-color: var(--main-color);
 }
 
-nav {
-  position: relative;
-}
-nav ul::before {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 45px;
-  width: 94.6%;
-  left: 2.7%;
-  border-bottom: 1px solid rgb(118, 125, 137);
-  z-index: -1;
-}
-
-.nav {
-  padding: 0;
-}
-.nav_active {
-  position: relative;
-}
-.nav_active:before {
-  content: "";
-  position: absolute;
-  top: 33px;
-  width: 100%;
-  border-bottom: 1px solid rgb(255, 255, 255);
-}
-.nav li {
-  padding-left: 2.29vw;
-  padding-right: 2.29vw;
-}
-.nav li a {
-  font-size: 12px;
-  line-height: 14.58px;
-  color: rgb(255, 255, 255);
-}
-.nav li a p {
-  margin: 0;
-}
 .nav_company {
   padding: 0;
   margin: 0;
@@ -425,21 +330,6 @@ nav ul::before {
   color: rgb(255, 255, 255);
   border: 0px;
   padding: 5px 20px;
-}
-
-.svg_search .svg_color {
-  filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(19deg) brightness(99%) contrast(102%);
-}
-
-.visually_impaired {
-  padding-right: 2.08vw;
-  color: rgb(255, 255, 255);
-}
-.visually_impaired .svg_color {
-  filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(19deg) brightness(99%) contrast(102%);
-}
-.visually_impaired p {
-  padding-right: 0.69vw;
 }
 
 .card {
@@ -706,10 +596,6 @@ ol.with-parentheses {
 ol.with-parentheses > li::before {
   content: counter(myCounter) ") ";
   counter-increment: myCounter;
-}
-
-#burger, [for=burger] {
-  display: none;
 }
 
 .mobile_none {
@@ -1112,26 +998,7 @@ ol.with-parentheses > li::before {
     margin-bottom: 12px;
   }
 
-@media screen and (max-width: 1200px) {
-  .nav li {
-    padding-left: 1.5vw;
-    padding-right: 1.5vw;
-  }
-}
 @media screen and (max-width: 992px) {
-  [for=burger] {
-    display: block;
-    position: fixed;
-    text-align: center;
-    width: 20px;
-    top: 10px;
-    right: 45px;
-    color: black;
-    padding: 15px;
-  }
-  [for=burger]::before {
-    content: url(img/burger.png);
-  }
   #bg_slider-main, .bg-element {
     max-height: 367px;
   }
@@ -1142,92 +1009,6 @@ ol.with-parentheses > li::before {
   #bg_slider-website, .mask_height {
     max-height: 325px;
   }*/
-  .header_mobile {
-    z-index: 99;
-    position: fixed;
-    width: 100%;
-    background-color: rgb(255, 255, 255);
-    padding: 0 !important;
-  }
-  .header_mobile .block {
-    padding: 0;
-  }
-  .visually_impaired {
-    color: black;
-  }
-  .visually_impaired:after {
-    content: "|";
-    color: rgb(118, 125, 137);
-  }
-  .visually_impaired .svg_color {
-    filter: invert(0%) sepia(95%) saturate(0%) hue-rotate(88deg) brightness(96%) contrast(104%);
-    margin-right: 20px;
-  }
-  .svg_search {
-    margin-right: 130px;
-  }
-  .svg_search:after {
-    content: "|";
-    color: rgb(118, 125, 137);
-  }
-  .svg_search .svg_color {
-    filter: invert(0%) sepia(95%) saturate(0%) hue-rotate(88deg) brightness(96%) contrast(104%);
-    margin: 0 20px;
-  }
-  .logo {
-    
-    margin: 0;
-  }
-  .logo img {
-    height: 61px;
-    width: 61px;
-    padding: 5px 0px 0px 5px;
-  }
-  .nav {
-    flex-direction: column;
-    width: 100%;
-    margin-bottom: 30vh;
-  }
-  .nav li {
-    margin: 0;
-    width: 100%;
-    padding: 0;
-    border-bottom: 1px solid rgb(211, 211, 211);
-  }
-  .nav li a {
-    font-size: 16px;
-    line-height: 19px;
-    color: black;
-  }
-  .nav li a p {
-    padding: 20px;
-  }
-  .nav_active:before {
-    display: none;
-  }
-  .nav ul::before {
-    display: none;
-  }
-  nav {
-    z-index: 99;
-    box-shadow: 0 0 8px rgba(122, 122, 122, 0.5);
-    background-color: rgb(255, 255, 255);
-    position: absolute;
-    top: 70px;
-    right: 0;
-    width: 98%;
-    color: black;
-    display: none !important;
-  }
-  nav ul:before {
-    display: none;
-  }
-  #burger:checked + label + nav {
-    display: flex !important;
-  }
-  #burger:checked + [for=burger]::before {
-    content: url(img/burger_close.png);
-  }
   .heading-site {
     bottom: 10%;
   }
@@ -1405,22 +1186,6 @@ ol.with-parentheses > li::before {
   .container {
     padding-left: 16px;
     padding-right: 16px;
-  }
-  .visually_impaired p {
-    display: none;
-  }
-  .visually_impaired .svg_color {
-    margin-right: 10px;
-  }
-  .svg_search {
-    margin-right: 105px;
-  }
-  .svg_search .svg_color {
-    margin-right: 10px;
-    margin-left: 10px;
-  }
-  [for=burger] {
-    right: 18px;
   }
   .mask_height {
     max-height: 540px;

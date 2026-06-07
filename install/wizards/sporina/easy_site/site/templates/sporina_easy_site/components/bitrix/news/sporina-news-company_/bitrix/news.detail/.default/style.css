@@ -1,0 +1,157 @@
+
+.sporina-news-detail
+{
+	background: #ffffff;
+	padding: 40px 30px;
+}
+
+.sporina-news-detail__top
+{
+	display: flex;
+	flex-direction: row;
+	gap: 40px;
+	align-items: flex-start;
+}
+
+.sporina-news-detail__image-wrap
+{
+	flex: 0 0 360px;
+	max-width: 40%;
+}
+
+.sporina-news-detail__image
+{
+	width: 100%;
+	height: auto;
+	max-height: 360px;
+	object-fit: cover;
+	border-radius: 5px;
+	display: block;
+}
+
+.sporina-news-detail__content
+{
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+.sporina-news-detail__date
+{
+	display: inline-block;
+	font-size: 14px;
+	line-height: 1.4;
+	color: var(--main-color);
+	background: var(--color-news-date);
+	padding: 6px 16px;
+	border-radius: 5px;
+	margin-bottom: 16px;
+	font-weight: 500;
+}
+
+.sporina-news-detail__title
+{
+	font-size: 28px;
+	line-height: 1.3;
+	font-weight: 600;
+	color: #1b2835;
+	margin: 0 0 20px;
+}
+
+.sporina-news-detail__preview
+{
+	font-size: 16px;
+	line-height: 1.7;
+	color: var(--color-page-text);
+}
+
+.sporina-news-detail__preview p
+{
+	margin: 0 0 12px;
+}
+
+.sporina-news-detail__preview p:last-child
+{
+	margin-bottom: 0;
+}
+
+.sporina-news-detail__detail-text
+{
+	font-size: 16px;
+	line-height: 1.7;
+	color: var(--color-page-text);
+	margin-top: 32px;
+	/*padding-top: 28px;*/
+	border-top: 1px solid rgba(27, 40, 53, 0.08);
+}
+
+.sporina-news-detail__detail-text p
+{
+	margin: 0 0 16px;
+}
+
+.sporina-news-detail__detail-text p:last-child
+{
+	margin-bottom: 0;
+}
+
+.sporina-news-detail__detail-text img
+{
+	max-width: 100%;
+	height: auto;
+	border-radius: 12px;
+	margin: 24px 0;
+}
+
+/* Поделиться */
+.sporina-news-detail__share
+{
+	margin-top: 24px;
+}
+
+/* Постраничная навигация */
+.sporina-news-detail__pager
+{
+	margin-top: 24px;
+	text-align: center;
+}
+
+/* Адаптив */
+@media screen and (max-width: 900px)
+{
+	.sporina-news-detail__top
+	{
+		flex-direction: column;
+		gap: 24px;
+	}
+
+	.sporina-news-detail__image-wrap
+	{
+		flex: 0 0 auto;
+		max-width: 100%;
+	}
+
+	.sporina-news-detail__image
+	{
+		max-height: 300px;
+	}
+}
+
+@media screen and (max-width: 768px)
+{
+	.sporina-news-detail
+	{
+		padding: 24px 20px;
+		border-radius: 12px;
+	}
+
+	.sporina-news-detail__title
+	{
+		font-size: 22px;
+	}
+
+	.sporina-news-detail__preview,
+	.sporina-news-detail__detail-text
+	{
+		font-size: 15px;
+	}
+}

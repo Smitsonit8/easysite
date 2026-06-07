@@ -55,6 +55,7 @@ $this->setFrameMode(true);
 		"DETAIL_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["detail"],
 		"SECTION_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["section"],
 		"IBLOCK_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["news"],
+		"LIST_PAGE_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["news"],
 	),
 	$component
 );?>

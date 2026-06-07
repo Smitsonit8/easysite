@@ -29,11 +29,11 @@
   justify-content: space-between;
   gap: 48px;
   padding-top: 48px;
-  padding-bottom: 48px;
 }
 
 .sporina-banner__content {
   max-width: 640px;
+  padding-bottom: 60px;
 }
 
 .sporina-banner__slogan {
@@ -88,7 +88,6 @@
     align-items: flex-start;
     gap: 28px;
     padding-top: 40px;
-    padding-bottom: 40px;
   }
 
   .sporina-banner__media {

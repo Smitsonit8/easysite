@@ -12,12 +12,11 @@ $APPLICATION->SetTitle("Изменения в расписании");
 <!--меню, контент-->
 <section class="container content_flex">
 
-    <div class="content">
-        <h2><?$APPLICATION->ShowTitle()?></h2>
+    <div class="content-no-menu">
 		
-    <?$APPLICATION->IncludeComponent(
+       <?$APPLICATION->IncludeComponent(
 	"bitrix:news", 
-	"sporina-izmeneniya-raspisaniay", 
+	"sporina-news-company-circle", 
 	[
 		"ADD_ELEMENT_CHAIN" => "N",
 		"ADD_SECTIONS_CHAIN" => "N",
@@ -36,8 +35,12 @@ $APPLICATION->SetTitle("Изменения в расписании");
 		"DETAIL_DISPLAY_BOTTOM_PAGER" => "Y",
 		"DETAIL_DISPLAY_TOP_PAGER" => "N",
 		"DETAIL_FIELD_CODE" => [
-			0 => "",
-			1 => "",
+			0 => "PREVIEW_TEXT",
+			1 => "DETAIL_TEXT",
+			2 => "DETAIL_PICTURE",
+			3 => "DATE_CREATE",
+			4 => "TIMESTAMP_X",
+			5 => "",
 		],
 		"DETAIL_PAGER_SHOW_ALL" => "Y",
 		"DETAIL_PAGER_TEMPLATE" => "",
@@ -50,8 +53,8 @@ $APPLICATION->SetTitle("Изменения в расписании");
 		"DISPLAY_BOTTOM_PAGER" => "Y",
 		"DISPLAY_DATE" => "Y",
 		"DISPLAY_NAME" => "Y",
-		"DISPLAY_PICTURE" => "N",
-		"DISPLAY_PREVIEW_TEXT" => "N",
+		"DISPLAY_PICTURE" => "Y",
+		"DISPLAY_PREVIEW_TEXT" => "Y",
 		"DISPLAY_TOP_PAGER" => "N",
 		"HIDE_LINK_WHEN_NO_DETAIL" => "N",
 		"IBLOCK_ID" => SCHEDULE_CHANGES_IBLOCK_ID,
@@ -69,16 +72,16 @@ $APPLICATION->SetTitle("Изменения в расписании");
 		"MESSAGE_404" => "",
 		"META_DESCRIPTION" => "-",
 		"META_KEYWORDS" => "-",
-		"NEWS_COUNT" => "20",
+		"NEWS_COUNT" => "2",
 		"PAGER_BASE_LINK_ENABLE" => "N",
 		"PAGER_DESC_NUMBERING" => "N",
 		"PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
 		"PAGER_SHOW_ALL" => "N",
 		"PAGER_SHOW_ALWAYS" => "N",
 		"PAGER_TEMPLATE" => "",
-		"PAGER_TITLE" => "Изменения в расписании",
+		"PAGER_TITLE" => "",
 		"PREVIEW_TRUNCATE_LEN" => "",
-		"SEF_FOLDER" => SITE_DIR."izmeneniya-v-raspisanii/",
+		"SEF_FOLDER" => "/zz/izmeneniya-v-raspisanii/",
 		"SEF_MODE" => "Y",
 		"SET_LAST_MODIFIED" => "N",
 		"SET_STATUS_404" => "N",
@@ -95,8 +98,17 @@ $APPLICATION->SetTitle("Изменения в расписании");
 		"USE_RATING" => "N",
 		"USE_RSS" => "N",
 		"USE_SEARCH" => "N",
-		"USE_SHARE" => "N",
-		"COMPONENT_TEMPLATE" => "sporina-izmeneniya-raspisaniay",
+		"USE_SHARE" => "Y",
+		"COMPONENT_TEMPLATE" => "sporina-news-company-circle",
+		"USE_REVIEW" => "N",
+		"SHARE_HIDE" => "N",
+		"SHARE_TEMPLATE" => "",
+		"SHARE_HANDLERS" => [
+			0 => "mailru",
+			1 => "vk",
+		],
+		"SHARE_SHORTEN_URL_LOGIN" => "",
+		"SHARE_SHORTEN_URL_KEY" => "",
 		"SEF_URL_TEMPLATES" => [
 			"news" => "",
 			"section" => "",

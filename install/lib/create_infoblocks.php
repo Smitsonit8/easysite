@@ -343,7 +343,7 @@ class Create_infoblocks
             'SORT' => 121,
             'LIST_PAGE_URL' => '#SITE_DIR#/news_and_changes/index.php?ID=#IBLOCK_ID#',
             'SECTION_PAGE_URL' => '#SITE_DIR#/novosti-kompanii/',
-            'DETAIL_PAGE_URL' => '#SITE_DIR#/novosti-kompanii/#ELEMENT_CODE#',
+            'DETAIL_PAGE_URL' => '#SITE_DIR#/novosti-kompanii/#ELEMENT_CODE#/',
             'INDEX_ELEMENT' => 'Y',
             'INDEX_SECTION' => 'Y',
             'WORKFLOW' => 'N',

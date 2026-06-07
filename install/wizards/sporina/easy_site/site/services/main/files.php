@@ -161,44 +161,138 @@ if (file_exists(WIZARD_SITE_PATH . "/.section.php"))
 
 // 6. Настройка ЧПУ (urlrewrite.php) с учетом каталога сайта (WIZARD_SITE_DIR).
 // Нужно для корректной работы SEF_MODE у компонентов (detail страницы вида /novosti-kompanii/some-slug/ и т.п.)
+// При повторном запуске мастера старые правила мастера удаляются и создаются заново с актуальным WIZARD_SITE_DIR.
+// Не используем CUrlRewriter::Delete/DeleteByFilter, т.к. на некоторых инсталляциях Bitrix падает,
+// если в существующем urlrewrite.php есть невалидные элементы.
+$urlRewriteFile = WIZARD_SITE_ROOT_PATH . "/urlrewrite.php";
 $arUrlRewrite = array();
-if (file_exists(WIZARD_SITE_ROOT_PATH . "/urlrewrite.php"))
+if (file_exists($urlRewriteFile))
 {
-	include(WIZARD_SITE_ROOT_PATH . "/urlrewrite.php");
+	include($urlRewriteFile);
+}
+
+if (!is_array($arUrlRewrite))
+{
+	$arUrlRewrite = array();
+}
+
+$wizardNewsPaths = array(
+	WIZARD_SITE_DIR . "novosti-kompanii/index.php",
+	WIZARD_SITE_DIR . "izmeneniya-v-raspisanii/index.php",
+	WIZARD_SITE_DIR . "uslugi/index.php",
+	WIZARD_SITE_DIR . "tovary/index.php",
+);
+
+$filteredUrlRewrite = array();
+foreach ($arUrlRewrite as $rule)
+{
+	if (!is_array($rule))
+	{
+		continue;
+	}
+
+	$isWizardNewsRule = (
+		array_key_exists("ID", $rule)
+		&& $rule["ID"] === "bitrix:news"
+		&& array_key_exists("PATH", $rule)
+		&& in_array($rule["PATH"], $wizardNewsPaths, true)
+	);
+
+	if ($isWizardNewsRule)
+	{
+		continue;
+	}
+
+	$filteredUrlRewrite[] = $rule;
 }
 
 $arNewUrlRewrite = array(
+	// Детальные страницы novosti-kompanii (SORT=90 — приоритет выше)
 	array(
-		"CONDITION" => "#^" . WIZARD_SITE_DIR . "novosti-kompanii/#",
-		"RULE" => "",
-		"ID" => "bitrix:news",
-		"PATH" => WIZARD_SITE_DIR . "novosti-kompanii/index.php",
+		'CONDITION' => "#^" . WIZARD_SITE_DIR . "novosti-kompanii/([^/]+?)/\\??(.*)#",
+		'RULE' => 'ELEMENT_CODE=$1&$2',
+		'ID' => "bitrix:news",
+		'PATH' => WIZARD_SITE_DIR . "novosti-kompanii/index.php",
+		'SORT' => 90,
 	),
+	// Список novosti-kompanii (SORT=100 — ниже)
 	array(
-		"CONDITION" => "#^" . WIZARD_SITE_DIR . "izmeneniya-v-raspisanii/#",
-		"RULE" => "",
-		"ID" => "bitrix:news",
-		"PATH" => WIZARD_SITE_DIR . "izmeneniya-v-raspisanii/index.php",
+		'CONDITION' => "#^" . WIZARD_SITE_DIR . "novosti-kompanii/\\??(.*)#",
+		'RULE' => '&$1',
+		'ID' => "bitrix:news",
+		'PATH' => WIZARD_SITE_DIR . "novosti-kompanii/index.php",
+		'SORT' => 100,
 	),
+	// Детальные страницы izmeneniya-v-raspisanii
 	array(
-		"CONDITION" => "#^" . WIZARD_SITE_DIR . "uslugi/#",
-		"RULE" => "",
-		"ID" => "bitrix:news",
-		"PATH" => WIZARD_SITE_DIR . "uslugi/index.php",
+		'CONDITION' => "#^" . WIZARD_SITE_DIR . "izmeneniya-v-raspisanii/([^/]+?)/\\??(.*)#",
+		'RULE' => 'ELEMENT_CODE=$1&$2',
+		'ID' => "bitrix:news",
+		'PATH' => WIZARD_SITE_DIR . "izmeneniya-v-raspisanii/index.php",
+		'SORT' => 90,
 	),
+	// Список izmeneniya-v-raspisanii
 	array(
-		"CONDITION" => "#^" . WIZARD_SITE_DIR . "tovary/#",
-		"RULE" => "",
-		"ID" => "bitrix:news",
-		"PATH" => WIZARD_SITE_DIR . "tovary/index.php",
+		'CONDITION' => "#^" . WIZARD_SITE_DIR . "izmeneniya-v-raspisanii/\\??(.*)#",
+		'RULE' => '&$1',
+		'ID' => "bitrix:news",
+		'PATH' => WIZARD_SITE_DIR . "izmeneniya-v-raspisanii/index.php",
+		'SORT' => 100,
+	),
+	// Детальные страницы uslugi
+	array(
+		'CONDITION' => "#^" . WIZARD_SITE_DIR . "uslugi/([^/]+?)/\\??(.*)#",
+		'RULE' => 'ELEMENT_CODE=$1&$2',
+		'ID' => "bitrix:news",
+		'PATH' => WIZARD_SITE_DIR . "uslugi/index.php",
+		'SORT' => 90,
+	),
+	// Список uslugi
+	array(
+		'CONDITION' => "#^" . WIZARD_SITE_DIR . "uslugi/\\??(.*)#",
+		'RULE' => '&$1',
+		'ID' => "bitrix:news",
+		'PATH' => WIZARD_SITE_DIR . "uslugi/index.php",
+		'SORT' => 100,
+	),
+	// Детальные страницы tovary
+	array(
+		'CONDITION' => "#^" . WIZARD_SITE_DIR . "tovary/([^/]+?)/\\??(.*)#",
+		'RULE' => 'ELEMENT_CODE=$1&$2',
+		'ID' => "bitrix:news",
+		'PATH' => WIZARD_SITE_DIR . "tovary/index.php",
+		'SORT' => 90,
+	),
+	// Список tovary
+	array(
+		'CONDITION' => "#^" . WIZARD_SITE_DIR . "tovary/\\??(.*)#",
+		'RULE' => '&$1',
+		'ID' => "bitrix:news",
+		'PATH' => WIZARD_SITE_DIR . "tovary/index.php",
+		'SORT' => 100,
 	),
 );
 
 foreach ($arNewUrlRewrite as $arUrl)
 {
-	if (!in_array($arUrl, $arUrlRewrite, true))
-	{
-		CUrlRewriter::Add($arUrl);
-	}
+	$filteredUrlRewrite[] = $arUrl;
 }
+
+usort($filteredUrlRewrite, static function ($left, $right) {
+	$leftSort = isset($left["SORT"]) ? (int)$left["SORT"] : 100;
+	$rightSort = isset($right["SORT"]) ? (int)$right["SORT"] : 100;
+
+	if ($leftSort === $rightSort)
+	{
+		return 0;
+	}
+
+	return ($leftSort < $rightSort) ? -1 : 1;
+});
+
+$urlRewriteContents = "<?php\n";
+$urlRewriteContents .= '$arUrlRewrite = ' . var_export(array_values($filteredUrlRewrite), true) . ";\n";
+$urlRewriteContents .= "?>";
+
+___writeToAreasFile($urlRewriteFile, $urlRewriteContents);
 ?>
