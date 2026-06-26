@@ -1,0 +1,252 @@
+@import url("../sporina-news-company-circle/style.css");
+
+.sporina-news-company__back-wrap
+{
+	margin-bottom: 24px;
+}
+
+.sporina-uslugi-detail
+{
+	margin-bottom: 40px;
+}
+
+.sporina-uslugi-detail__hero
+{
+	position: relative;
+	overflow: hidden;
+	border-radius: 28px;
+	background: linear-gradient(135deg, #173858 0%, #0f678d 100%);
+	box-shadow: 0 24px 60px rgba(11, 39, 66, 0.18);
+}
+
+.sporina-uslugi-detail__hero::after
+{
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(90deg, rgba(8, 20, 36, 0.88) 0%, rgba(8, 20, 36, 0.56) 42%, rgba(8, 20, 36, 0.12) 100%);
+	pointer-events: none;
+}
+
+.sporina-uslugi-detail__hero--no-image::after
+{
+	background: linear-gradient(135deg, rgba(8, 20, 36, 0.18) 0%, rgba(8, 20, 36, 0.1) 100%);
+}
+
+.sporina-uslugi-detail__hero-media
+{
+	position: absolute;
+	inset: 0;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	transform: scale(1.02);
+}
+
+.sporina-uslugi-detail__hero-inner
+{
+	position: relative;
+	z-index: 1;
+	display: grid;
+	grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+	gap: 32px;
+	align-items: end;
+	min-height: 420px;
+	padding: 48px;
+}
+
+.sporina-uslugi-detail__eyebrow
+{
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 18px;
+	color: rgba(255, 255, 255, 0.78);
+	font-size: 13px;
+	font-weight: 700;
+	letter-spacing: 0.18em;
+	text-transform: uppercase;
+}
+
+.sporina-uslugi-detail__title
+{
+	margin: 0 0 20px;
+	color: #ffffff;
+	font-size: 46px;
+	line-height: 1.05;
+}
+
+.sporina-uslugi-detail__announce
+{
+	max-width: 720px;
+	margin: 0;
+	color: rgba(255, 255, 255, 0.88);
+	font-size: 18px;
+	line-height: 1.75;
+}
+
+.sporina-uslugi-detail__aside
+{
+	display: flex;
+	justify-content: flex-end;
+}
+
+.sporina-uslugi-detail__badge
+{
+	width: 100%;
+	max-width: 320px;
+	padding: 24px 24px 22px;
+	border: 1px solid rgba(255, 255, 255, 0.14);
+	border-radius: 22px;
+	background: rgba(255, 255, 255, 0.08);
+	backdrop-filter: blur(14px);
+	color: #ffffff;
+}
+
+.sporina-uslugi-detail__badge-label
+{
+	margin-bottom: 12px;
+	color: rgba(255, 255, 255, 0.66);
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+}
+
+.sporina-uslugi-detail__badge-value
+{
+	font-size: 20px;
+	font-weight: 700;
+	line-height: 1.35;
+}
+
+.sporina-uslugi-detail__body
+{
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: 28px;
+	margin-top: 32px;
+}
+
+.sporina-uslugi-detail__content
+{
+	padding: 34px 38px;
+	border-radius: 28px;
+	background: #ffffff;
+	box-shadow: 0 18px 40px rgba(18, 45, 66, 0.08);
+}
+
+.sporina-uslugi-detail__content .news-detail-text,
+.sporina-uslugi-detail__content .news-detail-text p
+{
+	color: #314659;
+	font-size: 17px;
+	line-height: 1.8;
+}
+
+.sporina-uslugi-detail__content .news-detail-text > *:first-child
+{
+	margin-top: 0;
+}
+
+.sporina-uslugi-detail__content .news-detail-text > *:last-child
+{
+	margin-bottom: 0;
+}
+
+.sporina-uslugi-detail__content .news-detail-text h2,
+.sporina-uslugi-detail__content .news-detail-text h3
+{
+	color: #173858;
+	line-height: 1.2;
+}
+
+.sporina-uslugi-detail__content .news-detail-text ul,
+.sporina-uslugi-detail__content .news-detail-text ol
+{
+	padding-left: 24px;
+}
+
+.sporina-uslugi-detail__form-wrap
+{
+	margin-top: 36px;
+}
+
+.sporina-uslugi-detail__form-wrap .services-form.section-offset
+{
+	margin-top: 0;
+}
+
+@media screen and (max-width: 992px)
+{
+	.sporina-uslugi-detail__hero-inner
+	{
+		grid-template-columns: 1fr;
+		min-height: 0;
+		padding: 36px 28px;
+	}
+
+	.sporina-uslugi-detail__aside
+	{
+		justify-content: flex-start;
+	}
+
+	.sporina-uslugi-detail__title
+	{
+		font-size: 38px;
+	}
+}
+
+@media screen and (max-width: 768px)
+{
+	.sporina-news-company__back-wrap
+	{
+		display: block;
+		margin-bottom: 18px;
+	}
+
+	.sporina-uslugi-detail__hero
+	{
+		border-radius: 22px;
+	}
+
+	.sporina-uslugi-detail__hero::after
+	{
+		background: linear-gradient(180deg, rgba(8, 20, 36, 0.24) 0%, rgba(8, 20, 36, 0.84) 100%);
+	}
+
+	.sporina-uslugi-detail__hero-inner
+	{
+		padding: 24px 20px;
+	}
+
+	.sporina-uslugi-detail__title
+	{
+		font-size: 30px;
+	}
+
+	.sporina-uslugi-detail__announce
+	{
+		font-size: 16px;
+		line-height: 1.65;
+	}
+
+	.sporina-uslugi-detail__badge
+	{
+		max-width: none;
+		padding: 18px 18px 16px;
+	}
+
+	.sporina-uslugi-detail__content
+	{
+		padding: 24px 20px;
+		border-radius: 22px;
+	}
+
+	.sporina-uslugi-detail__content .news-detail-text,
+	.sporina-uslugi-detail__content .news-detail-text p
+	{
+		font-size: 16px;
+		line-height: 1.7;
+	}
+}

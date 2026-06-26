@@ -74,9 +74,9 @@ Loc::loadMessages(__FILE__);
 				</div>
 			</div>
 		</div>
-		<div class="block_top-border block_between copyright_margin">
+		<div class="block_between copyright_margin">
 			<div class="copyright_block copyright_order1">
-				<div class="copyright copyright_width">
+				<div class="copyright">
 					<?=nl2br(htmlspecialcharsbx($arResult["COPYRIGHT_PRIMARY"]))?>
 				</div>
 			</div>

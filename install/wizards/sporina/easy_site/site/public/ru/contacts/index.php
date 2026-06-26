@@ -14,39 +14,43 @@ $APPLICATION->SetTitle("Контакты");
 );?>
 <!--меню, контент-->
 <section class="container content_flex">
-  <div class="content_nav">
-    <div class="content_nav-bg">
-      <input type="checkbox" id="content_nav-head">
-      <label class="content_nav-head" for="content_nav-head"> <?$APPLICATION->ShowTitle()?></label>
-      <?$APPLICATION->IncludeComponent("bitrix:menu", "sporina-left-menu", Array(
-            "ALLOW_MULTI_SELECT" => "N",
-              "CHILD_MENU_TYPE" => "left",
-              "DELAY" => "N",
-              "MAX_LEVEL" => "1",
-              "MENU_CACHE_GET_VARS" => array(	
-                0 => "",
-              ),
-              "MENU_CACHE_TIME" => "3600",
-              "MENU_CACHE_TYPE" => "N",
-              "MENU_CACHE_USE_GROUPS" => "Y",
-              "ROOT_MENU_TYPE" => "left",
-              "USE_EXT" => "N",
-            ),
-            false
-          );
-      ?>
-    </div>
-  </div>
   <div class="content">
-    <h2><?$APPLICATION->ShowTitle()?></h2>
-    <?$APPLICATION->IncludeComponent("bitrix:main.include", "", Array(
-      "AREA_FILE_RECURSIVE" => "Y",
-        "AREA_FILE_SHOW" => "sect",
-        "AREA_FILE_SUFFIX" => "inc contacts",
-        "EDIT_TEMPLATE" => "",
-      ),
-      false
-    );?>
+    <?$APPLICATION->IncludeComponent(
+	"sporina:contacts", 
+	".default", 
+	[
+		"SHOW_FULL_NAME" => "Y",
+		"FULL_NAME" => "Акционерное общество «Путь-Экспресс»",
+		"SHOW_SHORT_NAME" => "Y",
+		"SHORT_NAME" => "АО «Путь-Экспресс»",
+		"SHOW_LEGAL_ADDRESS" => "Y",
+		"LEGAL_ADDRESS" => "236039, Калининградская область, г. Калининград, ул. А. Суворова, д. 1",
+		"SHOW_ACTUAL_ADDRESS" => "Y",
+		"ACTUAL_ADDRESS" => "236039, Калининградская область, г. Калининград, ул. А. Суворова, д. 1",
+		"SHOW_EMAIL" => "Y",
+		"EMAIL" => "WAY-EXPRESS@YANDEX.RU",
+		"EMAIL_NOTE" => "для официальной документации",
+		"SHOW_PHONE_1" => "Y",
+		"PHONE_1" => "8 800 777 0000",
+		"PHONE_1_LABEL" => "основной телефон",
+		"SHOW_PHONE_2" => "Y",
+		"PHONE_2" => "8 (4000) 666-888",
+		"PHONE_2_LABEL" => "приемная",
+		"SHOW_WORK_HOURS" => "Y",
+		"WORK_HOURS" => "Понедельник-четверг 08:00 - 17:00; пятница 08:00 - 15:45 (обеденный перерыв с 12:00 до 12:45).",
+		"SHOW_WEEKENDS" => "Y",
+		"WEEKENDS" => "Суббота, воскресенье.",
+		"SHOW_MAP" => "Y",
+		"YANDEX_MAP_LAT" => "51.533338",
+		"YANDEX_MAP_LON" => "46.034176",
+		"MAP_TITLE" => "Местоположение офиса",
+		"MAP_HEIGHT" => "420",
+		"CACHE_TYPE" => "A",
+		"CACHE_TIME" => "36000000",
+		"COMPONENT_TEMPLATE" => ".default"
+	],
+	false
+);?>
   </div>
 </section>
 <!-- подписаться на телеграм-->

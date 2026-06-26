@@ -1,6 +1,15 @@
 .sporina-banner-centered {
-  background: var(--gradient-banner-centered);
+  background: var(--gradient-banner);
   padding: 36px 0;
+  max-width: 2052px;
+  margin: auto;
+
+  animation: centeredBgReveal 0.7s ease forwards;
+}
+
+@keyframes centeredBgReveal {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 .sporina-banner-centered__container {
@@ -32,14 +41,25 @@
   z-index: 1;
   width: min(100%, 760px);
   padding: 42px;
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--surface);
   box-shadow: 0 30px 60px rgba(16, 56, 89, 0.14);
   text-align: center;
+
+  opacity: 0;
+  transform: scale(0.92);
+  animation: centeredCardIn 0.5s ease 0.3s forwards;
+}
+
+@keyframes centeredCardIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .sporina-banner-centered__slogan {
   margin-bottom: 14px;
-  color: #0f5d8c;
+  color: var(--text-secondary);
   font-size: 14px;
   line-height: 1.3;
   text-transform: uppercase;
@@ -48,7 +68,7 @@
 
 .sporina-banner-centered__title {
   margin: 0 0 16px;
-  color: #16324f;
+  color: var(--primary);
   font-size: 44px;
   line-height: 1.1;
 }
@@ -56,7 +76,7 @@
 .sporina-banner-centered__text {
   margin: 0 auto 24px;
   max-width: 560px;
-  color: #35526d;
+  color: var(--text);
   font-size: 17px;
   line-height: 1.6;
 }
@@ -66,6 +86,28 @@
   align-items: center;
   justify-content: center;
   text-decoration: none;
+}
+
+/* Контент внутри карточки — fadeInUp с задержками */
+.sporina-banner-centered__slogan,
+.sporina-banner-centered__title,
+.sporina-banner-centered__text,
+.sporina-banner-centered__button {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: centeredContentIn 0.4s ease forwards;
+}
+
+.sporina-banner-centered__slogan { animation-delay: 0.4s; }
+.sporina-banner-centered__title  { animation-delay: 0.5s; }
+.sporina-banner-centered__text   { animation-delay: 0.6s; }
+.sporina-banner-centered__button { animation-delay: 0.7s; }
+
+@keyframes centeredContentIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 767px) {

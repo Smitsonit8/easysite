@@ -1,0 +1,10 @@
+:root {
+  --main-color: #18008f;
+  --main-color-hover: #3d30b5;
+  --arrow-color: invert(10%) sepia(87%) saturate(6921%) hue-rotate(256deg) brightness(55%) contrast(115%);
+  --gradient: linear-gradient(135deg, #3d30b5 0%, #18008f 100%);
+  --gradient-banner-centered: linear-gradient(0deg, #f4f4f4 0%, #18008f 100%);
+  --gradient-banner-compact: linear-gradient(90deg, rgb(0 0 0 / 72%), rgb(62 110 213 / 62%));
+  --header-color: #17008e;
+  --link-color-hover: #242424;
+}

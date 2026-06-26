@@ -3,10 +3,12 @@
   overflow: hidden;
   background-image:
     radial-gradient(circle at top left, rgba(255, 255, 255, 0.22), transparent 34%),
-    linear-gradient(135deg, rgba(18, 46, 89, 0.72), rgba(10, 105, 157, 0.64));
+    linear-gradient(135deg, rgba(18, 46, 89, 0.72), rgba(0, 0, 0, 0.64));
   background-position: center, center, center;
   background-repeat: no-repeat, no-repeat, no-repeat;
   background-size: auto, auto;
+  max-width: 2052px;
+  margin: auto;
 }
 
 .sporina-banner::before {
@@ -42,21 +44,21 @@
   padding: 8px 14px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.16);
-  color: #fff;
+  color: var(--text-inverse);
   font-size: 14px;
   line-height: 1.2;
 }
 
 .sporina-banner__title {
   margin: 0 0 18px;
-  color: #fff;
+  color: var(--text-inverse);
   font-size: 52px;
   line-height: 1.08;
 }
 
 .sporina-banner__text {
   margin: 0 0 28px;
-  color: rgba(255, 255, 255, 0.92);
+  color: var(--text-inverse);
   font-size: 18px;
   line-height: 1.6;
   max-width: 560px;
@@ -75,10 +77,34 @@
 
 .sporina-banner__media img {
   display: block;
-  width: 100%;
+  width: 80%;
   height: auto;
   object-fit: contain;
   filter: drop-shadow(0 24px 60px rgba(0, 0, 0, 0.28));
+}
+
+/* Анимация для контента баннера */
+.sporina-banner__slogan,
+.sporina-banner__title,
+.sporina-banner__text,
+.sporina-banner__button,
+.sporina-banner__media {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: bannerFadeInUp 0.6s ease forwards;
+}
+
+.sporina-banner__slogan { animation-delay: 0.1s; }
+.sporina-banner__title  { animation-delay: 0.25s; }
+.sporina-banner__text   { animation-delay: 0.4s; }
+.sporina-banner__button { animation-delay: 0.55s; }
+.sporina-banner__media  { animation-delay: 0.35s; }
+
+@keyframes bannerFadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 991px) {

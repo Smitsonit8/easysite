@@ -3,10 +3,10 @@ if(!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true)
 	die();
 ?>
 <?$APPLICATION->IncludeComponent(
-	"sporina:footer",
-	"big",
-	array(
-		"PHONE_1_VALUE" => "8 800 777 0000",
+	"sporina:footer", 
+	"big", 
+	[
+		"PHONE_1_VALUE" => "8 800 777 0001",
 		"PHONE_1_LABEL" => "звонок бесплатный для всех регионов РФ",
 		"PHONE_2_VALUE" => "8 (4000) 666-888",
 		"PHONE_2_LABEL" => "приемная АО «Путь-Экспресс»",
@@ -18,7 +18,7 @@ if(!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true)
 		"LICENSE_LINK" => "#",
 		"POLICY_TEXT" => "Политика обработки персональных данных",
 		"POLICY_LINK" => SITE_DIR."about/policy/",
-		"COPYRIGHT_PRIMARY" => "© АО «Путь-Экспресс»\n2011-2025",
+		"COPYRIGHT_PRIMARY" => "© АО «Путь-Экспресс» 2011-2026",
 		"COPYRIGHT_SECONDARY_PREFIX" => "При использовании любых материалов ссылка на ",
 		"COPYRIGHT_SECONDARY_LINK_TEXT" => "Сайт",
 		"COPYRIGHT_SECONDARY_LINK" => "#",
@@ -26,7 +26,8 @@ if(!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true)
 		"TELEGRAM_LINK" => "https://t.me/",
 		"GOOGLE_PLAY_LINK" => "https://play.google.com/",
 		"APP_STORE_LINK" => "https://apps.apple.com/",
-	),
+		"COMPONENT_TEMPLATE" => "big"
+	],
 	false
 );?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>

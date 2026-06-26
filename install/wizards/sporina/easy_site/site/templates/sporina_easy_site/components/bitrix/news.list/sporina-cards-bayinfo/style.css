@@ -3,6 +3,69 @@ div.news-list
 	word-wrap: break-word;
 }
 
+.block_between {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.block_between--margin {
+  /*margin: 40px -10px;*/
+}
+
+.block_info {
+  flex: 1 1 auto;
+  margin: 0 10px 20px;
+  width: 27%;
+  height: 256px;
+  box-shadow: var(--shadow-sm);
+}
+
+.block_info a {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.block_info a h2, .block_info a p {
+  margin: 20px 0 20px 20px;
+  text-align: left;
+  overflow-wrap: break-word;
+}
+
+.block_info--bgWhite {
+  background-color: var(--surface);
+}
+
+.block_info--bgWhite a:hover h2 {
+  color: var(--primary-hover);
+}
+
+.block_info--bgWhite p {
+  font-size: 16px;
+  line-height: 20.8px;
+  color: var(--text-secondary);
+}
+
+.block_info--bgWhite h2 {
+  color: var(--primary);
+}
+
+.block_info--bgImg p {
+  font-size: 16px;
+  line-height: 20.8px;
+  color: var(--text-inverse);
+}
+.block_info--bgImg h2, .block_info--bgImg .svg_color {
+  color: var(--text-inverse);
+  fill: var(--text-inverse);
+}
+
+.svg_color {
+    fill: var(--primary);
+}
+
 .sporina-cards-bayinfo__item
 {
 	opacity: 0;
@@ -46,6 +109,43 @@ div.news-list
 	transform: scale(1.05);
 }
 
+.bgImg a {
+  position: relative;
+}
+
+.bgImg-position {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.bgImg-position > img {
+  position: absolute;
+  z-index: -10;
+  top: 0;
+  left: -50%;
+  right: -50%;
+  bottom: 0;
+   width: auto;
+  /*
+  margin: auto;
+
+
+ height: 100%;*/
+}
+
+.icon_top {
+  display: flex;
+  align-items: start;
+  /* height: 100%; */
+  margin-right: 20px;
+}
+.icon_top img {
+  margin: 30px 20px;
+}
+
 @keyframes sporinaCardsBayinfoIn
 {
 	from {
@@ -62,7 +162,4 @@ div.news-list img.preview_picture
 {
 	float:left;
 	margin:0 4px 6px 0;
-}
-.news-date-time {
-	color:#486DAA;
 }

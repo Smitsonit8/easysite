@@ -31,7 +31,7 @@ div.sporina-cards-stack
 	min-height: 230px;
 	height: 100%;
 	padding: 28px 32px;
-	background: var(--gradient);
+	/*background: var(--gradient);*/
 	box-shadow: 0 16px 40px rgba(11, 39, 66, 0.16);
 	transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -58,7 +58,7 @@ div.sporina-cards-stack
 	position: absolute;
 	inset: 0;
 	border-radius: inherit;
-	background: transparent;
+	background: var(--surface);
 	transition: background 0.35s ease;
 }
 
@@ -113,7 +113,7 @@ div.sporina-cards-stack
 .sporina-cards-stack__number
 {
 	margin-bottom: 14px;
-	color: rgba(255, 255, 255, 0.45);
+	color: var(--text-secondary);
 	font-size: 13px;
 	letter-spacing: 0.24em;
 	text-transform: uppercase;
@@ -126,13 +126,13 @@ div.sporina-cards-stack
 
 .sporina-cards-stack__item--image .sporina-cards-stack__number
 {
-	color: rgba(255, 255, 255, 0.52);
+	color: var(--text-secondary);
 }
 
 .sporina-cards-stack__text h2
 {
 	margin: 0 0 16px;
-	color: #ffffff;
+	color: var(--primary);
 	font-size: 30px;
 	line-height: 1.12;
 	text-align: left;
@@ -140,8 +140,7 @@ div.sporina-cards-stack
 
 .sporina-cards-stack__item:nth-child(even) .sporina-cards-stack__text h2
 {
-	/*color: #173858;*/
-	color: #ffffff;
+	color: var(--text-inverse);
 }
 
 .sporina-cards-stack__item--image .sporina-cards-stack__text h2
@@ -153,7 +152,7 @@ div.sporina-cards-stack
 {
 	margin: 0;
 	max-width: 760px;
-	color: rgba(255, 255, 255, 0.82);
+	color: var(--text-secondary);
 	font-size: 16px;
 	line-height: 1.65;
 }
@@ -187,15 +186,10 @@ div.sporina-cards-stack
 	width: 56px;
 	height: 56px;
 	border-radius: 50%;
-	background: rgba(255, 255, 255, 0.14);
+	background: rgba(0, 0, 0, 0.14);
 	flex-shrink: 0;
 	transition: transform 0.3s ease, background-color 0.3s ease;
 }
-
-/*.sporina-cards-stack__item:nth-child(even) .sporina-cards-stack__circle
-{
-	background: rgba(23, 56, 88, 0.08);
-}*/
 
 .sporina-cards-stack__item--image .sporina-cards-stack__circle
 {
@@ -206,12 +200,6 @@ div.sporina-cards-stack
 {
 	filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(19deg) brightness(99%) contrast(102%);
 }
-
-/*
-.sporina-cards-stack__item:nth-child(even) .sporina-cards-stack__circle .svg_color
-{
-	filter: invert(20%) sepia(38%) saturate(890%) hue-rotate(168deg) brightness(89%) contrast(92%);
-}*/
 
 .sporina-cards-stack__item--image .sporina-cards-stack__circle .svg_color
 {
@@ -260,7 +248,6 @@ div.sporina-cards-stack
 	{
 		min-height: 210px;
 		padding: 22px 20px;
-		/*border-radius: 22px;*/
 	}
 
 	.sporina-cards-stack__text h2
