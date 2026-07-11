@@ -54,11 +54,25 @@ Class sporina_easysite extends CModule
 	{
 		// Копируем шаблон сайта в /bitrix/templates/
 		CopyDirFiles(
-			$_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/sporina.easysite/install/wizards/bitrix/easy_site/site/templates/sporina_easy_site",
+			$_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/sporina.easysite/install/wizards/sporina/easy_site/site/templates/sporina_easy_site",
 			$_SERVER["DOCUMENT_ROOT"]."/bitrix/templates/sporina_easy_site",
 			true,
 			true
 		);
+		CopyDirFiles(
+			$_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/sporina.easysite/install/components/sporina/system.settings",
+			$_SERVER["DOCUMENT_ROOT"]."/bitrix/components/sporina/system.settings",
+			true,
+			true
+		);
+		foreach (["banner", "contacts", "footer", "header"] as $componentName) {
+			CopyDirFiles(
+				$_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/sporina.easysite/install/wizards/sporina/easy_site/site/templates/sporina_easy_site/components/sporina/".$componentName,
+				$_SERVER["DOCUMENT_ROOT"]."/bitrix/components/sporina/".$componentName,
+				true,
+				true
+			);
+		}
 
 		// Копируем файлы в /bitrix/php_interface/
 		CopyDirFiles(
@@ -106,8 +120,8 @@ Class sporina_easysite extends CModule
 
 		// Копируем wizards
 		CopyDirFiles(
-			$_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/sporina.easysite/install/wizards",
-			$_SERVER["DOCUMENT_ROOT"]."/bitrix/wizards",
+			$_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/sporina.easysite/install/wizards/sporina/easy_site",
+			$_SERVER["DOCUMENT_ROOT"]."/bitrix/wizards/sporina/easy_site",
 			true,
 			true
 		);
@@ -141,6 +155,7 @@ Class sporina_easysite extends CModule
 
 		// Удаляем шаблон сайта из /bitrix/templates/
 		DeleteDirFilesEx("/bitrix/templates/sporina_easy_site");
+		DeleteDirFilesEx("/bitrix/components/sporina/system.settings");
 
 		// Удаляем файлы из /bitrix/php_interface/
 		// Удаляем только те файлы, которые были установлены модулем

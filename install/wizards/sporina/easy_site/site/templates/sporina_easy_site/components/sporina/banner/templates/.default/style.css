@@ -1,0 +1,145 @@
+.sporina-banner {
+  position: relative;
+  overflow: hidden;
+  background-image:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.22), transparent 34%),
+    linear-gradient(135deg, rgba(18, 46, 89, 0.72), rgba(0, 0, 0, 0.64));
+  background-position: center, center, center;
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-size: auto, auto;
+  max-width: 2052px;
+  margin: auto;
+}
+
+.sporina-banner::before {
+  content: "";
+  position: absolute;
+  inset: auto -10% -30% auto;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.09);
+  filter: blur(8px);
+}
+
+.sporina-banner__container {
+  position: relative;
+  z-index: 1;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+  padding-top: 48px;
+}
+
+.sporina-banner__content {
+  max-width: 640px;
+  padding-bottom: 60px;
+}
+
+.sporina-banner__slogan {
+  display: inline-flex;
+  margin-bottom: 18px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  color: var(--text-inverse);
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.sporina-banner__title {
+  margin: 0 0 18px;
+  color: var(--text-inverse);
+  font-size: 52px;
+  line-height: 1.08;
+}
+
+.sporina-banner__text {
+  margin: 0 0 28px;
+  color: var(--text-inverse);
+  font-size: 18px;
+  line-height: 1.6;
+  max-width: 560px;
+}
+
+.sporina-banner__button.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.sporina-banner__media {
+  flex: 0 0 min(42%, 660px);
+}
+
+.sporina-banner__media img {
+  display: block;
+  width: 80%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 24px 60px rgba(0, 0, 0, 0.28));
+}
+
+/* Анимация для контента баннера */
+.sporina-banner__slogan,
+.sporina-banner__title,
+.sporina-banner__text,
+.sporina-banner__button,
+.sporina-banner__media {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: bannerFadeInUp 0.6s ease forwards;
+}
+
+.sporina-banner__slogan { animation-delay: 0.1s; }
+.sporina-banner__title  { animation-delay: 0.25s; }
+.sporina-banner__text   { animation-delay: 0.4s; }
+.sporina-banner__button { animation-delay: 0.55s; }
+.sporina-banner__media  { animation-delay: 0.35s; }
+
+@keyframes bannerFadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 991px) {
+  .sporina-banner__container {
+    min-height: auto;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28px;
+    padding-top: 40px;
+  }
+
+  .sporina-banner__media {
+    flex-basis: auto;
+    width: 100%;
+    max-width: 420px;
+    align-self: center;
+  }
+
+  .sporina-banner__title {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .sporina-banner__title {
+    font-size: 30px;
+  }
+
+  .sporina-banner__text {
+    font-size: 16px;
+    margin-bottom: 24px;
+  }
+
+  .sporina-banner__button.button {
+    width: 100%;
+    max-width: 280px;
+  }
+}

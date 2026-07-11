@@ -1,0 +1,303 @@
+.system-settings {
+  --settings-accent: #18008f;
+  --settings-border: #dbe4f3;
+  --settings-text: #334155;
+  position: relative;
+  z-index: 10020;
+  font-family: Arial, sans-serif;
+  color: var(--settings-text);
+}
+.system-settings-trigger {
+  position: fixed;
+  left: 0;
+  top: 45%;
+  width: 46px;
+  height: 48px;
+  border: 0;
+  border-radius: 0 8px 8px 0;
+  background: var(--settings-accent);
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: 0 6px 24px rgba(15, 23, 42, .2);
+}
+.system-settings-overlay {
+  position: fixed;
+  inset: 0;
+  visibility: hidden;
+  opacity: 0;
+  background: rgba(15, 23, 42, .58);
+  transition: opacity .2s ease;
+}
+.system-settings-panel {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: min(780px, 100vw);
+  display: flex;
+  flex-direction: column;
+  transform: translateX(-102%);
+  background: #fff;
+  box-shadow: 20px 0 45px rgba(15, 23, 42, .2);
+  transition: transform .25s ease;
+}
+.system-settings.is-expanded .system-settings-overlay {
+  visibility: visible;
+  opacity: 1;
+}
+.system-settings.is-expanded .system-settings-panel {
+  transform: translateX(0);
+}
+.system-settings-lock {
+  overflow: hidden !important;
+}
+.system-settings-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 24px;
+  border-bottom: 1px solid var(--settings-border);
+}
+.system-settings-header strong,
+.system-settings-header small {
+  display: block;
+}
+.system-settings-header strong {
+  font-size: 22px;
+}
+.system-settings-header small {
+  margin-top: 4px;
+  color: #64748b;
+}
+.system-settings-close {
+  border: 0;
+  background: transparent;
+  color: #64748b;
+  font-size: 34px;
+  cursor: pointer;
+}
+.system-settings-error {
+  margin: 12px 24px 0;
+  padding: 10px 12px;
+  border-radius: 6px;
+  background: #fee2e2;
+  color: #b91c1c;
+}
+.system-settings-form {
+  min-height: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.system-settings-layout {
+  min-height: 0;
+  flex: 1;
+  display: grid;
+  grid-template-columns: 210px minmax(0, 1fr);
+}
+.system-settings-navigation {
+  overflow-y: auto;
+  padding: 16px 10px;
+  border-right: 1px solid var(--settings-border);
+  background: #f8fafc;
+}
+.system-settings-navigation-item {
+  width: 100%;
+  padding: 11px 12px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #475569;
+  text-align: left;
+  cursor: pointer;
+}
+.system-settings-navigation-item:hover,
+.system-settings-navigation-item.is-active {
+  background: #ede9fe;
+  color: var(--settings-accent);
+}
+.system-settings-content {
+  overflow-y: auto;
+  padding: 24px;
+}
+.system-settings-category {
+  display: none;
+}
+.system-settings-category.is-active {
+  display: block;
+}
+.system-settings-category h2 {
+  margin: 0 0 20px;
+  color: var(--settings-text);
+  text-align: left;
+  font-size: 24px;
+}
+.system-settings-property {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--settings-border);
+}
+.system-settings-property h3 {
+  margin: 0 0 12px;
+  color: var(--settings-text);
+  font-size: 16px;
+}
+.system-settings-empty {
+  padding: 20px;
+  border-radius: 8px;
+  background: #f8fafc;
+  color: #64748b;
+}
+.system-settings-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+.system-settings-switch input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+}
+.system-settings-switch-control {
+  width: 42px;
+  height: 24px;
+  padding: 3px;
+  border-radius: 20px;
+  background: #cbd5e1;
+}
+.system-settings-switch-control::before {
+  content: "";
+  display: block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform .15s ease;
+}
+.system-settings-switch input:checked + .system-settings-switch-control {
+  background: var(--settings-accent);
+}
+.system-settings-switch input:checked + .system-settings-switch-control::before {
+  transform: translateX(18px);
+}
+.system-settings-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.system-settings-option input,
+.system-settings-template-option input {
+  position: absolute;
+  opacity: 0;
+}
+.system-settings-option span {
+  display: block;
+  padding: 8px 12px;
+  border: 1px solid var(--settings-border);
+  border-radius: 6px;
+  cursor: pointer;
+}
+.system-settings-option input:checked + span,
+.system-settings-template-option input:checked + .system-settings-template-card {
+  border-color: var(--settings-accent);
+  box-shadow: 0 0 0 2px rgba(24, 0, 143, .12);
+}
+.system-settings-template-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+.system-settings-template-card {
+  overflow: hidden;
+  display: block;
+  height: 100%;
+  border: 1px solid var(--settings-border);
+  border-radius: 8px;
+  cursor: pointer;
+}
+.system-settings-template-card img {
+  display: block;
+  width: 100%;
+  height: 105px;
+  object-fit: cover;
+  background: #f1f5f9;
+}
+.system-settings-template-card > span {
+  display: block;
+  padding: 9px;
+}
+.system-settings-color {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.system-settings-color-palette {
+  display: flex;
+  gap: 6px;
+}
+.system-settings-color-swatch {
+  width: 30px;
+  height: 30px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: var(--swatch);
+  box-shadow: 0 0 0 1px var(--settings-border);
+  cursor: pointer;
+}
+.system-settings-color-swatch.is-active {
+  box-shadow: 0 0 0 2px var(--settings-accent);
+}
+.system-settings-color input[type="text"] {
+  width: 86px;
+  padding: 7px;
+  border: 1px solid var(--settings-border);
+  border-radius: 5px;
+}
+.system-settings-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 16px 24px;
+  border-top: 1px solid var(--settings-border);
+}
+.system-settings-button {
+  padding: 10px 18px;
+  border: 1px solid var(--settings-accent);
+  border-radius: 6px;
+  cursor: pointer;
+}
+.system-settings-button:disabled {
+  opacity: .55;
+  cursor: wait;
+}
+.system-settings-button-primary {
+  background: var(--settings-accent);
+  color: #fff;
+}
+.system-settings-button-secondary {
+  background: #fff;
+  color: var(--settings-accent);
+}
+@media (max-width: 640px) {
+  .system-settings-layout {
+    display: flex;
+    flex-direction: column;
+  }
+  .system-settings-navigation {
+    display: flex;
+    flex: 0 0 auto;
+    overflow-x: auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--settings-border);
+  }
+  .system-settings-navigation-item {
+    width: auto;
+    white-space: nowrap;
+  }
+  .system-settings-template-list {
+    grid-template-columns: 1fr;
+  }
+}

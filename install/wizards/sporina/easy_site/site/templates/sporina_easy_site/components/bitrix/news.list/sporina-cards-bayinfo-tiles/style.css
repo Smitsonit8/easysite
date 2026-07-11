@@ -24,10 +24,9 @@ div.sporina-cards-tiles
 	flex-direction: column;
 	height: 100%;
 	min-height: 320px;
-	border-radius: 24px;
 	overflow: hidden;
-	background: linear-gradient(180deg, #ffffff 0%, #f6f8fb 100%);
-	box-shadow: 0 14px 35px rgba(16, 46, 78, 0.08);
+	background: var(--surface);
+	box-shadow: var(--shadow-sm);
 	transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -42,7 +41,7 @@ div.sporina-cards-tiles
 	position: relative;
 	height: 190px;
 	overflow: hidden;
-	background: var(--gradient);
+	background: var(--surface);
 }
 
 .sporina-cards-tiles__image
@@ -80,18 +79,20 @@ div.sporina-cards-tiles
 .sporina-cards-tiles__head h2
 {
 	margin: 0;
-	color: #15283d;
+	color: var(--primary);
 	font-size: 26px;
 	line-height: 1.15;
 }
 
-.sporina-cards-tiles__head .svg_color
-{
-	filter: invert(34%) sepia(84%) saturate(980%) hue-rotate(171deg) brightness(89%) contrast(92%);
-	transition: transform 0.3s ease;
+.svg_arrow-tiles{
+	fill: var(--primary);
 }
 
-.sporina-cards-tiles__item:hover .sporina-cards-tiles__head .svg_color
+.sporina-cards-tiles__head .svg_arrow-tiles {
+  transition: transform 0.3s ease;
+}
+
+.sporina-cards-tiles__item:hover .sporina-cards-tiles__head .svg_arrow-tiles
 {
 	transform: translateX(6px);
 }
@@ -99,14 +100,14 @@ div.sporina-cards-tiles
 .sporina-cards-tiles__body p
 {
 	margin: 0;
-	color: #607388;
+	color: var(--text-secondary);
 	font-size: 16px;
 	line-height: 1.6;
 }
 
 .sporina-cards-tiles__item--image .sporina-cards-tiles__body
 {
-	background: #fff;
+	background: var(--surface);
 }
 
 @keyframes sporinaCardsTilesIn

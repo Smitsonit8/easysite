@@ -81,7 +81,7 @@ $APPLICATION->SetTitle("Изменения в расписании");
 		"PAGER_TEMPLATE" => "",
 		"PAGER_TITLE" => "",
 		"PREVIEW_TRUNCATE_LEN" => "",
-		"SEF_FOLDER" => "/zz/izmeneniya-v-raspisanii/",
+		"SEF_FOLDER" => "#SITE_DIR#izmeneniya-v-raspisanii/",
 		"SEF_MODE" => "Y",
 		"SET_LAST_MODIFIED" => "N",
 		"SET_STATUS_404" => "N",

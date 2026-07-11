@@ -1,0 +1,90 @@
+/* Sporina News Company Stand - Detail Styles */
+
+.sporina-news-company-stand__detail {
+	max-width: 100%;
+}
+
+.sporina-news-company-stand__detail-date {
+	font-size: 14px;
+	color: var(--text-muted);
+	margin-bottom: 15px;
+}
+
+.sporina-news-company-stand__detail-title {
+	font-size: 28px;
+	font-weight: 700;
+	line-height: 1.3;
+	color: var(--text);
+	margin: 0 0 25px 0;
+}
+
+.sporina-news-company-stand__detail-preview {
+	margin-bottom: 20px;
+	color: var(--text);
+	font-size: 16px;
+    line-height: 1.8;
+}
+
+.sporina-news-company-stand__detail-image-wrap {
+	width: 100%;
+    /* max-height: 450px; */
+    overflow: hidden;
+    margin-bottom: 30px;
+	text-align: center;
+}
+
+.sporina-news-company-stand__detail-image {
+    /* height: 100%; */
+    object-fit: cover;
+    aspect-ratio: 4 / 3;
+    max-width: 700px;
+    width: 100%;
+}
+
+.sporina-news-company-stand__detail-body {
+	font-size: 16px;
+	line-height: 1.8;
+	color: var(--text);
+}
+
+.sporina-news-company-stand__detail-body p {
+	margin: 0 0 20px 0;
+}
+
+.sporina-news-company-stand__detail-body p:last-child {
+	margin-bottom: 0;
+}
+
+/* Detail additional column */
+.sporina-news-company-stand__detail-additional-top-wrapper {
+	padding: 25px;
+	border: 1px solid var(--border);
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+}
+
+.sporina-news-company-stand__detail-additional-top-header {
+	font-size: 17px;
+	font-weight: 700;
+	line-height: 24px;
+}
+
+.sporina-news-company-stand__detail-additional-top-header + div {
+	margin-top: 25px;
+}
+
+.sporina-news-company-stand__detail-additional-subscribe {
+	padding: 25px;
+	border: 1px solid var(--border);
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+	.sporina-news-company-stand__detail-title {
+		font-size: 22px;
+	}
+}

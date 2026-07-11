@@ -1,0 +1,3 @@
+<?php
+
+$MESS['SPORINA_NEWS_COMPANY_STAND_DETAIL_LINK'] = 'Подробнее';

@@ -1,4 +1,3 @@
-@import url("../sporina-news-company/style.css");
 
 .sporina-news-company__back
 {
@@ -6,9 +5,7 @@
 	align-items: center;
 	gap: 12px;
 	padding: 14px 22px;
-	/*background: #ffffff;
-	box-shadow: 0 12px 28px rgba(18, 45, 66, 0.12);*/
-	color: #1b2835;
+	color: var(--text);
 	text-decoration: none;
 	transition: transform 0.25s ease, box-shadow 0.25s ease, color 0.25s ease;
 }
@@ -16,8 +13,7 @@
 .sporina-news-company__back:hover
 {
 	transform: translateX(-4px);
-	/*box-shadow: 0 16px 30px rgba(18, 45, 66, 0.16);*/
-	color: var(--main-color-hover);
+	color: var(--primary-hover);
 }
 
 .sporina-news-company__back-icon
@@ -25,11 +21,15 @@
 	width: 24px;
 	height: 24px;
 	flex: 0 0 24px;
-	stroke: currentColor;
+	stroke: var(--text);
 	stroke-width: 2;
 	stroke-linecap: round;
 	stroke-linejoin: round;
 	fill: none;
+}
+
+.sporina-news-company__back:hover .sporina-news-company__back-icon{
+	stroke: var(--primary-hover);
 }
 
 .sporina-news-company__back-text
@@ -60,7 +60,7 @@
 	margin: 0 auto;
 	list-style: none;
 	border-radius: 999px;
-	background: #ffffff;
+	background: var(--primary);
 	box-shadow: 0 12px 28px rgba(18, 45, 66, 0.08);
 }
 
@@ -89,10 +89,8 @@
 	height: 44px;
 	padding: 0 16px;
 	border: 1px solid rgba(27, 40, 53, 0.12);
-	background: var(--main-color);
-	color: #ffffff;
-	/*font-size: 15px;
-	font-weight: 600;*/
+	background: var(--primary);
+	color: var(--text-inverse);
 	line-height: 1;
 	text-decoration: none;
 	box-sizing: border-box;
@@ -101,10 +99,9 @@
 
 .sporina-news-company__pager a:hover
 {
-	/*transform: translateY(-2px);*/
-	background: var(--main-color-hover);
+	background: var(--primary-hover);
 	border-color: transparent;
-	color: #ffffff;
+	color: var(--text-inverse);
 }
 
 .sporina-news-company__pager .modern-page-current,
@@ -112,9 +109,13 @@
 .sporina-news-company__pager .current,
 .sporina-news-company__pager font
 {
-	background: var(--main-color);
+	background: var(--primary);
 	border-color: transparent;
-	color: #ffffff;
+	color: var(--text-inverse);
+}
+
+.text b{
+	margin: 0 16px;
 }
 
 @media screen and (max-width: 768px)

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "workspace": {
+    "name": "sporina.easysite",
+    "createdAt": 1783759536253,
+    "preset": "starter"
+  },
+  "authorizedRoots": [
+    "C:\\Users\\Smitsonit\\dev\\sporina.easysite"
+  ],
+  "reload": null
+}

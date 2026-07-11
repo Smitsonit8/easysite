@@ -1,0 +1,39 @@
+/* Sporina News Company Stand - Root Styles */
+
+.sporina-news-company-stand {
+	word-wrap: break-word;
+}
+
+/* Back button */
+.sporina-news-company-stand__back-wrap {
+	margin-bottom: 25px;
+}
+
+.sporina-news-company-stand__back {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 14px;
+	color: #6c757d;
+	text-decoration: none;
+	transition: color 0.2s ease;
+}
+
+.sporina-news-company-stand__back:hover {
+	color: #0d6efd;
+}
+
+.sporina-news-company-stand__back-icon {
+	width: 20px;
+	height: 20px;
+	flex-shrink: 0;
+	stroke: currentColor;
+	stroke-width: 2;
+	fill: none;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+.sporina-news-company-stand__back-text {
+	font-size: 14px;
+}

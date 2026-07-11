@@ -1,6 +1,5 @@
 <section class="container">
-	<a href="https://t.me/aokppk39" class="svg">
-			<div class="block block_info--bgWhite block_tg">
+			<div class="block block_tg">
 				<div>
 					<?
 					if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
@@ -24,6 +23,5 @@
 			<div>
 				<img src="<?=SITE_TEMPLATE_PATH?>/img/telegram.svg" class="svg_color">
 			</div>
-		</div>
- 	</a>					
+		</div>				
 </section>

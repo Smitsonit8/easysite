@@ -13,10 +13,10 @@
 {
 	content: "";
 	position: absolute;
-	top: -90px;
-	right: -40px;
-	width: 260px;
-	height: 260px;
+    top: -54px;
+    right: -91px;
+    width: 289px;
+    height: 246px;
 	border-radius: 50%;
 	background: var(--gradient-news-2);
 	pointer-events: none;
@@ -57,8 +57,8 @@
 	align-items: center;
 	padding: 9px 16px;
 	border-radius: 999px;
-	background: var(--color-news-date);
-	color: var(--main-color);
+	background: var(--accent-light);
+	color: var(--primary);
 	font-size: 13px;
 	font-weight: 700;
 	letter-spacing: 0.08em;
@@ -68,17 +68,23 @@
 .news-company-circle-detail__title
 {
 	margin: 0;
-	color: #1b2835;
+	color: var(--text);
 	font-size: clamp(34px, 4.2vw, 46px);
 	line-height: 1.04;
 	text-wrap: balance;
+}
+
+.sporina-news-company__detail-preview{
+	color: var(--text-secondary);
+	font-size: 17px;
+    line-height: 1.8;
 }
 
 .news-company-circle-detail__lead
 {
 	max-width: 760px;
 	margin-top: 22px;
-	color: #667789;
+	color: var(--text-secondary);
 	font-size: 19px;
 	line-height: 1.75;
 }
@@ -92,8 +98,8 @@
 	margin-left: auto;
 	padding: 14px;
 	border-radius: 5px;
-	background: rgba(255, 255, 255, 0.82);
-	box-shadow: 0 18px 40px rgba(18, 45, 66, 0.14);
+	/*background: rgba(255, 255, 255, 0.82);
+	box-shadow: 0 18px 40px rgba(18, 45, 66, 0.14);.*/
 	backdrop-filter: blur(10px);
 }
 
@@ -101,7 +107,7 @@
 {
 	display: block;
 	width: 100%;
-	aspect-ratio: 1 / 1;
+	aspect-ratio: 4 / 3;
 	border-radius: 5px;
 	object-fit: cover;
 }
@@ -111,7 +117,7 @@
 	position: relative;
 	z-index: 1;
 	padding-top: 34px;
-	color: #1b2835;
+	color: var(--text-secondary);
 	font-size: 17px;
 	line-height: 1.8;
 }
@@ -131,7 +137,7 @@
 .news-company-circle-detail__body h4
 {
 	margin: 1.8em 0 0.7em;
-	color: #1b2835;
+	color: var(--primary);
 	line-height: 1.18;
 }
 
@@ -156,7 +162,7 @@
 
 .news-company-circle-detail__body a
 {
-	color: var(--main-color);
+	color: var(--primary);
 	text-decoration-thickness: 1px;
 	text-underline-offset: 0.14em;
 }
@@ -174,10 +180,10 @@
 .news-company-circle-detail__body blockquote
 {
 	padding: 22px 24px;
-	border-left: 4px solid var(--main-color);
+	border-left: 4px solid var(--primary);
 	border-radius: 0 22px 22px 0;
-	background: #f4f7fb;
-	color: #1b2835;
+	background: var(--primary);
+	color: var(--text-inverse);
 }
 
 .news-company-circle-detail__properties
@@ -201,7 +207,7 @@
 .news-company-circle-detail__property-name
 {
 	margin-bottom: 6px;
-	color: #667789;
+	color: var(--text);
 	font-size: 13px;
 	font-weight: 700;
 	letter-spacing: 0.08em;
@@ -210,7 +216,7 @@
 
 .news-company-circle-detail__property-value
 {
-	color: #1b2835;
+	color: var(--text-secondary);
 	font-size: 16px;
 	line-height: 1.55;
 }

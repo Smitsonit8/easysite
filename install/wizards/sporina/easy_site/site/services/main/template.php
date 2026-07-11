@@ -19,7 +19,16 @@ CopyDirFiles(
 	$recursive = true,
 	$delete_after_copy = false
 );
-
+foreach (["banner", "contacts", "footer", "header"] as $componentName)
+{
+	CopyDirFiles(
+		$bitrixTemplateDir."/components/sporina/".$componentName,
+		$_SERVER["DOCUMENT_ROOT"]."/bitrix/components/sporina/".$componentName,
+		$rewrite = true,
+		$recursive = true,
+		$delete_after_copy = false
+	);
+}
 //Attach template to default site
 $obSite = CSite::GetList('def', 'desc', Array("LID" => WIZARD_SITE_ID));
 if ($arSite = $obSite->Fetch())

@@ -27,7 +27,11 @@ elseif (!empty($arResult["TIMESTAMP_X"]))
 	$timestamp = MakeTimeStamp($arResult["TIMESTAMP_X"]);
 	$displayDate = $timestamp ? CIBlockFormatProperties::DateFormat($arParams["ACTIVE_DATE_FORMAT"], $timestamp) : $arResult["TIMESTAMP_X"];
 }
-
+if(!empty($arResult["PREVIEW_TEXT"])):?>
+<div class="sporina-news-company__detail-preview">
+<?=$arResult["PREVIEW_TEXT"]?>
+</div>
+<?endif;
 $heroPicture = null;
 if ($arParams["DISPLAY_PICTURE"] != "N")
 {
