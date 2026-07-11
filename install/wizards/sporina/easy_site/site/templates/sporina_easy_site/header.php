@@ -65,7 +65,11 @@ $headingScale = $appearance['headingScale'];
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/dist/assets/owl.theme.default.min.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
+<<<<<<< HEAD
 <body class="bx-theme-<?=$theme?> header-template-<?=$headerTemplate?><?=$appearance['backgroundUse'] === "N" ? " site-background-disabled" : ""?>">
+=======
+<body class="bx-theme-<?=$theme?> header-template-<?=$headerTemplate?>">
+>>>>>>> 9684a8ac40cee6ec12c4bc300d01ecb251f0ca04
     <div id="panel">
 		<?$APPLICATION->ShowPanel();?>
     </div>
@@ -78,7 +82,11 @@ $headingScale = $appearance['headingScale'];
 
     <?$APPLICATION->IncludeComponent(
 	"sporina:header", 
+<<<<<<< HEAD
 	$headerTemplate,
+=======
+	"overlay", 
+>>>>>>> 9684a8ac40cee6ec12c4bc300d01ecb251f0ca04
 	[
 		"LOGO_LINK" => SITE_DIR,
 		"LOGO_SRC" => "img/logo.svg",
@@ -91,7 +99,11 @@ $headingScale = $appearance['headingScale'];
 		"MAX_LEVEL" => "1",
 		"MENU_CACHE_TYPE" => "N",
 		"MENU_CACHE_TIME" => "3600",
+<<<<<<< HEAD
 		"COMPONENT_TEMPLATE" => $headerTemplate
+=======
+		"COMPONENT_TEMPLATE" => "overlay"
+>>>>>>> 9684a8ac40cee6ec12c4bc300d01ecb251f0ca04
 	],
 	false
 );?>

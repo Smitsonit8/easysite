@@ -1,0 +1,32 @@
+<?
+$MESS["SPORINA_CONTACTS_GROUP_COMPANY"] = "Компания";
+$MESS["SPORINA_CONTACTS_GROUP_PHONES"] = "Телефоны";
+$MESS["SPORINA_CONTACTS_GROUP_SCHEDULE"] = "Режим работы";
+$MESS["SPORINA_CONTACTS_GROUP_MAP"] = "Карта";
+$MESS["SPORINA_CONTACTS_SHOW_FULL_NAME"] = "Показывать полное наименование";
+$MESS["SPORINA_CONTACTS_FULL_NAME"] = "Полное наименование";
+$MESS["SPORINA_CONTACTS_SHOW_SHORT_NAME"] = "Показывать сокращенное наименование";
+$MESS["SPORINA_CONTACTS_SHORT_NAME"] = "Сокращенное наименование";
+$MESS["SPORINA_CONTACTS_SHOW_LEGAL_ADDRESS"] = "Показывать юридический адрес";
+$MESS["SPORINA_CONTACTS_LEGAL_ADDRESS"] = "Юридический адрес";
+$MESS["SPORINA_CONTACTS_SHOW_ACTUAL_ADDRESS"] = "Показывать фактический адрес";
+$MESS["SPORINA_CONTACTS_ACTUAL_ADDRESS"] = "Фактический адрес";
+$MESS["SPORINA_CONTACTS_SHOW_EMAIL"] = "Показывать e-mail";
+$MESS["SPORINA_CONTACTS_EMAIL"] = "E-mail";
+$MESS["SPORINA_CONTACTS_EMAIL_NOTE"] = "Подпись для e-mail";
+$MESS["SPORINA_CONTACTS_SHOW_PHONE_1"] = "Показывать основной телефон";
+$MESS["SPORINA_CONTACTS_PHONE_1"] = "Основной телефон";
+$MESS["SPORINA_CONTACTS_PHONE_1_LABEL"] = "Подпись основного телефона";
+$MESS["SPORINA_CONTACTS_SHOW_PHONE_2"] = "Показывать дополнительный телефон";
+$MESS["SPORINA_CONTACTS_PHONE_2"] = "Дополнительный телефон";
+$MESS["SPORINA_CONTACTS_PHONE_2_LABEL"] = "Подпись дополнительного телефона";
+$MESS["SPORINA_CONTACTS_SHOW_WORK_HOURS"] = "Показывать график работы";
+$MESS["SPORINA_CONTACTS_WORK_HOURS"] = "График работы";
+$MESS["SPORINA_CONTACTS_SHOW_WEEKENDS"] = "Показывать выходные";
+$MESS["SPORINA_CONTACTS_WEEKENDS"] = "Выходные дни";
+$MESS["SPORINA_CONTACTS_SHOW_MAP"] = "Показывать Яндекс-карту";
+$MESS["SPORINA_CONTACTS_YANDEX_MAP_LAT"] = "Широта (lat)";
+$MESS["SPORINA_CONTACTS_YANDEX_MAP_LON"] = "Долгота (lon)";
+$MESS["SPORINA_CONTACTS_MAP_TITLE"] = "Заголовок карты";
+$MESS["SPORINA_CONTACTS_MAP_HEIGHT"] = "Высота карты, px";
+?>

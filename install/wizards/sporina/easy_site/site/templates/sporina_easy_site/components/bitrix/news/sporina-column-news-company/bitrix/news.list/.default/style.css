@@ -8,7 +8,10 @@
   box-shadow: var(--shadow-sm);
   width: 100%;
   max-width: 450px;
+<<<<<<< HEAD
   height: 100%;
+=======
+>>>>>>> 9684a8ac40cee6ec12c4bc300d01ecb251f0ca04
 }
 
 .card_padding h2 {
