@@ -2,11 +2,7 @@ body {
   font-family: var(--site-font-family, "IBM Plex Sans", Arial, sans-serif);
   margin: 0;
   padding: 0;
-<<<<<<< HEAD
   background-color: var(--site-background, var(--bg));
-=======
-  background-color: var(--bg);
->>>>>>> 9684a8ac40cee6ec12c4bc300d01ecb251f0ca04
   position: relative;
 }
 
@@ -30,8 +26,8 @@ width:100%;
   background-color: var(--primary);
   color: var(--text-inverse);
   border: none;
-  font-size: 16px;
-  line-height: 19.3px;
+  font-size: var(--font-size-button);
+  line-height: var(--line-height-button);
 }
 .button:hover {
   background-color: var(--primary-hover);
@@ -48,29 +44,28 @@ width:100%;
 }
 
 h1 {
-  font-size: calc(40px * var(--site-heading-scale, 1));
-  line-height: 48px;
+  font-size: calc(var(--font-size-template-h1) * var(--site-heading-scale, 1));
+  line-height: var(--line-height-template-h1);
   color: var(--text-inverse);
 }
 
 h2 {
-  font-size: calc(34px * var(--site-heading-scale, 1));
-  line-height: 37.4px;
+  font-size: calc(var(--font-size-template-h2) * var(--site-heading-scale, 1));
+  line-height: var(--line-height-template-h2);
   text-align: center;
   color: var(--primary);
 }
 
 h3 {
-  font-size: calc(20px * var(--site-heading-scale, 1));
-  line-height: 24px;
+  font-size: calc(var(--font-size-template-h3) * var(--site-heading-scale, 1));
+  line-height: var(--line-height-template-h3);
   color: var(--primary);
 }
 
 h4 {
-  font-size: calc(16px * var(--site-heading-scale, 1));
-  line-height: 19.3px;
+  font-size: calc(var(--font-size-template-h4) * var(--site-heading-scale, 1));
+  line-height: var(--line-height-template-h4);
   color: var(--text-muted);
-<<<<<<< HEAD
 }
 
 body.site-background-disabled {
@@ -80,8 +75,6 @@ body.site-background-disabled {
 .block_between--stacked {
   flex-direction: column;
   align-items: stretch;
-=======
->>>>>>> 9684a8ac40cee6ec12c4bc300d01ecb251f0ca04
 }
 
 .span-color{
@@ -115,11 +108,11 @@ body.site-background-disabled {
 }
 
 .block_tg p {
-    font-size: 21px;
-    line-height: 20.8px;
+    font-size: var(--font-size-subscribe-title);
+    line-height: var(--line-height-subscribe-title);
     color: var(--text);
     text-align: center;
-    font-weight: 900;
+    font-weight: var(--font-weight-extrabold);
 }
 
 /*Две колонки*/
@@ -132,6 +125,79 @@ body.site-background-disabled {
 /*.block_between--margin {
   margin: 40px -10px;
 }*/
+
+.content {
+    width: 100%;
+    margin-left: 20px;
+    padding: 32px 40px;
+
+    background-color: var(--surface);
+    box-shadow: var(--shadow-sm);
+    box-sizing: border-box;
+}
+
+.content-no-menu{
+    width: 100%;
+    background-color: var(--surface);
+    box-shadow: var(--shadow-sm);
+}
+
+.content_flex {
+  display: flex;
+}
+.content_nav {
+  width: 32%;
+}
+
+.content_nav-bg {
+  background-color: var(--surface);
+}
+.content_nav a {
+  color: var(--text);
+}
+.content_nav a:hover {
+  color: var(--primary-hover);
+
+}
+.content img {
+  /*width: 100%;*/
+}
+
+.image-container{
+  width: 100%;
+  overflow-x: auto;
+}
+
+.content p {
+  margin: 30px 0;
+  color: var(--text);
+}
+
+.content li {
+  list-style-type:square;
+}
+
+ol.with-parentheses {
+  counter-reset: myCounter;
+  list-style: none;
+  padding: 0;
+}
+ol.with-parentheses > li::before {
+  content: counter(myCounter) ") ";
+  counter-increment: myCounter;
+}
+
+.mobile_none {
+  display: block;
+}
+
+[for=burger_news], #burger_news {
+  display: none;
+}
+
+.content_nav-head, #content_nav-head {
+  display: none;
+}
 
 @media screen and (max-width: 992px) {
 
@@ -149,6 +215,35 @@ body.site-background-disabled {
     margin: 0 0 20px;
   }
 
+  .content {
+    width: 100%;
+    margin-left: 0;
+    padding: 28px 30px;
+  }
+  .content_nav {
+    width: 100%;
+  }
+  .content_nav-head {
+    color: var(--main-color);
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+  }
+  .content_nav-head:after {
+    content: url(img/union-bottom.svg);
+  }
+  .content_flex {
+    display: block;
+  }
+
+  #content_nav-head:checked + [for=content_nav-head]:after {
+    content: url(img/union-top.svg);
+  }
+  #content_nav-head:checked + [for=content_nav-head] + ul {
+    max-height: 1000px;
+    transition: max-height 0.5s ease-in;
+  }
+
 }
 
 @media screen and (max-width: 576px) {
@@ -157,21 +252,11 @@ body.site-background-disabled {
     padding-right: 16px;
   }
 
-  h1 {
-    font-size: 26px;
-    line-height: 31px;
-  }
-  h2 {
-    font-size: 24px;
-    line-height: 26.4px;
-    
-  }
-  h3 {
-    font-size: 16px;
-    line-height: 19px;
-  }
-
   .block_info {
     height: 220px;
+  }
+
+  .content {
+      padding: 20px 16px;
   }
 }

@@ -24,11 +24,7 @@ $sporinaSettings = isset($GLOBALS["SPORINA_EASY_SITE_SETTINGS"]) && is_array($GL
 <?if (($sporinaSettings["pages-main-infocards-use"] ?? "Y") === "Y"):?>
 <?$APPLICATION->IncludeComponent(
 	"bitrix:news.list", 
-<<<<<<< HEAD
-	($sporinaSettings["pages-main-infocards-template"] ?? "sporina-cards-bayinfo-stack"),
-=======
-	"sporina-cards-bayinfo-stack", 
->>>>>>> 9684a8ac40cee6ec12c4bc300d01ecb251f0ca04
+	"sporina-cards-bayinfo-stack",
 	[
 		"ACTIVE_DATE_FORMAT" => "d.m.Y",
 		"ADD_SECTIONS_CHAIN" => "N",
@@ -88,11 +84,7 @@ $sporinaSettings = isset($GLOBALS["SPORINA_EASY_SITE_SETTINGS"]) && is_array($GL
 		"SORT_ORDER1" => "ASC",
 		"SORT_ORDER2" => "ASC",
 		"STRICT_SECTION_CHECK" => "N",
-<<<<<<< HEAD
-		"COMPONENT_TEMPLATE" => ($sporinaSettings["pages-main-infocards-template"] ?? "sporina-cards-bayinfo-stack")
-=======
 		"COMPONENT_TEMPLATE" => "sporina-cards-bayinfo-stack"
->>>>>>> 9684a8ac40cee6ec12c4bc300d01ecb251f0ca04
 	],
 	false
 );?>
@@ -114,11 +106,7 @@ $sporinaSettings = isset($GLOBALS["SPORINA_EASY_SITE_SETTINGS"]) && is_array($GL
 <div class="block_between block_between--margin<?=($sporinaSettings["pages-main-columns-layout"] ?? "two") === "stacked" ? " block_between--stacked" : ""?>">
 	<?$APPLICATION->IncludeComponent(
 		"bitrix:news", 
-<<<<<<< HEAD
-	($sporinaSettings["pages-main-articles-template"] ?? "sporina-column-news-timeline"),
-=======
-		"sporina-column-news-timeline", 
->>>>>>> 9684a8ac40cee6ec12c4bc300d01ecb251f0ca04
+	"sporina-column-news-company",
 		[
 			"ADD_ELEMENT_CHAIN" => "N",
 			"ADD_SECTIONS_CHAIN" => "N",
@@ -197,11 +185,8 @@ $sporinaSettings = isset($GLOBALS["SPORINA_EASY_SITE_SETTINGS"]) && is_array($GL
 			"USE_RSS" => "N",
 			"USE_SEARCH" => "N",
 			"USE_SHARE" => "N",
-<<<<<<< HEAD
-		"COMPONENT_TEMPLATE" => ($sporinaSettings["pages-main-articles-template"] ?? "sporina-column-news-timeline"),
-=======
-			"COMPONENT_TEMPLATE" => "sporina-column-news-timeline",
->>>>>>> 9684a8ac40cee6ec12c4bc300d01ecb251f0ca04
+		"COMPONENT_TEMPLATE" => "sporina-column-news-company",
+		"NEWS_LIST_TEMPLATE" => "timeline",
 			"USE_REVIEW" => "N",
 			"SEF_URL_TEMPLATES" => [
 				"news" => "",
@@ -214,7 +199,7 @@ $sporinaSettings = isset($GLOBALS["SPORINA_EASY_SITE_SETTINGS"]) && is_array($GL
 
 	<?$APPLICATION->IncludeComponent(
 	"bitrix:news", 
-	($sporinaSettings["pages-main-news-template"] ?? "sporina-column-news-company"),
+	"sporina-column-news-company",
 	array(
 		"ADD_ELEMENT_CHAIN" => "N",
 		"ADD_SECTIONS_CHAIN" => "N",
@@ -293,7 +278,8 @@ $sporinaSettings = isset($GLOBALS["SPORINA_EASY_SITE_SETTINGS"]) && is_array($GL
 		"USE_RSS" => "N",
 		"USE_SEARCH" => "N",
 		"USE_SHARE" => "N",
-		"COMPONENT_TEMPLATE" => ($sporinaSettings["pages-main-news-template"] ?? "sporina-column-news-company"),
+		"COMPONENT_TEMPLATE" => "sporina-column-news-company",
+		"NEWS_LIST_TEMPLATE" => ".default",
 		"SEF_URL_TEMPLATES" => array(
 			"news" => "",
 			"section" => "",
@@ -309,7 +295,7 @@ $sporinaSettings = isset($GLOBALS["SPORINA_EASY_SITE_SETTINGS"]) && is_array($GL
 <?if (($sporinaSettings["pages-main-advertising-use"] ?? "Y") === "Y"):?>
 <?$APPLICATION->IncludeComponent(
 	"bitrix:news.list", 
-	($sporinaSettings["pages-main-advertising-template"] ?? "sporina-banner-app"), 
+	"sporina-banner-app", 
 	[
 		"ACTIVE_DATE_FORMAT" => "d.m.Y",
 		"ADD_SECTIONS_CHAIN" => "N",
@@ -372,7 +358,7 @@ $sporinaSettings = isset($GLOBALS["SPORINA_EASY_SITE_SETTINGS"]) && is_array($GL
 		"SORT_ORDER1" => "DESC",
 		"SORT_ORDER2" => "DESC",
 		"STRICT_SECTION_CHECK" => "N",
-		"COMPONENT_TEMPLATE" => ($sporinaSettings["pages-main-advertising-template"] ?? "sporina-banner-app")
+		"COMPONENT_TEMPLATE" => "sporina-banner-app"
 	],
 	false
 );?>
@@ -387,11 +373,7 @@ $GLOBALS['arrFilter'] = array();
 $GLOBALS['arrFilter'] = array_merge($GLOBALS['arrFilter'], Array("!PROPERTY_TOINDEX" => false));
 $APPLICATION->IncludeComponent(
 	"bitrix:news.index", 
-<<<<<<< HEAD
-	($sporinaSettings["pages-main-current-news-template"] ?? "sporina-news-all-modern"),
-=======
-	"sporina-news-all-modern", 
->>>>>>> 9684a8ac40cee6ec12c4bc300d01ecb251f0ca04
+	"sporina-news-all-modern",
 	[
 		"IBLOCKS" => [
 		],
@@ -419,11 +401,7 @@ $APPLICATION->IncludeComponent(
 		"SHOW_SLIDER_NAVIGATION" => "Y",
 		"ENABLE_SLIDER_AUTOPLAY" => "N",
 		"SLIDER_AUTOPLAY_TIMEOUT" => "5000",
-<<<<<<< HEAD
-		"COMPONENT_TEMPLATE" => ($sporinaSettings["pages-main-current-news-template"] ?? "sporina-news-all-modern"),
-=======
 		"COMPONENT_TEMPLATE" => "sporina-news-all-modern",
->>>>>>> 9684a8ac40cee6ec12c4bc300d01ecb251f0ca04
 		"IBLOCK_TYPE" => "news_and_changes",
 		"SORT_BY2" => "SORT",
 		"SORT_ORDER2" => "ASC"

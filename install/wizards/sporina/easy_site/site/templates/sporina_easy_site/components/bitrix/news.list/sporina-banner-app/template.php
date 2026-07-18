@@ -61,7 +61,7 @@ $this->setFrameMode(true);
 				<div class="application">
 					<h2><?=$arItem["NAME"]?></h2>
 					<?if($arParams["DISPLAY_PREVIEW_TEXT"]!="N" && $arItem["PREVIEW_TEXT"]):?>
-						<h4><?=$arItem["PREVIEW_TEXT"]?></h4>
+						<p class="application__subtitle"><?=$arItem["PREVIEW_TEXT"]?></p>
 					<?endif;?>
 					<?if ($nameButton && $linkTo):?>
 						<a href="<?=htmlspecialcharsbx($linkTo)?>" class="button block_center"><?=htmlspecialcharsbx($nameButton)?></a>

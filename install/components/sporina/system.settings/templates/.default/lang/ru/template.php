@@ -1,12 +1,15 @@
 <?php
 $MESS['SPORINA_SETTINGS_TITLE'] = 'Настройки сайта';
-$MESS['SPORINA_SETTINGS_DESCRIPTION'] = 'Оформление и блоки шаблона';
+$MESS['SPORINA_SETTINGS_TITLE_2'] = 'Настройки сайта v1.1';
+$MESS['SPORINA_SETTINGS_DESCRIPTION'] = 'Изменения применяются ко всему сайту.';
 $MESS['SPORINA_SETTINGS_OPEN'] = 'Открыть настройки сайта';
-$MESS['SPORINA_SETTINGS_CLOSE'] = 'Закрыть настройки';
+$MESS['SPORINA_SETTINGS_CLOSE'] = 'Закрыть';
 $MESS['SPORINA_SETTINGS_CATEGORIES'] = 'Разделы настроек';
 $MESS['SPORINA_SETTINGS_APPLY'] = 'Применить';
-$MESS['SPORINA_SETTINGS_RESET'] = 'Сбросить настройки';
+$MESS['SPORINA_SETTINGS_RESET'] = 'Сбросить';
 $MESS['SPORINA_SETTINGS_EMPTY'] = 'Настройки для этого раздела не заданы.';
+
+
 $MESS['SPORINA_SETTINGS_ENABLED'] = 'Включено';
 $MESS['SPORINA_SETTINGS_DISABLED'] = 'Выключено';
 $MESS['SPORINA_SETTINGS_SHOW_BLOCK'] = 'Показывать блок';

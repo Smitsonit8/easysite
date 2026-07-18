@@ -54,6 +54,11 @@
     /* Hover рамок */
     --border-hover: #c6d3ea;
 
+    --icons: #0e035f;
+    --icons-hover: #140c87;
+    --icons-alt: #64748b;
+    --icons-alt-hover:#334155;
+
 
     /* =======================================
        ТЕКСТ

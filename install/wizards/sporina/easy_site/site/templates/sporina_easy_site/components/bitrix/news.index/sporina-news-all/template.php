@@ -68,9 +68,9 @@ if ($autoplayTimeout < 1000)
 						<div class="card_news sporina-news-all__item" id="<?=$this->GetEditAreaId($arItem['ID']);?>">
 							<div class="card card_news-block sporina-news-all__card">
 								<a class="sporina-news-all__link" href="<?=$arItem['DETAIL_PAGE_URL']?>">
-									<p class="sporina-news-all__title">
+									<h3 class="sporina-news-all__title news-card__title">
 										<?=$arItem["NAME"]?>
-									</p>
+									</h3>
 								</a>
 								<span class="card_news-color sporina-news-all__tag">
 									<?=Loc::getMessage('TEXT_ZAG')?>

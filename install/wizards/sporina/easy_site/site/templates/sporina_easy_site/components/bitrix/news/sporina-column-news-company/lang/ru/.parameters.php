@@ -1,4 +1,9 @@
 <?
+$MESS["SPORINA_COLUMN_NEWS_LIST_TEMPLATE"] = "Шаблон списка новостей";
+$MESS["SPORINA_COLUMN_NEWS_LIST_TEMPLATE_DEFAULT"] = "Стандартный";
+$MESS["SPORINA_COLUMN_NEWS_LIST_TEMPLATE_CARDS"] = "Карточки";
+$MESS["SPORINA_COLUMN_NEWS_LIST_TEMPLATE_TIMELINE"] = "Лента времени";
+
 $MESS["T_IBLOCK_DESC_NEWS_DATE"] = "Выводить дату элемента";
 $MESS["T_IBLOCK_DESC_NEWS_PICTURE"] = "Выводить изображение для анонса";
 $MESS["T_IBLOCK_DESC_NEWS_TEXT"] = "Выводить текст анонса";

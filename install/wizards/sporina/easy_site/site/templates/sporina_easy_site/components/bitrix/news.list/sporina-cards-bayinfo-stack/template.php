@@ -34,7 +34,7 @@ $this->setFrameMode(true);
 				<a class="sporina-cards-stack__link" href="<?=$link?>"<?if($cardStyle !== ""):?> style="<?=$cardStyle?>"<?endif;?>>
 					<div class="sporina-cards-stack__text">
 						<div class="sporina-cards-stack__number"><?=str_pad((string)($index + 1), 2, '0', STR_PAD_LEFT)?></div>
-						<h2><?echo $arItem["NAME"]?></h2>
+						<h3 class="service-title"><?echo $arItem["NAME"]?></h3>
 						<?if($arParams["DISPLAY_PREVIEW_TEXT"]!="N" && $arItem["PREVIEW_TEXT"]):?>
 							<p><?echo $arItem["PREVIEW_TEXT"];?></p>
 						<?endif;?>

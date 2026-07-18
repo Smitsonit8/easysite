@@ -84,7 +84,7 @@ if ($autoplayTimeout < 1000)
 									</div>
 								<?endif;?>
 							</div>
-							<h3 class="sporina-news-all-modern__card-title"><?=$arItem["NAME"]?></h3>
+							<h3 class="sporina-news-all-modern__card-title news-card__title"><?=$arItem["NAME"]?></h3>
 							<div class="sporina-news-all-modern__card-bottom">
 								<span class="sporina-news-all-modern__more"><?=Loc::getMessage("READ_MORE")?></span>
 								<span class="sporina-news-all-modern__arrow" aria-hidden="true">

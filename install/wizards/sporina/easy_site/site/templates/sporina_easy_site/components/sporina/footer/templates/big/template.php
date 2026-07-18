@@ -15,7 +15,7 @@ Loc::loadMessages(__FILE__);
 				<div class="footer_block-grid">
 					<div class="footer_contact">
 						<?php if ($arResult["PHONE_1"]["TITLE"] !== ""): ?>
-							<h3><?=htmlspecialcharsbx($arResult["PHONE_1"]["TITLE"])?></h3>
+							<a class="contacts__value" href="<?=htmlspecialcharsbx($arResult["PHONE_1"]["HREF"])?>"><?=htmlspecialcharsbx($arResult["PHONE_1"]["TITLE"])?></a>
 						<?php endif; ?>
 						<?php if ($arResult["PHONE_1"]["LABEL"] !== ""): ?>
 							<p><?=htmlspecialcharsbx($arResult["PHONE_1"]["LABEL"])?></p>
@@ -25,7 +25,7 @@ Loc::loadMessages(__FILE__);
 				<div class="footer_block-grid">
 					<div class="footer_contact">
 						<?php if ($arResult["PHONE_2"]["TITLE"] !== ""): ?>
-							<h3><?=htmlspecialcharsbx($arResult["PHONE_2"]["TITLE"])?></h3>
+							<a class="contacts__value" href="<?=htmlspecialcharsbx($arResult["PHONE_2"]["HREF"])?>"><?=htmlspecialcharsbx($arResult["PHONE_2"]["TITLE"])?></a>
 						<?php endif; ?>
 						<?php if ($arResult["PHONE_2"]["LABEL"] !== ""): ?>
 							<p><?=htmlspecialcharsbx($arResult["PHONE_2"]["LABEL"])?></p>
@@ -35,7 +35,7 @@ Loc::loadMessages(__FILE__);
 				<div class="footer_block-grid">
 					<div class="footer_contact">
 						<?php if ($arResult["EMAIL"]["TITLE"] !== ""): ?>
-							<h3><?=htmlspecialcharsbx($arResult["EMAIL"]["TITLE"])?></h3>
+							<a class="contacts__value" href="<?=htmlspecialcharsbx($arResult["EMAIL"]["HREF"])?>"><?=htmlspecialcharsbx($arResult["EMAIL"]["TITLE"])?></a>
 						<?php endif; ?>
 						<?php if ($arResult["EMAIL"]["LABEL"] !== ""): ?>
 							<p><?=htmlspecialcharsbx($arResult["EMAIL"]["LABEL"])?></p>
@@ -47,7 +47,7 @@ Loc::loadMessages(__FILE__);
 				<div class="footer_block-grid">
 					<div class="footer_contact">
 						<?php if ($arResult["ADDRESS"]["TITLE"] !== ""): ?>
-							<h3><?=htmlspecialcharsbx($arResult["ADDRESS"]["TITLE"])?></h3>
+							<p class="contacts__value"><?=htmlspecialcharsbx($arResult["ADDRESS"]["TITLE"])?></p>
 						<?php endif; ?>
 						<?php if ($arResult["ADDRESS"]["LABEL"] !== ""): ?>
 							<p><?=htmlspecialcharsbx($arResult["ADDRESS"]["LABEL"])?></p>
@@ -96,27 +96,10 @@ Loc::loadMessages(__FILE__);
 							</p>
 						</div>
 					<?php endif; ?>
-					<?php if ($arResult["TELEGRAM_LINK"] !== ""): ?>
-						<div class="copyright_icon">
-							<a href="<?=htmlspecialcharsbx($arResult["TELEGRAM_LINK"])?>" class="svg">
-								<img src="<?=SITE_TEMPLATE_PATH?>/img/telegram.svg" class="svg_color" alt="<?=htmlspecialcharsbx(Loc::getMessage("SPORINA_FOOTER_TELEGRAM_ALT"))?>">
-							</a>
-						</div>
-					<?php endif; ?>
-					<?php if ($arResult["GOOGLE_PLAY_LINK"] !== ""): ?>
-						<div class="copyright_icon">
-							<a href="<?=htmlspecialcharsbx($arResult["GOOGLE_PLAY_LINK"])?>" class="svg">
-								<img src="<?=SITE_TEMPLATE_PATH?>/img/googlePlay.svg" class="svg_color" alt="<?=htmlspecialcharsbx(Loc::getMessage("SPORINA_FOOTER_GOOGLE_PLAY_ALT"))?>">
-							</a>
-						</div>
-					<?php endif; ?>
-					<?php if ($arResult["APP_STORE_LINK"] !== ""): ?>
-						<div class="copyright_icon">
-							<a href="<?=htmlspecialcharsbx($arResult["APP_STORE_LINK"])?>" class="svg">
-								<img src="<?=SITE_TEMPLATE_PATH?>/img/appStore.svg" class="svg_color" alt="<?=htmlspecialcharsbx(Loc::getMessage("SPORINA_FOOTER_APP_STORE_ALT"))?>">
-							</a>
-						</div>
-					<?php endif; ?>
+
+					<?php if ($arResult["SOCIAL"]["SHOW"]): foreach (array("VK", "MAX", "OK", "RUTUBE", "DZEN") as $social): if ($arResult["SOCIAL"][$social] === "") continue; ?>
+						<div class="copyright_icon"><a href="<?=htmlspecialcharsbx($arResult["SOCIAL"][$social])?>" class="svg" target="_blank" rel="noopener noreferrer"><?=file_get_contents(__DIR__."/../../svg/social.".strtolower($social).".svg")?></a></div>
+					<?php endforeach; endif; ?>
 				</div>
 			</div>
 		</div>

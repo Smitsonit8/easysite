@@ -29,7 +29,7 @@ $this->setFrameMode(true);
 				<a href='<?=$arItem["DISPLAY_PROPERTIES"]["LINK_CARD"]["VALUE"]?>' class="svg sporina-cards-bayinfo__link">
 					<div class="block">
                         <div>
-                            <h2><?echo $arItem["NAME"]?></h2>
+                            <h3 class="service-title"><?echo $arItem["NAME"]?></h3>
                         </div>
                         <div class="icon_top sporina-cards-bayinfo__icon">
                             <!--<img src="<?=SITE_TEMPLATE_PATH?>/img/arrow.svg" alt="" class="svg_color">-->
@@ -66,7 +66,7 @@ $this->setFrameMode(true);
 				<a href='<?=$arItem["DISPLAY_PROPERTIES"]["LINK_CARD"]["VALUE"]?>' class="svg sporina-cards-bayinfo__link">
 					<div class="block">
                         <div>
-                            <h2><?echo $arItem["NAME"]?></h2>
+                            <h3 class="service-title"><?echo $arItem["NAME"]?></h3>
                         </div>
                         <div class="icon_top sporina-cards-bayinfo__icon">
                             <!--<img src="<?=SITE_TEMPLATE_PATH?>/img/arrow.svg" alt="" class="svg_color">-->

@@ -17,8 +17,8 @@
                 .then(function (response) { return response.json(); });
         }
 
-        function omitUntouchedFallbackSettings(data) {
-            root.querySelectorAll('[data-component-fallback="Y"][data-stored="N"]').forEach(function (field) {
+        function omitUntouchedSettings(data) {
+            root.querySelectorAll('.system-settings-field').forEach(function (field) {
                 if (field.getAttribute('data-dirty') === 'Y') {
                     return;
                 }
@@ -41,15 +41,25 @@
             });
         });
 
-        root.querySelectorAll('[data-component-fallback="Y"] input').forEach(function (input) {
-            input.addEventListener('input', function () { input.closest('[data-component-fallback]').setAttribute('data-dirty', 'Y'); });
-            input.addEventListener('change', function () { input.closest('[data-component-fallback]').setAttribute('data-dirty', 'Y'); });
+        root.querySelectorAll('[name^="settings["]').forEach(function (input) {
+            function markDirty() {
+                var field = input.closest('.system-settings-field');
+                if (field) field.setAttribute('data-dirty', 'Y');
+            }
+
+            input.addEventListener('input', markDirty);
+            input.addEventListener('change', markDirty);
         });
 
         form.addEventListener('submit', function (event) {
             event.preventDefault();
-            post(omitUntouchedFallbackSettings(new FormData(form))).then(function (response) {
-                status.textContent = response.success ? 'Сохранено' : (response.error || 'Ошибка сохранения');
+            post(omitUntouchedSettings(new FormData(form))).then(function (response) {
+                if (response.success) {
+                    window.location.reload();
+                    return;
+                }
+
+                status.textContent = response.error || 'Ошибка сохранения';
             }).catch(function () { status.textContent = 'Ошибка соединения'; });
         });
 

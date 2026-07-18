@@ -1,4 +1,10 @@
 <?php
+$MESS["SPORINA_FOOTER_SOCIAL_SHOW"] = "Показывать социальные сети";
+$MESS["SPORINA_FOOTER_SOCIAL_VK"] = "Ссылка ВКонтакте";
+$MESS["SPORINA_FOOTER_SOCIAL_MAX"] = "Ссылка Max";
+$MESS["SPORINA_FOOTER_SOCIAL_OK"] = "Ссылка Одноклассники";
+$MESS["SPORINA_FOOTER_SOCIAL_RUTUBE"] = "Ссылка Rutube";
+$MESS["SPORINA_FOOTER_SOCIAL_DZEN"] = "Ссылка Дзен";
 $MESS["SPORINA_FOOTER_PHONE_1_VALUE"] = "Телефон 1";
 $MESS["SPORINA_FOOTER_PHONE_1_LABEL"] = "Подпись телефона 1";
 $MESS["SPORINA_FOOTER_PHONE_2_VALUE"] = "Телефон 2";
@@ -16,6 +22,3 @@ $MESS["SPORINA_FOOTER_COPYRIGHT_SECONDARY_PREFIX"] = "Текст copyright до 
 $MESS["SPORINA_FOOTER_COPYRIGHT_SECONDARY_LINK_TEXT"] = "Текст ссылки copyright";
 $MESS["SPORINA_FOOTER_COPYRIGHT_SECONDARY_LINK"] = "Ссылка copyright";
 $MESS["SPORINA_FOOTER_COPYRIGHT_SECONDARY_SUFFIX"] = "Текст copyright после ссылки";
-$MESS["SPORINA_FOOTER_TELEGRAM_LINK"] = "Ссылка Telegram";
-$MESS["SPORINA_FOOTER_GOOGLE_PLAY_LINK"] = "Ссылка Google Play";
-$MESS["SPORINA_FOOTER_APP_STORE_LINK"] = "Ссылка App Store";

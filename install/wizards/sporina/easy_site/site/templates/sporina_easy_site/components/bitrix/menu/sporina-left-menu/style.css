@@ -1,44 +1,38 @@
-/* Left menu*/
-ul.left-menu
-{
-	list-style:none;
-	margin:0; padding:0;
-	margin-bottom:8px;
-	position: relative; /*IE bug*/
+.nav_company {
+  padding: 0;
+  margin: 0;
+}
+.nav_company li {
+  padding: 20px 0;
+}
+.nav_company p {
+  padding: 0 20px;
+  margin: 0;
+  position: relative;
+}
+.nav_company-bottom {
+  padding-bottom: 40px !important;
 }
 
-ul.left-menu li
-{
-	padding: 10px 16px;
-	background:#F5F5F5 url(images/left_menu_bg.gif) top repeat-x;
+.nav_company-border:after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: -20px;
+  z-index: 1;
+  border-bottom: 1px solid rgb(211, 211, 211);
+}
+.nav_company-active p {
+  color: var(--text);
+  border-left: 3px solid var(--primary);
 }
 
-ul.left-menu li a
-{
-	font-size:100%;
-	color:#BC262C;
-	font-weight:bold;
-	text-decoration:none;
+@media screen and (max-width: 992px) {
+  .nav_company {
+    max-height: 0;
+    transition: max-height 0.5s ease-out;
+    overflow: hidden;
+  }
 }
-
-ul.left-menu li a:visited
-{
-	color:#BC262C;
-}
-
-ul.left-menu li a:hover
-{
-	color:#BC262C;
-}
-
-
-ul.left-menu li a.selected:link,
-ul.left-menu li a.selected:visited,
-ul.left-menu li a.selected:active,
-ul.left-menu li a.selected:hover
-{
-	color:#FC8D3D;
-}
-
-
-

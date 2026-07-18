@@ -2,6 +2,9 @@
 
 use Bitrix\Main\Page\Asset;
 use Bitrix\Main\Security\Random;
+use Bitrix\Main\Localization\Loc;
+
+Loc::loadMessages(__FILE__);
 
 if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
     die();
@@ -23,22 +26,22 @@ Asset::getInstance()->addJs($this->GetFolder() . '/script.js');
 >
     <button class="system-settings-trigger" type="button" data-role="open" aria-controls="<?=$templateId?>-panel" aria-expanded="false">
         <span aria-hidden="true">⚙</span>
-        <span>Настройки сайта</span>
+        <span><?=Loc::getMessage('SPORINA_SETTINGS_TITLE')?></span>
     </button>
     <div class="system-settings-overlay" data-role="overlay"></div>
-    <aside id="<?=$templateId?>-panel" class="system-settings-panel" data-role="panel" aria-hidden="true" aria-label="Настройки сайта">
+    <aside id="<?=$templateId?>-panel" class="system-settings-panel" data-role="panel" aria-hidden="true" aria-label="<?=Loc::getMessage('SPORINA_SETTINGS_TITLE')?>">
         <header class="system-settings-header">
             <div>
-                <strong>Настройки сайта</strong>
-                <small>Изменения применяются ко всему сайту.</small>
+                <strong><?=Loc::getMessage('SPORINA_SETTINGS_TITLE_2')?></strong>
+                <small><?=Loc::getMessage('SPORINA_SETTINGS_DESCRIPTION')?></small>
             </div>
-            <button class="system-settings-close" type="button" data-role="close" aria-label="Закрыть">×</button>
+            <button class="system-settings-close" type="button" data-role="close" aria-label="<?=Loc::getMessage('SPORINA_SETTINGS_CLOSE')?>">×</button>
         </header>
         <form class="system-settings-form" method="post" action="">
             <?=bitrix_sessid_post()?>
             <input type="hidden" name="<?=htmlspecialcharsbx($arResult['ACTION_VARIABLE'])?>" value="apply">
             <div class="system-settings-layout">
-                <nav class="system-settings-navigation" aria-label="Разделы настроек">
+                <nav class="system-settings-navigation" aria-label="<?=Loc::getMessage('SPORINA_SETTINGS_CATEGORIES')?>">
                     <?php foreach ($arResult['PANEL'] as $category => $group): ?>
                         <button class="system-settings-navigation-item<?= $category === $activeCategory ? ' is-active' : '' ?>" type="button" data-role="category" data-category="<?=htmlspecialcharsbx($category)?>">
                             <?=htmlspecialcharsbx($group['title'])?>
@@ -50,7 +53,7 @@ Asset::getInstance()->addJs($this->GetFolder() . '/script.js');
                         <section class="system-settings-category<?= $category === $activeCategory ? ' is-active' : '' ?>" data-role="category.panel" data-category="<?=htmlspecialcharsbx($category)?>">
                             <h2><?=htmlspecialcharsbx($group['title'])?></h2>
                             <?php if (empty($group['fields'])): ?>
-                                <p class="system-settings-empty">Настройки для этого раздела пока не добавлены.</p>
+                                <p class="system-settings-empty"><?=Loc::getMessage('SPORINA_SETTINGS_EMPTY')?></p>
                             <?php endif; ?>
                             <?php foreach ($group['fields'] as $field): ?>
                                 <label class="system-settings-field" data-component-fallback="<?= !empty($field['componentFallback']) ? 'Y' : 'N' ?>" data-stored="<?= !empty($field['stored']) ? 'Y' : 'N' ?>">
@@ -66,7 +69,7 @@ Asset::getInstance()->addJs($this->GetFolder() . '/script.js');
                                         <?php elseif ($field['type'] === 'text'): ?>
                                             <input type="text" name="settings[<?=htmlspecialcharsbx($field['key'])?>]" value="<?=htmlspecialcharsbx($field['value'])?>" maxlength="255">
                                         <?php elseif ($field['type'] === 'select' && !empty($field['previews'])): ?>
-                                            <span class="system-settings-template-list">
+                                            <span class="system-settings-template-list" style="--template-preview-ratio: <?=htmlspecialcharsbx($field['previewRatio'] ?? '4 / 3')?>">
                                                 <?php foreach ($field['values'] as $value => $label): ?>
                                                     <?php if (isset($field['previews'][$value])): ?>
                                                         <label class="system-settings-template-option">
@@ -95,8 +98,9 @@ Asset::getInstance()->addJs($this->GetFolder() . '/script.js');
             </div>
             <footer class="system-settings-actions">
                 <output class="system-settings-status" data-role="status" aria-live="polite"></output>
-                <button class="system-settings-button system-settings-button-secondary" type="button" data-role="reset">Сбросить</button>
-                <button class="system-settings-button system-settings-button-primary" type="submit">Применить</button>
+                <button class="system-settings-button system-settings-button-secondary" type="button" data-role="reset"><?=Loc::getMessage('SPORINA_SETTINGS_RESET')?></button>
+                <button class="system-settings-button system-settings-button-primary" type="submit"><?=Loc::getMessage('SPORINA_SETTINGS_APPLY')?></button>
+                
             </footer>
         </form>
     </aside>

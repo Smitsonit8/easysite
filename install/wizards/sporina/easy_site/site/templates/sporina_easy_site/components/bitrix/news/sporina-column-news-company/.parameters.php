@@ -2,6 +2,17 @@
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 
 $arTemplateParameters = array(
+	"NEWS_LIST_TEMPLATE" => array(
+		"PARENT" => "BASE",
+		"NAME" => GetMessage("SPORINA_COLUMN_NEWS_LIST_TEMPLATE"),
+		"TYPE" => "LIST",
+		"VALUES" => array(
+			".default" => GetMessage("SPORINA_COLUMN_NEWS_LIST_TEMPLATE_DEFAULT"),
+			"cards" => GetMessage("SPORINA_COLUMN_NEWS_LIST_TEMPLATE_CARDS"),
+			"timeline" => GetMessage("SPORINA_COLUMN_NEWS_LIST_TEMPLATE_TIMELINE"),
+		),
+		"DEFAULT" => ".default",
+	),
 	"DISPLAY_DATE" => Array(
 		"NAME" => GetMessage("T_IBLOCK_DESC_NEWS_DATE"),
 		"TYPE" => "CHECKBOX",

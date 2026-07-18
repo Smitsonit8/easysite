@@ -45,22 +45,22 @@
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.16);
   color: var(--text-inverse);
-  font-size: 14px;
-  line-height: 1.2;
+  font-size: var(--font-size-navigation);
+  line-height: var(--line-height-banner-badge);
 }
 
 .sporina-banner__title {
   margin: 0 0 18px;
   color: var(--text-inverse);
-  font-size: 52px;
-  line-height: 1.08;
+  font-size: var(--font-size-banner-default-title);
+  line-height: var(--line-height-tight);
 }
 
 .sporina-banner__text {
   margin: 0 0 28px;
   color: var(--text-inverse);
-  font-size: 18px;
-  line-height: 1.6;
+  font-size: var(--font-size-banner-default-body);
+  line-height: var(--line-height-body);
   max-width: 560px;
 }
 
@@ -124,17 +124,17 @@
   }
 
   .sporina-banner__title {
-    font-size: 40px;
+    font-size: var(--font-size-banner-default-title);
   }
 }
 
 @media (max-width: 767px) {
   .sporina-banner__title {
-    font-size: 30px;
+    font-size: var(--font-size-banner-default-title);
   }
 
   .sporina-banner__text {
-    font-size: 16px;
+    font-size: var(--font-size-banner-default-body);
     margin-bottom: 24px;
   }
 

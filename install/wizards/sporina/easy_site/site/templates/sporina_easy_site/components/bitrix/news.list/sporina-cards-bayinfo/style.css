@@ -28,7 +28,7 @@ div.news-list
   justify-content: space-between;
 }
 
-.block_info a h2, .block_info a p {
+.block_info a h3.service-title, .block_info a p {
   margin: 20px 0 20px 20px;
   text-align: left;
   overflow-wrap: break-word;
@@ -38,26 +38,26 @@ div.news-list
   background-color: var(--surface);
 }
 
-.block_info--bgWhite a:hover h2 {
+.block_info--bgWhite a:hover h3.service-title {
   color: var(--primary-hover);
 }
 
 .block_info--bgWhite p {
-  font-size: 16px;
-  line-height: 20.8px;
+  font-size: var(--font-size-card-body);
+  line-height: var(--line-height-card-title);
   color: var(--text-secondary);
 }
 
-.block_info--bgWhite h2 {
+.block_info--bgWhite h3.service-title {
   color: var(--primary);
 }
 
 .block_info--bgImg p {
-  font-size: 16px;
-  line-height: 20.8px;
+  font-size: var(--font-size-card-body);
+  line-height: var(--line-height-card-title);
   color: var(--text-inverse);
 }
-.block_info--bgImg h2, .block_info--bgImg .svg_color {
+.block_info--bgImg h3.service-title, .block_info--bgImg .svg_color {
   color: var(--text-inverse);
   fill: var(--text-inverse);
 }

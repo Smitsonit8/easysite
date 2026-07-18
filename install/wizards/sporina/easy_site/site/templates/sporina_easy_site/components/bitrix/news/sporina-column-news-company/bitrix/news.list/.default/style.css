@@ -8,10 +8,7 @@
   box-shadow: var(--shadow-sm);
   width: 100%;
   max-width: 450px;
-<<<<<<< HEAD
   height: 100%;
-=======
->>>>>>> 9684a8ac40cee6ec12c4bc300d01ecb251f0ca04
 }
 
 .card_padding h2 {
@@ -46,8 +43,8 @@
 
 .card .card-a {
   color: var(--primary);
-  font-size: 16px;
-  line-height: 20.8px;
+  font-size: var(--font-size-news-column-item);
+  line-height: var(--line-height-card-title);
   letter-spacing: 0.01em;
 }
 .card .card-a p {

@@ -10,6 +10,9 @@ $sporinaSettings = $APPLICATION->IncludeComponent(
 	false,
 	array("HIDE_ICONS" => "Y")
 );
+
+use Bitrix\Main\Page\Asset;
+
 if (!is_array($sporinaSettings) && \Bitrix\Main\Loader::includeModule('sporina.easysite'))
 {
 	$sporinaSettings = \Sporina\EasySite\Settings::getAll();
@@ -33,7 +36,10 @@ $headingScale = $appearance['headingScale'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/themes/<?=$theme?>/colors.css">
-    <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/style/style.css">
+    <?
+    Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . '/style/style.css');
+    Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . '/style/typography.css');
+    ?>
     <style>
       :root {
         --site-background: <?=htmlspecialcharsbx($appearance['backgroundColor'])?>;
@@ -65,11 +71,7 @@ $headingScale = $appearance['headingScale'];
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/dist/assets/owl.theme.default.min.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
-<<<<<<< HEAD
 <body class="bx-theme-<?=$theme?> header-template-<?=$headerTemplate?><?=$appearance['backgroundUse'] === "N" ? " site-background-disabled" : ""?>">
-=======
-<body class="bx-theme-<?=$theme?> header-template-<?=$headerTemplate?>">
->>>>>>> 9684a8ac40cee6ec12c4bc300d01ecb251f0ca04
     <div id="panel">
 		<?$APPLICATION->ShowPanel();?>
     </div>
@@ -82,11 +84,7 @@ $headingScale = $appearance['headingScale'];
 
     <?$APPLICATION->IncludeComponent(
 	"sporina:header", 
-<<<<<<< HEAD
-	$headerTemplate,
-=======
-	"overlay", 
->>>>>>> 9684a8ac40cee6ec12c4bc300d01ecb251f0ca04
+	"overlay",
 	[
 		"LOGO_LINK" => SITE_DIR,
 		"LOGO_SRC" => "img/logo.svg",
@@ -99,11 +97,7 @@ $headingScale = $appearance['headingScale'];
 		"MAX_LEVEL" => "1",
 		"MENU_CACHE_TYPE" => "N",
 		"MENU_CACHE_TIME" => "3600",
-<<<<<<< HEAD
-		"COMPONENT_TEMPLATE" => $headerTemplate
-=======
 		"COMPONENT_TEMPLATE" => "overlay"
->>>>>>> 9684a8ac40cee6ec12c4bc300d01ecb251f0ca04
 	],
 	false
 );?>

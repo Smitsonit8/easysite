@@ -2,20 +2,10 @@
 if(!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true)
 	die();
 ?>
-<<<<<<< HEAD
 <?
-$sporinaSettings = isset($GLOBALS["SPORINA_EASY_SITE_SETTINGS"]) && is_array($GLOBALS["SPORINA_EASY_SITE_SETTINGS"])
-	? $GLOBALS["SPORINA_EASY_SITE_SETTINGS"]
-	: array("footer-template" => "big");
-$footerTemplate = $sporinaSettings["footer-template"];
 $APPLICATION->IncludeComponent(
 	"sporina:footer", 
-	$footerTemplate,
-=======
-<?$APPLICATION->IncludeComponent(
-	"sporina:footer", 
-	"big", 
->>>>>>> 9684a8ac40cee6ec12c4bc300d01ecb251f0ca04
+	"big",
 	[
 		"PHONE_1_VALUE" => "8 800 777 0001",
 		"PHONE_1_LABEL" => "звонок бесплатный для всех регионов РФ",
@@ -37,11 +27,7 @@ $APPLICATION->IncludeComponent(
 		"TELEGRAM_LINK" => "https://t.me/",
 		"GOOGLE_PLAY_LINK" => "https://play.google.com/",
 		"APP_STORE_LINK" => "https://apps.apple.com/",
-<<<<<<< HEAD
-		"COMPONENT_TEMPLATE" => $footerTemplate
-=======
 		"COMPONENT_TEMPLATE" => "big"
->>>>>>> 9684a8ac40cee6ec12c4bc300d01ecb251f0ca04
 	],
 	false
 );?>

@@ -15,7 +15,6 @@ $APPLICATION->SetTitle("Контакты");
 <!--меню, контент-->
 <section class="container content_flex">
   <div class="content">
-<<<<<<< HEAD
     <?php
     $sporinaSettings = isset($GLOBALS['SPORINA_EASY_SITE_SETTINGS']) && is_array($GLOBALS['SPORINA_EASY_SITE_SETTINGS'])
         ? $GLOBALS['SPORINA_EASY_SITE_SETTINGS']
@@ -29,8 +28,6 @@ $APPLICATION->SetTitle("Контакты");
         return $componentDefault;
     };
     ?>
-=======
->>>>>>> 9684a8ac40cee6ec12c4bc300d01ecb251f0ca04
     <?$APPLICATION->IncludeComponent(
 	"sporina:contacts", 
 	".default", 
@@ -56,19 +53,11 @@ $APPLICATION->SetTitle("Контакты");
 		"WORK_HOURS" => "Понедельник-четверг 08:00 - 17:00; пятница 08:00 - 15:45 (обеденный перерыв с 12:00 до 12:45).",
 		"SHOW_WEEKENDS" => "Y",
 		"WEEKENDS" => "Суббота, воскресенье.",
-<<<<<<< HEAD
 		"SHOW_MAP" => $mapSetting("contacts-map-use", "Y"),
 		"YANDEX_MAP_LAT" => $mapSetting("contacts-map-lat", "51.533338"),
 		"YANDEX_MAP_LON" => $mapSetting("contacts-map-lon", "46.034176"),
 		"MAP_TITLE" => $mapSetting("contacts-map-title", "Местоположение офиса"),
 		"MAP_HEIGHT" => $mapSetting("contacts-map-height", "420"),
-=======
-		"SHOW_MAP" => "Y",
-		"YANDEX_MAP_LAT" => "51.533338",
-		"YANDEX_MAP_LON" => "46.034176",
-		"MAP_TITLE" => "Местоположение офиса",
-		"MAP_HEIGHT" => "420",
->>>>>>> 9684a8ac40cee6ec12c4bc300d01ecb251f0ca04
 		"CACHE_TYPE" => "A",
 		"CACHE_TIME" => "36000000",
 		"COMPONENT_TEMPLATE" => ".default"

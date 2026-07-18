@@ -9,18 +9,30 @@ $getValue = static function ($key) use ($arParams)
 	return trim((string)($arParams[$key] ?? ""));
 };
 
-$buildContact = static function ($title, $label)
+$buildContact = static function ($title, $label, $type = "")
 {
+	$href = "";
+
+	if ($type === "phone")
+	{
+		$href = "tel:" . preg_replace("/[^0-9+]/", "", $title);
+	}
+	elseif ($type === "email")
+	{
+		$href = "mailto:" . $title;
+	}
+
 	return array(
 		"TITLE" => $title,
 		"LABEL" => $label,
+		"HREF" => $href,
 		"SHOW" => $title !== "" || $label !== "",
 	);
 };
 
-$phone1 = $buildContact($getValue("PHONE_1_VALUE"), $getValue("PHONE_1_LABEL"));
-$phone2 = $buildContact($getValue("PHONE_2_VALUE"), $getValue("PHONE_2_LABEL"));
-$email = $buildContact($getValue("EMAIL_VALUE"), $getValue("EMAIL_LABEL"));
+$phone1 = $buildContact($getValue("PHONE_1_VALUE"), $getValue("PHONE_1_LABEL"), "phone");
+$phone2 = $buildContact($getValue("PHONE_2_VALUE"), $getValue("PHONE_2_LABEL"), "phone");
+$email = $buildContact($getValue("EMAIL_VALUE"), $getValue("EMAIL_LABEL"), "email");
 $address = $buildContact($getValue("ADDRESS_VALUE"), $getValue("ADDRESS_LABEL"));
 
 $licenseText = $getValue("LICENSE_TEXT");
@@ -56,9 +68,11 @@ $arResult = array(
 		"SUFFIX" => $copyrightSuffix,
 		"SHOW" => $copyrightPrefix !== "" || $copyrightLinkText !== "" || $copyrightSuffix !== "",
 	),
-	"TELEGRAM_LINK" => $getValue("TELEGRAM_LINK"),
-	"GOOGLE_PLAY_LINK" => $getValue("GOOGLE_PLAY_LINK"),
-	"APP_STORE_LINK" => $getValue("APP_STORE_LINK"),
+	"SOCIAL" => array(
+		"SHOW" => $getValue("SOCIAL_SHOW") === "Y",
+		"VK" => $getValue("SOCIAL_VK"), "MAX" => $getValue("SOCIAL_MAX"), "OK" => $getValue("SOCIAL_OK"),
+		"RUTUBE" => $getValue("SOCIAL_RUTUBE"), "DZEN" => $getValue("SOCIAL_DZEN"),
+	),
 );
 
 $this->IncludeComponentTemplate();

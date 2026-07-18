@@ -112,23 +112,25 @@ $arComponentParameters = array(
 			"TYPE" => "STRING",
 			"DEFAULT" => "",
 		),
-		"TELEGRAM_LINK" => array(
+		"SOCIAL_SHOW" => array(
 			"PARENT" => "VISUAL",
-			"NAME" => Loc::getMessage("SPORINA_FOOTER_TELEGRAM_LINK"),
-			"TYPE" => "STRING",
-			"DEFAULT" => "",
-		),
-		"GOOGLE_PLAY_LINK" => array(
-			"PARENT" => "VISUAL",
-			"NAME" => Loc::getMessage("SPORINA_FOOTER_GOOGLE_PLAY_LINK"),
-			"TYPE" => "STRING",
-			"DEFAULT" => "",
-		),
-		"APP_STORE_LINK" => array(
-			"PARENT" => "VISUAL",
-			"NAME" => Loc::getMessage("SPORINA_FOOTER_APP_STORE_LINK"),
-			"TYPE" => "STRING",
-			"DEFAULT" => "",
+			"NAME" => Loc::getMessage("SPORINA_FOOTER_SOCIAL_SHOW"),
+			"TYPE" => "CHECKBOX",
+			"DEFAULT" => "N",
+			"REFRESH" => "Y",
 		),
 	),
 );
+
+if (isset($arCurrentValues["SOCIAL_SHOW"]) && $arCurrentValues["SOCIAL_SHOW"] === "Y")
+{
+	foreach (array("VK", "MAX", "OK", "RUTUBE", "DZEN") as $social)
+	{
+		$arComponentParameters["PARAMETERS"]["SOCIAL_".$social] = array(
+			"PARENT" => "VISUAL",
+			"NAME" => Loc::getMessage("SPORINA_FOOTER_SOCIAL_".$social),
+			"TYPE" => "STRING",
+			"DEFAULT" => "",
+		);
+	}
+}

@@ -1,11 +1,7 @@
 <?
-$sporinaSettings = isset($GLOBALS["SPORINA_EASY_SITE_SETTINGS"]) && is_array($GLOBALS["SPORINA_EASY_SITE_SETTINGS"])
-	? $GLOBALS["SPORINA_EASY_SITE_SETTINGS"]
-	: array();
-$bannerTemplate = $sporinaSettings["pages-main-banner-template"] ?? ".default";
 $APPLICATION->IncludeComponent(
 	"sporina:banner",
-	$bannerTemplate,
+	".default",
 	array(
 		"TITLE" => "АО «Путь-Экспресс»",
 		"SLOGAN" => "Логистика, на которую можно опереться",
@@ -17,7 +13,7 @@ $APPLICATION->IncludeComponent(
 		"MOBILE_IMAGE_SRC" => SITE_TEMPLATE_PATH."/style/img/application_mobil.svg",
 		"SHOW_IMAGE" => "Y",
 		"BACKGROUND_IMAGE_SRC" => SITE_TEMPLATE_PATH."/style/img/bg.jpg",
-		"COMPONENT_TEMPLATE" => $bannerTemplate,
+		"COMPONENT_TEMPLATE" => ".default",
 	),
 	false
 );?>

@@ -114,7 +114,7 @@ div.sporina-cards-stack
 {
 	margin-bottom: 14px;
 	color: var(--text-secondary);
-	font-size: 13px;
+	font-size: var(--font-size-card-number);
 	letter-spacing: 0.24em;
 	text-transform: uppercase;
 }
@@ -129,21 +129,21 @@ div.sporina-cards-stack
 	color: var(--text-secondary);
 }
 
-.sporina-cards-stack__text h2
+.sporina-cards-stack__text h3.service-title
 {
 	margin: 0 0 16px;
 	color: var(--primary);
-	font-size: 30px;
-	line-height: 1.12;
+	font-size: var(--font-size-card-featured-title);
+	line-height: var(--line-height-card-featured-title);
 	text-align: left;
 }
 
-.sporina-cards-stack__item:nth-child(even) .sporina-cards-stack__text h2
+.sporina-cards-stack__item:nth-child(even) .sporina-cards-stack__text h3.service-title
 {
 	color: var(--text-inverse);
 }
 
-.sporina-cards-stack__item--image .sporina-cards-stack__text h2
+.sporina-cards-stack__item--image .sporina-cards-stack__text h3.service-title
 {
 	color: #ffffff;
 }
@@ -153,8 +153,8 @@ div.sporina-cards-stack
 	margin: 0;
 	max-width: 760px;
 	color: var(--text-secondary);
-	font-size: 16px;
-	line-height: 1.65;
+	font-size: var(--font-size-card-body);
+	line-height: var(--line-height-card-copy);
 }
 
 .sporina-cards-stack__item:nth-child(even) .sporina-cards-stack__text p
@@ -250,8 +250,8 @@ div.sporina-cards-stack
 		padding: 22px 20px;
 	}
 
-	.sporina-cards-stack__text h2
+	.sporina-cards-stack__text h3.service-title
 	{
-		font-size: 24px;
+		font-size: var(--font-size-card-featured-title);
 	}
 }

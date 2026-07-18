@@ -103,7 +103,7 @@ class SporinaSystemSettingsComponent extends CBitrixComponent
                 default:
                     throw new InvalidArgumentException('Unknown action');
             }
-        } catch (InvalidArgumentException $exception) {
+        } catch (InvalidArgumentException | RuntimeException $exception) {
             $this->sendJson(['success' => false, 'error' => $exception->getMessage()], 400);
         } catch (Throwable $exception) {
             $this->sendJson(['success' => false, 'error' => 'Internal server error'], 500);
