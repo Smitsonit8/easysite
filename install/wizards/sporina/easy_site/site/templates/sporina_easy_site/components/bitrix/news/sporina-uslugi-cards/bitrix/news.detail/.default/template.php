@@ -83,8 +83,11 @@ $this->setFrameMode(true);
         <div class="news-detail-share">
             <noindex>
             <?
-            $APPLICATION->IncludeComponent("bitrix:main.share", "", array(
-                    "HANDLERS" => $arParams["SHARE_HANDLERS"],
+            $APPLICATION->IncludeComponent("bitrix:main.share", $arParams['SHARE_TEMPLATE'] ?? 'sporina-social-share', array(
+					"SHARE_MAX" => $arParams["SHARE_MAX"] ?? "Y",
+					"SHARE_VK" => $arParams["SHARE_VK"] ?? "Y",
+					"SHARE_OK" => $arParams["SHARE_OK"] ?? "Y",
+					"SHARE_MAIL" => $arParams["SHARE_MAIL"] ?? "Y",
                     "PAGE_URL" => $arResult["~DETAIL_PAGE_URL"],
                     "PAGE_TITLE" => $arResult["~NAME"],
                     "SHORTEN_URL_LOGIN" => $arParams["SHARE_SHORTEN_URL_LOGIN"],

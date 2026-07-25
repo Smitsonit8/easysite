@@ -15,7 +15,6 @@ use Bitrix\Main\Localization\Loc;
 Loc::loadMessages(__FILE__);
 $this->setFrameMode(true);
 ?>
-<h2><?= Loc::getMessage('TITLE');?></h2>
 <div class="services-container">
 <?if($arParams["DISPLAY_TOP_PAGER"]):?>
 	<?=$arResult["NAV_STRING"]?><br />

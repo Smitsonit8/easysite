@@ -13,6 +13,22 @@ $arTemplateParameters = array(
 		),
 		"DEFAULT" => ".default",
 	),
+	"COLUMNS_LAYOUT" => array(
+		"PARENT" => "BASE",
+		"NAME" => GetMessage("SPORINA_COLUMN_NEWS_COLUMNS_LAYOUT"),
+		"TYPE" => "LIST",
+		"VALUES" => array(
+			"two" => GetMessage("SPORINA_COLUMN_NEWS_COLUMNS_LAYOUT_TWO"),
+			"stacked" => GetMessage("SPORINA_COLUMN_NEWS_COLUMNS_LAYOUT_STACKED"),
+		),
+		"DEFAULT" => "two",
+	),
+	"SHOW_MORE_BUTTON" => array(
+		"PARENT" => "BASE",
+		"NAME" => GetMessage("SPORINA_COLUMN_NEWS_SHOW_MORE_BUTTON"),
+		"TYPE" => "CHECKBOX",
+		"DEFAULT" => "Y",
+	),
 	"DISPLAY_DATE" => Array(
 		"NAME" => GetMessage("T_IBLOCK_DESC_NEWS_DATE"),
 		"TYPE" => "CHECKBOX",

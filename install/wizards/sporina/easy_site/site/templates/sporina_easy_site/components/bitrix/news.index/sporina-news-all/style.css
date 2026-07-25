@@ -77,7 +77,6 @@
 .sporina-news-all__meta
 {
 	text-align: right;
-    padding: 0 15px;
 }
 
 .sporina-news-all__slider .owl-nav
@@ -171,6 +170,7 @@ fill: var(--surface) !important;
   flex-direction: column;
   flex: 1 1 auto;
   margin: 0 0px 20px 0px;
+  padding: 0 20px;
   box-shadow: var(--shadow-md);
 }
 

@@ -1,6 +1,6 @@
 
 .h1{
-	color: #000;
+	color: var(--primary);
 	text-align: center;
 }
 div.news-detail
@@ -12,13 +12,9 @@ div.news-detail img.detail_picture
 	float:left;
 	margin:0 8px 6px 1px;
 }
-.news-date-time
-{
-	color:#486DAA;
-}
 
 .services-detail-container{
-	width: 100%;
+    padding: 0 20px;
 }
 
 .services-detail-colons {

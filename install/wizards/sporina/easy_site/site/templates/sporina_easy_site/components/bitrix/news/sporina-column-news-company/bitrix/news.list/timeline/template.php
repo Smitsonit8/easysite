@@ -1,8 +1,29 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
+/** @var array $arParams */
+/** @var array $arResult */
+/** @global CMain $APPLICATION */
+/** @global CUser $USER */
+/** @global CDatabase $DB */
+/** @var CBitrixComponentTemplate $this */
+/** @var string $templateName */
+/** @var string $templateFile */
+/** @var string $templateFolder */
+/** @var string $componentPath */
+/** @var CBitrixComponent $component */
 $this->setFrameMode(true);
 ?>
+<?
+	$layout = $arParams['COLUMNS_LAYOUT'] ?? 'two';
+
+	$layoutClasses = [
+		'two' => 'sporina-news-timeline-two',
+		'stacked' => 'sporina-news-timeline-stacked',
+	];
+
+	$layoutClass = $layoutClasses[$layout] ?? $layoutClasses['two'];
+?>
 <?if(!empty($arResult["ITEMS"])):?>
-<section class="sporina-news-timeline">
+<section class="sporina-news-timeline <?=htmlspecialcharsbx($layoutClass)?>">
 	<div class="sporina-news-timeline__head">
 		<b class="sporina-news-timeline__title"><?=$arResult["NAME"]?></b>
 	</div>
@@ -53,7 +74,7 @@ $this->setFrameMode(true);
 		$listPageUrl = $arResult["IBLOCK_URL"];
 	}
 	?>
-	<?if($listPageUrl !== ""):?>
+	<?if(($arParams["SHOW_MORE_BUTTON"] ?? "Y") !== "N" && $listPageUrl !== ""):?>
 		<div class="sporina-news-timeline__actions">
 			<a class="sporina-news-timeline__all button" href="<?=$listPageUrl?>"><?=GetMessage("SPORINA_SHOW_MORE")?></a>
 		</div>

@@ -7,6 +7,44 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)
 /** @var array $arCurrentValues */
 
 $arTemplateParameters = array(
+	"NEWS_LIST_TEMPLATE" => Array(
+		"PARENT" => "BASE",
+		"NAME" => GetMessage("T_IBLOCK_LIST_TEMPLATE"),
+		"TYPE" => "LIST",
+		"VALUES" => Array(
+			".default" => ".default",
+			"smoothness" => "smoothness",
+			"layering" => "layering",
+		),
+		"DEFAULT" => ".default",
+	),
+	"NEWS_DETAIL_TEMPLATE" => Array(
+		"PARENT" => "BASE",
+		"NAME" => GetMessage("T_IBLOCK_DETAIL_TEMPLATE"),
+		"TYPE" => "LIST",
+		"VALUES" => Array(
+			".default" => ".default",
+			"smoothness" => "smoothness",
+			"layering" => "layering",
+		),
+		"DEFAULT" => ".default",
+	),
+	'SHOW_SECTION_BADGE' => [
+        'PARENT' => 'BASE',
+        'NAME' => GetMessage("T_IBLOCK_SECTION_BADGE"),
+        'TYPE' => 'CHECKBOX',
+        'DEFAULT' => 'Y',
+    ],
+    'SECTION_BADGE_POSITION' => [
+        'PARENT' => 'BASE',
+        'NAME' => GetMessage("T_IBLOCK_SECTION_BADGE_POSITION"),
+        'TYPE' => 'LIST',
+        'VALUES' => [
+            'left' => 'Слева',
+            'right' => 'Справа',
+        ],
+        'DEFAULT' => 'left',
+    ],
 	"DISPLAY_DATE" => Array(
 		"NAME" => GetMessage("T_IBLOCK_DESC_NEWS_DATE"),
 		"TYPE" => "CHECKBOX",
@@ -41,40 +79,34 @@ if (($arCurrentValues['USE_SHARE'] ?? 'N') === 'Y')
 
 	$arTemplateParameters["SHARE_TEMPLATE"] = array(
 		"NAME" => GetMessage("T_IBLOCK_DESC_NEWS_SHARE_TEMPLATE"),
-		"DEFAULT" => "",
+		"DEFAULT" => "sporina-social-share",
 		"TYPE" => "STRING",
 		"MULTIPLE" => "N",
 		"COLS" => 25,
 		"REFRESH"=> "Y",
 	);
 
-	$shareComponentTemplate = (trim((string)($arCurrentValues["SHARE_TEMPLATE"] ?? '')));
-	if ($shareComponentTemplate === '')
-	{
-		$shareComponentTemplate = false;
-	}
-
-	include_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/components/bitrix/main.share/util.php");
-
-	$arHandlers = __bx_share_get_handlers($shareComponentTemplate);
-
-	$arTemplateParameters["SHARE_HANDLERS"] = array(
-		"NAME" => GetMessage("T_IBLOCK_DESC_NEWS_SHARE_SYSTEM"),
-		"TYPE" => "LIST",
-		"MULTIPLE" => "Y",
-		"VALUES" => $arHandlers["HANDLERS"],
-		"DEFAULT" => $arHandlers["HANDLERS_DEFAULT"],
+	$arTemplateParameters["SHARE_MAX"] = array(
+		"NAME" => "MAX",
+		"TYPE" => "CHECKBOX",
+		"DEFAULT" => "Y",
 	);
 
-	$arTemplateParameters["SHARE_SHORTEN_URL_LOGIN"] = array(
-		"NAME" => GetMessage("T_IBLOCK_DESC_NEWS_SHARE_SHORTEN_URL_LOGIN"),
-		"TYPE" => "STRING",
-		"DEFAULT" => "",
+	$arTemplateParameters["SHARE_VK"] = array(
+		"NAME" => "VK",
+		"TYPE" => "CHECKBOX",
+		"DEFAULT" => "Y",
 	);
 
-	$arTemplateParameters["SHARE_SHORTEN_URL_KEY"] = array(
-		"NAME" => GetMessage("T_IBLOCK_DESC_NEWS_SHARE_SHORTEN_URL_KEY"),
-		"TYPE" => "STRING",
-		"DEFAULT" => "",
+	$arTemplateParameters["SHARE_OK"] = array(
+		"NAME" => "OK",
+		"TYPE" => "CHECKBOX",
+		"DEFAULT" => "Y",
+	);
+
+	$arTemplateParameters["SHARE_MAIL"] = array(
+		"NAME" => "Mail",
+		"TYPE" => "CHECKBOX",
+		"DEFAULT" => "Y",
 	);
 }

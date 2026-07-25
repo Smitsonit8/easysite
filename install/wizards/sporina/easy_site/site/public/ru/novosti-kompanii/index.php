@@ -15,8 +15,8 @@ $APPLICATION->SetTitle("Новости компании");
     <div class="content-no-menu">
 	<?$APPLICATION->IncludeComponent(
 	"bitrix:news", 
-	"sporina-news-company", 
-	array(
+	"sporina-news", 
+	[
 		"ADD_ELEMENT_CHAIN" => "N",
 		"ADD_SECTIONS_CHAIN" => "N",
 		"AJAX_MODE" => "N",
@@ -33,17 +33,17 @@ $APPLICATION->SetTitle("Новости компании");
 		"DETAIL_ACTIVE_DATE_FORMAT" => "d.m.Y H:i",
 		"DETAIL_DISPLAY_BOTTOM_PAGER" => "Y",
 		"DETAIL_DISPLAY_TOP_PAGER" => "N",
-		"DETAIL_FIELD_CODE" => array(
+		"DETAIL_FIELD_CODE" => [
 			0 => "TIMESTAMP_X",
 			1 => "",
-		),
+		],
 		"DETAIL_PAGER_SHOW_ALL" => "Y",
 		"DETAIL_PAGER_TEMPLATE" => "",
 		"DETAIL_PAGER_TITLE" => "Страница",
-		"DETAIL_PROPERTY_CODE" => array(
+		"DETAIL_PROPERTY_CODE" => [
 			0 => "",
 			1 => "",
-		),
+		],
 		"DETAIL_SET_CANONICAL_URL" => "N",
 		"DISPLAY_BOTTOM_PAGER" => "Y",
 		"DISPLAY_DATE" => "Y",
@@ -56,14 +56,14 @@ $APPLICATION->SetTitle("Новости компании");
 		"IBLOCK_TYPE" => "news_and_changes",
 		"INCLUDE_IBLOCK_INTO_CHAIN" => "N",
 		"LIST_ACTIVE_DATE_FORMAT" => "d.m.Y H:i",
-		"LIST_FIELD_CODE" => array(
+		"LIST_FIELD_CODE" => [
 			0 => "TIMESTAMP_X",
 			1 => "",
-		),
-		"LIST_PROPERTY_CODE" => array(
+		],
+		"LIST_PROPERTY_CODE" => [
 			0 => "",
 			1 => "",
-		),
+		],
 		"MESSAGE_404" => "",
 		"META_DESCRIPTION" => "-",
 		"META_KEYWORDS" => "-",
@@ -76,7 +76,7 @@ $APPLICATION->SetTitle("Новости компании");
 		"PAGER_TEMPLATE" => ".default",
 		"PAGER_TITLE" => "Новости",
 		"PREVIEW_TRUNCATE_LEN" => "",
-		"SEF_FOLDER" => "#SITE_DIR#novosti-kompanii/",
+		"SEF_FOLDER" => "/qq/novosti-kompanii/",
 		"SEF_MODE" => "Y",
 		"SET_LAST_MODIFIED" => "N",
 		"SET_STATUS_404" => "N",
@@ -94,13 +94,16 @@ $APPLICATION->SetTitle("Новости компании");
 		"USE_RSS" => "N",
 		"USE_SEARCH" => "N",
 		"USE_SHARE" => "N",
-		"COMPONENT_TEMPLATE" => "sporina-news-company",
-		"SEF_URL_TEMPLATES" => array(
+		"COMPONENT_TEMPLATE" => "sporina-news",
+		"USE_REVIEW" => "N",
+		"NEWS_LIST_TEMPLATE" => "paper",
+		"NEWS_DETAIL_TEMPLATE" => "paper",
+		"SEF_URL_TEMPLATES" => [
 			"news" => "",
 			"section" => "",
 			"detail" => "#ELEMENT_CODE#/",
-		)
-	),
+		]
+	],
 	false
 );?>
     </div>

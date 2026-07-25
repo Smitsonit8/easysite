@@ -77,6 +77,8 @@ if (!in_array($newsListTemplate, $availableNewsListTemplates, true))
 		"DETAIL_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["detail"],
 		"SECTION_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["section"],
 		"IBLOCK_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["news"],
+		"LIST_PAGE_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["news"],
+		"SHOW_MORE_BUTTON" => isset($arParams["SHOW_MORE_BUTTON"]) ? $arParams["SHOW_MORE_BUTTON"] : "Y",
 		"DISPLAY_PANEL" => $arParams["DISPLAY_PANEL"],
 		"SET_TITLE" => $arParams["SET_TITLE"],
 		"SET_LAST_MODIFIED" => $arParams["SET_LAST_MODIFIED"],
@@ -111,6 +113,7 @@ if (!in_array($newsListTemplate, $availableNewsListTemplates, true))
 		"FILTER_NAME" => $arParams["FILTER_NAME"],
 		"HIDE_LINK_WHEN_NO_DETAIL" => $arParams["HIDE_LINK_WHEN_NO_DETAIL"],
 		"CHECK_DATES" => $arParams["CHECK_DATES"],
+		"COLUMNS_LAYOUT" => isset($arParams["COLUMNS_LAYOUT"]) ? (string)$arParams["COLUMNS_LAYOUT"] : "two",
 	),
 	$component
 );?>

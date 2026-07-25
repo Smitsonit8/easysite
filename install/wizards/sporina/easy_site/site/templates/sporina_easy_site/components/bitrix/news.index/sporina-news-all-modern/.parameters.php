@@ -5,6 +5,18 @@ use Bitrix\Main\Localization\Loc;
 Loc::loadMessages(__FILE__);
 
 $arTemplateParameters = array(
+	"BLOCK_DESCRIPTION" => array(
+		"PARENT" => "VISUAL",
+		"NAME" => Loc::getMessage("SPORINA_NEWS_ALL_BLOCK_DESCRIPTION"),
+		"TYPE" => "STRING",
+		"DEFAULT" => Loc::getMessage("SPORINA_NEWS_ALL_BLOCK_DESCRIPTION_DEFAULT"),
+	),
+	"SHOW_BLOCK_DESCRIPTION" => array(
+		"PARENT" => "VISUAL",
+		"NAME" => Loc::getMessage("SPORINA_NEWS_ALL_SHOW_BLOCK_DESCRIPTION"),
+		"TYPE" => "CHECKBOX",
+		"DEFAULT" => "Y",
+	),
 	"SHOW_SLIDER_NAVIGATION" => array(
 		"PARENT" => "VISUAL",
 		"NAME" => Loc::getMessage("SPORINA_NEWS_ALL_SHOW_SLIDER_NAVIGATION"),

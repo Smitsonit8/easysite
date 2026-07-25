@@ -55,7 +55,7 @@ $this->setFrameMode(true);
 <?endif?>
 <?$APPLICATION->IncludeComponent(
 	"bitrix:news.list",
-	"",
+	$arParams['NEWS_LIST_TEMPLATE'] ?? '.default',
 	Array(
 		"IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
 		"IBLOCK_ID" => $arParams["IBLOCK_ID"],
@@ -93,6 +93,8 @@ $this->setFrameMode(true);
 		"DISPLAY_NAME" => "Y",
 		"DISPLAY_PICTURE" => $arParams["DISPLAY_PICTURE"],
 		"DISPLAY_PREVIEW_TEXT" => $arParams["DISPLAY_PREVIEW_TEXT"],
+		"SHOW_SECTION_BADGE" => $arParams["SHOW_SECTION_BADGE"] ?? "Y",
+		"SECTION_BADGE_POSITION" => $arParams["SECTION_BADGE_POSITION"] ?? "left",
 		"PREVIEW_TRUNCATE_LEN" => $arParams["PREVIEW_TRUNCATE_LEN"],
 		"ACTIVE_DATE_FORMAT" => $arParams["LIST_ACTIVE_DATE_FORMAT"],
 		"USE_PERMISSIONS" => $arParams["USE_PERMISSIONS"],

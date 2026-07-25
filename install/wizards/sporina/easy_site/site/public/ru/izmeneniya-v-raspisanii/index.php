@@ -16,7 +16,7 @@ $APPLICATION->SetTitle("Изменения в расписании");
 		
        <?$APPLICATION->IncludeComponent(
 	"bitrix:news", 
-	"sporina-news-company-circle", 
+	"sporina-news", 
 	[
 		"ADD_ELEMENT_CHAIN" => "N",
 		"ADD_SECTIONS_CHAIN" => "N",
@@ -81,7 +81,7 @@ $APPLICATION->SetTitle("Изменения в расписании");
 		"PAGER_TEMPLATE" => "",
 		"PAGER_TITLE" => "",
 		"PREVIEW_TRUNCATE_LEN" => "",
-		"SEF_FOLDER" => "#SITE_DIR#izmeneniya-v-raspisanii/",
+		"SEF_FOLDER" => "/qq/izmeneniya-v-raspisanii/",
 		"SEF_MODE" => "Y",
 		"SET_LAST_MODIFIED" => "N",
 		"SET_STATUS_404" => "N",
@@ -99,7 +99,7 @@ $APPLICATION->SetTitle("Изменения в расписании");
 		"USE_RSS" => "N",
 		"USE_SEARCH" => "N",
 		"USE_SHARE" => "Y",
-		"COMPONENT_TEMPLATE" => "sporina-news-company-circle",
+		"COMPONENT_TEMPLATE" => "sporina-news",
 		"USE_REVIEW" => "N",
 		"SHARE_HIDE" => "N",
 		"SHARE_TEMPLATE" => "",
@@ -109,6 +109,8 @@ $APPLICATION->SetTitle("Изменения в расписании");
 		],
 		"SHARE_SHORTEN_URL_LOGIN" => "",
 		"SHARE_SHORTEN_URL_KEY" => "",
+		"NEWS_LIST_TEMPLATE" => "circle",
+		"NEWS_DETAIL_TEMPLATE" => "paper",
 		"SEF_URL_TEMPLATES" => [
 			"news" => "",
 			"section" => "",

@@ -27,6 +27,12 @@ if ($autoplayTimeout < 1000)
 {
 	$autoplayTimeout = 5000;
 }
+
+$description = trim((string)($arParams["BLOCK_DESCRIPTION"] ?? ""));
+if ($description === "")
+{
+	$description = Loc::getMessage("BLOCK_DESCRIPTION");
+}
 ?>
 <section class="sporina-news-all-modern">
 	<div class="container">
@@ -35,7 +41,9 @@ if ($autoplayTimeout < 1000)
 				<div class="sporina-news-all-modern__eyebrow"><?=Loc::getMessage("BLOCK_EYEBROW")?></div>
 				<h2 class="sporina-news-all-modern__title"><?=Loc::getMessage("BLOCK_TITLE")?></h2>
 			</div>
-			<p class="sporina-news-all-modern__description"><?=Loc::getMessage("BLOCK_DESCRIPTION")?></p>
+			<?if(($arParams["SHOW_BLOCK_DESCRIPTION"] ?? "Y") !== "N" && $description !== ""):?>
+				<p class="sporina-news-all-modern__description"><?=htmlspecialcharsbx($description)?></p>
+			<?endif;?>
 		</div>
 
 		<div

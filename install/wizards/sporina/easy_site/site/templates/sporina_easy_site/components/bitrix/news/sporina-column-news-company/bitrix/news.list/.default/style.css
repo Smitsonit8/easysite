@@ -1,14 +1,26 @@
-.card_padding {
+.card_padding{
   position: relative;
   display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
-  margin: 0 10px 20px;
+  height: 100%;
   background-color: var(--surface);
   box-shadow: var(--shadow-sm);
+  margin: 0 10px 20px;
+}
+
+.news--default-two {
+
+  flex-direction: column;
+  flex: 1 1 auto;
+  
   width: 100%;
   max-width: 450px;
-  height: 100%;
+  
+}
+
+.news--default-stacked{
+    flex-direction: column;
+    width: 80%;
+    margin: 0px auto 40px;
 }
 
 .card_padding h2 {
@@ -106,7 +118,11 @@ div.news-list img.preview_picture
 
 @media screen and (max-width: 992px) {
 	.card_padding {
-		margin: 0 0 20px 0;
 		max-width: 100%;
 	}
+
+  .news--default-stacked{
+    width: 100%;
+    margin: 0 0 40px 0;
+  }
 }

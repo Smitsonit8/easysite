@@ -1,14 +1,37 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
+/** @var array $arParams */
+/** @var array $arResult */
+/** @global CMain $APPLICATION */
+/** @global CUser $USER */
+/** @global CDatabase $DB */
+/** @var CBitrixComponentTemplate $this */
+/** @var string $templateName */
+/** @var string $templateFile */
+/** @var string $templateFolder */
+/** @var string $componentPath */
+/** @var CBitrixComponent $component */
 $this->setFrameMode(true);
-
+?>
+<?
 $isEditMode = false;
 if (is_object($APPLICATION) && method_exists($APPLICATION, "GetShowIncludeAreas"))
 {
 	$isEditMode = (bool)$APPLICATION->GetShowIncludeAreas();
 }
 ?>
+<?
+	$layout = $arParams['COLUMNS_LAYOUT'] ?? 'two';
+
+	$layoutClasses = [
+		'two' => 'sporina-news-cards--two',
+		'stacked' => 'sporina-news-cards--stacked',
+	];
+
+	$layoutClass = $layoutClasses[$layout] ?? $layoutClasses['two'];
+?>
+
 <?if(!empty($arResult["ITEMS"])):?>
-<section class="sporina-news-cards">
+<section class="sporina-news-cards <?=htmlspecialcharsbx($layoutClass)?>">
 	<div class="sporina-news-cards__head">
 		<b class="sporina-news-cards__title"><?=$arResult["NAME"]?></b>
 	</div>
@@ -92,7 +115,7 @@ if (is_object($APPLICATION) && method_exists($APPLICATION, "GetShowIncludeAreas"
 		$listPageUrl = $arResult["IBLOCK_URL"];
 	}
 	?>
-	<?if($listPageUrl !== ""):?>
+	<?if(($arParams["SHOW_MORE_BUTTON"] ?? "Y") !== "N" && $listPageUrl !== ""):?>
 		<div class="sporina-news-cards__actions">
 			<a class="sporina-news-cards__all button" href="<?=$listPageUrl?>"><?=GetMessage("SPORINA_SHOW_MORE")?></a>
 		</div>

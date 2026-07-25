@@ -15,7 +15,19 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)
 /** @var string $componentPath */
 /** @var CBitrixComponent $component */
 $this->setFrameMode(true);
-
+use Bitrix\Main\Localization\Loc;
+Loc::loadMessages(__FILE__);
+?>
+<div class="sporina-services__back-wrap">
+	<a class="sporina-services__back" href="<?=SITE_DIR?>">
+		<svg class="sporina-services__back-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+			<path d="M20 12H5" />
+			<path d="M11 18L5 12L11 6" />
+		</svg>
+		<span class="sporina-services__back-text"><?=Loc::getMessage("BUTTON_BACK");?></span>
+	</a>
+</div>
+<?
 if($arParams["USE_RSS"]=="Y"):
 	if(method_exists($APPLICATION, 'addheadstring'))
 		$APPLICATION->AddHeadString('<link rel="alternate" type="application/rss+xml" title="'.$arResult["FOLDER"].$arResult["URL_TEMPLATES"]["rss"].'" href="'.$arResult["FOLDER"].$arResult["URL_TEMPLATES"]["rss"].'" />');
@@ -62,7 +74,7 @@ $APPLICATION->IncludeComponent(
 endif;
 $APPLICATION->IncludeComponent(
 	"bitrix:news.list",
-	"",
+	$arParams['NEWS_LIST_TEMPLATE'] ?? '.default',
 	[
 		"IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
 		"IBLOCK_ID" => $arParams["IBLOCK_ID"],
@@ -102,6 +114,8 @@ $APPLICATION->IncludeComponent(
 		"DISPLAY_NAME" => "Y",
 		"DISPLAY_PICTURE" => $arParams["DISPLAY_PICTURE"],
 		"DISPLAY_PREVIEW_TEXT" => $arParams["DISPLAY_PREVIEW_TEXT"],
+		"SHOW_SECTION_BADGE" => $arParams["SHOW_SECTION_BADGE"] ?? "Y",
+		"SECTION_BADGE_POSITION" => $arParams["SECTION_BADGE_POSITION"] ?? "left",
 		"PREVIEW_TRUNCATE_LEN" => $arParams["PREVIEW_TRUNCATE_LEN"],
 		"ACTIVE_DATE_FORMAT" => $arParams["LIST_ACTIVE_DATE_FORMAT"],
 		"USE_PERMISSIONS" => $arParams["USE_PERMISSIONS"],

@@ -15,10 +15,22 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)
 /** @var string $componentPath */
 /** @var CBitrixComponent $component */
 $this->setFrameMode(true);
-
+use Bitrix\Main\Localization\Loc;
+Loc::loadMessages(__FILE__);
+?>
+<div class="sporina-services__back-wrap">
+	<a class="sporina-services__back" href="<?=$arResult["FOLDER"].$arResult["URL_TEMPLATES"]["news"]?>">
+		<svg class="sporina-services__back-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+			<path d="M20 12H5" />
+			<path d="M11 18L5 12L11 6" />
+		</svg>
+		<span class="sporina-services__back-text"><?=Loc::getMessage("BUTTON_BACK");?></span>
+	</a>
+</div>
+<?
 $ElementID = $APPLICATION->IncludeComponent(
 	"bitrix:news.detail",
-	"",
+	$arParams['NEWS_DETAIL_TEMPLATE'] ?? '.default',
 	[
 		"DISPLAY_DATE" => $arParams["DISPLAY_DATE"],
 		"DISPLAY_NAME" => $arParams["DISPLAY_NAME"],
@@ -71,6 +83,7 @@ $ElementID = $APPLICATION->IncludeComponent(
 	],
 	$component
 );?>
+
 <?
 // Вызываем компонент формы обратной связи внизу детальной страницы
 // Вызов после компонента news.detail, чтобы избежать конфликтов
@@ -102,11 +115,15 @@ if ($ElementID) {
 	);
 }
 ?>
-<p class="p-back"><a href="<?=$arResult["FOLDER"].$arResult["URL_TEMPLATES"]["news"]?>">
-	<?//=GetMessage("T_NEWS_DETAIL_BACK")?>
-	<svg class="svg-back" viewBox="0 -6 380.688 380" xmlns="http://www.w3.org/2000/svg"><path d="m164.6875 213.03125h16c93.074219 0 168.441406 71.832031 200 155.664062v-75.664062c0-113.046875-88.800781-192-216-192-4.417969 0-8-3.582031-8-8v-92.6875l-156.6875 156.6875 156.6875 156.6875v-92.6875c0-4.417969 3.582031-8 8-8zm0 0"/></svg>	
-</a>
-</p>
+<div class="sporina-services__back-wrap">
+	<a class="sporina-services__back" href="<?=$arResult["FOLDER"].$arResult["URL_TEMPLATES"]["news"]?>">
+		<svg class="sporina-services__back-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+			<path d="M20 12H5" />
+			<path d="M11 18L5 12L11 6" />
+		</svg>
+		<span class="sporina-services__back-text"><?=Loc::getMessage("BUTTON_BACK");?></span>
+	</a>
+</div>
 
 <?if($arParams["USE_RATING"]=="Y" && $ElementID):?>
 <?$APPLICATION->IncludeComponent(

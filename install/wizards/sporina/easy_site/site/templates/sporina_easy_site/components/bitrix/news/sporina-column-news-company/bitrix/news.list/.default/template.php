@@ -12,8 +12,17 @@
 /** @var CBitrixComponent $component */
 $this->setFrameMode(true);
 ?>
-<!--<div class="news-list">-->
-<div class="card_padding">
+<?
+	$layout = $arParams['COLUMNS_LAYOUT'] ?? 'two';
+
+	$layoutClasses = [
+		'two' => 'news--default-two',
+		'stacked' => 'news--default-stacked',
+	];
+
+	$layoutClass = $layoutClasses[$layout] ?? $layoutClasses['two'];
+?>
+<div class="card_padding <?=htmlspecialcharsbx($layoutClass)?>">
 
 		<?if($arParams["DISPLAY_TOP_PAGER"]):?>
 			<?=$arResult["NAV_STRING"]?><br />
@@ -137,7 +146,5 @@ $this->setFrameMode(true);
 		<?if($arParams["DISPLAY_BOTTOM_PAGER"]):?>
 			<br /><?=$arResult["NAV_STRING"]?>
 		<?endif;?>
-	</div>
-	<!--
-</div>-->
+</div>
 

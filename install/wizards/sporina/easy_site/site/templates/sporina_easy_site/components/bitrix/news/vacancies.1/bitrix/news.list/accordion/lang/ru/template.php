@@ -1,0 +1,1 @@
+<?php $MESS['SPORINA_VACANCIES_WITHOUT_SECTION'] = 'Вакансии';

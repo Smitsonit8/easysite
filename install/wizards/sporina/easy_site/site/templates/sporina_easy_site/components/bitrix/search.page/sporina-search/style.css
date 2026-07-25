@@ -42,3 +42,20 @@ div.search-advanced, div.search-item-meta, div.search-item-meta a { color: #8a8a
 div.search-sorting b { background: #e8e9ec; }
 
 .search-item-rate {font-size: 11px;}
+
+.search-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-page>form{
+  width: 80%;
+}
+
+.search-button{
+  background-color: var(--primary);
+  color: var(--text-inverse);
+  border: 0px;
+  padding: 5px 20px;
+}
