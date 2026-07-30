@@ -1,6 +1,5 @@
 .sporina-services-detail {
 
-    --services-detail-radius: 24px;
     color: var(--text);
     margin-top: 20px;
 }
@@ -13,7 +12,6 @@
     position: relative;
     min-height: clamp(340px, 46vw, 620px);
     overflow: hidden;
-    border-radius: var(--services-detail-radius);
     background: var(--primary);
 }
 .sporina-services-detail__body { padding-right: 20px; padding-left: 20px; }
@@ -22,7 +20,9 @@
 .sporina-services-detail__overlay { position: absolute; inset: 0; width: 100%; height: 100%; }
 .sporina-services-detail__image { display: block; object-fit: cover; }
 .sporina-services-detail__placeholder { background: linear-gradient(135deg, var(--primary), var(--surface)); }
-.sporina-services-detail__overlay { background: linear-gradient(90deg, color-mix(in srgb, var(--primary) 84%, transparent), color-mix(in srgb, var(--primary) 22%, transparent)); }
+/*.sporina-services-detail__overlay {
+    background: linear-gradient(90deg, color-mix(in srgb, var(--primary) 84%, transparent), color-mix(in srgb, var(--primary) 22%, transparent)); 
+}*/
 
 .sporina-services-detail__hero-content {
     position: relative;
@@ -57,15 +57,25 @@
     line-height: 1.05;
 }
 
-.sporina-services-detail__body { max-width: 960px; margin: 0 auto; padding: clamp(28px, 5vw, 72px) 0; }
-.sporina-services-detail__lead { margin-bottom: 28px; color: var(--primary); font-size: clamp(20px, 2.2vw, 28px); font-weight: 600; line-height: 1.4; }
-.sporina-services-detail__content { color: var(--text-muted); font-size: 17px; line-height: 1.7; }
+.sporina-services-detail__body { 
+    max-width: 960px; margin: 0 auto; 
+    padding: 0 20px;
+}
+.sporina-services-detail__lead { 
+    margin-bottom: 28px; color: var(--primary); 
+    font-size: clamp(20px, 2.2vw, 28px); 
+    font-weight: 600; 
+    line-height: 1.4; 
+}
+.sporina-services-detail__content { color: var(--text); font-size: 17px; line-height: 1.7; }
 .sporina-services-detail__content > :first-child { margin-top: 0; }
 .sporina-services-detail__content > :last-child { margin-bottom: 0; }
+.sporina-services-detail__content li {
+    list-style-type: square;
+}
 .sporina-services-detail__share { margin-top: 32px; padding-top: 24px; border-top: 1px solid color-mix(in srgb, var(--primary) 16%, transparent); }
 
 @media (max-width: 680px) {
-    .sporina-services-detail { --services-detail-radius: 20px; }
     .sporina-services-detail__hero { min-height: 380px; }
     .sporina-services-detail__body { padding-right: 16px; padding-left: 16px; }
 }

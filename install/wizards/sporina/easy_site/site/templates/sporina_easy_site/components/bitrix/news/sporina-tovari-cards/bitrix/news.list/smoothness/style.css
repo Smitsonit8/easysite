@@ -64,6 +64,10 @@
 .sporina-product-card__link{display:inline-block;margin-top:18px;color:var(--primary);font-weight:700}
 .sporina-product-card{transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease}.sporina-product-card__image img{transition:transform .45s ease}.sporina-product-card:hover{transform:translateY(-7px);box-shadow:0 22px 42px color-mix(in srgb,var(--primary) 20%,transparent)}.sporina-product-card:hover .sporina-product-card__price{transform:translateY(-3px);box-shadow:0 12px 24px color-mix(in srgb,var(--primary) 26%,transparent)}.sporina-product-card:hover .sporina-product-card__image img{transform:scale(1.05)}.sporina-product-card--reveal{animation:sporina-product-reveal .65s cubic-bezier(.2,.75,.25,1) both;animation-delay:var(--product-delay)}@keyframes sporina-product-reveal{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
 
+@media(max-width:1200px){
+    .sporina-product-list__grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+
 @media(max-width:900px){
     .sporina-product-list__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }

@@ -65,25 +65,28 @@
 }
 
 .sporina-product-detail__nav,.sporina-product-modal__nav{
-    position:absolute;
-    top:50%;
-    z-index:2;
-    width:44px;
-    height:44px;
-    border:0;
-    color:var(--surface);
-    background:var(--primary);
-    font-size:32px;
-    transform:translateY(-50%);
-    cursor:pointer
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    margin: 0;
+    border: none;
+    border-radius: 50%;
+    background: var(--primary);
+    box-shadow: 0 0px 30px rgba(31, 41, 55, 0.18);
+    pointer-events: auto;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    cursor: pointer;
 }
-.sporina-product-detail__nav--prev,.sporina-product-modal__nav--prev{left:14px}
-.sporina-product-detail__nav--next,.sporina-product-modal__nav--next{right:14px}
+.sporina-product-detail__nav--prev,.sporina-product-modal__nav--prev{left:14px; transform: rotate(180deg); top:50%;}
+.sporina-product-detail__nav--next,.sporina-product-modal__nav--next{right:14px; top:50%;}
 .sporina-product-detail__thumbs{
     display:flex;
     gap:10px;
     margin-top:14px;
-    overflow:auto
+    /*overflow:auto*/
 }
 .sporina-product-detail__thumb{
     flex:0 0 84px;
@@ -139,6 +142,26 @@
     cursor:pointer
 }
 .sporina-modal-open{overflow:hidden}
+
+.sporina-product-detail__nav svg{
+    width: 30px;
+    height: 30px;
+    stroke: var(--text-inverse);
+    stroke-width: 2;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.sporina-product-modal__nav svg {
+    width: 25px;
+    height: 25px;
+    stroke: var(--text-inverse);
+    stroke-width: 2;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
 
 @media(max-width:760px){
     .sporina-product-detail__layout{

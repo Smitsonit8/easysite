@@ -12,22 +12,24 @@ $arTemplateParameters = array(
 		"NAME" => GetMessage("SPORINA_PRODUCTS_LIST_TEMPLATE"), 
 		"TYPE" => "LIST", 
 		"VALUES" => array(
-			".default" => ".default", 
+			"stand" => "stand", 
 			"smoothness" => "smoothness", 
-			"layering" => "layering"
+			"layering" => "layering",
+			"ladybug" => "ladybug",
+			"fireant" => "fireant"
 		), 
-		"DEFAULT" => ".default"
+		"DEFAULT" => "stand"
 	),
 	"DETAIL_TEMPLATE" => Array(
 		"PARENT" => "BASE",
 		"NAME" => GetMessage("SPORINA_PRODUCTS_DETAIL_TEMPLATE"), 
 		"TYPE" => "LIST", 
 		"VALUES" => array(
-			".default" => ".default", 
+			"stand" => "stand", 
 			"smoothness" => "smoothness", 
 			"layering" => "layering"
 		), 
-		"DEFAULT" => ".default"
+		"DEFAULT" => "stand"
 	),
 	"DISPLAY_DATE" => Array(
 		"NAME" => GetMessage("T_IBLOCK_DESC_NEWS_DATE"),

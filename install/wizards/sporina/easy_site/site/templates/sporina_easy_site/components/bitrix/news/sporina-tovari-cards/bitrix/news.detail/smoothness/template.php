@@ -33,7 +33,19 @@ $price = trim((string)($arResult['PROPERTIES']['PRICE']['VALUE'] ?? ''));
         <img src="<?=htmlspecialcharsbx($image['SRC'])?>" alt="<?=htmlspecialcharsbx($image['ALT'] ?: $arResult['NAME'])?>">
     </button><?php endforeach; ?>
    <?php if (empty($images)): ?><span class="sporina-product-detail__placeholder" aria-hidden="true"></span><?php endif; ?>
-   <?php if (count($images)>1): ?><button class="sporina-product-detail__nav sporina-product-detail__nav--prev" type="button" data-detail-prev aria-label="<?=htmlspecialcharsbx(\Bitrix\Main\Localization\Loc::getMessage('SPORINA_PRODUCT_PREVIOUS'))?>">‹</button><button class="sporina-product-detail__nav sporina-product-detail__nav--next" type="button" data-detail-next aria-label="<?=htmlspecialcharsbx(\Bitrix\Main\Localization\Loc::getMessage('SPORINA_PRODUCT_NEXT'))?>">›</button><?php endif; ?>
+   <?php if (count($images)>1): ?>
+    <button class="sporina-product-detail__nav sporina-product-detail__nav--prev" type="button" data-detail-prev aria-label="<?=htmlspecialcharsbx(\Bitrix\Main\Localization\Loc::getMessage('SPORINA_PRODUCT_PREVIOUS'))?>">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+			<path d="M5 12H19"></path>
+			<path d="M13 6L19 12L13 18"></path> 
+		</svg>
+    </button>
+    <button class="sporina-product-detail__nav sporina-product-detail__nav--next" type="button" data-detail-next aria-label="<?=htmlspecialcharsbx(\Bitrix\Main\Localization\Loc::getMessage('SPORINA_PRODUCT_NEXT'))?>">
+		<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+			<path d="M5 12H19"></path>
+			<path d="M13 6L19 12L13 18"></path> 
+		</svg>
+    </button><?php endif; ?>
   </div>
   <div class="sporina-product-detail__content">
    <?php if ($price !== ''): ?><p class="sporina-product-detail__price"><?=htmlspecialcharsbx($price)?></p><?php endif; ?>
@@ -53,8 +65,19 @@ $price = trim((string)($arResult['PROPERTIES']['PRICE']['VALUE'] ?? ''));
         <div class="sporina-product-modal__content">
             <button class="sporina-product-modal__close" type="button" data-modal-close aria-label="<?=htmlspecialcharsbx(\Bitrix\Main\Localization\Loc::getMessage('SPORINA_PRODUCT_CLOSE'))?>">×</button>
             <img data-modal-image src="" alt="">
-            <button class="sporina-product-modal__nav sporina-product-modal__nav--prev" type="button" data-modal-prev aria-label="<?=htmlspecialcharsbx(\Bitrix\Main\Localization\Loc::getMessage('SPORINA_PRODUCT_PREVIOUS'))?>">‹</button>
-            <button class="sporina-product-modal__nav sporina-product-modal__nav--next" type="button" data-modal-next aria-label="<?=htmlspecialcharsbx(\Bitrix\Main\Localization\Loc::getMessage('SPORINA_PRODUCT_NEXT'))?>">›</button>
+            <button class="sporina-product-modal__nav sporina-product-modal__nav--prev" type="button" data-modal-prev aria-label="<?=htmlspecialcharsbx(\Bitrix\Main\Localization\Loc::getMessage('SPORINA_PRODUCT_PREVIOUS'))?>">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+			        <path d="M5 12H19"></path>
+			        <path d="M13 6L19 12L13 18"></path> 
+		        </svg>
+            </button>
+            <button class="sporina-product-modal__nav sporina-product-modal__nav--next" type="button" data-modal-next aria-label="<?=htmlspecialcharsbx(\Bitrix\Main\Localization\Loc::getMessage('SPORINA_PRODUCT_NEXT'))?>">
+				<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+					<path d="M5 12H19"></path>
+				    <path d="M13 6L19 12L13 18"></path> 
+				</svg>
+            </button>
+
         </div>
     </div>
 </article>

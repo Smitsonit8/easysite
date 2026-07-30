@@ -12,22 +12,22 @@ $arTemplateParameters = array(
 		"NAME" => GetMessage("T_IBLOCK_LIST_TEMPLATE"),
 		"TYPE" => "LIST",
 		"VALUES" => Array(
-			".default" => ".default",
+			"stand" => "stand",
 			"smoothness" => "smoothness",
 			"layering" => "layering",
 		),
-		"DEFAULT" => ".default",
+		"DEFAULT" => "stand",
 	),
 	"NEWS_DETAIL_TEMPLATE" => Array(
 		"PARENT" => "BASE",
 		"NAME" => GetMessage("T_IBLOCK_DETAIL_TEMPLATE"),
 		"TYPE" => "LIST",
 		"VALUES" => Array(
-			".default" => ".default",
+			"stand" => "stand",
 			"smoothness" => "smoothness",
 			"layering" => "layering",
 		),
-		"DEFAULT" => ".default",
+		"DEFAULT" => "stand",
 	),
 	'SHOW_SECTION_BADGE' => [
         'PARENT' => 'BASE',
