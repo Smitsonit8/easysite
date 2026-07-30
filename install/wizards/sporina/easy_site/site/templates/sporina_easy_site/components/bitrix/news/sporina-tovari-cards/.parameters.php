@@ -7,6 +7,28 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)
 /** @var array $arCurrentValues */
 
 $arTemplateParameters = array(
+	"LIST_TEMPLATE" => Array(
+		"PARENT" => "BASE",
+		"NAME" => GetMessage("SPORINA_PRODUCTS_LIST_TEMPLATE"), 
+		"TYPE" => "LIST", 
+		"VALUES" => array(
+			".default" => ".default", 
+			"smoothness" => "smoothness", 
+			"layering" => "layering"
+		), 
+		"DEFAULT" => ".default"
+	),
+	"DETAIL_TEMPLATE" => Array(
+		"PARENT" => "BASE",
+		"NAME" => GetMessage("SPORINA_PRODUCTS_DETAIL_TEMPLATE"), 
+		"TYPE" => "LIST", 
+		"VALUES" => array(
+			".default" => ".default", 
+			"smoothness" => "smoothness", 
+			"layering" => "layering"
+		), 
+		"DEFAULT" => ".default"
+	),
 	"DISPLAY_DATE" => Array(
 		"NAME" => GetMessage("T_IBLOCK_DESC_NEWS_DATE"),
 		"TYPE" => "CHECKBOX",
@@ -22,6 +44,7 @@ $arTemplateParameters = array(
 		"TYPE" => "CHECKBOX",
 		"DEFAULT" => "Y",
 	),
+	"GALLERY_PROPERTY_CODE" => Array("NAME" => GetMessage("SPORINA_PRODUCTS_GALLERY_PROPERTY"), "TYPE" => "STRING", "DEFAULT" => "GALLERY"),
 	"USE_SHARE" => Array(
 		"NAME" => GetMessage("T_IBLOCK_DESC_NEWS_USE_SHARE"),
 		"TYPE" => "CHECKBOX",

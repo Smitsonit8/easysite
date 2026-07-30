@@ -500,7 +500,7 @@ class Create_infoblocks
             'IBLOCK_TYPE_ID' => 'products',
             'SORT' => 121,
             'LIST_PAGE_URL' => '#SITE_DIR#/products/index.php?ID=#IBLOCK_ID#',
-            'SECTION_PAGE_URL' => '#SITE_DIR#/products/list.php?SECTION_ID=#SECTION_ID#',
+            'SECTION_PAGE_URL' => '#SITE_DIR#/products/',
             'DETAIL_PAGE_URL' => '#SITE_DIR#/products/detail.php?ID=#ELEMENT_ID#',
             'INDEX_ELEMENT' => 'Y',
             'INDEX_SECTION' => 'Y',
@@ -534,6 +534,17 @@ class Create_infoblocks
                 'IS_REQUIRED' => 'Y',
                 'SMART_FILTER' => 'Y',
                 'FILTRABLE' => 'Y',
+                'LIST_TYPE' => 'L',
+                'SEARCHABLE' => 'Y',
+            ),
+            array(
+                'NAME' => 'Галерея товара',
+                'ACTIVE' => 'Y',
+                'SORT' => '200',
+                'CODE' => 'GALLERY',
+                'PROPERTY_TYPE' => 'F',
+                'MULTIPLE' => 'Y',
+                'FILE_TYPE' => 'jpg, jpeg, png, gif, webp',
                 'LIST_TYPE' => 'L', // Показывать на странице списка элементов
                 'SEARCHABLE' => 'Y', // Показывать на детальной странице элемента
             ),

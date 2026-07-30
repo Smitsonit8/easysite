@@ -55,7 +55,7 @@ $this->setFrameMode(true);
 <?endif?>
 <?$APPLICATION->IncludeComponent(
 	"bitrix:news.list",
-	"",
+	$arParams["LIST_TEMPLATE"] ?: ".default",
 	Array(
 		"IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
 		"IBLOCK_ID" => $arParams["IBLOCK_ID"],
@@ -65,7 +65,7 @@ $this->setFrameMode(true);
 		"SORT_BY2" => $arParams["SORT_BY2"],
 		"SORT_ORDER2" => $arParams["SORT_ORDER2"],
 		"FIELD_CODE" => $arParams["LIST_FIELD_CODE"],
-		"PROPERTY_CODE" => $arParams["LIST_PROPERTY_CODE"],
+		"PROPERTY_CODE" => array_values(array_unique(array_merge((array)$arParams["LIST_PROPERTY_CODE"], ["PRICE", $arParams["GALLERY_PROPERTY_CODE"] ?: "GALLERY"]))),
 		"SET_TITLE" => $arParams["SET_TITLE"],
 		"SET_LAST_MODIFIED" => $arParams["SET_LAST_MODIFIED"],
 		"MESSAGE_404" => $arParams["MESSAGE_404"],
@@ -100,6 +100,7 @@ $this->setFrameMode(true);
 		"FILTER_NAME" => $arParams["FILTER_NAME"],
 		"HIDE_LINK_WHEN_NO_DETAIL" => $arParams["HIDE_LINK_WHEN_NO_DETAIL"],
 		"CHECK_DATES" => $arParams["CHECK_DATES"],
+		"GALLERY_PROPERTY_CODE" => $arParams["GALLERY_PROPERTY_CODE"] ?: "GALLERY",
 		"STRICT_SECTION_CHECK" => $arParams["STRICT_SECTION_CHECK"],
 
 		"PARENT_SECTION" => $arResult["VARIABLES"]["SECTION_ID"],

@@ -15,7 +15,19 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)
 /** @var string $componentPath */
 /** @var CBitrixComponent $component */
 $this->setFrameMode(true);
-
+use Bitrix\Main\Localization\Loc;
+Loc::loadMessages(__FILE__);
+?>
+<div class="sporina-products__back-wrap">
+	<a class="sporina-products__back" href="<?=SITE_DIR?>">
+		<svg class="sporina-products__back-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+			<path d="M20 12H5" />
+			<path d="M11 18L5 12L11 6" />
+		</svg>
+		<span class="sporina-products__back-text"><?=Loc::getMessage("BUTTON_BACK");?></span>
+	</a>
+</div>
+<?
 if($arParams["USE_RSS"]=="Y"):
 	if(method_exists($APPLICATION, 'addheadstring'))
 		$APPLICATION->AddHeadString('<link rel="alternate" type="application/rss+xml" title="'.$arResult["FOLDER"].$arResult["URL_TEMPLATES"]["rss"].'" href="'.$arResult["FOLDER"].$arResult["URL_TEMPLATES"]["rss"].'" />');
@@ -62,7 +74,7 @@ $APPLICATION->IncludeComponent(
 endif;
 $APPLICATION->IncludeComponent(
 	"bitrix:news.list",
-	"",
+	$arParams["LIST_TEMPLATE"] ?: ".default",
 	[
 		"IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
 		"IBLOCK_ID" => $arParams["IBLOCK_ID"],
@@ -72,7 +84,7 @@ $APPLICATION->IncludeComponent(
 		"SORT_BY2" => $arParams["SORT_BY2"],
 		"SORT_ORDER2" => $arParams["SORT_ORDER2"],
 		"FIELD_CODE" => $arParams["LIST_FIELD_CODE"],
-		"PROPERTY_CODE" => $arParams["LIST_PROPERTY_CODE"],
+		"PROPERTY_CODE" => array_values(array_unique(array_merge((array)$arParams["LIST_PROPERTY_CODE"], ["PRICE", $arParams["GALLERY_PROPERTY_CODE"] ?: "GALLERY"]))),
 		"DETAIL_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["detail"],
 		"SECTION_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["section"],
 		"IBLOCK_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["news"],
@@ -109,6 +121,7 @@ $APPLICATION->IncludeComponent(
 		"FILTER_NAME" => $arParams["FILTER_NAME"],
 		"HIDE_LINK_WHEN_NO_DETAIL" => $arParams["HIDE_LINK_WHEN_NO_DETAIL"],
 		"CHECK_DATES" => $arParams["CHECK_DATES"],
+		"GALLERY_PROPERTY_CODE" => $arParams["GALLERY_PROPERTY_CODE"] ?: "GALLERY",
 	],
 	$component
 );

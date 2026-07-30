@@ -8,4 +8,7 @@ $MESS["T_IBLOCK_DESC_NEWS_SHARE_TEMPLATE"] = "Шаблон компонента 
 $MESS["T_IBLOCK_DESC_NEWS_SHARE_SYSTEM"] = "Используемые соц. закладки и сети";
 $MESS["T_IBLOCK_DESC_NEWS_SHARE_SHORTEN_URL_LOGIN"] = "Логин для bit.ly";
 $MESS["T_IBLOCK_DESC_NEWS_SHARE_SHORTEN_URL_KEY"] = "Ключ для для bit.ly";
+$MESS["SPORINA_PRODUCTS_LIST_TEMPLATE"] = "Шаблон списка товаров";
+$MESS["SPORINA_PRODUCTS_DETAIL_TEMPLATE"] = "Шаблон детальной страницы товара";
+$MESS["SPORINA_PRODUCTS_GALLERY_PROPERTY"] = "Код свойства галереи";
 ?>

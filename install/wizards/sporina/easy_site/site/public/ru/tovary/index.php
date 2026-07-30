@@ -38,14 +38,14 @@ $APPLICATION->SetTitle("Товары");
 		"DETAIL_DISPLAY_TOP_PAGER" => "N",
 		"DETAIL_FIELD_CODE" => [
 			0 => "",
-			1 => "",
+			1 => "GALLERY",
 		],
 		"DETAIL_PAGER_SHOW_ALL" => "Y",
 		"DETAIL_PAGER_TEMPLATE" => "",
 		"DETAIL_PAGER_TITLE" => "Страница",
 		"DETAIL_PROPERTY_CODE" => [
 			0 => "PRICE",
-			1 => "",
+			1 => "GALLERY",
 		],
 		"DETAIL_SET_CANONICAL_URL" => "N",
 		"DISPLAY_BOTTOM_PAGER" => "Y",
@@ -59,6 +59,9 @@ $APPLICATION->SetTitle("Товары");
 		"IBLOCK_TYPE" => "products",
 		"INCLUDE_IBLOCK_INTO_CHAIN" => "Y",
 		"LIST_ACTIVE_DATE_FORMAT" => "d.m.Y",
+		"LIST_TEMPLATE" => "smoothness",
+		"DETAIL_TEMPLATE" => "smoothness",
+		"GALLERY_PROPERTY_CODE" => "GALLERY",
 		"LIST_FIELD_CODE" => [
 			0 => "",
 			1 => "",

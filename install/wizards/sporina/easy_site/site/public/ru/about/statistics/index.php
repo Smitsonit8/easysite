@@ -15,6 +15,7 @@ $APPLICATION->SetTitle("Статистика");
   <div class="content_nav">
     <div class="content_nav-bg">
       <input type="checkbox" id="content_nav-head">
+      <label class="content_nav-head" for="content_nav-head"><?$APPLICATION->ShowTitle()?></label>
       <!--<label class="content_nav-head" for="content_nav-head"> О компании</label>-->
       <?$APPLICATION->IncludeComponent("bitrix:menu", "sporina-left-menu", Array(
             "ALLOW_MULTI_SELECT" => "N",
