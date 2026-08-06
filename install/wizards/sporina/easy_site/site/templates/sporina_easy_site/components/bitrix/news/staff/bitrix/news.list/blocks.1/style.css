@@ -64,14 +64,23 @@
      * В обычном состоянии показываем только
      * должность и имя сотрудника.
      */
-    transform: translateY(calc(100% - 100px));
-
-    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.sporina-staff__card:hover .sporina-staff__body,
-.sporina-staff__card:focus-within .sporina-staff__body {
-    transform: translateY(0);
+.sporina-staff__details {
+    display: grid;
+    grid-template-rows: 0fr;
+
+    transition: grid-template-rows 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sporina-staff__details-content {
+    min-height: 0;
+    overflow: hidden;
+}
+
+.sporina-staff__card:hover .sporina-staff__details,
+.sporina-staff__card:focus-within .sporina-staff__details {
+    grid-template-rows: 1fr;
 }
 
 /* Должность */
@@ -236,7 +245,10 @@
 
     .sporina-staff__body {
         position: relative;
-        transform: none;
+    }
+
+    .sporina-staff__details {
+        grid-template-rows: 1fr;
     }
 
     .sporina-staff--blocks .sporina-staff__contacts,

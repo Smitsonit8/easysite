@@ -21,8 +21,12 @@ $safeUrl = function ($url) { $url = trim(strip_tags((string)$url)); if ($url !==
         <article id="<?= $id ?>" class="sporina-staff__card">
             <a class="sporina-staff__photo" href="<?= $item['DETAIL_PAGE_URL'] ?>" style="background-image:url('<?= htmlspecialcharsbx($picture) ?>')"></a>
             <div class="sporina-staff__body">
+                <div class="sporina-staff__summary">
                 <?php if ($position = $propertyValue($item, 'PROPERTY_POSITION')) { ?><div class="sporina-staff__position"><?= $position ?></div><?php } ?>
                 <a class="sporina-staff__name staff__name" href="<?= $item['DETAIL_PAGE_URL'] ?>"><?= $item['NAME'] ?></a>
+                </div>
+                <div class="sporina-staff__details">
+                    <div class="sporina-staff__details-content">
                 <?php if ($phone || $email) { ?><div class="sporina-staff__contacts">
                     <?php if ($phone) { ?><a href="tel:<?= htmlspecialcharsbx(preg_replace('/[^+0-9]/', '', strip_tags($phone))) ?>"><?= file_get_contents(__DIR__.'/svg/contact.phone.svg') ?><span class="staff__contacts"><?= $phone ?></span></a><?php } ?>
                     <?php if ($email) { ?><a href="mailto:<?= htmlspecialcharsbx(strip_tags($email)) ?>"><?= file_get_contents(__DIR__.'/svg/contact.email.svg') ?><span class="staff__contacts"><?= $email ?></span></a><?php } ?>
@@ -30,6 +34,8 @@ $safeUrl = function ($url) { $url = trim(strip_tags((string)$url)); if ($url !==
                 <?php if ($arParams['SOCIAL_SHOW'] === 'Y') { ?><div class="sporina-staff__social">
                     <?php foreach ($icons as $name => $icon) { $value = $propertyValue($item, 'PROPERTY_SOCIAL_'.$name); $href = $safeUrl($value); if (!$href) continue; ?><a href="<?= htmlspecialcharsbx($href) ?>" target="_blank" rel="noopener noreferrer"><?= file_get_contents(__DIR__.'/svg/'.$icon) ?></a><?php } ?>
                 </div><?php } ?>
+                    </div>
+                </div>
             </div>
         </article>
         <?php } ?>
