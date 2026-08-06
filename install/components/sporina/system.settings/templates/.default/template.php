@@ -37,7 +37,7 @@ Asset::getInstance()->addJs($this->GetFolder() . '/script.js');
             </div>
             <button class="system-settings-close" type="button" data-role="close" aria-label="<?=Loc::getMessage('SPORINA_SETTINGS_CLOSE')?>">×</button>
         </header>
-        <form class="system-settings-form" method="post" action="">
+        <form class="system-settings-form" method="post" action="" enctype="multipart/form-data">
             <?=bitrix_sessid_post()?>
             <input type="hidden" name="<?=htmlspecialcharsbx($arResult['ACTION_VARIABLE'])?>" value="apply">
             <div class="system-settings-layout">
@@ -68,6 +68,22 @@ Asset::getInstance()->addJs($this->GetFolder() . '/script.js');
                                             <input type="number" name="settings[<?=htmlspecialcharsbx($field['key'])?>]" value="<?=htmlspecialcharsbx($field['value'])?>" step="<?= $field['type'] === 'number' ? '1' : 'any' ?>"<?= $field['type'] === 'latitude' ? ' min="-90" max="90"' : '' ?><?= $field['type'] === 'longitude' ? ' min="-180" max="180"' : '' ?><?= $field['type'] === 'number' ? ' min="1"' : '' ?>>
                                         <?php elseif ($field['type'] === 'text'): ?>
                                             <input type="text" name="settings[<?=htmlspecialcharsbx($field['key'])?>]" value="<?=htmlspecialcharsbx($field['value'])?>" maxlength="255">
+                                        <?php elseif (($field['presentation'] ?? '') === 'theme-swatch'): ?>
+                                            <span class="system-settings-theme-swatches" role="radiogroup" aria-label="<?=htmlspecialcharsbx($field['label'])?>">
+                                                <?php foreach ($field['values'] as $value => $label): ?>
+                                                    <label class="system-settings-theme-swatch" title="<?=htmlspecialcharsbx($label)?>">
+                                                        <input type="radio" name="settings[<?=htmlspecialcharsbx($field['key'])?>]" value="<?=htmlspecialcharsbx($value)?>"<?= $value === $field['value'] ? ' checked' : '' ?>>
+                                                        <span style="--theme-swatch-color: <?=htmlspecialcharsbx($field['swatches'][$value] ?? '#505050')?>" aria-hidden="true"></span>
+                                                        <span class="visually-hidden"><?=htmlspecialcharsbx($label)?></span>
+                                                    </label>
+                                                <?php endforeach; ?>
+                                            </span>
+                                        <?php elseif ($field['type'] === 'file'): ?>
+                                            <span class="system-settings-logo-control">
+                                                <img class="system-settings-logo-preview" data-role="logo.preview" src="<?=htmlspecialcharsbx($field['logoUrl'] ?? '')?>" alt="<?=htmlspecialcharsbx($field['label'])?>">
+                                                <input type="file" name="settings[<?=htmlspecialcharsbx($field['key'])?>]" data-role="logo.input" accept="image/jpeg,image/png,image/webp,image/svg+xml">
+                                                <button type="button" class="system-settings-button system-settings-button-secondary" data-role="logo.reset">Вернуть стандартный</button>
+                                            </span>
                                         <?php elseif ($field['type'] === 'select' && !empty($field['previews'])): ?>
                                             <span class="system-settings-template-list" style="--template-preview-ratio: <?=htmlspecialcharsbx($field['previewRatio'] ?? '4 / 3')?>">
                                                 <?php foreach ($field['values'] as $value => $label): ?>

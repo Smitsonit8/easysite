@@ -1,5 +1,7 @@
 footer {
   background-color: var(--footer);
+  max-width: var(--site-max-width, 1920px);
+  margin: auto;
 }
 footer .svg_color {
   filter: invert(49%) sepia(16%) saturate(277%) hue-rotate(179deg) brightness(97%) contrast(84%);
@@ -128,9 +130,7 @@ footer .svg_color {
     padding: 0;
     width: 100%;
   }
-  .footer_block-grid {
-    margin: 0;
-  }
+
   .footer_contact {
     min-height: 0;
     max-width: 100%;

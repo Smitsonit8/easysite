@@ -5,7 +5,7 @@
   background-position: center, center, center;
   background-repeat: no-repeat, no-repeat, no-repeat;
   background-size: auto, auto;
-  max-width: 2052px;
+  max-width: var(--site-max-width, 2560px);
   margin: auto;
 }
 
@@ -125,6 +125,11 @@
 }
 
 @media (max-width: 767px) {
+
+  .sporina-banner__media img {
+  width: 80%;
+  }
+
   .sporina-banner__text {
     margin-bottom: 24px;
   }

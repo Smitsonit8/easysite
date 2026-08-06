@@ -29,10 +29,11 @@ final class Settings
     ];
 
     private const DEFINITIONS = [
-        ['key' => 'template-color-theme', 'category' => 'template', 'categoryTitle' => 'Оформление', 'label' => 'Цветовая тема', 'type' => 'select', 'default' => 'blue', 'values' => ['blue' => 'Синяя', 'green' => 'Зелёная', 'orange' => 'Оранжевая', 'yellow' => 'Желтая', 'red' => 'Красная', 'grey' => 'Серый']],
+        ['key' => 'template-color-theme', 'category' => 'template', 'categoryTitle' => 'Оформление', 'label' => 'Цветовая тема', 'type' => 'select', 'default' => 'blue', 'values' => ['blue' => 'Синяя', 'green' => 'Зелёная', 'orange' => 'Оранжевая', 'yellow' => 'Желтая', 'red' => 'Красная', 'grey' => 'Серый'], 'presentation' => 'theme-swatch', 'swatches' => ['blue' => '#005b8d', 'green' => '#437742', 'orange' => '#f15a30', 'yellow' => '#e2b540', 'red' => '#a62c37', 'grey' => '#343e40']],
         ['key' => 'template-background-use', 'category' => 'template', 'categoryTitle' => 'Оформление', 'label' => 'Показывать фон', 'type' => 'checkbox', 'default' => 'Y', 'values' => ['Y' => 'Да', 'N' => 'Нет']],
         ['key' => 'template-background-color', 'category' => 'template', 'categoryTitle' => 'Оформление', 'label' => 'Цвет фона', 'type' => 'color', 'default' => '#f8fbff'],
-        ['key' => 'template-width', 'category' => 'template', 'categoryTitle' => 'Оформление', 'label' => 'Максимальная ширина', 'type' => 'select', 'default' => '1920', 'values' => ['1200' => '1200 px', '1440' => '1440 px', '1920' => '1920 px']],
+        ['key' => 'template-width', 'category' => 'template', 'categoryTitle' => 'Оформление', 'label' => 'Максимальная ширина', 'type' => 'select', 'default' => '1920', 'values' => ['1440' => '1440 px', '1920' => '1920 px','2560' => '2560 px' ]],
+        ['key' => 'template-logo', 'category' => 'template', 'categoryTitle' => 'Оформление', 'label' => 'Логотип', 'type' => 'file', 'default' => ''],
         ['key' => 'template-button-effect', 'category' => 'template', 'categoryTitle' => 'Оформление', 'label' => 'Эффект кнопок', 'type' => 'select', 'default' => 'btn-effect-1', 'values' => ['btn-effect-1' => 'Эффект 1', 'btn-effect-2' => 'Эффект 2', 'btn-effect-3' => 'Эффект 3']],
         
         ['key' => 'template-images-lazyload-use', 'category' => 'template', 'categoryTitle' => 'Оформление', 'label' => 'Ленивая загрузка изображений', 'type' => 'checkbox', 'default' => 'N', 'values' => ['Y' => 'Да', 'N' => 'Нет']],
@@ -50,15 +51,15 @@ final class Settings
         ['key' => 'contacts-map-title', 'category' => 'contacts', 'categoryTitle' => 'Контакты', 'label' => 'Заголовок карты', 'type' => 'text', 'default' => 'Местоположение офиса', 'componentFallback' => true],
         ['key' => 'contacts-map-height', 'category' => 'contacts', 'categoryTitle' => 'Контакты', 'label' => 'Высота карты, px', 'type' => 'number', 'default' => '420', 'componentFallback' => true],
 
-        ['key' => 'news-list-template', 'category' => 'news-articles', 'categoryTitle' => 'Новости и статьи', 'label' => 'Новости: шаблон списка', 'type' => 'select', 'default' => 'paper', 'values' => ['circle' => 'Круг', 'paper' => 'Бумага', 'stand' => 'Стандартный'], 'templatePath' => 'bitrix/news/sporina-news/bitrix/news.list', 'sourceBinding' => ['scope' => 'site', 'file' => 'novosti-kompanii/index.php', 'component' => 'bitrix:news', 'anchor' => '"IBLOCK_ID" => NEWS_IBLOCK_ID', 'parameter' => 'NEWS_LIST_TEMPLATE', 'target' => 'parameter'], 'previewRatio' => '4 / 3', 'previews' => ['circle' => 'images/properties/news/list/circle.webp', 'paper' => 'images/properties/news/list/paper.webp', 'stand' => 'images/properties/news/list/stand.webp']],
-        ['key' => 'news-detail-template', 'category' => 'news-articles', 'categoryTitle' => 'Новости и статьи', 'label' => 'Новости: шаблон детальной страницы', 'type' => 'select', 'default' => 'paper', 'values' => ['circle' => 'Круг', 'paper' => 'Бумага', 'stand' => 'Стандартный'], 'templatePath' => 'bitrix/news/sporina-news/bitrix/news.detail', 'sourceBinding' => ['scope' => 'site', 'file' => 'novosti-kompanii/index.php', 'component' => 'bitrix:news', 'anchor' => '"IBLOCK_ID" => NEWS_IBLOCK_ID', 'parameter' => 'NEWS_DETAIL_TEMPLATE', 'target' => 'parameter'], 'previewRatio' => '4 / 3', 'previews' => ['circle' => 'images/properties/news/detail/circle.webp', 'paper' => 'images/properties/news/detail/paper.webp', 'stand' => 'images/properties/news/detail/stand.webp']],
-        ['key' => 'articles-list-template', 'category' => 'news-articles', 'categoryTitle' => 'Новости и статьи', 'label' => 'Статьи: шаблон списка', 'type' => 'select', 'default' => 'circle', 'values' => ['circle' => 'Круг', 'paper' => 'Бумага', 'stand' => 'Стандартный'], 'templatePath' => 'bitrix/news/sporina-news/bitrix/news.list', 'sourceBinding' => ['scope' => 'site', 'file' => 'izmeneniya-v-raspisanii/index.php', 'component' => 'bitrix:news', 'anchor' => '"IBLOCK_ID" => SCHEDULE_CHANGES_IBLOCK_ID', 'parameter' => 'NEWS_LIST_TEMPLATE', 'target' => 'parameter'], 'previewRatio' => '4 / 3', 'previews' => ['circle' => 'images/properties/articles/list/circle.webp', 'paper' => 'images/properties/articles/list/paper.webp', 'stand' => 'images/properties/articles/list/stand.webp']],
-        ['key' => 'articles-detail-template', 'category' => 'news-articles', 'categoryTitle' => 'Новости и статьи', 'label' => 'Статьи: шаблон детальной страницы', 'type' => 'select', 'default' => 'paper', 'values' => ['circle' => 'Круг', 'paper' => 'Бумага', 'stand' => 'Стандартный'], 'templatePath' => 'bitrix/news/sporina-news/bitrix/news.detail', 'sourceBinding' => ['scope' => 'site', 'file' => 'izmeneniya-v-raspisanii/index.php', 'component' => 'bitrix:news', 'anchor' => '"IBLOCK_ID" => SCHEDULE_CHANGES_IBLOCK_ID', 'parameter' => 'NEWS_DETAIL_TEMPLATE', 'target' => 'parameter'], 'previewRatio' => '4 / 3', 'previews' => ['circle' => 'images/properties/articles/detail/circle.webp', 'paper' => 'images/properties/articles/detail/paper.webp', 'stand' => 'images/properties/articles/detail/stand.webp']],
+        ['key' => 'news-list-template', 'category' => 'news-articles', 'categoryTitle' => 'Новости и статьи', 'label' => 'Новости: шаблон списка', 'type' => 'select', 'default' => 'list.1', 'values' => ['list.1' => 'Список 1', 'list.2' => 'Список 2', 'list.3' => 'Список 3'], 'templatePath' => 'bitrix/news/sporina-news/bitrix/news.list', 'sourceBinding' => ['scope' => 'site', 'file' => 'novosti-kompanii/index.php', 'component' => 'bitrix:news', 'anchor' => '"IBLOCK_ID" => NEWS_IBLOCK_ID', 'parameter' => 'NEWS_LIST_TEMPLATE', 'target' => 'parameter'], 'previewRatio' => '4 / 3', 'previews' => ['list.2' => 'images/properties/news/list/circle.webp', 'list.3' => 'images/properties/news/list/paper.webp', 'list.1' => 'images/properties/news/list/stand.webp']],
+        ['key' => 'news-detail-template', 'category' => 'news-articles', 'categoryTitle' => 'Новости и статьи', 'label' => 'Новости: шаблон детальной страницы', 'type' => 'select', 'default' => 'detail.1', 'values' => ['detail.1' => 'Детальная 1', 'detail.2' => 'Детальная 2', 'detail.3' => 'Детальная 3'], 'templatePath' => 'bitrix/news/sporina-news/bitrix/news.detail', 'sourceBinding' => ['scope' => 'site', 'file' => 'novosti-kompanii/index.php', 'component' => 'bitrix:news', 'anchor' => '"IBLOCK_ID" => NEWS_IBLOCK_ID', 'parameter' => 'NEWS_DETAIL_TEMPLATE', 'target' => 'parameter'], 'previewRatio' => '4 / 3', 'previews' => ['detail.2' => 'images/properties/news/detail/circle.webp', 'detail.3' => 'images/properties/news/detail/paper.webp', 'detail.1' => 'images/properties/news/detail/stand.webp']],
+        ['key' => 'articles-list-template', 'category' => 'news-articles', 'categoryTitle' => 'Новости и статьи', 'label' => 'Статьи: шаблон списка', 'type' => 'select', 'default' => 'list.1', 'values' => ['list.1' => 'Список 1', 'list.2' => 'Список 2', 'list.3' => 'Список 3'], 'templatePath' => 'bitrix/news/sporina-news/bitrix/news.list', 'sourceBinding' => ['scope' => 'site', 'file' => 'izmeneniya-v-raspisanii/index.php', 'component' => 'bitrix:news', 'anchor' => '"IBLOCK_ID" => SCHEDULE_CHANGES_IBLOCK_ID', 'parameter' => 'NEWS_LIST_TEMPLATE', 'target' => 'parameter'], 'previewRatio' => '4 / 3', 'previews' => ['list.2' => 'images/properties/articles/list/circle.webp', 'list.3' => 'images/properties/articles/list/paper.webp', 'list.1' => 'images/properties/articles/list/stand.webp']],
+        ['key' => 'articles-detail-template', 'category' => 'news-articles', 'categoryTitle' => 'Новости и статьи', 'label' => 'Статьи: шаблон детальной страницы', 'type' => 'select', 'default' => 'detail.1', 'values' => ['detail.1' => 'Детальная 1', 'detail.2' => 'Детальная 2', 'detail.3' => 'Детальная 3'], 'templatePath' => 'bitrix/news/sporina-news/bitrix/news.detail', 'sourceBinding' => ['scope' => 'site', 'file' => 'izmeneniya-v-raspisanii/index.php', 'component' => 'bitrix:news', 'anchor' => '"IBLOCK_ID" => SCHEDULE_CHANGES_IBLOCK_ID', 'parameter' => 'NEWS_DETAIL_TEMPLATE', 'target' => 'parameter'], 'previewRatio' => '4 / 3', 'previews' => ['detail.2' => 'images/properties/articles/detail/circle.webp', 'detail.3' => 'images/properties/articles/detail/paper.webp', 'detail.1' => 'images/properties/articles/detail/stand.webp']],
 
-        ['key' => 'services-list-template', 'category' => 'services-products', 'categoryTitle' => 'Услуги и товары', 'label' => 'Услуги: шаблон списка', 'type' => 'select', 'default' => 'stand', 'values' => ['stand' => 'Стандартный', 'layering' => 'Слойный', 'smoothness' => 'Сглаженный'], 'templatePath' => 'bitrix/news/sporina-uslugi-cards/bitrix/news.list', 'sourceBinding' => ['scope' => 'site', 'file' => 'uslugi/index.php', 'component' => 'bitrix:news', 'anchor' => '"IBLOCK_ID" => SERVICES_IBLOCK_ID', 'parameter' => 'NEWS_LIST_TEMPLATE', 'target' => 'parameter'], 'previewRatio' => '7 / 4', 'previews' => ['stand' => 'images/properties/services/list/stand.webp', 'layering' => 'images/properties/services/list/layering.webp', 'smoothness' => 'images/properties/services/list/smoothness.webp']],
-        ['key' => 'services-detail-template', 'category' => 'services-products', 'categoryTitle' => 'Услуги и товары', 'label' => 'Услуги: шаблон детальной страницы', 'type' => 'select', 'default' => 'stand', 'values' => ['stand' => 'Стандартный', 'layering' => 'Слои', 'smoothness' => 'Сглаженный'], 'templatePath' => 'bitrix/news/sporina-uslugi-cards/bitrix/news.detail', 'sourceBinding' => ['scope' => 'site', 'file' => 'uslugi/index.php', 'component' => 'bitrix:news', 'anchor' => '"IBLOCK_ID" => SERVICES_IBLOCK_ID', 'parameter' => 'NEWS_DETAIL_TEMPLATE', 'target' => 'parameter'], 'previewRatio' => '1 / 1', 'previews' => ['stand' => 'images/properties/services/detail/stand.webp', 'layering' => 'images/properties/services/detail/layering.webp', 'smoothness' => 'images/properties/services/detail/smoothness.webp']],
-        ['key' => 'products-list-template', 'category' => 'services-products', 'categoryTitle' => 'Услуги и товары', 'label' => 'Товары: шаблон списка', 'type' => 'select', 'default' => 'stand', 'values' => ['stand' => 'Стандартный', 'layering' => 'Слойный', 'smoothness' => 'Сглаженный', 'fireant' => 'Выплывающий'], 'templatePath' => 'bitrix/news/sporina-tovari-cards/bitrix/news.list', 'sourceBinding' => ['scope' => 'site', 'file' => 'tovary/index.php', 'component' => 'bitrix:news', 'anchor' => '"IBLOCK_ID" => PRODUCTS_IBLOCK_ID', 'parameter' => 'NEWS_LIST_TEMPLATE', 'target' => 'parameter'], 'previewRatio' => '7 / 4', 'previews' => ['stand' => 'images/properties/products/list/stand.webp', 'layering' => 'images/properties/products/list/layering.webp', 'smoothness' => 'images/properties/products/list/smoothness.webp', 'fireant' => 'images/properties/products/list/fireant.webp']],
-        ['key' => 'products-detail-template', 'category' => 'services-products', 'categoryTitle' => 'Услуги и товары', 'label' => 'Товары: шаблон детальной страницы', 'type' => 'select', 'default' => 'stand', 'values' => ['stand' => 'Стандартный', 'layering' => 'Слои', 'smoothness' => 'Сглаженный'], 'templatePath' => 'bitrix/news/sporina-tovar-cards/bitrix/news.detail', 'sourceBinding' => ['scope' => 'site', 'file' => 'tovary/index.php', 'component' => 'bitrix:news', 'anchor' => '"IBLOCK_ID" => PRODUCTS_IBLOCK_ID', 'parameter' => 'NEWS_DETAIL_TEMPLATE', 'target' => 'parameter'], 'previewRatio' => '8 / 5', 'previews' => ['stand' => 'images/properties/products/detail/stand.webp', 'layering' => 'images/properties/products/detail/layering.webp', 'smoothness' => 'images/properties/products/detail/smoothness.webp']],
+        ['key' => 'services-list-template', 'category' => 'services-products', 'categoryTitle' => 'Услуги и товары', 'label' => 'Услуги: шаблон списка', 'type' => 'select', 'default' => 'list.1', 'values' => ['list.1' => 'Список 1', 'list.2' => 'Список 2', 'list.3' => 'Список 3'], 'templatePath' => 'bitrix/news/sporina-services/bitrix/news.list', 'sourceBinding' => ['scope' => 'site', 'file' => 'uslugi/index.php', 'component' => 'bitrix:news', 'anchor' => '"IBLOCK_ID" => SERVICES_IBLOCK_ID', 'parameter' => 'NEWS_LIST_TEMPLATE', 'target' => 'parameter'], 'previewRatio' => '7 / 4', 'previews' => ['list.1' => 'images/properties/services/list/stand.webp', 'list.3' => 'images/properties/services/list/layering.webp', 'list.2' => 'images/properties/services/list/smoothness.webp']],
+        ['key' => 'services-detail-template', 'category' => 'services-products', 'categoryTitle' => 'Услуги и товары', 'label' => 'Услуги: шаблон детальной страницы', 'type' => 'select', 'default' => 'detail.1', 'values' => ['detail.1' => 'Детальная 1', 'detail.2' => 'Детальная 2', 'detail.3' => 'Детальная 3'], 'templatePath' => 'bitrix/news/sporina-services/bitrix/news.detail', 'sourceBinding' => ['scope' => 'site', 'file' => 'uslugi/index.php', 'component' => 'bitrix:news', 'anchor' => '"IBLOCK_ID" => SERVICES_IBLOCK_ID', 'parameter' => 'NEWS_DETAIL_TEMPLATE', 'target' => 'parameter'], 'previewRatio' => '1 / 1', 'previews' => ['detail.1' => 'images/properties/services/detail/stand.webp', 'detail.3' => 'images/properties/services/detail/layering.webp', 'detail.2' => 'images/properties/services/detail/smoothness.webp']],
+        ['key' => 'products-list-template', 'category' => 'services-products', 'categoryTitle' => 'Услуги и товары', 'label' => 'Товары: шаблон списка', 'type' => 'select', 'default' => 'list.1', 'values' => ['list.1' => 'Список 1', 'list.2' => 'Список 2', 'list.3' => 'Список 3', 'list.4' => 'Список 4'], 'templatePath' => 'bitrix/news/sporina-products/bitrix/news.list', 'sourceBinding' => ['scope' => 'site', 'file' => 'tovary/index.php', 'component' => 'bitrix:news', 'anchor' => '"IBLOCK_ID" => PRODUCTS_IBLOCK_ID', 'parameter' => 'NEWS_LIST_TEMPLATE', 'target' => 'parameter'], 'previewRatio' => '7 / 4', 'previews' => ['list.1' => 'images/properties/products/list/stand.webp', 'list.3' => 'images/properties/products/list/layering.webp', 'list.2' => 'images/properties/products/list/smoothness.webp', 'list.4' => 'images/properties/products/list/fireant.webp']],
+        ['key' => 'products-detail-template', 'category' => 'services-products', 'categoryTitle' => 'Услуги и товары', 'label' => 'Товары: шаблон детальной страницы', 'type' => 'select', 'default' => 'detail.1', 'values' => ['detail.1' => 'Детальная 1', 'detail.2' => 'Детальная 2', 'detail.3' => 'Детальная 3'], 'templatePath' => 'bitrix/news/sporina-products/bitrix/news.detail', 'sourceBinding' => ['scope' => 'site', 'file' => 'tovary/index.php', 'component' => 'bitrix:news', 'anchor' => '"IBLOCK_ID" => PRODUCTS_IBLOCK_ID', 'parameter' => 'NEWS_DETAIL_TEMPLATE', 'target' => 'parameter'], 'previewRatio' => '8 / 5', 'previews' => ['detail.1' => 'images/properties/products/detail/stand.webp', 'detail.3' => 'images/properties/products/detail/layering.webp', 'detail.2' => 'images/properties/products/detail/smoothness.webp']],
 
         ['key' => 'staff-list-template', 'category' => 'sections', 'categoryTitle' => 'Разделы', 'label' => 'Сотрудники: шаблон списка', 'type' => 'select', 'default' => 'blocks.1', 'values' => ['blocks.1' => 'Блоки', 'list.1' => 'Список'], 'templatePath' => 'bitrix/news/staff/bitrix/news.list', 'sourceBinding' => ['scope' => 'site', 'file' => 'about/management/index.php', 'component' => 'bitrix:news', 'anchor' => '"IBLOCK_ID" => "444"', 'parameter' => 'NEWS_LIST_TEMPLATE', 'target' => 'parameter'], 'previewRatio' => '6 / 3', 'previews' => ['blocks.1' => 'images/properties/staff/blocks.webp', 'list.1' => 'images/properties/staff/list.webp']],
         ['key' => 'jobs-list-template', 'category' => 'sections', 'categoryTitle' => 'Разделы', 'label' => 'Вакансии: шаблон списка', 'type' => 'select', 'default' => 'vacancies.1', 'values' => ['vacancies.1' => 'Аккардион', 'vacancies.2' => 'Список'], 'templatePath' => 'bitrix/news', 'sourceBinding' => ['scope' => 'site', 'file' => 'about/jobs/index.php', 'component' => 'bitrix:news', 'parameter' => 'COMPONENT_TEMPLATE', 'target' => 'component-template'], 'previewRatio' => '8 / 3', 'previews' => ['vacancies.1' => 'images/properties/jobs/accordion.webp', 'vacancies.2' => 'images/properties/jobs/list.webp']],
@@ -92,6 +93,11 @@ final class Settings
         $settings = [];
 
         foreach (self::DEFINITIONS as $definition) {
+            if ($definition['type'] === 'file') {
+                $settings[$definition['key']] = '';
+
+                continue;
+            }
             $value = Option::get(self::MODULE_ID, $definition['key'], $definition['default'], SITE_ID);
             $settings[$definition['key']] = self::getBoundSourceValue($definition)
                 ?? self::normalize($definition, (string) $value)
@@ -134,6 +140,9 @@ final class Settings
             }
 
             $definition['value'] = $settings[$definition['key']];
+            if ($definition['type'] === 'file' && $definition['key'] === 'template-logo') {
+                $definition['logoUrl'] = self::getLogoUrl();
+            }
             $definition['values'] = self::getAllowedValues($definition);
             $definition['stored'] = self::hasStoredValue($definition['key']);
             $panel[$category]['fields'][] = $definition;
@@ -171,7 +180,7 @@ final class Settings
             }
 
             $definition = self::getDefinition($key);
-            if ($definition === null) {
+            if ($definition === null || $definition['type'] === 'file') {
                 continue;
             }
 
@@ -199,11 +208,19 @@ final class Settings
     {
         $defaultSettings = [];
         foreach (self::DEFINITIONS as $definition) {
+            if ($definition['type'] === 'file') {
+                self::resetLogo();
+
+                continue;
+            }
             $defaultSettings[$definition['key']] = $definition['default'];
         }
         self::synchronizeBoundSources($defaultSettings);
 
         foreach (self::DEFINITIONS as $definition) {
+            if ($definition['type'] === 'file') {
+                continue;
+            }
             if (empty($definition['componentFallback'])) {
                 Option::set(self::MODULE_ID, $definition['key'], $definition['default'], SITE_ID);
 
@@ -216,6 +233,72 @@ final class Settings
             ]);
         }
 
+    }
+
+    public static function getLogoUrl(): string
+    {
+        $fileId = self::getLogoFileId();
+        if ($fileId > 0) {
+            $file = \CFile::GetFileArray($fileId);
+            if (is_array($file) && !empty($file['SRC'])) {
+                return (string) $file['SRC'];
+            }
+        }
+
+        return SITE_TEMPLATE_PATH . '/img/logo.svg';
+    }
+
+    public static function saveLogo(array $file): void
+    {
+        if (($file['error'] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_OK || empty($file['tmp_name']) || !is_uploaded_file($file['tmp_name'])) {
+            throw new InvalidArgumentException('Не удалось загрузить файл логотипа.');
+        }
+        if ((int) ($file['size'] ?? 0) > 5 * 1024 * 1024) {
+            throw new InvalidArgumentException('Размер логотипа не должен превышать 5 МБ.');
+        }
+
+        $extension = strtolower(pathinfo((string) ($file['name'] ?? ''), PATHINFO_EXTENSION));
+        if (!in_array($extension, ['jpg', 'jpeg', 'png', 'webp', 'svg'], true)) {
+            throw new InvalidArgumentException('Допустимы только JPEG, PNG, WebP и SVG.');
+        }
+
+        if ($extension === 'svg') {
+            $contents = file_get_contents($file['tmp_name']);
+            if ($contents === false
+                || !preg_match('/^\s*(?:<\?xml[^>]*>\s*)?<svg\b/i', $contents)
+                || preg_match('/<script\b|\bonload\s*=|javascript\s*:/i', $contents)) {
+                throw new InvalidArgumentException('SVG-файл содержит недопустимое содержимое.');
+            }
+        } elseif (@getimagesize($file['tmp_name']) === false) {
+            throw new InvalidArgumentException('Файл не является допустимым изображением.');
+        }
+
+        $file['MODULE_ID'] = self::MODULE_ID;
+        $newFileId = (int) \CFile::SaveFile($file, 'sporina.easysite/logos');
+        if ($newFileId <= 0) {
+            throw new RuntimeException('Не удалось сохранить файл логотипа.');
+        }
+
+        $oldFileId = self::getLogoFileId();
+        Option::set(self::MODULE_ID, 'template-logo', (string) $newFileId, SITE_ID);
+        if ($oldFileId > 0 && $oldFileId !== $newFileId) {
+            \CFile::Delete($oldFileId);
+        }
+    }
+
+    public static function resetLogo(): void
+    {
+        $fileId = self::getLogoFileId();
+        if ($fileId > 0) {
+            \CFile::Delete($fileId);
+        }
+
+        Option::delete(self::MODULE_ID, ['name' => 'template-logo', 'site_id' => SITE_ID]);
+    }
+
+    private static function getLogoFileId(): int
+    {
+        return max(0, (int) Option::get(self::MODULE_ID, 'template-logo', '', SITE_ID));
     }
 
     private static function getDefinition(string $key): ?array

@@ -23,6 +23,7 @@ if (!is_array($sporinaSettings))
 }
 $GLOBALS["SPORINA_EASY_SITE_SETTINGS"] = $sporinaSettings;
 $appearance = \Sporina\EasySite\Settings::getAppearance();
+$logoSrc = \Sporina\EasySite\Settings::getLogoUrl();
 $theme = $appearance['theme'];
 $headerTemplate = $appearance['headerTemplate'];
 $fontFamily = $appearance['fontFamily'];
@@ -125,7 +126,7 @@ $buttonEffect = in_array($sporinaSettings['template-button-effect'] ?? '', ['', 
 	"overlay",
 	[
 		"LOGO_LINK" => SITE_DIR,
-		"LOGO_SRC" => "img/logo.svg",
+		"LOGO_SRC" => $logoSrc,
 		"LOGO_ALT" => "",
 		"SEARCH_LINK" => SITE_DIR."poisk/",
 		"SEARCH_ICON_SRC" => "img/search.svg",

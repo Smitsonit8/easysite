@@ -1,0 +1,244 @@
+.sporina-service-cards *,
+.sporina-service-cards *::before,
+.sporina-service-cards *::after {
+    box-sizing: border-box;
+}
+
+.sporina-service-cards {
+    width: 95%;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.sporina-service-cards__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 58px 40px;
+    margin-top: 20px;
+}
+
+.sporina-service-card {
+    min-width: 0;
+}
+
+.sporina-service-card__outer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    padding: 0;
+
+    border-radius: 32px;
+    background: var(--primary);
+
+    overflow: visible;
+
+    box-shadow: 0 18px 45px rgba(14,3,95,.14);
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease,
+        background-color .25s ease;
+}
+
+.sporina-service-card__inner {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    margin:
+        -18px 22px 22px -18px;
+
+    border-radius: 24px;
+    background: var(--surface);
+
+    overflow: hidden;
+
+    z-index: 2;
+}
+
+.sporina-service-card__media {
+    display: block;
+    height: 235px;
+    overflow: hidden;
+    background: #ececf1;
+}
+
+.sporina-service-card__media--hidden {
+    display: none;
+}
+
+.sporina-service-card__image,
+.sporina-service-card__placeholder {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.sporina-service-card__image {
+    object-fit: cover;
+    transition: transform .65s cubic-bezier(.2,.75,.25,1), filter .45s ease;
+}
+
+.sporina-service-card__placeholder {
+    background: linear-gradient(135deg, rgba(14,3,95,.14), rgba(14,3,95,.03));
+}
+
+.sporina-service-card__content {
+    flex: 1 1 auto;
+    padding: 25px 25px 30px;
+}
+
+.sporina-service-card__section {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 14px;
+    padding: 7px 12px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: .04em;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.sporina-service-card__section--left {
+    margin-right: auto;
+}
+
+.sporina-service-card__section--right {
+    display: block;
+    width: fit-content;
+    margin-left: auto;
+}
+
+.sporina-service-card__title {
+    margin: 0;
+    font-size: clamp(23px, 1.7vw, 31px);
+    line-height: 1.15;
+}
+
+.sporina-service-card__title a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color .25s ease;
+}
+
+.sporina-service-card__description {
+    margin-top: 15px;
+    color: var(--text-muted);
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.sporina-service-card__description p {
+    margin: 0;
+}
+
+.sporina-service-card__more {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 45px;
+    padding: 0px 25px 4px;
+    color: var(--text-inverse);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.sporina-service-card__arrow {
+    width: 25px;
+    height: 25px; 
+    object-fit: contain; 
+    flex: 0 0 24px; 
+    stroke: var(--text-inverse); 
+    stroke-width: 2; 
+    stroke-linecap: round; 
+    stroke-linejoin: round; 
+    fill: none;
+
+    transform: rotate(180deg);
+    transition: transform .3s ease;
+}
+
+@media (hover: hover) {
+    .sporina-service-card:hover .sporina-service-card__outer {
+        transform: translateY(-8px);
+        background: var(--primary-hover);
+        box-shadow: 0 25px 55px rgba(14, 3, 95, .22);
+    }
+
+    .sporina-service-card:hover .sporina-service-card__image {
+        transform: scale(1.065);
+        filter: brightness(.9);
+    }
+
+    .sporina-service-card:hover .sporina-service-card__title a {
+        color: var(--primary);
+    }
+
+    .sporina-service-card__more:hover .sporina-service-card__arrow {
+        transform: rotate(180deg) translateX(6px);
+    }
+}
+
+.sporina-service-card--reveal {
+    opacity: 0;
+    transform: translateY(34px);
+    transition:
+        opacity .7s ease var(--card-delay, 0ms),
+        transform .7s cubic-bezier(.2,.75,.25,1) var(--card-delay, 0ms);
+}
+
+.sporina-service-card--reveal.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+@media (max-width: 1100px) {
+    .sporina-service-cards__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 680px) {
+    .sporina-service-cards__grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .sporina-service-card__outer {
+        border-radius: 24px;
+    }
+
+    .sporina-service-card__inner {
+        border-radius: 17px;
+    }
+
+    .sporina-service-card__media {
+        height: 215px;
+    }
+
+    .sporina-service-card__content {
+        padding: 22px 20px 25px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sporina-service-card--reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}

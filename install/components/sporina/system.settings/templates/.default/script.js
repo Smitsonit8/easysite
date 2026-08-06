@@ -5,6 +5,10 @@
         var status = root.querySelector('[data-role="status"]');
         var panel = root.querySelector('[data-role="panel"]');
         var open = root.querySelector('[data-role="open"]');
+        var logoInput = root.querySelector('[data-role="logo.input"]');
+        var logoPreview = root.querySelector('[data-role="logo.preview"]');
+        var logoReset = root.querySelector('[data-role="logo.reset"]');
+        var widthInput = root.querySelector('[name="settings[template-width]"]');
 
         function toggle(isOpen) {
             root.classList.toggle('is-open', isOpen);
@@ -33,6 +37,11 @@
         root.querySelector('[data-role="close"]').addEventListener('click', function () { toggle(false); });
         root.querySelector('[data-role="overlay"]').addEventListener('click', function () { toggle(false); });
 
+        if (widthInput) {
+            var siteWidth = getComputedStyle(document.documentElement).getPropertyValue('--site-max-width').trim().replace(/px$/, '');
+            if (siteWidth === '1200' || siteWidth === '1440' || siteWidth === '1920') widthInput.value = siteWidth;
+        }
+
         root.querySelectorAll('[data-role="category"]').forEach(function (tab) {
             tab.addEventListener('click', function () {
                 var category = tab.getAttribute('data-category');
@@ -51,10 +60,32 @@
             input.addEventListener('change', markDirty);
         });
 
+        if (logoInput) {
+            logoInput.addEventListener('change', function () {
+                if (!logoInput.files || !logoInput.files[0] || !logoPreview) return;
+                logoPreview.src = URL.createObjectURL(logoInput.files[0]);
+            });
+        }
+
         form.addEventListener('submit', function (event) {
             event.preventDefault();
-            post(omitUntouchedSettings(new FormData(form))).then(function (response) {
+            var data = omitUntouchedSettings(new FormData(form));
+            var upload = logoInput && logoInput.files && logoInput.files.length;
+            if (upload) data.set(actionName, 'upload-logo');
+            post(data).then(function (response) {
                 if (response.success) {
+                    if (upload && logoPreview && response.logoUrl) logoPreview.src = response.logoUrl;
+                    if (upload) {
+                        logoInput.value = '';
+                        var settingsData = omitUntouchedSettings(new FormData(form));
+                        settingsData.delete('settings[template-logo]');
+                        settingsData.set(actionName, 'apply');
+                        post(settingsData).then(function (settingsResponse) {
+                            if (settingsResponse.success) window.location.reload();
+                            else status.textContent = settingsResponse.error || 'Ошибка сохранения';
+                        }).catch(function () { status.textContent = 'Ошибка соединения'; });
+                        return;
+                    }
                     window.location.reload();
                     return;
                 }
@@ -62,6 +93,21 @@
                 status.textContent = response.error || 'Ошибка сохранения';
             }).catch(function () { status.textContent = 'Ошибка соединения'; });
         });
+
+        if (logoReset) {
+            logoReset.addEventListener('click', function () {
+                var data = new FormData(form);
+                data.set(actionName, 'reset-logo');
+                post(data).then(function (response) {
+                    if (response.success) {
+                        if (logoInput) logoInput.value = '';
+                        if (logoPreview && response.logoUrl) logoPreview.src = response.logoUrl;
+                        return;
+                    }
+                    status.textContent = response.error || 'Ошибка сброса логотипа';
+                }).catch(function () { status.textContent = 'Ошибка соединения'; });
+            });
+        }
 
         root.querySelector('[data-role="reset"]').addEventListener('click', function () {
             var data = new FormData(form);

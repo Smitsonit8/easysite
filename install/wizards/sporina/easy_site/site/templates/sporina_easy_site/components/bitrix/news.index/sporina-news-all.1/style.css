@@ -199,8 +199,10 @@ fill: var(--surface) !important;
   position: absolute;
   height: 158px;
   width: 100%;
+  max-width: var(--site-max-width, 1920px);
   z-index: -5;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   bottom: -75px;
 }
 .news_bg-height {

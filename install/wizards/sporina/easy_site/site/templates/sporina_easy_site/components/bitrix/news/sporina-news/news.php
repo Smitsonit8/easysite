@@ -15,12 +15,12 @@ use Bitrix\Main\Localization\Loc;
 Loc::loadMessages(__FILE__);
 ?>
 <?
-$availableNewsListTemplates = array("circle", "paper", "stand");
+$availableNewsListTemplates = array("list.1", "list.2", "list.3");
 $newsListTemplate = isset($arParams["NEWS_LIST_TEMPLATE"]) ? (string)$arParams["NEWS_LIST_TEMPLATE"] : "circle";
 
 if (!in_array($newsListTemplate, $availableNewsListTemplates, true))
 {
-	$newsListTemplate = "circle";
+	$newsListTemplate = "list.1";
 }
 ?>
 

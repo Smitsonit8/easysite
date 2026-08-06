@@ -94,6 +94,27 @@ class SporinaSystemSettingsComponent extends CBitrixComponent
                     $this->sendJson(['success' => true, 'settings' => Settings::getAll()]);
                     break;
 
+                case 'upload-logo':
+                    $files = Context::getCurrent()->getRequest()->getFile('settings');
+                    if (!is_array($files) || !isset($files['name']['template-logo'])) {
+                        throw new InvalidArgumentException('Файл логотипа не передан.');
+                    }
+                    $file = [
+                        'name' => $files['name']['template-logo'] ?? '',
+                        'type' => $files['type']['template-logo'] ?? '',
+                        'tmp_name' => $files['tmp_name']['template-logo'] ?? '',
+                        'error' => $files['error']['template-logo'] ?? UPLOAD_ERR_NO_FILE,
+                        'size' => $files['size']['template-logo'] ?? 0,
+                    ];
+                    Settings::saveLogo($file);
+                    $this->sendJson(['success' => true, 'logoUrl' => Settings::getLogoUrl()]);
+                    break;
+
+                case 'reset-logo':
+                    Settings::resetLogo();
+                    $this->sendJson(['success' => true, 'logoUrl' => Settings::getLogoUrl()]);
+                    break;
+
                 case 'remember-section':
                     $section = Context::getCurrent()->getRequest()->getPost('section');
                     if (!is_string($section) || !preg_match('/^[a-z0-9_-]{1,100}$/i', $section)) {

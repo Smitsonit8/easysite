@@ -2,8 +2,8 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: auto;
-  background-color: var(--gradient-banner);
-  max-width: 2052px;
+  background-image: var(--banner-gradient-2);
+  max-width: var(--site-max-width, 2560px);
   margin: auto;
 } 
 

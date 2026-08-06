@@ -1,7 +1,7 @@
 .sporina-banner-centered {
   background: var(--gradient-banner);
   padding: 36px 0;
-  max-width: 2052px;
+  max-width: var(--site-max-width, 2560px);
   margin: auto;
 
   animation: centeredBgReveal 0.7s ease forwards;
