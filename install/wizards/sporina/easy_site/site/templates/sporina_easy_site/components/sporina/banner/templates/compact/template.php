@@ -15,6 +15,10 @@ if ($arResult["BACKGROUND_IMAGE_SRC"] !== "")
 	$backgroundImage = htmlspecialcharsbx($arResult["BACKGROUND_IMAGE_SRC"]);
 	$bannerStyle = "background-image: linear-gradient(90deg, rgba(7, 52, 94, 0.72), rgba(0, 0, 0, 0.62)), url('".$backgroundImage."'); background-position: center, center; background-repeat: no-repeat, no-repeat; background-size: auto, cover;";
 }
+elseif ($arResult["BACKGROUND_COLOR"] !== "")
+{
+	$bannerStyle = "background: ".htmlspecialcharsbx($arResult["BACKGROUND_COLOR"]).";";
+}
 ?>
 <section class="sporina-banner-compact"<?php if ($bannerStyle !== ""): ?> style="<?=$bannerStyle?>"<?php endif; ?>>
 	<div class="container sporina-banner-compact__container">

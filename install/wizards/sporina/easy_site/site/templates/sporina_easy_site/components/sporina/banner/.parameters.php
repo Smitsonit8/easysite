@@ -1,8 +1,12 @@
 <?php
+use Bitrix\Main\Localization\Loc;
+
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true)
 {
 	die();
 }
+
+Loc::loadMessages(__FILE__);
 
 $arComponentParameters = array(
 	"PARAMETERS" => array(
@@ -63,6 +67,12 @@ $arComponentParameters = array(
 		"BACKGROUND_IMAGE_SRC" => array(
 			"PARENT" => "VISUAL",
 			"NAME" => "Путь к фоновому изображению",
+			"TYPE" => "STRING",
+			"DEFAULT" => "",
+		),
+		"BACKGROUND_COLOR" => array(
+			"PARENT" => "VISUAL",
+			"NAME" => Loc::getMessage("BACKGROUND_COLOR"),
 			"TYPE" => "STRING",
 			"DEFAULT" => "",
 		),

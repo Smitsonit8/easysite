@@ -33,6 +33,7 @@ $buttonLink = trim((string)($arParams["BUTTON_LINK"] ?? ""));
 $imageSrc = $resolvePath($arParams["IMAGE_SRC"] ?? "");
 $mobileImageSrc = $resolvePath($arParams["MOBILE_IMAGE_SRC"] ?? "");
 $backgroundImageSrc = $resolvePath($arParams["BACKGROUND_IMAGE_SRC"] ?? "");
+$backgroundColor = trim((string)($arParams["BACKGROUND_COLOR"] ?? ""));
 
 $arResult = array(
 	"TITLE" => $title,
@@ -45,6 +46,7 @@ $arResult = array(
 	"IMAGE_SRC" => $imageSrc,
 	"MOBILE_IMAGE_SRC" => $mobileImageSrc !== "" ? $mobileImageSrc : $imageSrc,
 	"BACKGROUND_IMAGE_SRC" => $backgroundImageSrc,
+	"BACKGROUND_COLOR" => $backgroundColor,
 );
 
 $this->IncludeComponentTemplate();
