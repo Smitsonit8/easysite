@@ -23,6 +23,12 @@ $arTemplateParameters = array(
 		),
 		"DEFAULT" => "two",
 	),
+	"SHOW_IBLOCK_TITLE" => array(
+		"PARENT" => "BASE",
+		"NAME" => GetMessage("SPORINA_COLUMN_NEWS_SHOW_IBLOCK_TITLE"),
+		"TYPE" => "CHECKBOX",
+		"DEFAULT" => "Y",
+	),
 	"SHOW_MORE_BUTTON" => array(
 		"PARENT" => "BASE",
 		"NAME" => GetMessage("SPORINA_COLUMN_NEWS_SHOW_MORE_BUTTON"),

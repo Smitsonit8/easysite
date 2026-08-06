@@ -114,6 +114,7 @@ if (!in_array($newsListTemplate, $availableNewsListTemplates, true))
 		"HIDE_LINK_WHEN_NO_DETAIL" => $arParams["HIDE_LINK_WHEN_NO_DETAIL"],
 		"CHECK_DATES" => $arParams["CHECK_DATES"],
 		"COLUMNS_LAYOUT" => isset($arParams["COLUMNS_LAYOUT"]) ? (string)$arParams["COLUMNS_LAYOUT"] : "two",
+		"SHOW_IBLOCK_TITLE" => isset($arParams["SHOW_IBLOCK_TITLE"]) ? (string)$arParams["SHOW_IBLOCK_TITLE"] : "Y",
 	),
 	$component
 );?>

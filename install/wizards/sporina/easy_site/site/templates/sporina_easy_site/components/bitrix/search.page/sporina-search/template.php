@@ -106,7 +106,7 @@
 					&nbsp;
 				</td>
 				<td>
-					<input class="search-button" type="submit" value="<?php echo GetMessage('CT_BSP_GO')?>" />
+					<input class="search-button button" type="submit" value="<?php echo GetMessage('CT_BSP_GO')?>" />
 				</td>
 			</tr>
 		</tbody></table>
@@ -260,7 +260,7 @@
 						<?php endif;?>
 						<tr>
 							<td class="search-filter-name">&nbsp;</td>
-							<td class="search-filter-field"><input class="search-button" value="<?php echo GetMessage('CT_BSP_GO')?>" type="submit"></td>
+							<td class="search-filter-field"><input class="search-button button" value="<?php echo GetMessage('CT_BSP_GO')?>" type="submit"></td>
 						</tr>
 					</tbody></table>
 				</div>

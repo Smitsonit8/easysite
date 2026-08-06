@@ -1,9 +1,7 @@
 .sporina-banner {
   position: relative;
   overflow: hidden;
-  background-image:
-    radial-gradient(circle at top left, rgba(255, 255, 255, 0.22), transparent 34%),
-    linear-gradient(135deg, rgba(18, 46, 89, 0.72), rgba(0, 0, 0, 0.64));
+  background-image: var(--banner-gradient-2);
   background-position: center, center, center;
   background-repeat: no-repeat, no-repeat, no-repeat;
   background-size: auto, auto;
@@ -64,7 +62,7 @@
   max-width: 560px;
 }
 
-.sporina-banner__button.button {
+.sporina-banner__button.sporina-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -77,7 +75,8 @@
 
 .sporina-banner__media img {
   display: block;
-  width: 80%;
+  /*width: 80%;*/
+  width: 514px;
   height: auto;
   object-fit: contain;
   filter: drop-shadow(0 24px 60px rgba(0, 0, 0, 0.28));
@@ -123,22 +122,14 @@
     align-self: center;
   }
 
-  .sporina-banner__title {
-    font-size: var(--font-size-banner-default-title);
-  }
 }
 
 @media (max-width: 767px) {
-  .sporina-banner__title {
-    font-size: var(--font-size-banner-default-title);
-  }
-
   .sporina-banner__text {
-    font-size: var(--font-size-banner-default-body);
     margin-bottom: 24px;
   }
 
-  .sporina-banner__button.button {
+  .sporina-banner__button.sporina-button {
     width: 100%;
     max-width: 280px;
   }

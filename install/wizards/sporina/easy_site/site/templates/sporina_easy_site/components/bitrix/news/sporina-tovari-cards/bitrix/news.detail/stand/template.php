@@ -1,116 +1,128 @@
 <?php
-
-if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
-
+if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
+    die();
+}
 
 /** @var array $arParams */
 /** @var array $arResult */
-/** @global CMain $APPLICATION */
-/** @global CUser $USER */
-/** @global CDatabase $DB */
 /** @var CBitrixComponentTemplate $this */
-/** @var string $templateName */
-/** @var string $templateFile */
-/** @var string $templateFolder */
-/** @var string $componentPath */
-/** @var CBitrixComponent $component */
 
 $this->setFrameMode(true);
+
+use Bitrix\Main\Application;
+use Bitrix\Main\Localization\Loc;
+
+Loc::loadMessages(__FILE__);
+
+$galleryCode = (string)($arParams['GALLERY_PROPERTY_CODE'] ?? 'GALLERY');
+$images = [];
+$primaryImage = !empty($arResult['DETAIL_PICTURE']['SRC'])
+    ? $arResult['DETAIL_PICTURE']
+    : ($arResult['PREVIEW_PICTURE'] ?? null);
+
+if (!empty($primaryImage['SRC'])) {
+    $images[] = $primaryImage;
+}
+
+foreach ((array)($arResult['PROPERTIES'][$galleryCode]['VALUE'] ?? []) as $fileId) {
+    $image = CFile::GetFileArray($fileId);
+    if (!empty($image['SRC'])) {
+        $images[] = $image;
+    }
+}
+
+$images = array_values(array_filter($images, static function ($image) {
+    return !empty($image['SRC']);
+}));
+$price = trim((string)($arResult['PROPERTIES']['PRICE']['VALUE'] ?? ''));
+$productName = (string)($arResult['NAME'] ?? '');
 ?>
+<article class="sporina-stand-product" data-detail-gallery>
+    <?php if ($arParams['DISPLAY_NAME'] !== 'N' && $productName !== ''): ?>
+        <h1 class="sporina-stand-product__title"><?=htmlspecialcharsbx($productName)?></h1>
+    <?php endif; ?>
 
-<!--<div class="news-detail">-->
-        <?if($arParams["DISPLAY_NAME"]!="N" && $arResult["NAME"]):?>
-        <h1 class="h1"><?=$arResult["NAME"]?></h1>
-    <?endif;?>
-<div class="services-detail-container">
-    
-    <?if($arParams["DISPLAY_PICTURE"]!="N" && is_array($arResult["DETAIL_PICTURE"])):?>
-        <div class="services-detail-colons">
-            <section class="image-section">
-                <img
-                    class="detail_picture"
-                    border="0"
-                    src="<?=$arResult["DETAIL_PICTURE"]["SRC"]?>"
-                    width="<?=$arResult["DETAIL_PICTURE"]["WIDTH"]?>"
-                    height="<?=$arResult["DETAIL_PICTURE"]["HEIGHT"]?>"
-                    alt="<?=$arResult["DETAIL_PICTURE"]["ALT"]?>"
-                    title="<?=$arResult["DETAIL_PICTURE"]["TITLE"]?>"
-                />
-            </section>
-            <section class="preview-text-section">
-                <p><?=$arResult["PREVIEW_TEXT"];?></p>
-            </section>
+    <div class="sporina-stand-product__layout">
+        <div class="sporina-stand-product__gallery">
+            <div class="sporina-stand-product__media">
+                <?php foreach ($images as $index => $image): ?>
+                    <button class="sporina-stand-product__slide<?=$index ? '' : ' is-active'?>" type="button" data-detail-slide aria-label="<?=htmlspecialcharsbx(Loc::getMessage('SPORINA_STAND_OPEN_IMAGE') . ' ' . ($index + 1))?>">
+                        <img src="<?=htmlspecialcharsbx($image['SRC'])?>" alt="<?=htmlspecialcharsbx($image['ALT'] ?: $productName)?>">
+                    </button>
+                <?php endforeach; ?>
+                <?php if (empty($images)): ?>
+                    <span class="sporina-stand-product__placeholder" aria-hidden="true"></span>
+                <?php endif; ?>
+                <?php if (count($images) > 1): ?>
+                    <button class="sporina-stand-product__nav sporina-stand-product__nav--prev" type="button" data-detail-prev aria-label="<?=htmlspecialcharsbx(Loc::getMessage('SPORINA_STAND_PREVIOUS'))?>">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+					        <path d="M5 12H19"></path>
+				            <path d="M13 6L19 12L13 18"></path> 
+				        </svg>
+                    </button>
+                    <button class="sporina-stand-product__nav sporina-stand-product__nav--next" type="button" data-detail-next aria-label="<?=htmlspecialcharsbx(Loc::getMessage('SPORINA_STAND_NEXT'))?>">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+					        <path d="M5 12H19"></path>
+				            <path d="M13 6L19 12L13 18"></path> 
+				        </svg>
+                    </button>
+                <?php endif; ?>
+            </div>
+
+            <?php if (count($images) > 1): ?>
+                <div class="sporina-stand-product__thumbs" aria-label="<?=htmlspecialcharsbx(Loc::getMessage('SPORINA_STAND_GALLERY'))?>">
+                    <?php foreach ($images as $index => $image): ?>
+                        <button class="sporina-stand-product__thumb<?=$index ? '' : ' is-active'?>" type="button" data-detail-thumb aria-current="<?=$index ? 'false' : 'true'?>" aria-label="<?=htmlspecialcharsbx(Loc::getMessage('SPORINA_STAND_IMAGE') . ' ' . ($index + 1))?>">
+                            <img src="<?=htmlspecialcharsbx($image['SRC'])?>" alt="">
+                        </button>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
         </div>
 
-    <?endif?>
-
-    <section class="detail-text-section">
-        <?if($arResult["DETAIL_TEXT"] <> ''):?>
-            <p><?echo $arResult["DETAIL_TEXT"];?></p>
-        <?endif?>
-    </section>
-
-    <div style="clear:both"></div>
-    <br />
-    <?foreach($arResult["FIELDS"] as $code=>$value):
-        if ('PREVIEW_PICTURE' == $code || 'DETAIL_PICTURE' == $code)
-        {
-            ?><?=GetMessage("IBLOCK_FIELD_".$code)?>:&nbsp;<?
-            if (!empty($value) && is_array($value))
-            {
-                ?><img border="0" src="<?=$value["SRC"]?>" width="<?=$value["WIDTH"]?>" height="<?=$value["HEIGHT"]?>"><?
-            }
-        }
-        else
-        {
-            ?><?=GetMessage("IBLOCK_FIELD_".$code)?>:&nbsp;<?=$value;?><?
-        }
-        ?><br />
-    <?endforeach;
-    foreach($arResult["DISPLAY_PROPERTIES"] as $pid=>$arProperty):?>
-
-        <h2>
-        <?=$arProperty["NAME"]?>:&nbsp;
-        <?if(is_array($arProperty["DISPLAY_VALUE"])):?>
-            <?=implode("&nbsp;/&nbsp;", $arProperty["DISPLAY_VALUE"]);?>
-        <?else:?>
-            <?=$arProperty["DISPLAY_VALUE"];?>
-        <?endif?>
-        </h2>
-        <br />
-
-    <?endforeach;
-    if(array_key_exists("USE_SHARE", $arParams) && $arParams["USE_SHARE"] == "Y")
-    {
-        ?>
-        <div class="news-detail-share">
-            <noindex>
-            <?
-            $APPLICATION->IncludeComponent("bitrix:main.share", "", array(
-                    "HANDLERS" => $arParams["SHARE_HANDLERS"],
-                    "PAGE_URL" => $arResult["~DETAIL_PAGE_URL"],
-                    "PAGE_TITLE" => $arResult["~NAME"],
-                    "SHORTEN_URL_LOGIN" => $arParams["SHARE_SHORTEN_URL_LOGIN"],
-                    "SHORTEN_URL_KEY" => $arParams["SHARE_SHORTEN_URL_KEY"],
-                    "HIDE" => $arParams["SHARE_HIDE"],
-                ),
-                $component,
-                array("HIDE_ICONS" => "Y")
-            );
-            ?>
-            </noindex>
+        <div class="sporina-stand-product__content">
+            <?php if ($arParams['DISPLAY_PREVIEW_TEXT'] !== 'N' && $arResult['PREVIEW_TEXT'] !== ''): ?>
+                <div class="sporina-stand-product__lead"><?=$arResult['PREVIEW_TEXT']?></div>
+            <?php endif; ?>
+            <?php if ($arResult['DETAIL_TEXT'] !== ''): ?>
+                <div class="sporina-stand-product__text"><?=$arResult['DETAIL_TEXT']?></div>
+            <?php endif; ?>
+            <?php if ($price !== ''): ?>
+                <p class="sporina-stand-product__price"><span class="sporina-stand-product__price-value"><?=htmlspecialcharsbx($price)?></span></p>
+            <?php endif; ?>
         </div>
-        <?
-    }
+    </div>
 
-    // Запуск сессии
-    if (!isset($_SESSION)) {
-        Session::start();
-    }
-
-    // Запись названия новости в сессию
-    if (!empty($arResult['NAME']) && is_string($arResult['NAME'])) {
-        $_SESSION['FORM_TOVAR_NAME'] = trim($arResult['NAME']);
-    }
-    ?>
-</div>
+    <div class="sporina-stand-product__modal" data-product-modal hidden role="dialog" aria-modal="true" aria-label="<?=htmlspecialcharsbx(Loc::getMessage('SPORINA_STAND_GALLERY'))?>">
+        <div class="sporina-stand-product__backdrop" data-modal-close></div>
+        <div class="sporina-stand-product__modal-content">
+            <button class="sporina-stand-product__modal-close" type="button" data-modal-close aria-label="<?=htmlspecialcharsbx(Loc::getMessage('SPORINA_STAND_CLOSE'))?>">
+                <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M4.11 2.697L2.698 4.11 6.586 8l-3.89 3.89 1.415 1.413L8 9.414l3.89 3.89 1.413-1.415L9.414 8l3.89-3.89-1.415-1.413L8 6.586l-3.89-3.89z" fill=""></path>
+                </svg>
+            </button>
+            <img data-modal-image src="" alt="">
+            <?php if (count($images) > 1): ?>
+                <button class="sporina-stand-product__modal-nav sporina-stand-product__modal-nav--prev" type="button" data-modal-prev aria-label="<?=htmlspecialcharsbx(Loc::getMessage('SPORINA_STAND_PREVIOUS'))?>">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+					<path d="M5 12H19"></path>
+				    <path d="M13 6L19 12L13 18"></path> 
+				    </svg>
+                </button>
+                <button class="sporina-stand-product__modal-nav sporina-stand-product__modal-nav--next" type="button" data-modal-next aria-label="<?=htmlspecialcharsbx(Loc::getMessage('SPORINA_STAND_NEXT'))?>">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+					    <path d="M5 12H19"></path>
+				        <path d="M13 6L19 12L13 18"></path> 
+				    </svg>
+                </button>
+            <?php endif; ?>
+        </div>
+    </div>
+</article>
+<?php
+$session = Application::getInstance()->getSession();
+if (!$session->isStarted()) {
+    $session->start();
+}
+$session->set('FORM_TOVAR_NAME', trim($productName));
+?>

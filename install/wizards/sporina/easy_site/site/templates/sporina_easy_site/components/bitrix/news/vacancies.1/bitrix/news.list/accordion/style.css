@@ -10,8 +10,8 @@
 .sporina-vacancies__section-title{
     margin:0 0 15px;
     color:var(--primary);
-    font-size:22px;
-    line-height:1.3
+    font-size:var(--font-size-news-section-title);
+    line-height:var(--line-height-news-section-title)
 }
 .sporina-vacancies__section-title+ .sporina-vacancies__item{
     border-top:1px solid #e8e8e8
@@ -41,8 +41,8 @@
 .sporina-vacancies__title{
     display:block;
     margin-right:250px;
-    font-size:16px;
-    line-height:1.5
+    font-size:var(--font-size-md);
+    line-height:var(--line-height-body)
 }
 .sporina-vacancies__salary{
     position:absolute;
@@ -56,8 +56,8 @@
     overflow:hidden;
     background:var(--accent);
     color:var(--text);
-    font-size:14px;
-    font-weight:700;
+    font-size:var(--font-size-news-meta);
+    font-weight:var(--font-weight-bold);
     white-space:nowrap
 }
 .sporina-vacancies__indicators{
@@ -97,8 +97,8 @@
     overflow: hidden;
     opacity: 0;
     color: #888;
-    font-size: 13px;
-    line-height: 24px;
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-body);
 
     transition:
         max-height 0.45s ease,
@@ -112,9 +112,6 @@
     opacity: 1;
 }
 @media(max-width:520px){
-    .sporina-vacancies__section-title{
-        font-size:20px
-    }
     .sporina-vacancies__item{
         padding:20px
     }

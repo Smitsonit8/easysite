@@ -26,10 +26,21 @@ $appearance = \Sporina\EasySite\Settings::getAppearance();
 $theme = $appearance['theme'];
 $headerTemplate = $appearance['headerTemplate'];
 $fontFamily = $appearance['fontFamily'];
-$headingScale = $appearance['headingScale'];
+$font = in_array($sporinaSettings['template-font'] ?? '', ['ibm-plex-sans', 'arial', 'manrope', 'onest', 'roboto'], true)
+	? $sporinaSettings['template-font']
+	: 'ibm-plex-sans';
+$textSize = in_array($sporinaSettings['typography-text-size'] ?? '', ['small', 'medium', 'large'], true)
+	? $sporinaSettings['typography-text-size']
+	: 'medium';
+$headingSize = in_array($sporinaSettings['typography-heading-size'] ?? '', ['small', 'medium', 'large'], true)
+	? $sporinaSettings['typography-heading-size']
+	: 'medium';
+$buttonEffect = in_array($sporinaSettings['template-button-effect'] ?? '', ['', 'btn-effect-1', 'btn-effect-2', 'btn-effect-3'], true)
+	? $sporinaSettings['template-button-effect']
+	: '';
 ?>
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-font="<?=htmlspecialcharsbx($font)?>" data-text-size="<?=htmlspecialcharsbx($textSize)?>" data-heading-size="<?=htmlspecialcharsbx($headingSize)?>">
 <head>
   <?$APPLICATION->ShowHead();?>
   <title><?$APPLICATION->ShowTitle();?></title>
@@ -39,15 +50,42 @@ $headingScale = $appearance['headingScale'];
     <?
     Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . '/style/style.css');
     Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . '/style/typography.css');
+    Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . '/style/fonts/ibm-plex-sans.css');
+    Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . '/style/fonts/arial.css');
+    Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . '/style/fonts/manrope.css');
+    Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . '/style/fonts/onest.css');
+    Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . '/style/fonts/roboto.css');
     ?>
     <style>
       :root {
         --site-background: <?=htmlspecialcharsbx($appearance['backgroundColor'])?>;
         --site-max-width: <?=intval($appearance['width'])?>px;
         --site-font-family: <?=$fontFamily?>;
-        --site-heading-scale: <?=$headingScale?>;
       }
     </style>
+    <script>
+      (function () {
+        var effect = <?=json_encode($buttonEffect)?>;
+        var effectClasses = ['btn-effect-1', 'btn-effect-2', 'btn-effect-3'];
+
+        function applyButtonEffect() {
+          document.querySelectorAll('a.sporina-button, button.sporina-button').forEach(function (element) {
+            element.classList.remove.apply(element.classList, effectClasses);
+            if (effect) element.classList.add(effect);
+          });
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', applyButtonEffect);
+        } else {
+          applyButtonEffect();
+        }
+
+        if (window.BX && typeof window.BX.addCustomEvent === 'function') {
+          window.BX.addCustomEvent('onAjaxSuccess', applyButtonEffect);
+        }
+      })();
+    </script>
     <?if ($appearance['lazyloadUse'] === "Y"):?>
       <script>
       (function () {
@@ -66,7 +104,7 @@ $headingScale = $appearance['headingScale'];
     <?endif?>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=Onest:wght@400;500;600;700&family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/dist/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/dist/assets/owl.theme.default.min.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>

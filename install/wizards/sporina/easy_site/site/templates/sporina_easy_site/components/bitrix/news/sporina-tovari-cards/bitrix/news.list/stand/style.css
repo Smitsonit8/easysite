@@ -44,9 +44,15 @@ div.news-list img.preview_picture
     color: #ffffff;
     text-align: center;
     padding: 10px;
-    font-size: 18px;
+    font-size: var(--font-size-card-title);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-card-title);
 }
 
+.service-title p {
+    font-size: var(--font-size-card-body);
+    line-height: var(--line-height-card-body);
+}
 
 
 @media (max-width: 1600px) {

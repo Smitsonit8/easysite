@@ -33,7 +33,9 @@ if (is_object($APPLICATION) && method_exists($APPLICATION, "GetShowIncludeAreas"
 <?if(!empty($arResult["ITEMS"])):?>
 <section class="sporina-news-cards <?=htmlspecialcharsbx($layoutClass)?>">
 	<div class="sporina-news-cards__head">
-		<b class="sporina-news-cards__title"><?=$arResult["NAME"]?></b>
+		<?if (($arParams['SHOW_IBLOCK_TITLE'] ?? 'Y') === 'Y' && !empty($arResult['NAME'])):?>
+			<b class="sporina-news-cards__title"><?=htmlspecialcharsbx($arResult['NAME'])?></b>
+		<?endif;?>
 	</div>
 	<div class="sporina-news-cards__grid">
 	<?foreach($arResult["ITEMS"] as $index => $arItem):?>
@@ -117,7 +119,7 @@ if (is_object($APPLICATION) && method_exists($APPLICATION, "GetShowIncludeAreas"
 	?>
 	<?if(($arParams["SHOW_MORE_BUTTON"] ?? "Y") !== "N" && $listPageUrl !== ""):?>
 		<div class="sporina-news-cards__actions">
-			<a class="sporina-news-cards__all button" href="<?=$listPageUrl?>"><?=GetMessage("SPORINA_SHOW_MORE")?></a>
+			<a class="sporina-news-cards__all sporina-button" href="<?=$listPageUrl?>"><?=GetMessage("SPORINA_SHOW_MORE")?></a>
 		</div>
 	<?endif;?>
 </section>

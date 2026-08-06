@@ -33,6 +33,6 @@ Local media-query typography overrides will be removed or consolidated only when
 ## Constraints
 
 - `typography.css` is the sole shared source of typography scale and responsive `clamp()` values.
-- Existing uncommitted files, including `typography.css` and `typography_.css`, are user work and must not be overwritten or reverted.
+- Existing uncommitted files, including `typography.css`, are user work and must not be overwritten or reverted.
 - No Bitrix core files will be changed.
 - The work is intentionally limited to typography and safe semantic corrections.

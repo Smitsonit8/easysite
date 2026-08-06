@@ -35,8 +35,8 @@
 
 .sporina-products__back-text
 {
-	font-size: 15px;
-	font-weight: 600;
-	line-height: 1;
+	font-size: var(--font-size-base);
+	font-weight: var(--font-weight-semibold);
+	line-height: var(--line-height-ui);
 	text-transform: uppercase;
 }

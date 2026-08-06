@@ -1,0 +1,420 @@
+/*
+ * Адаптивная типографика сайта АО «Путь-Экспресс».
+ * Подключать после основного style.css шаблона.
+ */
+
+:root {
+    /* Основная шкала */
+    --font-size-xs: clamp(0.75rem, 0.73rem + 0.08vw, 0.8125rem);   /* 12–13px */
+    --font-size-sm: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);   /* 13–14px */
+    --font-size-base: clamp(0.9375rem, 0.92rem + 0.1vw, 1rem);     /* 15–16px */
+    --font-size-md: clamp(1rem, 0.97rem + 0.14vw, 1.125rem);       /* 16–18px */
+    --font-size-lg: clamp(1.0625rem, 1.02rem + 0.18vw, 1.1875rem);/* 17–19px */
+
+    --font-size-h6: var(--font-size-sm);
+    --font-size-h5: var(--font-size-base);
+    --font-size-h4: var(--font-size-md);                            /* до 18px */
+    --font-size-h3: clamp(1.3125rem, 1.2rem + 0.45vw, 1.6875rem); /* 21–27px */
+    --font-size-h2: clamp(1.625rem, 1.38rem + 0.95vw, 2.375rem);  /* 26–38px */
+    --font-size-h1: clamp(2rem, 1.68rem + 1.3vw, 3.125rem);        /* 32–50px */
+    --font-size-hero: clamp(2rem, 1.62rem + 1.45vw, 3rem);         /* 32–48px */
+
+    /* Часто используемые размеры компонентов */
+    --font-size-card-title: clamp(1.0625rem, 1.02rem + 0.18vw, 1.25rem);
+    --font-size-card-featured-title: clamp(1.25rem, 1.14rem + 0.45vw, 1.5rem);
+    --font-size-card-tile-title: clamp(1.125rem, 1.04rem + 0.32vw, 1.375rem);
+    --font-size-subscribe-title: clamp(1.25rem, 1.12rem + 0.45vw, 1.5rem);
+    --font-size-banner-body: clamp(1rem, 0.98rem + 0.08vw, 1.0625rem);
+    --font-size-footer-contact: clamp(1rem, 0.94rem + 0.22vw, 1.25rem);
+
+    /* Межстрочные интервалы */
+    --line-height-tight: 1.08;
+    --line-height-heading: 1.18;
+    --line-height-body: 1.6;
+    --line-height-ui: 1.35;
+
+    /* Начертания */
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --font-weight-extrabold: 800;
+
+    /* Ширина текстовых строк */
+    --text-width: 68ch;
+    --text-width-narrow: 52ch;
+
+    /* Совместимость с существующими стилями компонентов */
+    --font-size-header-meta: var(--font-size-xs);
+    --font-size-navigation: var(--font-size-sm);
+    --font-size-form-label: var(--font-size-sm);
+    --font-size-card-meta: var(--font-size-sm);
+    --font-size-card-body: var(--font-size-base);
+    --font-size-card-number: var(--font-size-xs);
+    --font-size-page-lead: var(--font-size-lg);
+    --font-size-button: var(--font-size-base);
+    --font-size-template-h1: var(--font-size-h1);
+    --font-size-template-h2: var(--font-size-h2);
+    --font-size-template-h3: var(--font-size-h3);
+    --font-size-template-h4: var(--font-size-h4);
+    --font-size-banner-compact-title: var(--font-size-h1);
+    --font-size-banner-centered-title: var(--font-size-hero);
+    --font-size-banner-default-title: var(--font-size-hero);
+    --font-size-banner-default-body: var(--font-size-banner-body);
+    --font-size-news-section-title: var(--font-size-h2);
+    --font-size-news-badge: var(--font-size-xs);
+    --font-size-news-meta: var(--font-size-sm);
+    --font-size-news-more: var(--font-size-sm);
+    --font-size-news-column-title: var(--font-size-card-tile-title);
+    --font-size-news-column-meta: var(--font-size-xs);
+    --font-size-news-column-item: var(--font-size-base);
+    --font-size-news-column-item-mobile: var(--font-size-card-tile-title);
+    --font-size-news-column-copy: var(--font-size-sm);
+    --font-size-news-column-more: var(--font-size-sm);
+
+    --line-height-card-title: 1.3;
+    --line-height-card-body: 1.55;
+    --line-height-card-featured-title: 1.12;
+    --line-height-card-copy: 1.65;
+    --line-height-card-tile-title: 1.15;
+    --line-height-button: var(--line-height-ui);
+    --line-height-template-h1: var(--line-height-heading);
+    --line-height-template-h2: var(--line-height-heading);
+    --line-height-template-h3: var(--line-height-heading);
+    --line-height-template-h4: var(--line-height-heading);
+    --line-height-subscribe-title: 1.35;
+    --line-height-header-meta: var(--line-height-ui);
+    --line-height-navigation-mobile: var(--line-height-ui);
+    --line-height-footer-copyright: var(--line-height-body);
+    --line-height-footer-contact: 1.3;
+    --line-height-banner-badge: var(--line-height-ui);
+    --line-height-news-section-title: 1.1;
+    --line-height-news-badge: 1;
+    --line-height-news-meta: 1.4;
+    --line-height-news-card-title: 1.35;
+    --line-height-news-column-title: 1.2;
+    --line-height-news-column-meta: 1.3;
+    --line-height-news-column-item: 1.2;
+    --line-height-news-column-copy: 1.6;
+    --line-height-news-column-more: 1.3;
+}
+
+html {
+    font-size: 100%;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+body {
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-body);
+    font-weight: var(--font-weight-regular);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    overflow-wrap: break-word;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: 0;
+    line-height: var(--line-height-heading);
+    font-weight: var(--font-weight-semibold);
+    text-wrap: balance;
+}
+
+h1 {
+    font-size: var(--font-size-h1);
+    letter-spacing: -0.035em;
+}
+
+h2 {
+    font-size: var(--font-size-h2);
+    letter-spacing: -0.025em;
+}
+
+h3 {
+    font-size: var(--font-size-h3);
+    letter-spacing: -0.018em;
+}
+
+h4 {
+    font-size: var(--font-size-h4);
+    letter-spacing: -0.01em;
+}
+
+h5 {
+    font-size: var(--font-size-h5);
+}
+
+h6 {
+    font-size: var(--font-size-h6);
+}
+
+p,
+li,
+input,
+textarea,
+select {
+    font-size: inherit;
+}
+
+p {
+    max-width: var(--text-width);
+    text-wrap: pretty;
+}
+
+small,
+.small,
+.text-small {
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+}
+
+.text-xs,
+.caption,
+.date,
+.time {
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-ui);
+}
+
+nav,
+.menu,
+.header-menu,
+button,
+.button,
+.btn,
+input,
+select,
+textarea,
+label {
+    line-height: var(--line-height-ui);
+}
+
+nav,
+.menu,
+.header-menu {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+}
+
+button,
+.button,
+.btn {
+    font-size: var(--font-size-button);
+}
+
+/* Не меньше 16px: предотвращает автоматическое увеличение страницы на iPhone. */
+input,
+textarea,
+select {
+    font-size: max(1rem, var(--font-size-sm));
+}
+
+.text-lead,
+.lead {
+    max-width: var(--text-width-narrow);
+    font-size: var(--font-size-lg);
+    line-height: 1.55;
+}
+
+.text-medium {
+    font-size: var(--font-size-md);
+}
+
+.section-title {
+    font-size: var(--font-size-h2);
+    line-height: var(--line-height-heading);
+}
+
+.section-subtitle {
+    max-width: var(--text-width-narrow);
+    font-size: var(--font-size-lg);
+    line-height: 1.5;
+}
+
+/* Главный и внутренние баннеры. H1 баннера является заголовком страницы. */
+.hero-title,
+.banner-title,
+.main-banner h1 {
+    max-width: 18ch;
+    font-size: var(--font-size-hero);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+}
+
+.hero-subtitle,
+.banner-subtitle,
+.main-banner__description {
+    max-width: 52ch;
+    font-size: var(--font-size-banner-body);
+    line-height: 1.5;
+}
+
+/* Карточки */
+.card-title,
+.service-title,
+.product-title {
+    font-size: var(--font-size-card-title);
+    line-height: var(--line-height-card-title);
+    font-weight: var(--font-weight-semibold);
+}
+
+.news-title,
+.news-card__title,
+.staff__name {
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-news-card-title);
+    font-weight: var(--font-weight-semibold);
+}
+
+.card-text,
+.service-description,
+.product-description,
+.news-preview {
+    font-size: var(--font-size-base);
+    line-height: 1.5;
+}
+
+.staff__contacts {
+    font-size: var(--font-size-xs);
+}
+
+.application__subtitle {
+    margin: 0;
+    font-size: var(--font-size-base);
+    line-height: 1.4;
+    font-weight: var(--font-weight-medium);
+}
+
+.telegram__title {
+    font-size: var(--font-size-subscribe-title);
+    line-height: var(--line-height-subscribe-title);
+    font-weight: var(--font-weight-semibold);
+}
+
+.contact-phone,
+.contacts-phone,
+.contacts__value {
+    font-size: var(--font-size-footer-contact);
+    line-height: var(--line-height-footer-contact);
+    font-weight: var(--font-weight-medium);
+}
+
+/* Подвал */
+footer,
+.footer {
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+}
+
+.footer__contact,
+.footer-contact,
+.footer .contact-phone,
+.footer .contacts-phone,
+.footer .contacts__value {
+    font-size: var(--font-size-footer-contact);
+    line-height: var(--line-height-footer-contact);
+    font-weight: var(--font-weight-medium);
+}
+
+.footer__label,
+.footer-contact__label,
+.footer__address-label,
+.footer__copyright,
+.footer__legal,
+.footer__policy {
+    font-size: var(--font-size-xs);
+    line-height: 1.5;
+}
+
+.footer__address,
+.footer-address {
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+}
+
+@media screen and (max-width: 992px) {
+    :root {
+        --line-height-body: 1.55;
+        --font-size-hero: clamp(2rem, 1.74rem + 1vw, 2.625rem); /* 32–42px */
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        text-wrap: pretty;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    :root {
+        --line-height-body: 1.5;
+        --font-size-hero: clamp(2rem, 1.9rem + 0.4vw, 2.125rem); /* 32–34px */
+        --font-size-banner-body: 1rem;
+        --font-size-footer-contact: 1.0625rem;
+    }
+
+    h1 {
+        letter-spacing: -0.025em;
+    }
+
+    h2 {
+        letter-spacing: -0.018em;
+    }
+
+    .hero-title,
+    .banner-title,
+    .main-banner h1 {
+        max-width: none;
+        letter-spacing: -0.03em;
+    }
+
+    .text-lead,
+    .lead,
+    .section-subtitle,
+    .hero-subtitle,
+    .banner-subtitle,
+    .main-banner__description {
+        line-height: 1.45;
+    }
+
+    nav,
+    .menu,
+    .header-menu {
+        font-size: 1rem;
+    }
+
+    .card-title,
+    .service-title,
+    .product-title {
+        font-size: 1.0625rem;
+    }
+
+    .news-title,
+    .news-card__title,
+    .staff__name,
+    .application__subtitle {
+        font-size: 1rem;
+    }
+
+    footer,
+    .footer {
+        font-size: 0.8125rem;
+    }
+}
+
+@media screen and (max-width: 374px) {
+    button,
+    .button,
+    .btn {
+        font-size: 0.9375rem;
+    }
+}

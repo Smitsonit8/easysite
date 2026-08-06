@@ -1,5 +1,4 @@
 body {
-  font-family: var(--site-font-family, "IBM Plex Sans", Arial, sans-serif);
   margin: 0;
   padding: 0;
   background-color: var(--site-background, var(--bg));
@@ -18,22 +17,98 @@ li {
 width:100%;
 }
 
-.button {
+.sporina-button {
   cursor: pointer;
   position: relative;
   height: 48px;
   width: 202px;
-  background-color: var(--primary);
-  color: var(--text-inverse);
   border: none;
   font-size: var(--font-size-button);
   line-height: var(--line-height-button);
+  font-weight: var(--font-weight-regular) !important;
+  overflow: hidden;
+  transition: all 0.4s ease;
 }
-.button:hover {
+
+.btn-effect-1{
+  background-color: var(--primary);
+  color: var(--text-inverse);
+}
+
+.btn-effect-1:hover {
   background-color: var(--primary-hover);
 }
-.button:active {
+.btn-effect-1:active {
   background-color: var(--text-muted);
+}
+
+.btn-effect-2 {
+    position: relative;
+    z-index: 1;
+
+    overflow: hidden;
+
+    border: 2px solid var(--primary);
+    background: transparent;
+    color: var(--primary);
+
+    transition: color 0.5s ease;
+}
+
+.btn-effect-2::before {
+    content: '';
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+
+    width: 0;
+    height: 100%;
+
+    background: var(--primary);
+
+    transition: width 0.5s ease;
+}
+
+.btn-effect-2:hover {
+    color: var(--text-inverse);
+
+    /* Фон здесь ставить нельзя */
+    background: transparent;
+}
+
+.btn-effect-2:hover::before {
+    width: 100%;
+}
+/*
+a.sporina-button.sporina-banner-compact__button.btn-effect-2 {
+    border: 2px solid var(--border);
+    color: var(--text-inverse);
+}
+
+a.sporina-button.sporina-banner-compact__button.btn-effect-2:hover {
+    border: 2px solid var(--primary);
+}
+*/    
+
+.btn-effect-3 {
+  background: var(--primary);
+  color: var(--text-inverse);
+  position: relative;
+  overflow: hidden;
+}
+.btn-effect-3::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -75%;
+  width: 50%; height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.5), transparent);
+  transform: skewX(-20deg);
+  transition: all 0.5s;
+}
+.btn-effect-3:hover::after {
+  left: 130%;
 }
 
 .container {
@@ -44,27 +119,19 @@ width:100%;
 }
 
 h1 {
-  font-size: calc(var(--font-size-template-h1) * var(--site-heading-scale, 1));
-  line-height: var(--line-height-template-h1);
   color: var(--text-inverse);
 }
 
 h2 {
-  font-size: calc(var(--font-size-template-h2) * var(--site-heading-scale, 1));
-  line-height: var(--line-height-template-h2);
   text-align: center;
   color: var(--primary);
 }
 
 h3 {
-  font-size: calc(var(--font-size-template-h3) * var(--site-heading-scale, 1));
-  line-height: var(--line-height-template-h3);
   color: var(--primary);
 }
 
 h4 {
-  font-size: calc(var(--font-size-template-h4) * var(--site-heading-scale, 1));
-  line-height: var(--line-height-template-h4);
   color: var(--text-muted);
 }
 
@@ -112,7 +179,7 @@ body.site-background-disabled {
     line-height: var(--line-height-subscribe-title);
     color: var(--text);
     text-align: center;
-    font-weight: var(--font-weight-extrabold);
+    font-weight: var(--font-weight-bold);
 }
 
 /*Две колонки*/
@@ -242,6 +309,10 @@ ol.with-parentheses > li::before {
   #content_nav-head:checked + [for=content_nav-head] + ul {
     max-height: 1000px;
     transition: max-height 0.5s ease-in;
+  }
+
+  .sporina-button{
+    width: 150px;
   }
 
 }

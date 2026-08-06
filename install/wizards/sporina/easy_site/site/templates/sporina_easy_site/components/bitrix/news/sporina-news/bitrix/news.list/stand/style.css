@@ -61,16 +61,16 @@
 }
 
 .sporina-news-company-stand__item-date {
-	font-size: 13px;
+	font-size: var(--font-size-news-meta);
 	color: var(--text-muted);
 	margin-bottom: 8px;
-	line-height: 1.4;
+	line-height: var(--line-height-news-meta);
 }
 
 .sporina-news-company-stand__item-title {
-	font-size: 20px;
-	font-weight: 600;
-	line-height: 1.3;
+	font-size: var(--font-size-card-title);
+	font-weight: var(--font-weight-semibold);
+	line-height: var(--line-height-card-title);
 	margin: 0 0 12px 0;
 }
 
@@ -85,8 +85,8 @@
 }
 
 .sporina-news-company-stand__item-preview {
-	font-size: 15px;
-	line-height: 1.6;
+	font-size: var(--font-size-card-body);
+	line-height: var(--line-height-card-body);
 	color: var(--text-secondary);
 	margin: 0 0 15px 0;
 	flex: 1;
@@ -101,8 +101,8 @@
 	display: inline-flex;
 	align-items: center;
 	gap: 6px;
-	font-size: 14px;
-	font-weight: 500;
+	font-size: var(--font-size-news-more);
+	font-weight: var(--font-weight-medium);
 	color: var(--text);
 	text-decoration: none;
 	transition: color 0.2s ease;
@@ -116,7 +116,7 @@
 
 .sporina-news-company-stand__item-detail-link::after {
 	content: '→';
-	font-size: 16px;
+	font-size: var(--font-size-md);
 	transition: transform 0.2s ease;
 	color: var(--primary-hover);
 }
@@ -147,9 +147,6 @@
 		height: 200px;
 	}
 
-	.sporina-news-company-stand__item-title {
-		font-size: 18px;
-	}
 }
 
 @media (max-width: 576px) {

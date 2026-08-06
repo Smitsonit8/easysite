@@ -105,7 +105,7 @@
 .sporina-header__nav-text {
   margin: 0;
   text-transform: uppercase;
-  line-height: var(--line-height-card-title);
+  line-height: var(--line-height-ui);
   letter-spacing: 0.08em;
 }
 

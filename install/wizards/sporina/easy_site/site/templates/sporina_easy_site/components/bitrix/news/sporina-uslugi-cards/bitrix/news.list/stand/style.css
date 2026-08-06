@@ -46,7 +46,9 @@ div.news-list img.preview_picture
     color: white;
     text-align: center;
     padding: 10px;
-    font-size: 18px;
+    font-size: var(--font-size-card-title);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-card-title);
 }
 
 

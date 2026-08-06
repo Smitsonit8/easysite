@@ -39,7 +39,7 @@
 	justify-content: flex-start;
 }
 
-.sporina-news-cards__all.button
+.sporina-news-cards__all.sporina-button
 {
 	display: inline-flex;
 	align-items: center;

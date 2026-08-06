@@ -59,8 +59,8 @@ $APPLICATION->SetTitle("Товары");
 		"IBLOCK_TYPE" => "products",
 		"INCLUDE_IBLOCK_INTO_CHAIN" => "Y",
 		"LIST_ACTIVE_DATE_FORMAT" => "d.m.Y",
-		"LIST_TEMPLATE" => "smoothness",
-		"DETAIL_TEMPLATE" => "smoothness",
+		"NEWS_LIST_TEMPLATE" => "smoothness",
+		"NEWS_DETAIL_TEMPLATE" => "smoothness",
 		"GALLERY_PROPERTY_CODE" => "GALLERY",
 		"LIST_FIELD_CODE" => [
 			0 => "",

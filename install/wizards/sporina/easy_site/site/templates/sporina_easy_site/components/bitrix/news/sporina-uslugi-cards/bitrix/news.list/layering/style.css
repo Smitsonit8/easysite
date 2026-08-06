@@ -101,9 +101,9 @@
     border-radius: 999px;
     background: var(--accent);
     color: var(--primary);
-    font-size: 12px;
-    font-weight: 700;
-    line-height: 1;
+    font-size: var(--font-size-news-badge);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-news-badge);
     letter-spacing: .04em;
     text-overflow: ellipsis;
     text-transform: uppercase;
@@ -122,8 +122,8 @@
 
 .sporina-service-card__title {
     margin: 0;
-    font-size: clamp(23px, 1.7vw, 31px);
-    line-height: 1.15;
+    font-size: var(--font-size-template-h3);
+    line-height: var(--line-height-template-h3);
 }
 
 .sporina-service-card__title a {
@@ -135,8 +135,8 @@
 .sporina-service-card__description {
     margin-top: 15px;
     color: var(--text-muted);
-    font-size: 16px;
-    line-height: 1.6;
+    font-size: var(--font-size-card-body);
+    line-height: var(--line-height-card-body);
 }
 
 .sporina-service-card__description p {
@@ -150,8 +150,8 @@
     min-height: 45px;
     padding: 0px 25px 4px;
     color: var(--text-inverse);
-    font-size: 14px;
-    font-weight: 700;
+    font-size: var(--font-size-news-more);
+    font-weight: var(--font-weight-bold);
     letter-spacing: .04em;
     text-decoration: none;
     text-transform: uppercase;

@@ -30,7 +30,7 @@ Loc::loadMessages(__FILE__);
 <?
 $ElementID = $APPLICATION->IncludeComponent(
 	"bitrix:news.detail",
-	$arParams["DETAIL_TEMPLATE"] ?: ".default",
+	$arParams["NEWS_DETAIL_TEMPLATE"] ?: ".default",
 	[
 		"DISPLAY_DATE" => $arParams["DISPLAY_DATE"],
 		"DISPLAY_NAME" => $arParams["DISPLAY_NAME"],

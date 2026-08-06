@@ -6,6 +6,7 @@ $MESS["SPORINA_COLUMN_NEWS_LIST_TEMPLATE_TIMELINE"] = "Лента времени
 $MESS["SPORINA_COLUMN_NEWS_COLUMNS_LAYOUT"] = "Расположение колонок";
 $MESS["SPORINA_COLUMN_NEWS_COLUMNS_LAYOUT_TWO"] = "Две колонки";
 $MESS["SPORINA_COLUMN_NEWS_COLUMNS_LAYOUT_STACKED"] = "Одна под другой";
+$MESS["SPORINA_COLUMN_NEWS_SHOW_IBLOCK_TITLE"] = "Показывать заголовок инфоблока";
 $MESS["SPORINA_COLUMN_NEWS_SHOW_MORE_BUTTON"] = "Показывать кнопку «Еще»";
 
 $MESS["T_IBLOCK_DESC_NEWS_DATE"] = "Выводить дату элемента";

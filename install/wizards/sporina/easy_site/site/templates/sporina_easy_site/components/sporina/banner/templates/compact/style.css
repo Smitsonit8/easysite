@@ -25,7 +25,7 @@
   margin-bottom: 12px;
   color: var(--text-inverse);
   font-size: var(--font-size-navigation);
-  line-height: var(--line-height-card-title);
+  line-height: var(--line-height-banner-badge);
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
@@ -45,7 +45,7 @@
   max-width: 620px;
 }
 
-.sporina-banner-compact__button.button {
+.sporina-banner-compact__button.sporina-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -100,15 +100,7 @@
 }
 
 @media (max-width: 767px) {
-  .sporina-banner-compact__title {
-    font-size: var(--font-size-banner-compact-title);
-  }
-
-  .sporina-banner-compact__text {
-    font-size: var(--font-size-banner-body);
-  }
-
-  .sporina-banner-compact__button.button {
+  .sporina-banner-compact__button.sporina-button {
     width: 100%;
     max-width: 280px;
   }

@@ -74,7 +74,7 @@ $APPLICATION->IncludeComponent(
 endif;
 $APPLICATION->IncludeComponent(
 	"bitrix:news.list",
-	$arParams["LIST_TEMPLATE"] ?: ".default",
+	$arParams["NEWS_LIST_TEMPLATE"] ?: ".default",
 	[
 		"IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
 		"IBLOCK_ID" => $arParams["IBLOCK_ID"],

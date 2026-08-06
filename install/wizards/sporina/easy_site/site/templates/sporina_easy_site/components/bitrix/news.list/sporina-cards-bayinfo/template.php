@@ -24,7 +24,7 @@ $this->setFrameMode(true);
 	$this->AddDeleteAction($arItem['ID'], $arItem['DELETE_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_DELETE"), array("CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM')));
 	?>
 	<?if($arItem["PREVIEW_PICTURE"]["SRC"]):?>
-		<p class="news-item sporina-cards-bayinfo__item" id="<?=$this->GetEditAreaId($arItem['ID']);?>" style="animation-delay: <?=($index * 0.08)?>s;">
+		<article class="news-item sporina-cards-bayinfo__item" id="<?=$this->GetEditAreaId($arItem['ID']);?>" style="animation-delay: <?=($index * 0.08)?>s;">
 			<div class="block_info block_info--bgImg bgImg_schedule bgImg sporina-cards-bayinfo__card sporina-cards-bayinfo__card--image">
 				<a href='<?=$arItem["DISPLAY_PROPERTIES"]["LINK_CARD"]["VALUE"]?>' class="svg sporina-cards-bayinfo__link">
 					<div class="block">
@@ -59,9 +59,9 @@ $this->setFrameMode(true);
                     </div>
 				</a>
 			</div>
-		</p>
+		</article>
 		<?else:?>
-		<p class="news-item sporina-cards-bayinfo__item" id="<?=$this->GetEditAreaId($arItem['ID']);?>" style="animation-delay: <?=($index * 0.08)?>s;">
+		<article class="news-item sporina-cards-bayinfo__item" id="<?=$this->GetEditAreaId($arItem['ID']);?>" style="animation-delay: <?=($index * 0.08)?>s;">
 			<div class="block_info block_info--bgWhite sporina-cards-bayinfo__card">
 				<a href='<?=$arItem["DISPLAY_PROPERTIES"]["LINK_CARD"]["VALUE"]?>' class="svg sporina-cards-bayinfo__link">
 					<div class="block">
@@ -84,7 +84,7 @@ $this->setFrameMode(true);
                     </div>
 				</a>
 			</div>
-		</p>	
+		</article>
 	<?endif;?>
 	
 <?endforeach;?>

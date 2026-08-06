@@ -73,8 +73,9 @@ div.sporina-uslugi-cards-hover
 .sporina-uslugi-cards-hover__title
 {
 	margin: 0;
-	font-size: 28px;
-	line-height: 1.15;
+	font-size: var(--font-size-card-featured-title);
+	line-height: var(--line-height-card-featured-title);
+	font-weight: var(--font-weight-semibold);
 	color: #ffffff;
 }
 
@@ -83,8 +84,8 @@ div.sporina-uslugi-cards-hover
 	margin-top: 14px;
 	max-width: 100%;
 	color: rgba(255, 255, 255, 0.92);
-	font-size: 15px;
-	line-height: 1.6;
+	font-size: var(--font-size-card-body);
+	line-height: var(--line-height-card-body);
 	opacity: 0;
 	transform: translateY(18px);
 	transition: opacity 0.35s ease, transform 0.35s ease;
@@ -154,11 +155,6 @@ div.sporina-uslugi-cards-hover
 	.sporina-uslugi-cards-hover__content
 	{
 		padding: 22px 20px;
-	}
-
-	.sporina-uslugi-cards-hover__title
-	{
-		font-size: 24px;
 	}
 
 	.sporina-uslugi-cards-hover__text

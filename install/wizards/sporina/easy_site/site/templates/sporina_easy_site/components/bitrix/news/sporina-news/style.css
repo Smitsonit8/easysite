@@ -35,9 +35,9 @@
 
 .sporina-news-company__back-text
 {
-	font-size: 15px;
-	font-weight: 600;
-	line-height: 1;
+	font-size: var(--font-size-base);
+	font-weight: var(--font-weight-semibold);
+	line-height: var(--line-height-ui);
 	text-transform: uppercase;
 }
 
@@ -93,7 +93,7 @@
 	border: 1px solid rgba(27, 40, 53, 0.12);
 	background: var(--primary);
 	color: var(--text-inverse);
-	line-height: 1;
+	line-height: var(--line-height-ui);
 	text-decoration: none;
 	box-sizing: border-box;
 	transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;

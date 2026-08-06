@@ -21,15 +21,16 @@
     flex:1
 }
 .sporina-staff__position{
-    font-size:13px;
+    font-size:var(--font-size-card-meta);
     color:var(--text-secondary);
     margin-bottom:8px
 }
 .sporina-staff__name{
     display:block;
     color:var(--text);
-    font-size:22px;
-    font-weight:600;
+    font-size:var(--font-size-card-title);
+    font-weight:var(--font-weight-semibold);
+    line-height:var(--line-height-card-title);
     text-decoration:none
 }
 .sporina-staff__contacts{
@@ -79,7 +80,8 @@
 
 .sporina-staff__preview{
     margin-top:18px;
-    line-height:1.6
+    font-size:var(--font-size-card-body);
+    line-height:var(--line-height-card-body)
 }
 @media(max-width:450px){
     .sporina-staff__row{display:block}

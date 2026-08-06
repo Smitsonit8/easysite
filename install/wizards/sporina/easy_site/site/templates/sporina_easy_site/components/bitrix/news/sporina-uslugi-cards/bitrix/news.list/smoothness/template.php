@@ -64,7 +64,7 @@ $showPicture = ($arParams['DISPLAY_PICTURE'] ?? 'Y') !== 'N';
                         <?php endif; ?>
 
                         <div class="sporina-services__cutout">
-                            <a class="sporina-services__button" href="<?=htmlspecialcharsbx($itemUrl)?>" aria-label="<?=htmlspecialcharsbx('Подробнее: ' . $arItem['NAME'])?>">
+                            <a class="sporina-services__button" href="<?=htmlspecialcharsbx($itemUrl)?>" aria-label="<?=htmlspecialcharsbx(GetMessage('SPORINA_SERVICES_MORE_ARIA') . ': ' . $arItem['NAME'])?>">
                                 <svg class="sporina-services__arrow" viewBox="0 0 24 17" aria-hidden="true" focusable="false">
                                     <path d="M15.7113.238a1.17 1.17 0 0 0-1.617.11 1.1 1.1 0 0 0-.115 1.556l5.32 5.117H1.237C.554 7.021 0 7.554 0 8.21c0 .657.554 1.19 1.237 1.19h18.062l-5.32 5.117a1.1 1.1 0 0 0 .115 1.556 1.17 1.17 0 0 0 1.617.11l7.423-7.14L24 8.21l-.866-.833-7.423-7.14Z"/>
                                 </svg>

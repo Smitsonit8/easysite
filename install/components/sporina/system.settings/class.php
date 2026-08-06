@@ -79,6 +79,9 @@ class SporinaSystemSettingsComponent extends CBitrixComponent
             switch ($action) {
                 case 'apply':
                     $settings = Context::getCurrent()->getRequest()->getPost('settings');
+                    if ($settings === null) {
+                        $settings = [];
+                    }
                     if (!is_array($settings)) {
                         throw new InvalidArgumentException('Settings must be an array');
                     }

@@ -11,6 +11,8 @@
     overflow:hidden;
     background:var(--primary)
 }
+.sporina-product-detail__media,
+.sporina-product-detail__content{min-width:0}
 .sporina-product-detail__media{
     position:relative;
     min-height:480px;
@@ -42,22 +44,24 @@
     padding:9px 13px;
     color:var(--primary);
     background:var(--accent);
-    font-size:21px;
-    font-weight:800
+    font-size:var(--font-size-card-featured-title);
+    font-weight:var(--font-weight-extrabold) !important;
+    line-height:var(--line-height-ui)
 }
 .sporina-product-detail__title{
     margin:20px 0;
-    font-size:clamp(32px,4vw,56px);
-    line-height:1.06
+    font-size:var(--font-size-template-h1);
+    line-height:var(--line-height-template-h1)
 }
 .sporina-product-detail__lead{
-    font-size:19px;
-    font-weight:600;
-    line-height:1.45
+    font-size:var(--font-size-page-lead);
+    font-weight:var(--font-weight-semibold);
+    line-height:var(--line-height-body)
 }
 .sporina-product-detail__text{
     margin-top:25px;
-    line-height:1.7
+    font-size:var(--font-size-base);
+    line-height:var(--line-height-body)
 }
 
 .sporina-product-detail__text li {
@@ -80,8 +84,8 @@
     transition: transform 0.2s ease, background-color 0.2s ease;
     cursor: pointer;
 }
-.sporina-product-detail__nav--prev,.sporina-product-modal__nav--prev{left:14px; transform: rotate(180deg); top:50%;}
-.sporina-product-detail__nav--next,.sporina-product-modal__nav--next{right:14px; top:50%;}
+.sporina-product-detail__nav--prev,.sporina-product-modal__nav--prev{left:14px; transform: translateY(-50%) rotate(180deg); top:50%;}
+.sporina-product-detail__nav--next,.sporina-product-modal__nav--next{right:14px; transform: translateY(-50%); top:50%;}
 .sporina-product-detail__thumbs{
     display:flex;
     gap:10px;
@@ -137,15 +141,15 @@
     height:42px;
     border:0;
     color:var(--primary);
-    background:var(--accent);
+    background: unset;
     font-size:30px;
     cursor:pointer
 }
 .sporina-modal-open{overflow:hidden}
 
 .sporina-product-detail__nav svg{
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     stroke: var(--text-inverse);
     stroke-width: 2;
     fill: none;
@@ -163,7 +167,15 @@
     stroke-linejoin: round;
 }
 
-@media(max-width:760px){
+.sporina-product-modal__close svg { 
+    width: 25px; 
+    height: 25px; 
+    stroke: var(--text);
+    fill: var(--text);
+    stroke-width: 0.1px;
+}
+
+@media(max-width:900px){
     .sporina-product-detail__layout{
         grid-template-columns:1fr;
         border-radius:18px
@@ -195,6 +207,6 @@
     color:var(--surface);
     background:var(--primary)
 }
-@media(max-width:760px){
+@media(max-width:900px){
     .sporina-product-detail--layering .sporina-product-detail__media{min-height:320px}
 }

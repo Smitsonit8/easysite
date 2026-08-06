@@ -33,7 +33,6 @@ $APPLICATION->SetTitle("Руководство компании");
 	</div>
 </div>
 <div class="content">
-	<h2><?$APPLICATION->ShowTitle()?></h2>
 <?$APPLICATION->IncludeComponent(
 	"bitrix:news", 
 	"staff", 

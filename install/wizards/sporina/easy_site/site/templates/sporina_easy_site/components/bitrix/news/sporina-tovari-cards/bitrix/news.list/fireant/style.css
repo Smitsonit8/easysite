@@ -37,9 +37,7 @@
     height:67%;
     display:flex;
     align-items:center;
-    justify-content:center;
-    font-size:5em;
-    font-weight:900
+    justify-content:center
 }
 
 .sporina-fireant-card__image{
@@ -67,7 +65,9 @@
 
 .sporina-fireant-card__title{
     margin:0;
-    font-size:clamp(.72em,1vw,.9em);
+    font-size:var(--font-size-sm);
+    font-weight:var(--font-weight-semibold);
+    line-height:var(--line-height-ui);
     text-transform:uppercase;
     color:var(--text);
     overflow:hidden;
@@ -96,8 +96,9 @@
     opacity:0;
     pointer-events:none;
     transition:transform .3s,opacity .3s,background-color .3s;cursor:pointer;
-    font-size:clamp(.72em,1vw,.9em);
-    font-weight:500;
+    font-size:var(--font-size-sm);
+    font-weight:var(--font-weight-medium);
+    line-height:var(--line-height-ui);
     text-decoration:none
 }
 .sporina-fireant-card__price{
@@ -108,8 +109,9 @@
     left:clamp(10px,1vw,14px);
     top:clamp(10px,1vw,14px);
     padding:clamp(5px,.5vw,7px) clamp(10px,1vw,14px);
-    font-size:clamp(.75em,1vw,.9em);
-    font-weight:500
+    font-size:var(--font-size-sm);
+    font-weight:var(--font-weight-medium);
+    line-height:var(--line-height-ui)
 }
 .sporina-fireant-card__nav,.sporina-fireant-card__counter{display:none}
 

@@ -7,7 +7,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)
 /** @var array $arCurrentValues */
 
 $arTemplateParameters = array(
-	"LIST_TEMPLATE" => Array(
+	"NEWS_LIST_TEMPLATE" => Array(
 		"PARENT" => "BASE",
 		"NAME" => GetMessage("SPORINA_PRODUCTS_LIST_TEMPLATE"), 
 		"TYPE" => "LIST", 
@@ -20,7 +20,7 @@ $arTemplateParameters = array(
 		), 
 		"DEFAULT" => "stand"
 	),
-	"DETAIL_TEMPLATE" => Array(
+	"NEWS_DETAIL_TEMPLATE" => Array(
 		"PARENT" => "BASE",
 		"NAME" => GetMessage("SPORINA_PRODUCTS_DETAIL_TEMPLATE"), 
 		"TYPE" => "LIST", 

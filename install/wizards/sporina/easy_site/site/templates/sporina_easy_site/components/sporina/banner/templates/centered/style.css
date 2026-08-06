@@ -61,7 +61,7 @@
   margin-bottom: 14px;
   color: var(--text-secondary);
   font-size: var(--font-size-navigation);
-  line-height: var(--line-height-card-title);
+  line-height: var(--line-height-banner-badge);
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
@@ -81,7 +81,7 @@
   line-height: var(--line-height-body);
 }
 
-.sporina-banner-centered__button.button {
+.sporina-banner-centered__button.sporina-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -123,15 +123,7 @@
     padding: 28px 22px;
   }
 
-  .sporina-banner-centered__title {
-    font-size: var(--font-size-banner-centered-title);
-  }
-
-  .sporina-banner-centered__text {
-    font-size: var(--font-size-banner-body);
-  }
-
-  .sporina-banner-centered__button.button {
+  .sporina-banner-centered__button.sporina-button {
     width: 100%;
   }
 }

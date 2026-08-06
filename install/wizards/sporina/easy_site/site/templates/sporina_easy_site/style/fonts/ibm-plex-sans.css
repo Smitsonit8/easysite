@@ -1,0 +1,60 @@
+html[data-font="ibm-plex-sans"] {
+    --font-family-base: "IBM Plex Sans", Arial, sans-serif;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --font-weight-extrabold: 800;
+}
+
+html[data-font="ibm-plex-sans"] body,
+html[data-font="ibm-plex-sans"] p,
+html[data-font="ibm-plex-sans"] li {
+    font-family: var(--font-family-base);
+    font-weight: var(--font-weight-regular);
+}
+
+html[data-font="ibm-plex-sans"] nav,
+html[data-font="ibm-plex-sans"] .menu,
+html[data-font="ibm-plex-sans"] .header-menu {
+    font-weight: var(--font-weight-medium);
+}
+
+html[data-font="ibm-plex-sans"] h1,
+html[data-font="ibm-plex-sans"] h2,
+html[data-font="ibm-plex-sans"] h3,
+html[data-font="ibm-plex-sans"] h4,
+html[data-font="ibm-plex-sans"] h5,
+html[data-font="ibm-plex-sans"] h6 {
+    font-family: var(--font-family-base);
+    font-weight: var(--font-weight-medium);
+}
+
+html[data-font="ibm-plex-sans"] .card-title,
+html[data-font="ibm-plex-sans"] .service-title,
+html[data-font="ibm-plex-sans"] .product-title,
+html[data-font="ibm-plex-sans"] .news-title,
+html[data-font="ibm-plex-sans"] .news-card__title,
+html[data-font="ibm-plex-sans"] .staff__name,
+html[data-font="ibm-plex-sans"] .telegram__title {
+    font-weight: var(--font-weight-medium);
+}
+
+html[data-font="ibm-plex-sans"] .application__subtitle,
+html[data-font="ibm-plex-sans"] .contact-phone,
+html[data-font="ibm-plex-sans"] .contacts-phone,
+html[data-font="ibm-plex-sans"] .contacts__value,
+html[data-font="ibm-plex-sans"] .footer__contact,
+html[data-font="ibm-plex-sans"] .footer-contact,
+html[data-font="ibm-plex-sans"] .footer .contact-phone,
+html[data-font="ibm-plex-sans"] .footer .contacts-phone,
+html[data-font="ibm-plex-sans"] .footer .contacts__value {
+    font-weight: var(--font-weight-medium);
+}
+
+html[data-font="ibm-plex-sans"] button,
+html[data-font="ibm-plex-sans"] input,
+html[data-font="ibm-plex-sans"] textarea,
+html[data-font="ibm-plex-sans"] select {
+    font: inherit;
+}

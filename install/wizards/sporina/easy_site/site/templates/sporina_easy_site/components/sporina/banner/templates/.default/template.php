@@ -29,7 +29,7 @@ if ($arResult["BACKGROUND_IMAGE_SRC"] !== "")
 				<div class="sporina-banner__text"><?=$renderText($arResult["TEXT"])?></div>
 			<?php endif; ?>
 			<?php if ($arResult["SHOW_BUTTON"]): ?>
-				<a class="button sporina-banner__button" href="<?=htmlspecialcharsbx($arResult["BUTTON_LINK"])?>">
+				<a class="sporina-button sporina-banner__button" href="<?=htmlspecialcharsbx($arResult["BUTTON_LINK"])?>">
 					<?=htmlspecialcharsbx($arResult["BUTTON_TEXT"])?>
 				</a>
 			<?php endif; ?>

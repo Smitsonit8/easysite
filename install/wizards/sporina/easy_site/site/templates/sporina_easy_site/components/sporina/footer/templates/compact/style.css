@@ -17,7 +17,7 @@
 {
 	margin: 0 0 14px;
 	font-size: var(--font-size-navigation);
-	line-height: var(--line-height-card-title);
+	line-height: var(--line-height-ui);
 	letter-spacing: 0.08em;
 	text-transform: uppercase;
 	color: var(--text-muted);
