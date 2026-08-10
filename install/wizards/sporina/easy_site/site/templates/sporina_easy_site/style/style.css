@@ -43,16 +43,13 @@ width:100%;
 }
 
 .btn-effect-2 {
-    position: relative;
-    z-index: 1;
-
-    overflow: hidden;
-
-    border: 2px solid var(--primary);
-    background: transparent;
-    color: var(--primary);
-
-    transition: color 0.5s ease;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  border: 2px solid var(--primary);
+  background: transparent;
+  color: var(--primary);
+  transition: color 0.5s ease;
 }
 
 .btn-effect-2::before {
@@ -62,12 +59,9 @@ width:100%;
     top: 0;
     left: 0;
     z-index: -1;
-
     width: 0;
     height: 100%;
-
     background: var(--primary);
-
     transition: width 0.5s ease;
 }
 
@@ -80,17 +74,7 @@ width:100%;
 
 .btn-effect-2:hover::before {
     width: 100%;
-}
-/*
-a.sporina-button.sporina-banner-compact__button.btn-effect-2 {
-    border: 2px solid var(--border);
-    color: var(--text-inverse);
-}
-
-a.sporina-button.sporina-banner-compact__button.btn-effect-2:hover {
-    border: 2px solid var(--primary);
-}
-*/    
+} 
 
 .btn-effect-3 {
   background: var(--primary);
@@ -152,6 +136,43 @@ body.site-background-disabled {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+@media screen and (max-width: 992px) {
+  .sporina-header {
+    transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  body:not(.mobile-header--fixed) .sporina-header {
+    position: relative;
+    top: auto;
+  }
+
+  body.mobile-header--fixed .sporina-header {
+    position: sticky;
+    top: 0;
+  }
+
+  body.mobile-header--colored .sporina-header {
+    background-color: var(--primary);
+  }
+
+  body.mobile-header--white .sporina-header {
+    background-color: #fff;
+    box-shadow: 0 1px 8px rgb(0 0 0 / 12%);
+  }
+
+  body.mobile-header--white .sporina-header__burger-icon span {
+    background-color: var(--primary);
+  }
+
+  body.mobile-header--white .sporina-header__search path {
+    fill: var(--primary);
+  }
+
+  body.mobile-header--hide-on-scroll .sporina-header.sporina-header--mobile-hidden {
+    transform: translateY(-100%);
+  }
 }
 
 /* Призыв подписаться */

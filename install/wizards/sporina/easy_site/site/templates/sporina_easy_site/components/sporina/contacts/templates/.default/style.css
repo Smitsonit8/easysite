@@ -1,6 +1,7 @@
 .sporina-contacts
 {
 	margin-top: 20px;
+    padding: 32px 40px;
 }
 
 .sporina-contacts__intro
@@ -100,6 +101,7 @@
 	gap: 18px;
 	padding: 16px 0;
 	border-bottom: 1px solid rgba(18, 45, 66, 0.08);
+	align-items: center;
 }
 
 .sporina-contacts__card--company .sporina-contacts__row
@@ -123,7 +125,7 @@
 	color: var(--text-muted);
 	font-size: var(--font-size-news-badge);
 	font-weight: var(--font-weight-bold);
-	line-height: var(--line-height-news-badge);
+	/*line-height: var(--line-height-news-badge);*/
 	letter-spacing: 0.08em;
 	text-transform: uppercase;
 }

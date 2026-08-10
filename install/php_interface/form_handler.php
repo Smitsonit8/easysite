@@ -1,227 +1,115 @@
 <?php
-define('DEBUG_FILE_NAME', 'debug_i.txt');
-/**
- * Обработчик события onBeforeResultAdd для передачи значения из детальной страницы в форму
- * 
- * Подключить в /bitrix/php_interface/init.php:
- * require_once($_SERVER["DOCUMENT_ROOT"]."/local/php_interface/form_handler.php");
- * или
- * require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/php_interface/form_handler.php");
- */
 
-// use Bitrix\Main\Loader; // Не используем напрямую для совместимости
-
-/**
- * Обработчик события onBeforeResultAdd
- * Передает значение из сессии в поле формы с символьным кодом USLUGA
- * 
- * @param int $WEB_FORM_ID ID веб-формы
- * @param array $arFields Массив полей результата для записи в БД
- * @param array $arrVALUES Массив значений ответов результата веб-формы
- */
-function onBeforeResultAdd_AddUslugaField($WEB_FORM_ID, &$arFields, &$arrVALUES)
+function sporinaLogFormResultEvent($stage, array $context = array())
 {
-	global $APPLICATION;
-	$form_order = getFormBySID("ORDER_FORM");
-	$form_buy = getFormBySID("BUY_FORM");
-	if ($WEB_FORM_ID == $form_order) 
-	{
-		//writeToLog($arrVALUES, '$arrVALUES');
-		// Получаем значение из сессии
-		$uslugaName = isset($_SESSION['FORM_USLUGA_NAME']) ? $_SESSION['FORM_USLUGA_NAME'] : '';
-		//writeToLog($uslugaName, '$uslugaName');
-		if (!empty($uslugaName)) 
-		{
-			// Получаем ID поля по символьному коду ORDER
-			$fieldId = getFormFieldIdByCode($WEB_FORM_ID, 'ORDER');
-			//writeToLog($fieldId, '$fieldId');
-			if ($fieldId) 
-			{
-				// Определяем тип поля и формируем имя поля
-				$fieldType = getFormFieldType($WEB_FORM_ID, $fieldId);
-				
-				if ($fieldType) 
-				{
-					// Формируем имя поля в зависимости от типа
-					// Например: form_text_123, form_textarea_123, form_dropdown_123 и т.д.
-					$fieldName = 'form_' . $fieldType;
-					//writeToLog($fieldName, '$fieldName');
-					
-					// Записываем значение в массив значений формы
-					$arrVALUES[$fieldName] = $uslugaName;
-					//writeToLog($arrVALUES, '$arrVALUES-результат');
-					
-					// Очищаем значение из сессии после использования
-					unset($_SESSION['FORM_USLUGA_NAME']);
-				}
-			}
-		}
-	}
-	if ($WEB_FORM_ID == $form_buy) 
-	{
-		//writeToLog($arrVALUES, '$arrVALUES');
-		// Получаем значение из сессии
-		$uslugaName = isset($_SESSION['FORM_TOVAR_NAME']) ? $_SESSION['FORM_TOVAR_NAME'] : '';
-		
-		if (!empty($uslugaName)) 
-		{
-			// Получаем ID поля по символьному коду ORDER
-			$fieldId = getFormFieldIdByCode($WEB_FORM_ID, 'ORDER');
-			
-			if ($fieldId) 
-			{
-				// Определяем тип поля и формируем имя поля
-				$fieldType = getFormFieldType($WEB_FORM_ID, $fieldId);
-				
-				if ($fieldType) 
-				{
-					// Формируем имя поля в зависимости от типа
-					// Например: form_text_123, form_textarea_123, form_dropdown_123 и т.д.
-					$fieldName = 'form_' . $fieldType;
-					//writeToLog($fieldName, '$fieldName');
-					
-					// Записываем значение в массив значений формы
-					$arrVALUES[$fieldName] = $uslugaName;
-					//writeToLog($arrVALUES, '$arrVALUES-результат');
-					
-					// Очищаем значение из сессии после использования
-					unset($_SESSION['FORM_TOVAR_NAME']);
-				}
-			}
-		}
-	}
+    \Bitrix\Main\Diag\Debug::writeToFile(
+        array_merge(array('stage' => $stage), $context),
+        '',
+        $_SERVER['DOCUMENT_ROOT'] . '/bitrix/php_interface/sporina_form_debug.log'
+    );
 }
 
-//Поиск ид формы по SID
-function getFormBySID($sid) {
-	// Подключаем модуль формы
-	if (class_exists('Bitrix\Main\Loader')) {
-		if (!\Bitrix\Main\Loader::includeModule('form')) {
-			return false;
-		}
-	} else {
-		if (!CModule::IncludeModule('form')) {
-			return false;
-		}
-	}
-	global $DB;
-
-	// Безопасно экранируем входные данные для предотвращения SQL-инъекций
-	$safeSid = $DB->ForSql($sid);
-	
-	// Запрос к таблице b_form для получения ID по SID
-	$rs = $DB->Query("
-		SELECT ID
-		FROM b_form
-		WHERE SID = '{$safeSid}'
-	");
-	
-	// Если форма найдена — возвращаем её ID
-	if ($ar = $rs->Fetch()) {
-		return (int)$ar['ID'];
-	}
-	return false;
-}
-
-/**
- * Получает ID поля формы по символьному коду
- * 
- * @param int $formId ID формы
- * @param string $code Символьный код поля
- * @return int|false ID поля или false
- */
-function getFormFieldIdByCode($formId, $code)
+function sporinaOnBeforeFormResultAdd($webFormId, &$arFields, &$arValues)
 {
-	// Подключаем модуль формы (совместимость со старыми и новыми версиями Bitrix)
-	if (class_exists('Bitrix\Main\Loader')) {
-		if (!\Bitrix\Main\Loader::includeModule('form')) {
-			return false;
-		}
-	} else {
-		if (!CModule::IncludeModule('form')) {
-			return false;
-		}
-	}
-	
-	$by = "s_id";
-	$order = "asc";
-	$arFilter = [
-		'SID' => $code,
-		'SID_EXACT_MATCH' => 'Y'  // Точное совпадение по символьному коду
-	];
-	$isFiltered = false;
-	$rsFields = CFormField::GetList(
-		$formId,
-		'ALL',
-		$by,
-		$order,
-		$arFilter,
-		$isFiltered
-	);
-	
-	if ($arField = $rsFields->Fetch()) 
-	{
-		//writeToLog($arField, '$arField');
-		return $arField['ID'];
-	}
-	
-	return false;
+    $webFormId = (int)$webFormId;
+    sporinaLogFormResultEvent('onBeforeResultAdd', array(
+        'form_id' => $webFormId,
+        'context_id' => isset($_POST['SPORINA_FORM_CONTEXT_ID']) ? (int)$_POST['SPORINA_FORM_CONTEXT_ID'] : 0,
+        'context_type' => isset($_POST['SPORINA_FORM_CONTEXT_TYPE']) ? (string)$_POST['SPORINA_FORM_CONTEXT_TYPE'] : '',
+        'has_name' => !empty($_POST['form_text_291']),
+        'has_email' => !empty($_POST['form_email_292']),
+        'has_message' => !empty($_POST['form_textarea_293']),
+    ));
+    $contexts = array(
+        'product' => array(
+            'form_id' => defined('BUY_FORM_ID') ? (int)BUY_FORM_ID : 0,
+            'iblock_id' => defined('PRODUCTS_IBLOCK_ID') ? (int)PRODUCTS_IBLOCK_ID : 0,
+        ),
+        'service' => array(
+            'form_id' => defined('ORDER_FORM_ID') ? (int)ORDER_FORM_ID : 0,
+            'iblock_id' => defined('SERVICES_IBLOCK_ID') ? (int)SERVICES_IBLOCK_ID : 0,
+        ),
+    );
+
+    $contextType = isset($_POST['SPORINA_FORM_CONTEXT_TYPE']) ? (string)$_POST['SPORINA_FORM_CONTEXT_TYPE'] : '';
+    $elementId = isset($_POST['SPORINA_FORM_CONTEXT_ID']) ? (int)$_POST['SPORINA_FORM_CONTEXT_ID'] : 0;
+
+    if (!isset($contexts[$contextType]) || $elementId <= 0) {
+        sporinaLogFormResultEvent('skipped_invalid_context');
+        return;
+    }
+
+    $context = $contexts[$contextType];
+    if ($context['form_id'] !== $webFormId || $context['iblock_id'] <= 0) {
+        sporinaLogFormResultEvent('skipped_form_or_iblock_mismatch', array('iblock_id' => $context['iblock_id']));
+        return;
+    }
+
+    $element = CIBlockElement::GetList(
+        array(),
+        array(
+            'ID' => $elementId,
+            'IBLOCK_ID' => $context['iblock_id'],
+            'ACTIVE' => 'Y',
+        ),
+        false,
+        false,
+        array('ID', 'NAME')
+    )->Fetch();
+
+    if (!$element) {
+        sporinaLogFormResultEvent('skipped_element_not_found', array('element_id' => $elementId));
+        return;
+    }
+
+    $orderAnswer = sporinaGetFormAnswerByFieldSid($webFormId, 'ORDER');
+    if (!$orderAnswer) {
+        sporinaLogFormResultEvent('skipped_order_field_not_found');
+        return;
+    }
+
+    $arValues['form_' . $orderAnswer['FIELD_TYPE'] . '_' . $orderAnswer['ID']] = $element['NAME'];
+    sporinaLogFormResultEvent('order_value_assigned', array('answer_id' => (int)$orderAnswer['ID']));
 }
 
-/**
- * Получает тип поля формы по ID
- * 
- * @param int $formId ID формы
- * @param int $fieldId ID поля
- * @return string|false Тип поля или false
- */
-function getFormFieldType($formId, $fieldId)
+function sporinaGetFormAnswerByFieldSid($formId, $fieldSid)
 {
-	// Подключаем модуль формы (совместимость со старыми и новыми версиями Bitrix)
-	if (class_exists('Bitrix\Main\Loader')) {
-		if (!\Bitrix\Main\Loader::includeModule('form')) {
-			return false;
-		}
-	} else {
-		if (!CModule::IncludeModule('form')) {
-			return false;
-		}
-	}
-	$isFiltered = false;
-	$rsAnswers = CFormAnswer::GetList(
-	$fieldId, 
-	$by="s_id", 
-	$order="desc", 
-	$arFilter = [], 
-	$isFiltered
-	);
+    $by = 's_id';
+    $order = 'asc';
+    $isFiltered = false;
+    $field = CFormField::GetList(
+        $formId,
+        'ALL',
+        $by,
+        $order,
+        array('SID' => $fieldSid, 'SID_EXACT_MATCH' => 'Y'),
+        $isFiltered
+    )->Fetch();
 
-	if ($arAnswer = $rsAnswers->Fetch()) 
-	{
-		//writeToLog($arAnswer, '$arAnswer');
-		// Возвращаем тип ответа (text, textarea, dropdown и т.д.)
-		return $arAnswer['FIELD_TYPE'].'_'.$arAnswer['ID'];
-	}
-	
-	return false;
+    if (!$field) {
+        return false;
+    }
+
+    $answer = CFormAnswer::GetList($field['ID'], $by, $order, array(), $isFiltered)->Fetch();
+
+    return $answer ?: false;
 }
 
-function writeToLog($data, $title = '')
+AddEventHandler('form', 'onBeforeResultAdd', 'sporinaOnBeforeFormResultAdd');
+
+function sporinaOnAfterFormResultAdd($webFormId, $resultId)
 {
-	if (!DEBUG_FILE_NAME)
-	return false;
+    $formIds = array_filter(array(
+        defined('BUY_FORM_ID') ? (int)BUY_FORM_ID : 0,
+        defined('ORDER_FORM_ID') ? (int)ORDER_FORM_ID : 0,
+    ));
 
-	$log = "\n------------------------\n";
-	$log .= date("Y.m.d G:i:s")."\n";
-	$log .= (strlen($title) > 0 ? $title : 'DEBUG')."\n";
-	$log .= print_r($data, 1);
-	$log .= "\n------------------------\n";
-
-	file_put_contents(__DIR__."/".DEBUG_FILE_NAME, $log, FILE_APPEND);
-
-	return true;
+    if (in_array((int)$webFormId, $formIds, true)) {
+        sporinaLogFormResultEvent('onAfterResultAdd', array(
+            'form_id' => (int)$webFormId,
+            'result_id' => (int)$resultId,
+        ));
+    }
 }
 
-
-// Регистрируем обработчик события
-AddEventHandler('form', 'onBeforeResultAdd', 'onBeforeResultAdd_AddUslugaField');
+AddEventHandler('form', 'onAfterResultAdd', 'sporinaOnAfterFormResultAdd');

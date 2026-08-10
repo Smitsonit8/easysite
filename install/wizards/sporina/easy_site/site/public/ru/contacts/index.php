@@ -5,16 +5,26 @@ $APPLICATION->SetPageProperty("description", "Страница контакто�
 $APPLICATION->SetTitle("Контакты");
 ?>
 
-<!-- слайдер с текстом на нем отличается от главной страници-->
-<?$APPLICATION->IncludeComponent("bitrix:main.include","sporina-slider-pages", array(
-		"AREA_FILE_SHOW" => "file",
-		"PATH" => SITE_DIR."include/slider-pages.php",
-	),
-	false
+<?$APPLICATION->IncludeComponent(
+	"sporina:banner",
+	"compact",
+	Array(
+		"BACKGROUND_IMAGE_SRC" => SITE_TEMPLATE_PATH."/style/img/bg_w.png",
+		"BUTTON_LINK" => SITE_DIR."contacts/",
+		"BUTTON_TEXT" => "Связаться с нами",
+		"COMPONENT_TEMPLATE" => "compact",
+		"IMAGE_SRC" => "",
+		"MOBILE_IMAGE_SRC" => SITE_TEMPLATE_PATH."/style/img/application_img.svg",
+		"SHOW_BUTTON" => "Y",
+		"SHOW_IMAGE" => "Y",
+		"SLOGAN" => "Работаем для вашего удобства",
+		"TEXT" => "Подберите нужный раздел, изучите услуги и свяжитесь с нами, если нужна помощь или персональная консультация.",
+		"TITLE" => $APPLICATION->GetTitle(false)
+	)
 );?>
 <!--меню, контент-->
 <section class="container content_flex">
-  <div class="content">
+  <div class="content-no-menu">
     <?php
     $sporinaSettings = isset($GLOBALS['SPORINA_EASY_SITE_SETTINGS']) && is_array($GLOBALS['SPORINA_EASY_SITE_SETTINGS'])
         ? $GLOBALS['SPORINA_EASY_SITE_SETTINGS']

@@ -104,9 +104,9 @@ if ($ElementID) {
 		"sporina-form-order",
 		[
 			"WEB_FORM_ID" => BUY_FORM_ID,
-			"SUCCESS_URL" => $currentUrl,
-			"CACHE_TYPE" => "A",
-			"CACHE_TIME" => "3600",
+			"CONTEXT_ELEMENT_ID" => (int) $ElementID,
+			"CONTEXT_TYPE" => "product",
+			"CACHE_TYPE" => "N",
 			"IGNORE_CUSTOM_TEMPLATE" => "N",
 			"USE_EXTENDED_ERRORS" => "N",
 		],

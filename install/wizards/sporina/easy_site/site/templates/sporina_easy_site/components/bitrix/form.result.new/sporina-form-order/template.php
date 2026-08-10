@@ -18,12 +18,13 @@ $this->addExternalJs($templateFolder."/script.js");
 if ($arResult["isFormNote"] == "Y" && !empty($arResult["FORM_NOTE"])) {
 	?>
 
-	<div id="form-success-popup" class="form-popup-overlay">
+	<div id="form-success-popup" class="form-popup-overlay" role="dialog" aria-modal="true" aria-labelledby="form-success-title" aria-describedby="form-success-message">
 		<div class="form-popup-content">
-			<span class="form-popup-close">&times;</span>
+			<button type="button" class="form-popup-close" aria-label="Закрыть">&times;</button>
 			<div class="form-popup-body">
+				<h2 id="form-success-title" class="visually-hidden">Заявка отправлена</h2>
 				<div class="form-popup-icon">✓</div>
-				<div class="form-popup-message"><?=$arResult["FORM_NOTE"]?></div>
+				<div id="form-success-message" class="form-popup-message"><?=htmlspecialcharsbx($arResult["FORM_NOTE"])?></div>
 			</div>
 		</div>
 	</div>
@@ -35,6 +36,10 @@ if ($arResult["isFormNote"] == "Y" && !empty($arResult["FORM_NOTE"])) {
 ?>
 <div class="block-form">
 <?=$arResult["FORM_HEADER"]?>
+<?php if (!empty($arParams['CONTEXT_ELEMENT_ID']) && !empty($arParams['CONTEXT_TYPE'])): ?>
+<input type="hidden" name="SPORINA_FORM_CONTEXT_ID" value="<?=htmlspecialcharsbx((string)(int)$arParams['CONTEXT_ELEMENT_ID'])?>">
+<input type="hidden" name="SPORINA_FORM_CONTEXT_TYPE" value="<?=htmlspecialcharsbx((string)$arParams['CONTEXT_TYPE'])?>">
+<?php endif; ?>
 
 
 <br />
@@ -122,7 +127,8 @@ if($arResult["isUseCaptcha"] == "Y")
 	<tfoot>
 		<tr>
 			<th colspan="2">
-				<button <?=(intval($arResult["F_RIGHT"]) < 10 ? "disabled=\"disabled\"" : "");?> type="submit" class="sporina-button" name="web_form_submit"><?=htmlspecialcharsbx(trim($arResult["arForm"]["BUTTON"]) == '' ? GetMessage("FORM_ADD") : $arResult["arForm"]["BUTTON"]);?></button>
+				<?php $submitLabel = trim($arResult["arForm"]["BUTTON"]) == '' ? GetMessage("FORM_ADD") : $arResult["arForm"]["BUTTON"]; ?>
+				<button <?=(intval($arResult["F_RIGHT"]) < 10 ? "disabled=\"disabled\"" : "");?> type="submit" class="sporina-button" name="web_form_submit" value="<?=htmlspecialcharsbx($submitLabel)?>"><?=htmlspecialcharsbx($submitLabel)?></button>
 
 			</th>
 		</tr>

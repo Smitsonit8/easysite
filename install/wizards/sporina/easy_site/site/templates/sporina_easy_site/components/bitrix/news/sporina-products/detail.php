@@ -28,6 +28,7 @@ Loc::loadMessages(__FILE__);
 	</a>
 </div>
 <?
+
 $ElementID = $APPLICATION->IncludeComponent(
 	"bitrix:news.detail",
 	$arParams["NEWS_DETAIL_TEMPLATE"] ?: "detail.1",
@@ -97,15 +98,15 @@ if ($ElementID) {
 	} elseif (!empty($arResult["VARIABLES"]["ELEMENT_ID"])) {
 		$currentUrl = $arResult["FOLDER"].str_replace("#ELEMENT_ID#", $arResult["VARIABLES"]["ELEMENT_ID"], $arResult["URL_TEMPLATES"]["detail"]);
 	}
-	
 	// Вызываем компонент формы независимо от компонента news
 	$APPLICATION->IncludeComponent(
 		"bitrix:form.result.new",
 		"sporina-form-order",
 		[
 			"WEB_FORM_ID" => BUY_FORM_ID,
-			"SUCCESS_URL" => $currentUrl,
-			"CACHE_TYPE" => "A",
+			"CONTEXT_ELEMENT_ID" => (int) $ElementID,
+			"CONTEXT_TYPE" => "product",
+			"CACHE_TYPE" => "N",
 			"CACHE_TIME" => "3600",
 			"IGNORE_CUSTOM_TEMPLATE" => "N",
 			"USE_EXTENDED_ERRORS" => "N",

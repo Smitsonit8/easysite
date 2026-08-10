@@ -39,6 +39,11 @@ $headingSize = in_array($sporinaSettings['typography-heading-size'] ?? '', ['sma
 $buttonEffect = in_array($sporinaSettings['template-button-effect'] ?? '', ['', 'btn-effect-1', 'btn-effect-2', 'btn-effect-3'], true)
 	? $sporinaSettings['template-button-effect']
 	: '';
+$mobileHeaderColor = in_array($sporinaSettings['mobile-header-color'] ?? '', ['colored', 'white'], true)
+	? $sporinaSettings['mobile-header-color']
+	: 'colored';
+$mobileHeaderFixed = ($sporinaSettings['mobile-header-fixed'] ?? 'Y') === 'Y';
+$mobileHeaderHideOnScroll = $mobileHeaderFixed && ($sporinaSettings['mobile-header-hide-on-scroll'] ?? 'N') === 'Y';
 ?>
 <!DOCTYPE html>
 <html lang="ru" data-font="<?=htmlspecialcharsbx($font)?>" data-text-size="<?=htmlspecialcharsbx($textSize)?>" data-heading-size="<?=htmlspecialcharsbx($headingSize)?>">
@@ -103,6 +108,58 @@ $buttonEffect = in_array($sporinaSettings['template-button-effect'] ?? '', ['', 
       })();
       </script>
     <?endif?>
+    <?if ($mobileHeaderHideOnScroll):?>
+    <script>
+      (function () {
+        function initializeMobileHeaderScroll() {
+          var media = window.matchMedia('(max-width: 992px)');
+          var header = document.querySelector('.sporina-header');
+          var menuToggle = document.getElementById('sporina-header-burger');
+          var previousScrollY = window.scrollY;
+          var ticking = false;
+
+          if (!header) return;
+
+          function updateHeader() {
+            var currentScrollY = window.scrollY;
+
+            if (!media.matches || (menuToggle && menuToggle.checked) || currentScrollY <= 16 || currentScrollY < previousScrollY) {
+              header.classList.remove('sporina-header--mobile-hidden');
+            } else if (currentScrollY > previousScrollY) {
+              header.classList.add('sporina-header--mobile-hidden');
+            }
+
+            previousScrollY = currentScrollY;
+            ticking = false;
+          }
+
+          window.addEventListener('scroll', function () {
+            if (!ticking) {
+              window.requestAnimationFrame(updateHeader);
+              ticking = true;
+            }
+          }, {passive: true});
+
+          if (menuToggle) {
+            menuToggle.addEventListener('change', function () {
+              if (menuToggle.checked) header.classList.remove('sporina-header--mobile-hidden');
+            });
+          }
+
+          media.addEventListener('change', function () {
+            header.classList.remove('sporina-header--mobile-hidden');
+            previousScrollY = window.scrollY;
+          });
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initializeMobileHeaderScroll);
+        } else {
+          initializeMobileHeaderScroll();
+        }
+      })();
+    </script>
+    <?endif?>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=Onest:wght@400;500;600;700&family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -110,7 +167,7 @@ $buttonEffect = in_array($sporinaSettings['template-button-effect'] ?? '', ['', 
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/dist/assets/owl.theme.default.min.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
-<body class="bx-theme-<?=$theme?> header-template-<?=$headerTemplate?><?=$appearance['backgroundUse'] === "N" ? " site-background-disabled" : ""?>">
+<body class="bx-theme-<?=$theme?> header-template-<?=$headerTemplate?> mobile-header--<?=$mobileHeaderColor?><?=$mobileHeaderFixed ? " mobile-header--fixed" : ""?><?=$mobileHeaderHideOnScroll ? " mobile-header--hide-on-scroll" : ""?><?=$appearance['backgroundUse'] === "N" ? " site-background-disabled" : ""?>">
     <div id="panel">
 		<?$APPLICATION->ShowPanel();?>
     </div>
