@@ -134,7 +134,7 @@
 	color: var(--primary);
 	font-size: var(--font-size-news-badge);
 	font-weight: var(--font-weight-bold);
-	letter-spacing: 0.08em;
+	letter-spacing: 0.05em;
 	text-transform: uppercase;
 	align-self: flex-start;
 }
@@ -220,11 +220,6 @@
 	.sporina-news-company__back
 	{
 		padding: 12px 18px;
-	}
-
-	.sporina-news-company__back-text
-	{
-		font-size: var(--font-size-news-more);
 	}
 
 	.sporina-news-company__pager .modern-page-navigation,

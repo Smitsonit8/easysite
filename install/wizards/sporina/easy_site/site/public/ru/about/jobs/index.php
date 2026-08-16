@@ -2,7 +2,7 @@
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Вакансии");
 ?>
-<!-- слайдер с текстом на нем отличается от главной страници-->
+
 <?$APPLICATION->IncludeComponent("bitrix:main.include","sporina-slider-pages", array(
 		"AREA_FILE_SHOW" => "file",
 		"PATH" => SITE_DIR."include/slider-pages.php",
@@ -16,7 +16,6 @@ $APPLICATION->SetTitle("Вакансии");
     <div class="content_nav-bg">
       <input type="checkbox" id="content_nav-head">
       <label class="content_nav-head" for="content_nav-head"><?$APPLICATION->ShowTitle()?></label>
-      <!--<label class="content_nav-head" for="content_nav-head"> О компании</label>-->
       <?$APPLICATION->IncludeComponent("bitrix:menu", "sporina-left-menu", Array(
             "ALLOW_MULTI_SELECT" => "N",
               "CHILD_MENU_TYPE" => "left",
@@ -40,11 +39,11 @@ $APPLICATION->SetTitle("Вакансии");
   <div class="content">
     <?$APPLICATION->IncludeComponent(
 	"bitrix:news", 
-	"vacancies.2", 
+	"vacancies.1", 
 	[
-		"COMPONENT_TEMPLATE" => "vacancies.2",
-		"IBLOCK_TYPE" => "easy_site_company",
-		"IBLOCK_ID" => "445",
+		"COMPONENT_TEMPLATE" => "vacancies.1",
+		"IBLOCK_TYPE" => "easy_infocompany",
+		"IBLOCK_ID" => JOBS_IBLOCK_ID,
 		"NEWS_COUNT" => "20",
 		"USE_SEARCH" => "N",
 		"NEWS_LIST_TEMPLATE" => "cards",
@@ -134,9 +133,9 @@ $APPLICATION->SetTitle("Вакансии");
 		"PROPERTY_SOCIAL_RUTUBE" => "RUTUBE",
 		"PROPERTY_SOCIAL_DZEN" => "DZEN",
 		"PROPERTY_CITY" => "CITY",
-		"PROPERTY_SKILL" => "",
-		"PROPERTY_TYPE_EMPLOYMENT" => "",
-		"PROPERTY_SALARY" => "",
+		"PROPERTY_SKILL" => "EXP",
+		"PROPERTY_TYPE_EMPLOYMENT" => "TYPE",
+		"PROPERTY_SALARY" => "WAGE",
 		"PROPERTY_EXP" => "EXP",
 		"PROPERTY_TYPE" => "TYPE",
 		"PROPERTY_WAGE" => "WAGE",
@@ -159,7 +158,6 @@ $APPLICATION->SetTitle("Вакансии");
   </div>
 
 </section>
-<!-- подписаться на телеграм-->
 <!-- подписаться на телеграм-->
 <?$APPLICATION->IncludeComponent("bitrix:main.include","sporina-subscribe-t", array(
 		"AREA_FILE_SHOW" => "file",

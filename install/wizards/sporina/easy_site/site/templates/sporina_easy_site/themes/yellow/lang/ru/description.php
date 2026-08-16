@@ -1,3 +1,3 @@
 <?php
-$MESS["CPST_BLUE"] = "Синий";
+$MESS["CPST_YELLOW"] = "Жёлтый";
 ?>

@@ -155,10 +155,6 @@ class SiteSettingsStep extends CSiteSettingsWizardStep
 		
 		$wizard->SetDefaultVars(Array(
 			//"siteName" => $this->GetFileContent(WIZARD_SITE_PATH."include/company_name.php", GetMessage("WIZ_COMPANY_NAME_DEF")),
-			"siteTelephone" => $this->GetFileContent(WIZARD_SITE_PATH."include/telephone.php", GetMessage("WIZ_COMPANY_TELEPHONE_DEF")),
-			"siteAdress" => $this->GetFileContent(WIZARD_SITE_PATH."include/adress.php", GetMessage("WIZ_COMPANY_ADRESS_DEF")),
-			"siteEmail" => $this->GetFileContent(WIZARD_SITE_PATH."include/email.php", GetMessage("WIZ_COMPANY_EMAIL_DEF")),
-			"siteCopy" => $this->GetFileContent(WIZARD_SITE_PATH."include/copyright.php", GetMessage("WIZ_COMPANY_COPY_DEF")),
 			"siteMetaDescription" => GetMessage("wiz_site_desc"),
 			"siteMetaKeywords" => GetMessage("wiz_keywords"),
 			"installDemoData" => "Y",
@@ -178,35 +174,7 @@ class SiteSettingsStep extends CSiteSettingsWizardStep
 		</div>';
 		*/
 		$this->content .= '
-		<div class="wizard-input-form-block">
-			<label for="siteTelephone" class="wizard-input-title">'.GetMessage("WIZ_COMPANY_TELEPHONE").'</label>
-			'.$this->ShowInputField('text', 'siteTelephone', array("id" => "siteTelephone", "class" => "wizard-field")).'
-		</div>';
-
-		$this->content .= '
-		<div class="wizard-input-form-block">
-			<label for="siteAdress" class="wizard-input-title">'.GetMessage("WIZ_COMPANY_ADRESS").'</label>
-			'.$this->ShowInputField('text', 'siteAdress', array("id" => "siteAdress", "class" => "wizard-field")).'
-		</div>';
-
-		$this->content .= '
-		<div class="wizard-input-form-block">
-			<label for="siteEmail" class="wizard-input-title">'.GetMessage("WIZ_COMPANY_EMAIL").'</label>
-			'.$this->ShowInputField('text', 'siteEmail', array("id" => "siteEmail", "class" => "wizard-field")).'
-		</div>';
-		
-		$this->content .= '
-		<div class="wizard-input-form-block">
-			<label for="siteCopy" class="wizard-input-title">'.GetMessage("WIZ_COMPANY_COPY").'</label>
-			'.$this->ShowInputField('textarea', 'siteCopy', array("rows"=>"3", "id" => "siteCopy", "class" => "wizard-field")).'
-		</div>';
-		
-		$firstStep = COption::GetOptionString("main", "wizard_first".mb_substr($wizard->GetID(), 7)  . "_" . $wizard->GetVar("siteID"), false, $wizard->GetVar("siteID"));
-		$styleMeta = 'style="display:block"';
-		if($firstStep == "Y") $styleMeta = 'style="display:none"';
-		
-		$this->content .= '
-		<div id="bx_metadata" '.$styleMeta.'>
+		<div id="bx_metadata">
 			<div class="wizard-input-form-block">
 				<div class="wizard-metadata-title">'.GetMessage("wiz_meta_data").'</div>
 				<label for="siteMetaDescription" class="wizard-input-title">'.GetMessage("wiz_meta_description").'</label>
@@ -220,22 +188,7 @@ class SiteSettingsStep extends CSiteSettingsWizardStep
 		</div>';
 		
 		// Установка демо-данных
-		if($firstStep == "Y")
-		{
-			$this->content .= '
-			<div class="wizard-input-form-block">
-				'.$this->ShowCheckboxField(
-							"installDemoData",
-							"Y",
-							(array("id" => "installDemoData", "onClick" => "if(this.checked == true){document.getElementById('bx_metadata').style.display='block';}else{document.getElementById('bx_metadata').style.display='none';}"))
-						).'
-				<label for="installDemoData">'.GetMessage("wiz_structure_data").'</label>
-			</div>';
-		}
-		else
-		{
-			$this->content .= $this->ShowHiddenField("installDemoData","Y");
-		}
+		$this->content .= $this->ShowHiddenField("installDemoData", "Y");
 		
 		$this->content .= '</div>';
 	}

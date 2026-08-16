@@ -16,18 +16,18 @@ $siteID = WIZARD_SITE_ID;
 
 // Тип "Рекламные баннеры"
 $arFields = Array(
-    "ID" => "advertising_bannerss",
+    "ID" => "easy_promobanners",
     "SECTIONS" => "Y",
     "IN_RSS" => "N",
     "SORT" => 100,
     "LANG" => Array(
         "ru" => Array(
-            "NAME" => "Рекламные баннеры",
+            "NAME" => "EASY.Рекламные баннеры",
             "SECTION_NAME" => "Разделы",
             "ELEMENT_NAME" => "Баннеры"
         ),
         "en" => Array(
-            "NAME" => "Advertising Banners",
+            "NAME" => "EASY.Promo Banners",
             "SECTION_NAME" => "Sections",
             "ELEMENT_NAME" => "Banners"
         )
@@ -44,18 +44,18 @@ if(!$res) {
 
 // Тип "Карточки информации"
 $arFields = Array(
-    "ID" => "cards_info",
+    "ID" => "easy_cardsinfo",
     "SECTIONS" => "Y",
     "IN_RSS" => "N",
     "SORT" => 110,
     "LANG" => Array(
         "ru" => Array(
-            "NAME" => "Карточки информации",
+            "NAME" => "EASY.Карточки информации",
             "SECTION_NAME" => "Разделы",
             "ELEMENT_NAME" => "Карточки"
         ),
         "en" => Array(
-            "NAME" => "Info Cards",
+            "NAME" => "EASY.Info Cards",
             "SECTION_NAME" => "Sections",
             "ELEMENT_NAME" => "Cards"
         )
@@ -70,20 +70,48 @@ if(!$res) {
     $DB->Commit();
 }
 
-// Тип "Новости и изменения"
+// Тип "Новости и статьи"
 $arFields = Array(
-    "ID" => "news_and_changes",
+    "ID" => "easy_news_articles",
     "SECTIONS" => "Y",
     "IN_RSS" => "N",
     "SORT" => 120,
     "LANG" => Array(
         "ru" => Array(
-            "NAME" => "Новости и изменения",
+            "NAME" => "EASY.Новости и статьи",
             "SECTION_NAME" => "Разделы",
             "ELEMENT_NAME" => "Элементы"
         ),
         "en" => Array(
-            "NAME" => "News and Changes",
+            "NAME" => "EASY.News and articles",
+            "SECTION_NAME" => "Sections",
+            "ELEMENT_NAME" => "Items"
+        )
+    )
+);
+$obBlocktype = new CIBlockType;
+$DB->StartTransaction();
+$res = $obBlocktype->Add($arFields);
+if(!$res) {
+    $DB->Rollback();
+} else {
+    $DB->Commit();
+}
+
+// Тип "Информация о компании"
+$arFields = Array(
+    "ID" => "easy_infocompany",
+    "SECTIONS" => "Y",
+    "IN_RSS" => "N",
+    "SORT" => 120,
+    "LANG" => Array(
+        "ru" => Array(
+            "NAME" => "EASY.Информация о компании",
+            "SECTION_NAME" => "Разделы",
+            "ELEMENT_NAME" => "Элементы"
+        ),
+        "en" => Array(
+            "NAME" => "EASY.Information about company",
             "SECTION_NAME" => "Sections",
             "ELEMENT_NAME" => "Items"
         )
@@ -100,18 +128,18 @@ if(!$res) {
 
 // Тип "Услуги"
 $arFields = Array(
-    "ID" => "services",
+    "ID" => "easy_services",
     "SECTIONS" => "Y",
     "IN_RSS" => "N",
     "SORT" => 122,
     "LANG" => Array(
         "ru" => Array(
-            "NAME" => "Услуги",
+            "NAME" => "EASY.Услуги",
             "SECTION_NAME" => "Разделы",
             "ELEMENT_NAME" => "Услуги"
         ),
         "en" => Array(
-            "NAME" => "Services",
+            "NAME" => "EASY.Services",
             "SECTION_NAME" => "Sections",
             "ELEMENT_NAME" => "Services"
         )
@@ -128,18 +156,18 @@ if(!$res) {
 
 // Тип "Товары"
 $arFields = Array(
-    "ID" => "products",
+    "ID" => "easy_products",
     "SECTIONS" => "Y",
     "IN_RSS" => "N",
     "SORT" => 123,
     "LANG" => Array(
         "ru" => Array(
-            "NAME" => "Товары",
+            "NAME" => "EASY.Товары",
             "SECTION_NAME" => "Разделы",
             "ELEMENT_NAME" => "Товары"
         ),
         "en" => Array(
-            "NAME" => "Products",
+            "NAME" => "EASY.Products",
             "SECTION_NAME" => "Sections",
             "ELEMENT_NAME" => "Products"
         )

@@ -65,9 +65,15 @@ Class sporina_easysite extends CModule
 			true,
 			true
 		);
+		CopyDirFiles(
+			$_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/sporina.easysite/install/components/sporina/news",
+			$_SERVER["DOCUMENT_ROOT"]."/bitrix/components/sporina/news",
+			true,
+			true
+		);
 		foreach (["banner", "contacts", "footer", "header"] as $componentName) {
 			CopyDirFiles(
-				$_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/sporina.easysite/install/wizards/sporina/easy_site/site/templates/sporina_easy_site/components/sporina/".$componentName,
+				$_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/sporina.easysite/install/components/sporina/".$componentName,
 				$_SERVER["DOCUMENT_ROOT"]."/bitrix/components/sporina/".$componentName,
 				true,
 				true
@@ -131,16 +137,19 @@ Class sporina_easysite extends CModule
 
 	function UnInstallFiles()
 	{
+		$this->UnInstallPublicFiles();
+
 
 		// Удаляем типы инфоблоков
 		if (CModule::IncludeModule("iblock"))
 		{
 			$arIBlockTypes = array(
-				"advertising_bannerss",
-				"cards_info",
-				"news_and_changes",
-				"services",
-				"products"
+				"easy_promobanners",
+				"easy_cardsinfo",
+				"easy_news_articles",
+				"easy_infocompany",
+				"easy_services",
+				"easy_products"
 			);
 
 			foreach ($arIBlockTypes as $typeID)
@@ -156,6 +165,10 @@ Class sporina_easysite extends CModule
 		// Удаляем шаблон сайта из /bitrix/templates/
 		DeleteDirFilesEx("/bitrix/templates/sporina_easy_site");
 		DeleteDirFilesEx("/bitrix/components/sporina/system.settings");
+		DeleteDirFilesEx("/bitrix/components/sporina/news");
+		foreach (["banner", "contacts", "footer", "header"] as $componentName) {
+			DeleteDirFilesEx("/bitrix/components/sporina/".$componentName);
+		}
 
 		// Удаляем файлы из /bitrix/php_interface/
 		// Удаляем только те файлы, которые были установлены модулем
@@ -197,6 +210,70 @@ Class sporina_easysite extends CModule
 		return true;
 	}
 
+	function UnInstallPublicFiles()
+	{
+		$publicDirectories = array(
+			"about",
+			"auth",
+			"contacts",
+			"include",
+			"izmeneniya-v-raspisanii",
+			"novosti-kompanii",
+			"poisk",
+			"tovary",
+			"uslugi",
+		);
+		$publicFiles = array(
+			".access.php",
+			".top.menu.php",
+			"404.php",
+			"favicon.ico",
+			"index_inc.php",
+			"_index.php",
+			"index.php",
+		);
+
+		$siteResult = CSite::GetList("sort", "asc");
+		while ($site = $siteResult->Fetch())
+		{
+			$siteId = $site["LID"];
+			if (COption::GetOptionString($this->MODULE_ID, "wizard_installed", "N", $siteId) !== "Y")
+			{
+				continue;
+			}
+
+			$siteDir = trim(str_replace("\\", "/", (string)$site["DIR"]), "/");
+			if (strpos($siteDir, "..") !== false)
+			{
+				continue;
+			}
+			$sitePath = "/" . ($siteDir !== "" ? $siteDir . "/" : "");
+
+			foreach ($publicDirectories as $directory)
+			{
+				$relativePath = $sitePath . $directory;
+				if (is_dir($_SERVER["DOCUMENT_ROOT"] . $relativePath))
+				{
+					DeleteDirFilesEx($relativePath);
+				}
+			}
+
+			foreach ($publicFiles as $file)
+			{
+				$absolutePath = $_SERVER["DOCUMENT_ROOT"] . $sitePath . $file;
+				if (is_file($absolutePath))
+				{
+					@unlink($absolutePath);
+				}
+			}
+
+			COption::RemoveOption($this->MODULE_ID, "wizard_installed", $siteId);
+			COption::RemoveOption($this->MODULE_ID, "template_converted", $siteId);
+			COption::RemoveOption($this->MODULE_ID, "install_demo_data", $siteId);
+			COption::RemoveOption($this->MODULE_ID, "use_site_template", $siteId);
+		}
+	}
+
 	function UnInstallForms()
 	{
 		// Подключаем модуль веб-форм
@@ -234,9 +311,9 @@ Class sporina_easysite extends CModule
 	{
 		global $APPLICATION;
 
-		$this->UnInstallDB();
-		$this->UnInstallEvents();
 		$this->UnInstallFiles();
+		$this->UnInstallEvents();
+		$this->UnInstallDB();
 
 		return true;
 	}

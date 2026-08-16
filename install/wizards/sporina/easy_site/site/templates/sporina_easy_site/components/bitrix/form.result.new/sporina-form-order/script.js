@@ -65,3 +65,34 @@
 	}
 })();
 
+(function() {
+	'use strict';
+
+	function initConsent() {
+		var consentInputs = document.querySelectorAll('.sporina-form-order__consent-input');
+		for (var index = 0; index < consentInputs.length; index++) {
+			var consentInput = consentInputs[index];
+			var submitButtonId = consentInput.getAttribute('data-sporina-consent-submit');
+			var submitButton = submitButtonId ? document.getElementById(submitButtonId) : null;
+			if (!submitButton) {
+				continue;
+			}
+
+			(function(currentConsentInput, currentSubmitButton) {
+				var updateSubmitState = function() {
+					currentSubmitButton.disabled = currentSubmitButton.getAttribute('data-sporina-can-submit') !== 'Y' || !currentConsentInput.checked;
+				};
+
+				currentConsentInput.addEventListener('change', updateSubmitState);
+				updateSubmitState();
+			})(consentInput, submitButton);
+		}
+	}
+
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', initConsent);
+	} else {
+		initConsent();
+	}
+})();
+

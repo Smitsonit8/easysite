@@ -24,7 +24,7 @@
   z-index: 1;
   border-bottom: 1px solid rgb(211, 211, 211);
 }
-.nav_company-active p {
+.nav_company-active .nav_company-border {
   color: var(--text);
   border-left: 3px solid var(--primary);
 }

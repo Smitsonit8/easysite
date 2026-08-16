@@ -247,7 +247,8 @@
     align-items: center; 
     justify-content: flex-end; 
     padding: 16px 24px; 
-    border-top: 1px solid #e4e9ee; 
+    border-top: 1px solid #e4e9ee;
+    background-color: unset;
 }
 .system-settings-status { margin-right: auto; color: #687785; }
 

@@ -10,7 +10,11 @@
 				continue;
 		?>
 			<?if($arItem["SELECTED"]):?>
-				<a href="<?=$arItem["LINK"]?>" class="selected"><li class="nav_company-active"><p class="nav_company-border"><?=$arItem["TEXT"]?></p></li></a>
+				<a href="<?=$arItem["LINK"]?>" class="selected">
+					<li class="nav_company-active">
+						<p class="nav_company-border"><?=$arItem["TEXT"]?></p>
+					</li>
+				</a>
 			<?else:?>
 				<a href="<?=$arItem["LINK"]?>"><li><p class="nav_company-border"><?=$arItem["TEXT"]?></p></li></a>
 			<?endif?>

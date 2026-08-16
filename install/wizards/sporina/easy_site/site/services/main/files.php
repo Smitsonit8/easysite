@@ -65,10 +65,6 @@ if (
 		COption::SetOptionString("sporina.easysite", "template_converted", "Y", "", WIZARD_SITE_ID);
 
 		// Первый запуск мастера для этого сайта
-		if ($wizardInstalled === "N")
-		{
-			COption::SetOptionString("sporina.easysite", "wizard_installed", "Y", false, WIZARD_SITE_ID);
-		}
 	}
 }
 // 2. Ветка "конвертации", если нужно доразвернуть публичную часть
@@ -85,7 +81,6 @@ elseif (COption::GetOptionString("sporina.easysite", "template_converted", "N", 
 			$delete_after_copy = false
 		);
 	}
-	COption::SetOptionString("sporina.easysite", "template_converted", "Y", "", WIZARD_SITE_ID);
 }
 
 // 3. Сохраняем основные текстовые настройки сайта в include-файлы
@@ -93,23 +88,6 @@ $includeDir = WIZARD_SITE_PATH . "include/";
 if (!file_exists($includeDir))
 {
 	CheckDirPath($includeDir);
-}
-
-$siteName = $wizard->GetVar("siteName");
-$siteCopy = $wizard->GetVar("siteCopy");
-$siteTelephone = $wizard->GetVar("siteTelephone");
-
-if ($siteName)
-{
-	___writeToAreasFile(WIZARD_SITE_PATH . "include/company_name.php", $siteName);
-}
-if ($siteCopy)
-{
-	___writeToAreasFile(WIZARD_SITE_PATH . "include/copyright.php", $siteCopy);
-}
-if ($siteTelephone)
-{
-	___writeToAreasFile(WIZARD_SITE_PATH . "include/telephone.php", $siteTelephone);
 }
 
 if (COption::GetOptionString("sporina.easysite", "wizard_installed", "N", WIZARD_SITE_ID) === "Y" && !$installDemoData)

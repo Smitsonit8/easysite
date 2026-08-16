@@ -22,13 +22,6 @@ $this->setFrameMode(true);
 	$this->AddDeleteAction($arItem['ID'], $arItem['DELETE_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_DELETE"), array("CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM')));
 
 	// Фон: DETAIL_PICTURE если есть, иначе просто цветной фон
-	$bgStyle = '';
-	if ($arItem["DETAIL_PICTURE"]["SRC"])
-	{
-		$bgSrc = htmlspecialcharsbx($arItem["DETAIL_PICTURE"]["SRC"]);
-		$bgStyle = "background-image: linear-gradient(135deg, rgba(18, 84, 132, 0.74), rgba(0, 0, 0, 0.58)), url('{$bgSrc}'); background-position: center, center; background-repeat: no-repeat, no-repeat; background-size: auto, cover;";
-	}
-
 	// IMAGE_MOBILE
 	$mobileImgSrc = '';
 	if (isset($arItem["DISPLAY_PROPERTIES"]["IMAGE_MOBILE"]["FILE_VALUE"]["SRC"]))
@@ -50,25 +43,28 @@ $this->setFrameMode(true);
 	// LINK_TO
 	$linkTo = trim((string)($arItem["DISPLAY_PROPERTIES"]["LINK_TO"]["DISPLAY_VALUE"] ?? ''));
 	?>
-	<section class="application_bg" id="<?=$this->GetEditAreaId($arItem['ID']);?>"<?if ($bgStyle):?> style="<?=$bgStyle?>"<?endif;?>>
+	<section class="application_bg" id="<?=$this->GetEditAreaId($arItem['ID']);?>">
 		<?if ($mobileImgSrc):?>
 			<div class="application_img-mobile">
 				<img src="<?=htmlspecialcharsbx($mobileImgSrc)?>" alt="<?=htmlspecialcharsbx($arItem["NAME"])?>">
 			</div>
 		<?endif;?>
 		<div class="container position_relative">
-			<div class="block application_block">
+			<div class="application_block">
 				<div class="application">
 					<h2><?=$arItem["NAME"]?></h2>
 					<?if($arParams["DISPLAY_PREVIEW_TEXT"]!="N" && $arItem["PREVIEW_TEXT"]):?>
 						<p class="application__subtitle"><?=$arItem["PREVIEW_TEXT"]?></p>
 					<?endif;?>
 					<?if ($nameButton && $linkTo):?>
-						<a href="<?=htmlspecialcharsbx($linkTo)?>" class="button block_center"><?=htmlspecialcharsbx($nameButton)?></a>
+
+						<a class="sporina-button block_center" href="<?=htmlspecialcharsbx($linkTo)?>">
+							<?=htmlspecialcharsbx($nameButton)?>
+						</a>
 					<?endif;?>
 				</div>
 				<?if ($arItem["PREVIEW_PICTURE"]["SRC"]):?>
-					<div class="block mobile_none">
+					<div class="mobile_none">
 						<img
 							class="preview_picture"
 							border="0"

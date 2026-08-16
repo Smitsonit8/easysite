@@ -379,6 +379,34 @@
     margin-bottom: 12px;
   }
 
+  .sporina-form-order__consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin: 0 0 16px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-ui);
+    text-align: left;
+  }
+
+  .sporina-form-order__consent-input {
+    flex: 0 0 auto;
+    margin: 3px 0 0;
+  }
+
+  .sporina-form-order__consent a {
+    color: inherit;
+    text-decoration: underline;
+  }
+
+  .sporina-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+  }
+
   @media (max-width: 768px) {
 	.form-popup-content {
 		padding: 30px 25px;

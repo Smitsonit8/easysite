@@ -75,9 +75,8 @@
 	<form action="" method="get">
 		<input type="hidden" name="tags" value="<?php echo $arResult['REQUEST']['TAGS']?>" />
 		<input type="hidden" name="how" value="<?php echo $arResult['REQUEST']['HOW'] == 'd' ? 'd' : 'r'?>" />
-		<table width="100%" border="0" cellpadding="0" cellspacing="0">
-			<tbody><tr>
-				<td style="width: 100%;">
+		<div class="block-search">
+				<div style="width: 100%;">
 					<?php if ($arParams['USE_SUGGEST'] === 'Y'):
 						if (mb_strlen($arResult['REQUEST']['~QUERY']) && is_object($arResult['NAV_RESULT']))
 						{
@@ -101,15 +100,12 @@
 					<?php else:?>
 						<input class="search-query" type="text" name="q" value="<?=$arResult['REQUEST']['QUERY']?>" />
 					<?php endif;?>
-				</td>
-				<td>
-					&nbsp;
-				</td>
-				<td>
-					<input class="search-button button" type="submit" value="<?php echo GetMessage('CT_BSP_GO')?>" />
-				</td>
-			</tr>
-		</tbody></table>
+				</div>
+
+				<div>
+					<button class="search-button sporina-button btn-effect-1" type="submit"><?php echo GetMessage('CT_BSP_GO')?></button>
+				</div>
+		</div>
 
 		<noindex>
 		<div class="search-advanced">

@@ -2,11 +2,23 @@
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Новости компании");
 ?>
-<!-- слайдер с текстом на нем отличается от главной страници-->
-<?$APPLICATION->IncludeComponent("bitrix:main.include","sporina-slider-pages", array(
-		"AREA_FILE_SHOW" => "file",
-		"PATH" => SITE_DIR."include/slider-pages.php",
-	),
+<?$APPLICATION->IncludeComponent(
+	"sporina:banner", 
+	"compact", 
+	[
+		"BACKGROUND_IMAGE_SRC" => SITE_TEMPLATE_PATH."/style/img/bg_w.png",
+		"BUTTON_LINK" => SITE_DIR."contacts/",
+		"BUTTON_TEXT" => "Связаться с нами",
+		"COMPONENT_TEMPLATE" => "compact",
+		"IMAGE_SRC" => "",
+		"MOBILE_IMAGE_SRC" => SITE_TEMPLATE_PATH."/style/img/application_img.svg",
+		"SHOW_BUTTON" => "Y",
+		"SHOW_IMAGE" => "Y",
+		"SLOGAN" => "Работаем для вашего удобства",
+		"TEXT" => "Подберите нужный раздел, изучите услуги и свяжитесь с нами, если нужна помощь или персональная консультация.",
+		"TITLE" => $APPLICATION->GetTitle(false),
+		"BACKGROUND_COLOR" => ""
+	],
 	false
 );?>
 <!--меню, контент-->
@@ -53,7 +65,7 @@ $APPLICATION->SetTitle("Новости компании");
 		"DISPLAY_TOP_PAGER" => "N",
 		"HIDE_LINK_WHEN_NO_DETAIL" => "N",
 		"IBLOCK_ID" => NEWS_IBLOCK_ID,
-		"IBLOCK_TYPE" => "news_and_changes",
+		"IBLOCK_TYPE" => "easy_news_articles",
 		"INCLUDE_IBLOCK_INTO_CHAIN" => "N",
 		"LIST_ACTIVE_DATE_FORMAT" => "d.m.Y H:i",
 		"LIST_FIELD_CODE" => [
@@ -76,7 +88,7 @@ $APPLICATION->SetTitle("Новости компании");
 		"PAGER_TEMPLATE" => ".default",
 		"PAGER_TITLE" => "Новости",
 		"PREVIEW_TRUNCATE_LEN" => "",
-		"SEF_FOLDER" => "/qq/novosti-kompanii/",
+		"SEF_FOLDER" => "#SITE_DIR#novosti-kompanii/",
 		"SEF_MODE" => "Y",
 		"SET_LAST_MODIFIED" => "N",
 		"SET_STATUS_404" => "N",
@@ -96,8 +108,14 @@ $APPLICATION->SetTitle("Новости компании");
 		"USE_SHARE" => "N",
 		"COMPONENT_TEMPLATE" => "sporina-news",
 		"USE_REVIEW" => "N",
-		"NEWS_LIST_TEMPLATE" => "paper",
-		"NEWS_DETAIL_TEMPLATE" => "paper",
+		"NEWS_LIST_TEMPLATE" => "list.2",
+		"NEWS_DETAIL_TEMPLATE" => "detail.1",
+		"SHARE_HIDE" => "N",
+		"SHARE_TEMPLATE" => "",
+		"SHARE_MAX" => "Y",
+		"SHARE_VK" => "Y",
+		"SHARE_OK" => "Y",
+		"SHARE_MAIL" => "Y",
 		"SEF_URL_TEMPLATES" => [
 			"news" => "",
 			"section" => "",

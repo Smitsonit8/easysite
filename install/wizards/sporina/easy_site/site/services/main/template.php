@@ -19,10 +19,18 @@ CopyDirFiles(
 	$recursive = true,
 	$delete_after_copy = false
 );
+
+$componentSourceDir = $_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/sporina.easysite/install/components/sporina/";
 foreach (["banner", "contacts", "footer", "header"] as $componentName)
 {
+	$componentSource = $componentSourceDir.$componentName;
+	if (!file_exists($componentSource))
+	{
+		continue;
+	}
+
 	CopyDirFiles(
-		$bitrixTemplateDir."/components/sporina/".$componentName,
+		$componentSource,
 		$_SERVER["DOCUMENT_ROOT"]."/bitrix/components/sporina/".$componentName,
 		$rewrite = true,
 		$recursive = true,
@@ -90,26 +98,6 @@ function ___writeToAreasFile($fn, $text)
 	return true;
 }
 
-// Сохраняем название сайта
-$siteName = $wizard->GetVar("siteName");
-if ($siteName)
-{
-	___writeToAreasFile(WIZARD_SITE_PATH."include/company_name.php", $siteName);
-}
-
-// Сохраняем телефон
-$siteTelephone = $wizard->GetVar("siteTelephone");
-if ($siteTelephone)
-{
-	___writeToAreasFile(WIZARD_SITE_PATH."include/telephone.php", $siteTelephone);
-}
-
-// Сохраняем копирайт
-$siteCopy = $wizard->GetVar("siteCopy");
-if ($siteCopy)
-{
-	___writeToAreasFile(WIZARD_SITE_PATH."include/copyright.php", $siteCopy);
-}
 
 // Сохраняем метаданные
 $siteMetaDescription = $wizard->GetVar("siteMetaDescription");

@@ -7,4 +7,6 @@ $MESS ['FORM_DATA_SAVED1'] = "Спасибо!<br><br>Ваша заявка №";
 $MESS ['FORM_DATA_SAVED2'] = " принята к рассмотрению.";
 $MESS ['FORM_MODULE_NOT_INSTALLED'] = "Модуль веб-форм не установлен.";
 $MESS ['FORM_NOT_FOUND'] = "Веб-форма не найдена.";
+$MESS ['FORM_PERSONAL_DATA_CONSENT_PREFIX'] = "Даю согласие на ";
+$MESS ['FORM_PERSONAL_DATA_CONSENT_LINK'] = "обработку своих персональных данных";
 ?>

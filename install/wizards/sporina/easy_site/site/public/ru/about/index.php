@@ -6,7 +6,6 @@ $APPLICATION->SetPageProperty("description", "Страница о компани
 $APPLICATION->SetTitle("О компании");
 ?>
 
-<!-- баннер с текстом на нем отличается от главной страници-->
 <?$APPLICATION->IncludeComponent("bitrix:main.include","sporina-slider-pages", array(
 		"AREA_FILE_SHOW" => "file",
 		"PATH" => SITE_DIR."include/slider-pages.php",
@@ -21,7 +20,8 @@ $APPLICATION->SetTitle("О компании");
   <div class="content_nav">
     <div class="content_nav-bg">
       <input type="checkbox" id="content_nav-head">
-      <label class="content_nav-head" for="content_nav-head"> <?$APPLICATION->ShowTitle()?></label>
+      <label class="content_nav-head" for="content_nav-head"> 
+      <?$APPLICATION->ShowTitle()?></label>
       <?$APPLICATION->IncludeComponent("bitrix:menu", "sporina-left-menu", Array(
             "ALLOW_MULTI_SELECT" => "N",
               "CHILD_MENU_TYPE" => "left",

@@ -19,6 +19,7 @@ CopyDirFiles(
 
 // Сохраняем выбранную тему в настройках сайта
 COption::SetOptionString("main", "wizard_sporina_easy_site_theme_id", WIZARD_THEME_ID, "", WIZARD_SITE_ID);
+COption::SetOptionString("sporina.easysite", "template-color-theme", WIZARD_THEME_ID, "", WIZARD_SITE_ID);
 
 // Устанавливаем цветовую схему для main.interface.grid/form
 CUserOptions::SetOption("main.interface", "global", array("theme" => WIZARD_THEME_ID), true);

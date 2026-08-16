@@ -78,7 +78,7 @@
     --font-size-news-column-title: var(--font-size-h3);
     --font-size-news-column-meta: var(--font-size-xs);
     --font-size-news-column-item: var(--font-size-base);
-    --font-size-news-column-item-mobile: var(--font-size-h3);
+    --font-size-news-column-item-mobile: var(--font-size-base);
     --font-size-news-column-copy: var(--font-size-sm);
     --font-size-news-column-more: var(--font-size-sm);
 

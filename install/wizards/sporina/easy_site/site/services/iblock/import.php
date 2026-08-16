@@ -28,40 +28,52 @@ $xmlDir = WIZARD_SERVICE_RELATIVE_PATH . "/xml/" . LANGUAGE_ID . "/";
 $importList = array(
     array(
         "XML_FILE" => $xmlDir . "banners.xml",
-        "IBLOCK_TYPE_ID" => "advertising_bannerss",
-        "IBLOCK_CODE" => "advertising_bannerss",
-        "XML_ID_PREFIX" => "advertising_bannerss"
+        "IBLOCK_TYPE_ID" => "easy_promobanners",
+        "IBLOCK_CODE" => "promo_banners",
+        "XML_ID_PREFIX" => "promo_banners"
     ),
     array(
         "XML_FILE" => $xmlDir . "cards-info.xml",
-        "IBLOCK_TYPE_ID" => "cards_info",
+        "IBLOCK_TYPE_ID" => "easy_cardsinfo",
         "IBLOCK_CODE" => "cards_info",
         "XML_ID_PREFIX" => "cards_info",
         "XML_FILE_ALT" => $xmlDir . "cards_info.xml" // Альтернативное название файла
     ),
     array(
-        "XML_FILE" => $xmlDir . "news_companii.xml",
-        "IBLOCK_TYPE_ID" => "news_and_changes",
-        "IBLOCK_CODE" => "news_companii",
-        "XML_ID_PREFIX" => "news_companii"
+        "XML_FILE" => $xmlDir . "news.xml",
+        "IBLOCK_TYPE_ID" => "easy_news_articles",
+        "IBLOCK_CODE" => "news_company",
+        "XML_ID_PREFIX" => "news_company"
     ),
     array(
-        "XML_FILE" => $xmlDir . "schedule_changes.xml",
-        "IBLOCK_TYPE_ID" => "news_and_changes",
-        "IBLOCK_CODE" => "schedule_changes",
-        "XML_ID_PREFIX" => "schedule_changes"
+        "XML_FILE" => $xmlDir . "articles.xml",
+        "IBLOCK_TYPE_ID" => "easy_news_articles",
+        "IBLOCK_CODE" => "articles_company",
+        "XML_ID_PREFIX" => "articles_company"
     ),
     array(
         "XML_FILE" => $xmlDir . "services.xml",
-        "IBLOCK_TYPE_ID" => "services",
+        "IBLOCK_TYPE_ID" => "easy_services",
         "IBLOCK_CODE" => "services",
         "XML_ID_PREFIX" => "services"
     ),
     array(
         "XML_FILE" => $xmlDir . "products.xml",
-        "IBLOCK_TYPE_ID" => "products",
+        "IBLOCK_TYPE_ID" => "easy_products",
         "IBLOCK_CODE" => "products",
         "XML_ID_PREFIX" => "products"
+    ),
+    array(
+        "XML_FILE" => $xmlDir . "jobs.xml",
+        "IBLOCK_TYPE_ID" => "easy_infocompany",
+        "IBLOCK_CODE" => "jobs_company",
+        "XML_ID_PREFIX" => "jobs_company"
+    ),
+    array(
+        "XML_FILE" => $xmlDir . "staff.xml",
+        "IBLOCK_TYPE_ID" => "easy_infocompany",
+        "IBLOCK_CODE" => "staff_company",
+        "XML_ID_PREFIX" => "staff_company"
     ),
 );
 
@@ -97,7 +109,6 @@ foreach ($importList as $importItem) {
     if($iblockID == false)
     {
         // Импортируем инфоблок из XML файла используя WizardServices::ImportIBlockFromXML
-        // Это правильный метод, который создает инфоблоки со свойствами
         $iblockID = WizardServices::ImportIBlockFromXML(
             $importItem["XML_FILE"],
             $importItem["XML_ID_PREFIX"],
@@ -142,7 +153,7 @@ foreach ($importList as $importItem) {
         $detailPageUrl = "";
         
         switch ($importItem["IBLOCK_CODE"]) {
-            case "advertising_bannerss":
+            case "promo_banners":
                 // Для баннеров не нужны страницы списка и деталей
                 break;
                 
@@ -152,29 +163,42 @@ foreach ($importList as $importItem) {
                 $detailPageUrl = "#SITE_DIR#/cards/detail.php?ID=#ELEMENT_ID#";
                 break;
                 
-            case "news_companii":
-                $listPageUrl = "#SITE_DIR#/news_and_changes/index.php?ID=#IBLOCK_ID#";
+            case "news_company":
+                $listPageUrl = "#SITE_DIR#/novosti-kompanii/index.php?ID=#IBLOCK_ID#";
                 $sectionPageUrl = "#SITE_DIR#/novosti-kompanii/";
                 $detailPageUrl = "#SITE_DIR#/novosti-kompanii/#ELEMENT_CODE#/";
                 break;
                 
-            case "schedule_changes":
-                $listPageUrl = "#SITE_DIR#/news_and_changes/index.php?ID=#IBLOCK_ID#";
+            case "articles_company":
+                $listPageUrl = "#SITE_DIR#/izmeneniya-v-raspisanii/index.php?ID=#IBLOCK_ID#";
                 $sectionPageUrl = "#SITE_DIR#/izmeneniya-v-raspisanii/";
-                $detailPageUrl = "#SITE_DIR#/izmeneniya-v-raspisanii/#ELEMENT_CODE#";
+                $detailPageUrl = "#SITE_DIR#/izmeneniya-v-raspisanii/#ELEMENT_CODE#/";
                 break;
                 
             case "services":
-                $listPageUrl = "#SITE_DIR#/services/index.php?ID=#IBLOCK_ID#";
-                $sectionPageUrl = "#SITE_DIR#/services/";
-                $detailPageUrl = "#SITE_DIR#/services/detail.php?ID=#ELEMENT_ID#";
+                $listPageUrl = "#SITE_DIR#/uslugi/index.php?ID=#IBLOCK_ID#";
+                $sectionPageUrl = "#SITE_DIR#/uslugi/";
+                $detailPageUrl = "#SITE_DIR#/uslugi/#ELEMENT_CODE#/";
+                break;
+            
+            case "products":
+                $listPageUrl = "#SITE_DIR#/tovary/index.php?ID=#IBLOCK_ID#";
+                $sectionPageUrl = "#SITE_DIR#/tovary/";
+                $detailPageUrl = "#SITE_DIR#/tovary/#ELEMENT_CODE#/";
                 break;
                 
-            case "products":
-                $listPageUrl = "#SITE_DIR#/products/index.php?ID=#IBLOCK_ID#";
-                $sectionPageUrl = "#SITE_DIR#/products/list.php?SECTION_ID=#SECTION_ID#";
-                $detailPageUrl = "#SITE_DIR#/products/detail.php?ID=#ELEMENT_ID#";
+            case "jobs_company":
+                $listPageUrl = "#SITE_DIR#/about/jobs/";
+                $sectionPageUrl = "#SITE_DIR#/about/jobs/";
+                $detailPageUrl = "#SITE_DIR#/about/jobs/";
                 break;
+            
+            case "staff_company":
+                $listPageUrl = "#SITE_DIR#/about/management/";
+                $sectionPageUrl = "#SITE_DIR#/about/management/";
+                $detailPageUrl = "#SITE_DIR#/about/management/#ELEMENT_ID#/";
+                break;
+            
         }
         
         // Обновляем URL'ы инфоблока
@@ -187,6 +211,8 @@ foreach ($importList as $importItem) {
         }
     }
 }
+
+COption::SetOptionString("sporina.easysite", "wizard_installed", "Y", false, WIZARD_SITE_ID);
 
 return true;
 ?>

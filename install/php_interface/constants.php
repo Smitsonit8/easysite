@@ -64,12 +64,12 @@ function getFormIdBySID($sid) {
 }
 
 // Определяем константы — только если ядро загружено
-if (!defined('SCHEDULE_CHANGES_IBLOCK_ID')) {
-    define('SCHEDULE_CHANGES_IBLOCK_ID', getIblockIdByCode('schedule_changes'));
+if (!defined('ARTICLES_IBLOCK_ID')) {
+    define('ARTICLES_IBLOCK_ID', getIblockIdByCode('articles_company'));
 }
 
 if (!defined('NEWS_IBLOCK_ID')) {
-    define('NEWS_IBLOCK_ID', getIblockIdByCode('news_companii'));
+    define('NEWS_IBLOCK_ID', getIblockIdByCode('news_company'));
 }
 
 if (!defined('SERVICES_IBLOCK_ID')) {
@@ -78,6 +78,14 @@ if (!defined('SERVICES_IBLOCK_ID')) {
 
 if (!defined('PRODUCTS_IBLOCK_ID')) {
     define('PRODUCTS_IBLOCK_ID', getIblockIdByCode('products'));
+}
+
+if (!defined('JOBS_IBLOCK_ID')) {
+    define('JOBS_IBLOCK_ID', getIblockIdByCode('jobs_company'));
+}
+
+if (!defined('STAFF_IBLOCK_ID')) {
+    define('STAFF_IBLOCK_ID', getIblockIdByCode('staff_company'));
 }
 
 if (!defined('ORDER_FORM_ID')) {

@@ -19,6 +19,7 @@ $arServices = array(
         "STAGES" => array(
             "types.php",       // Создание типов инфоблоков
             "import.php",      // Импорт инфоблоков из XML
+            "contacts.php",
         ),
     ),
     /*

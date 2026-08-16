@@ -5,19 +5,31 @@ $APPLICATION->SetPageProperty("keywords", "услуги");
 $APPLICATION->SetPageProperty("description", "Страница о услугах компании");
 $APPLICATION->SetTitle("Услуги");
 ?>
-<!-- баннер с текстом на нем отличается от главной страници--> 
-<?$APPLICATION->IncludeComponent("bitrix:main.include","sporina-slider-pages", array(
-		"AREA_FILE_SHOW" => "file",
-		"PATH" => SITE_DIR."include/slider-pages.php",
-	),
+<?$APPLICATION->IncludeComponent(
+	"sporina:banner", 
+	"compact", 
+	[
+		"BACKGROUND_IMAGE_SRC" => SITE_TEMPLATE_PATH."/style/img/bg_w.png",
+		"BUTTON_LINK" => SITE_DIR."contacts/",
+		"BUTTON_TEXT" => "Связаться с нами",
+		"COMPONENT_TEMPLATE" => "compact",
+		"IMAGE_SRC" => "",
+		"MOBILE_IMAGE_SRC" => SITE_TEMPLATE_PATH."/style/img/application_img.svg",
+		"SHOW_BUTTON" => "Y",
+		"SHOW_IMAGE" => "Y",
+		"SLOGAN" => "Работаем для вашего удобства",
+		"TEXT" => "Подберите нужный раздел, изучите услуги и свяжитесь с нами, если нужна помощь или персональная консультация.",
+		"TITLE" => $APPLICATION->GetTitle(false),
+		"BACKGROUND_COLOR" => ""
+	],
 	false
 );?>
 <!--меню, контент--> 
 <section class="container content_flex">
 	<div class="content-no-menu">
 		<?$APPLICATION->IncludeComponent(
-			"bitrix:news", 
-			"sporina-uslugi-cards", 
+			"sporina:news", 
+			"sporina-services", 
 			[
 				"ADD_ELEMENT_CHAIN" => "N",
 				"ADD_SECTIONS_CHAIN" => "Y",
@@ -32,7 +44,7 @@ $APPLICATION->SetTitle("Услуги");
 				"CACHE_TIME" => "36000000",
 				"CACHE_TYPE" => "N",
 				"CHECK_DATES" => "Y",
-				"COMPONENT_TEMPLATE" => "uslugi-cards",
+				"COMPONENT_TEMPLATE" => "sporina-services",
 				"DETAIL_ACTIVE_DATE_FORMAT" => "d.m.Y",
 				"DETAIL_DISPLAY_BOTTOM_PAGER" => "Y",
 				"DETAIL_DISPLAY_TOP_PAGER" => "N",
@@ -56,7 +68,7 @@ $APPLICATION->SetTitle("Услуги");
 				"DISPLAY_TOP_PAGER" => "N",
 				"HIDE_LINK_WHEN_NO_DETAIL" => "N",
 				"IBLOCK_ID" => SERVICES_IBLOCK_ID,
-				"IBLOCK_TYPE" => "services",
+				"IBLOCK_TYPE" => "easy_services",
 				"INCLUDE_IBLOCK_INTO_CHAIN" => "Y",
 				"LIST_ACTIVE_DATE_FORMAT" => "d.m.Y",
 				"LIST_FIELD_CODE" => [
@@ -97,6 +109,17 @@ $APPLICATION->SetTitle("Услуги");
 				"USE_RSS" => "N",
 				"USE_SEARCH" => "N",
 				"USE_SHARE" => "N",
+				"NEWS_LIST_TEMPLATE" => "list.2",
+				"NEWS_DETAIL_TEMPLATE" => "detail.1",
+				"SHOW_SECTION_BADGE" => "Y",
+				"SECTION_BADGE_POSITION" => "left",
+				"USE_REVIEW" => "N",
+				"FORM_SHOW" => "Y",
+				"FORM_ID" => ORDER_FORM_ID,
+				"FORM_TEMPLATE" => "sporina-form-order",
+				"FORM_SUCCESS_URL" => "",
+				"FORM_USE_EXTENDED_ERRORS" => "N",
+				"FORM_PERSONAL_DATA_URL" => "#SITE_DIR#about/policy/",
 				"SEF_URL_TEMPLATES" => [
 					"news" => "",
 					"section" => "",

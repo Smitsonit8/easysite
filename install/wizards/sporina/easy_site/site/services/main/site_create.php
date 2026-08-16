@@ -1,4 +1,4 @@
-<?
+<?php
 if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)
 	die();
 
@@ -24,4 +24,8 @@ else
 
 // Устанавливаем флаг использования шаблона сайта
 COption::SetOptionString("sporina.easysite", "use_site_template", "Y", false, WIZARD_SITE_ID);
+if (COption::GetOptionString("sporina.easysite", "wizard_installed", "N", WIZARD_SITE_ID) !== "Y")
+{
+	COption::SetOptionString("sporina.easysite", "pages-main-banner-use", "Y", false, WIZARD_SITE_ID);
+}
 ?>

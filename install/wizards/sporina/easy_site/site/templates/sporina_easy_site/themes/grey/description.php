@@ -1,2 +1,4 @@
-<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
-$arTemplate = Array("NAME" => GetMessage("CPST_BLUE"), "SORT" => 200);?>
+<?php
+if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
+$arTemplate = Array("NAME" => GetMessage("CPST_GREY"), "SORT" => 300);
+?>

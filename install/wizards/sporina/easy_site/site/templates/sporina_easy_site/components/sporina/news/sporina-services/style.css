@@ -1,0 +1,51 @@
+/* --- Кнопка "назад" (общая для всех страниц) --- */
+
+.sporina-services__back
+{
+	display: inline-flex;
+	align-items: center;
+	gap: 12px;
+	padding: 14px 22px;
+	color: var(--text);
+	text-decoration: none;
+	transition: transform 0.25s ease, box-shadow 0.25s ease, color 0.25s ease;
+}
+
+.sporina-services__back:hover
+{
+	transform: translateX(-4px);
+	color: var(--primary-hover);
+}
+
+.sporina-services__back-icon
+{
+	width: 24px;
+	height: 24px;
+	flex: 0 0 24px;
+	stroke: var(--text);
+	stroke-width: 2;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	fill: none;
+}
+
+.sporina-services__back:hover .sporina-services__back-icon{
+	stroke: var(--primary-hover);
+}
+
+.sporina-services__back-text
+{
+	font-size: var(--font-size-base);
+	font-weight: var(--font-weight-semibold);
+	line-height: var(--line-height-ui);
+	text-transform: uppercase;
+}
+
+@media screen and (max-width: 768px)
+{
+	.sporina-news-company__back-text
+	{
+		font-size: var(--font-size-news-more);
+	}
+
+}

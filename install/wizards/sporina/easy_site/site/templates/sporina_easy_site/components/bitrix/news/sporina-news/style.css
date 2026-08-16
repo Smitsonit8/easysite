@@ -120,3 +120,11 @@
 	margin: 0 16px;
 }
 
+@media screen and (max-width: 768px)
+{
+	.sporina-news-company__back-text
+	{
+		font-size: var(--font-size-news-more);
+	}
+
+}

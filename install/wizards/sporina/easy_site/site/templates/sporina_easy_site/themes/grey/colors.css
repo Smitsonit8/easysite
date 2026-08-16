@@ -9,6 +9,10 @@
 
    
   --gradient: linear-gradient(135deg, #505050 0%, #343e40 100%);
+  --banner-gradient-1: radial-gradient(circle at top left, rgba(255, 255, 255, 0.22), transparent 34%),
+    linear-gradient(135deg, rgba(18, 46, 89, 0.72), rgba(0, 0, 0, 0.64));
+   --banner-gradient-2: radial-gradient(circle at top left, rgb(255 255 255 / 22%), #b1757500 34%), linear-gradient(135deg, #424242, #423c3e);
+
   /* Акцент:ссылки, иконки, активные элементы */
     --accent: #f0f7ff;
     /* Hover акцентов */

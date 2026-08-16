@@ -20,8 +20,8 @@ div.search-item-rate { float: left; margin: -3px 6px 0 0;}
 div.search-item-tags { float: left; }
 div.search-item-date { float: right;}
 
-div.search-page input.search-query {width: 99%; border: 1px solid; font-size:var(--font-size-md);}
-div.search-page input.search-suggest {width: 99%; border: 1px solid; font-size:var(--font-size-md);}
+div.search-page input.search-query {width: 96%; border: 1px solid; font-size:var(--font-size-md);}
+div.search-page input.search-suggest {width: 96%; border: 1px solid; font-size:var(--font-size-md);}
 
 div.search-filter h2 { margin:1em 0 0.5em; border: none;}
 table.search-filter { width: 100%;  margin-top: 0.5em;}
@@ -34,9 +34,20 @@ table.search-filter select.select-field {border: 1px solid; font-size:var(--font
 
 div.search-sorting { margin: 0.5em 0;}
 div.search-sorting b { padding: 0.2em 0.3em 0.3em ; font-weight: var(--font-weight-regular);}
-/* COLORS */
+
 div.search-item, table.search-filter td { border-color: #E9E9E9;}
-div.search-page input.search-query, div.search-page input.search-suggest, table.search-filter input.input-field, table.search-filter select.select-field { background: #F8F7F7; border-color: #D9D9D9; }
+div.search-page input.search-query, div.search-page input.search-suggest, table.search-filter input.input-field, table.search-filter select.select-field { 
+    padding: 12px 16px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-ui);
+    color: #495057;
+    background-color: #fff;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    font-family: inherit;
+}
 div.search-advanced, div.search-item-meta, div.search-item-meta a { color: #8a8a8a; }
 div.search-sorting b { background: #e8e9ec; }
 
@@ -50,4 +61,26 @@ div.search-sorting b { background: #e8e9ec; }
 
 .search-page>form{
   width: 80%;
+}
+
+.block-search{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+}
+
+@media (max-width :768px) {
+  .block-search{
+    flex-direction: column;
+  }
+
+  .search-query{
+    margin-bottom: 15px;
+  }
+
+  div.search-page input.search-query{
+    width:100%;
+  }
+
 }
