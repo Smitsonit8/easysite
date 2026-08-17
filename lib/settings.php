@@ -23,7 +23,7 @@ final class Settings
     ];
 
     private const DEFINITIONS = [
-        ['key' => 'template-color-theme', 'category' => 'template', 'categoryTitle' => 'Оформление', 'label' => 'Цветовая тема', 'type' => 'select', 'default' => 'blue', 'values' => ['blue' => 'Синяя', 'green' => 'Зелёная', 'orange' => 'Оранжевая', 'yellow' => 'Желтая', 'red' => 'Красная', 'grey' => 'Серый'], 'presentation' => 'theme-swatch', 'swatches' => ['blue' => '#005b8d', 'green' => '#437742', 'orange' => '#f15a30', 'yellow' => '#e2b540', 'red' => '#a62c37', 'grey' => '#343e40']],
+        ['key' => 'template-color-theme', 'category' => 'template', 'categoryTitle' => 'Оформление', 'label' => 'Цветовая тема', 'type' => 'select', 'default' => 'blue', 'preserveOnReset' => true, 'values' => ['blue' => 'Синяя', 'green' => 'Зелёная', 'orange' => 'Оранжевая', 'yellow' => 'Желтая', 'red' => 'Красная', 'grey' => 'Серый'], 'presentation' => 'theme-swatch', 'swatches' => ['blue' => '#005b8d', 'green' => '#437742', 'orange' => '#f15a30', 'yellow' => '#e2b540', 'red' => '#a62c37', 'grey' => '#343e40']],
         ['key' => 'template-background-use', 'category' => 'template', 'categoryTitle' => 'Оформление', 'label' => 'Показывать фон', 'type' => 'checkbox', 'default' => 'Y', 'values' => ['Y' => 'Да', 'N' => 'Нет']],
         ['key' => 'template-background-color', 'category' => 'template', 'categoryTitle' => 'Оформление', 'label' => 'Цвет фона', 'type' => 'color', 'default' => '#f8fbff'],
         ['key' => 'template-width', 'category' => 'template', 'categoryTitle' => 'Оформление', 'label' => 'Максимальная ширина', 'type' => 'select', 'default' => '1920', 'values' => ['1600' => '1600 px', '1920' => '1920 px','2560' => '2560 px' ]],
@@ -68,10 +68,10 @@ final class Settings
             ['scope' => 'site', 'file' => 'index.php', 'component' => 'bitrix:news', 'anchor' => '"IBLOCK_ID" => ARTICLES_IBLOCK_ID', 'parameter' => 'COLUMNS_LAYOUT', 'target' => 'parameter'],
             ['scope' => 'site', 'file' => 'index.php', 'component' => 'bitrix:news', 'anchor' => '"IBLOCK_ID" => NEWS_IBLOCK_ID', 'parameter' => 'COLUMNS_LAYOUT', 'target' => 'parameter'],
         ]],
-        ['key' => 'pages-main-articles-template','category' => 'main-page','categoryTitle' => 'Главная', 'label' => 'Шаблон статей', 'type' => 'select', 'default' => '.list.1', 'values' => ['list.1' => 'Стандартный', 'list.2' => 'Карточки', 'list.3' => 'Лента времени'],'legacyValues' => ['sporina-column-news-company' => 'list.1', 'sporina-column-news-cards' => 'list.2', 'sporina-column-news-timeline' => 'list.3'], 'templatePath' => 'bitrix/news/sporina-column-news/bitrix/news.list', 'sourceBinding' => ['scope' => 'site', 'file' => 'index.php', 'component' => 'bitrix:news', 'anchor' => '"IBLOCK_ID" => ARTICLES_IBLOCK_ID', 'parameter' => 'NEWS_LIST_TEMPLATE', 'target' => 'parameter'], 'previewRatio' => '0 / 1', 'previews' => ['list.1' => 'images/properties/news_and_articles/sporina-column-news-company.webp', 'list.2' => 'images/properties/news_and_articles/sporina-column-news-cards.webp', 'list.3' => 'images/properties/news_and_articles/sporina-column-news-timeline.webp'],'layoutClasses' => ['list.1' => ['two' => 'news--default-two','stacked' => 'news--default-stacked'],'list.2' => ['two' => 'sporina-news-cards--two','stacked' => 'sporina-news-cards--stacked'],'list.3' => ['two' => 'sporina-news-timeline--two','stacked' => 'sporina-news-timeline--stacked'],]],
-        ['key' => 'pages-main-news-template', 'category' => 'main-page', 'categoryTitle' => 'Главная', 'label' => 'Шаблон новостей', 'type' => 'select', 'default' => '.list.1', 'values' => ['list.1' => 'Стандартный', 'list.2' => 'Карточки', 'list.3' => 'Лента времени'], 'legacyValues' => ['sporina-column-news-company' => 'list.1', 'sporina-column-news-cards' => 'list.2', 'sporina-column-news-timeline' => 'list.3'], 'templatePath' => 'bitrix/news/sporina-column-news/bitrix/news.list', 'sourceBinding' => ['scope' => 'site', 'file' => 'index.php', 'component' => 'bitrix:news', 'anchor' => '"IBLOCK_ID" => NEWS_IBLOCK_ID', 'parameter' => 'NEWS_LIST_TEMPLATE', 'target' => 'parameter'], 'previewRatio' => '0 / 1', 'previews' => ['list.1' => 'images/properties/news_and_articles/sporina-column-news-company.webp', 'list.2' => 'images/properties/news_and_articles/sporina-column-news-cards.webp', 'list.3' => 'images/properties/news_and_articles/sporina-column-news-timeline.webp'],'layoutClasses' => ['list.1' => ['two' => 'news--default-two','stacked' => 'news--default-stacked'],'list.2' => ['two' => 'sporina-news-cards--two','stacked' => 'sporina-news-cards--stacked'],'list.3' => ['two' => 'sporina-news-timeline--two','stacked' => 'sporina-news-timeline--stacked'],]],
+        ['key' => 'pages-main-articles-template','category' => 'main-page','categoryTitle' => 'Главная', 'label' => 'Шаблон статей', 'type' => 'select', 'default' => 'list.1', 'values' => ['list.1' => 'Стандартный', 'list.2' => 'Карточки', 'list.3' => 'Лента времени'],'legacyValues' => ['sporina-column-news-company' => 'list.1', 'sporina-column-news-cards' => 'list.2', 'sporina-column-news-timeline' => 'list.3'], 'templatePath' => 'bitrix/news/sporina-column-news/bitrix/news.list', 'sourceBinding' => ['scope' => 'site', 'file' => 'index.php', 'component' => 'bitrix:news', 'anchor' => '"IBLOCK_ID" => ARTICLES_IBLOCK_ID', 'parameter' => 'NEWS_LIST_TEMPLATE', 'target' => 'parameter'], 'previewRatio' => '0 / 1', 'previews' => ['list.1' => 'images/properties/news_and_articles/sporina-column-news-company.webp', 'list.2' => 'images/properties/news_and_articles/sporina-column-news-cards.webp', 'list.3' => 'images/properties/news_and_articles/sporina-column-news-timeline.webp'],'layoutClasses' => ['list.1' => ['two' => 'news--default-two','stacked' => 'news--default-stacked'],'list.2' => ['two' => 'sporina-news-cards--two','stacked' => 'sporina-news-cards--stacked'],'list.3' => ['two' => 'sporina-news-timeline--two','stacked' => 'sporina-news-timeline--stacked'],]],
+        ['key' => 'pages-main-news-template', 'category' => 'main-page', 'categoryTitle' => 'Главная', 'label' => 'Шаблон новостей', 'type' => 'select', 'default' => 'list.1', 'values' => ['list.1' => 'Стандартный', 'list.2' => 'Карточки', 'list.3' => 'Лента времени'], 'legacyValues' => ['sporina-column-news-company' => 'list.1', 'sporina-column-news-cards' => 'list.2', 'sporina-column-news-timeline' => 'list.3'], 'templatePath' => 'bitrix/news/sporina-column-news/bitrix/news.list', 'sourceBinding' => ['scope' => 'site', 'file' => 'index.php', 'component' => 'bitrix:news', 'anchor' => '"IBLOCK_ID" => NEWS_IBLOCK_ID', 'parameter' => 'NEWS_LIST_TEMPLATE', 'target' => 'parameter'], 'previewRatio' => '0 / 1', 'previews' => ['list.1' => 'images/properties/news_and_articles/sporina-column-news-company.webp', 'list.2' => 'images/properties/news_and_articles/sporina-column-news-cards.webp', 'list.3' => 'images/properties/news_and_articles/sporina-column-news-timeline.webp'],'layoutClasses' => ['list.1' => ['two' => 'news--default-two','stacked' => 'news--default-stacked'],'list.2' => ['two' => 'sporina-news-cards--two','stacked' => 'sporina-news-cards--stacked'],'list.3' => ['two' => 'sporina-news-timeline--two','stacked' => 'sporina-news-timeline--stacked'],]],
         ['key' => 'pages-main-advertising-use', 'category' => 'main-page', 'categoryTitle' => 'Главная страница', 'label' => 'Показывать рекламу', 'type' => 'checkbox', 'default' => 'Y', 'values' => ['Y' => 'Да', 'N' => 'Нет']],
-        ['key' => 'pages-main-advertising-template', 'category' => 'main-page', 'categoryTitle' => 'Главная', 'label' => 'Шаблон рекламного баннера', 'type' => 'select', 'default' => 'sporina-banner-app', 'values' => ['sporina-banner-app' => 'Sporina Banner App'], 'templatePath' => 'bitrix/news.list', 'sourceBinding' => ['scope' => 'site', 'file' => 'index.php', 'component' => 'bitrix:news.list', 'anchor' => '"IBLOCK_ID" => "advertising_bannerss"', 'parameter' => 'COMPONENT_TEMPLATE', 'target' => 'component-template']],
+        ['key' => 'pages-main-advertising-template', 'category' => 'main-page', 'categoryTitle' => 'Главная', 'label' => 'Шаблон рекламного баннера', 'type' => 'select', 'default' => 'sporina-banner-app', 'values' => ['sporina-banner-app' => 'Sporina Banner App'], 'templatePath' => 'bitrix/news.list', 'sourceBinding' => ['scope' => 'site', 'file' => 'index.php', 'component' => 'bitrix:news.list', 'anchor' => '"IBLOCK_ID" => "promo_banners"', 'parameter' => 'COMPONENT_TEMPLATE', 'target' => 'component-template']],
         ['key' => 'pages-main-current-news-use', 'category' => 'main-page', 'categoryTitle' => 'Главная страница', 'label' => 'Показывать актуальные новости', 'type' => 'checkbox', 'default' => 'Y', 'values' => ['Y' => 'Да', 'N' => 'Нет']],
         ['key' => 'pages-main-current-news-template', 'category' => 'main-page', 'categoryTitle' => 'Главная', 'label' => 'Шаблон актуальных новостей', 'type' => 'select', 'default' => 'sporina-news-all.1', 'values' => ['sporina-news-all.1' => 'Обычный', 'sporina-news-all.2' => 'Современный'], 'templatePath' => 'bitrix/news.index', 'sourceBinding' => ['scope' => 'site', 'file' => 'index.php', 'component' => 'bitrix:news.index', 'parameter' => 'COMPONENT_TEMPLATE', 'target' => 'component-template'], 'previewRatio' => '16 / 3', 'previews' => ['sporina-news-all.1' => 'images/properties/current_news/sporina-news-all.webp', 'sporina-news-all.2' => 'images/properties/current_news/sporina-news-all-modern.webp']],
         ['key' => 'mobile-header-color', 'category' => 'mobile', 'categoryTitle' => 'Мобильная версия', 'label' => 'Цвет мобильной шапки', 'type' => 'select', 'default' => 'colored', 'values' => ['colored' => 'Цветная', 'white' => 'Белая']],
@@ -84,9 +84,18 @@ final class Settings
         return self::DEFINITIONS;
     }
 
+    /** Мемоизация результата getAll() на время одного запроса. */
+    private static $allCache = null;
+
     /** Returns safe values: invalid stored options fall back to declared defaults. */
     public static function getAll(): array
     {
+        // Кэшируем результат в пределах одного запроса: файлы страниц (index.php, header.php)
+        // в рамках одного хита не меняются, а getAll() вызывается многократно из шаблонов.
+        if (self::$allCache !== null) {
+            return self::$allCache;
+        }
+
         $settings = [];
 
         foreach (self::DEFINITIONS as $definition) {
@@ -101,7 +110,7 @@ final class Settings
                 ?? $definition['default'];
         }
 
-        return $settings;
+        return self::$allCache = $settings;
     }
 
     /** Returns true only when a value was explicitly saved for the current site. */
@@ -199,6 +208,8 @@ final class Settings
             Option::set(self::MODULE_ID, $key, $normalized, SITE_ID);
         }
 
+        // Инвалидируем мемоизированный getAll(), т.к. сохранённые значения изменились
+        self::$allCache = null;
     }
 
     public static function reset(): void
@@ -230,6 +241,8 @@ final class Settings
             ]);
         }
 
+        // Инвалидируем мемоизированный getAll(), т.к. значения сброшены к дефолтам
+        self::$allCache = null;
     }
 
     public static function getLogoUrl(): string
@@ -273,7 +286,7 @@ final class Settings
         $file['MODULE_ID'] = self::MODULE_ID;
         $newFileId = (int) \CFile::SaveFile($file, 'sporina.easysite/logos');
         if ($newFileId <= 0) {
-            throw new RuntimeException('Не удалось сохранить файл логотипа.');
+            throw new \RuntimeException('Не удалось сохранить файл логотипа.');
         }
 
         $oldFileId = self::getLogoFileId();
@@ -383,6 +396,10 @@ final class Settings
         if (file_put_contents($source['path'], $contents, LOCK_EX) === false) {
             throw new \RuntimeException('Не удалось сохранить параметр шаблона на главной странице.');
         }
+
+        // Обновляем кэшированное содержимое файла-источника, чтобы последующие
+        // вызовы getBoundSource()/getAll() в рамках того же запроса видели новые данные.
+        self::$boundSourceCache[$source['path']] = ['path' => $source['path'], 'contents' => $contents];
     }
 
     private static function getBoundComponentBlock(string $contents, array $binding): ?array
@@ -455,6 +472,9 @@ final class Settings
         return $contents;
     }
 
+    /** Кэш содержимого файлов-источников в пределах одного запроса. */
+    private static $boundSourceCache = [];
+
     private static function getBoundSource(array $binding): ?array
     {
         $documentRoot = realpath((string)($_SERVER['DOCUMENT_ROOT'] ?? ''));
@@ -477,13 +497,21 @@ final class Settings
         }
 
         $path = $documentRoot . DIRECTORY_SEPARATOR . $relativePath;
+
+        // Кэшируем прочитанное содержимое по пути файла в пределах одного запроса:
+        // страница (index.php/header.php) в рамках одного хита не меняется, а чтение
+        // происходит многократно через getBoundSourceValue() внутри getAll().
+        if (array_key_exists($path, self::$boundSourceCache)) {
+            return self::$boundSourceCache[$path];
+        }
+
         if (!is_file($path) || !is_readable($path)) {
-            return null;
+            return self::$boundSourceCache[$path] = null;
         }
 
         $contents = file_get_contents($path);
 
-        return $contents === false ? null : ['path' => $path, 'contents' => $contents];
+        return self::$boundSourceCache[$path] = ($contents === false ? null : ['path' => $path, 'contents' => $contents]);
     }
 
     private static function normalize(array $definition, string $value): ?string

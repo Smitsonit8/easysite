@@ -28,7 +28,7 @@ class Create_infoblocks
     private $iblocksConfig = array(
         array(
         'type' => array(
-            'ID' => 'advertising_bannerss',
+            'ID' => 'easy_promobanners',
             'SECTIONS' => 'Y',
             'EDIT_FILE_BEFORE' => '',
             'EDIT_FILE_AFTER' => '',
@@ -62,8 +62,8 @@ class Create_infoblocks
         'iblock' => array(
             'ACTIVE' => 'Y',
             'NAME' => 'Рекламные баннеры',
-            'CODE' => 'advertising_bannerss',
-            'IBLOCK_TYPE_ID' => 'advertising_bannerss',
+            'CODE' => 'promo_banners',
+            'IBLOCK_TYPE_ID' => 'easy_promobanners',
             'SORT' => 100,
             'LIST_PAGE_URL' => '',
             'SECTION_PAGE_URL' => '',
@@ -135,7 +135,7 @@ class Create_infoblocks
     ),
     array(
         'type' => array(
-            'ID' => 'cards_info',
+            'ID' => 'easy_cardsinfo',
             'SECTIONS' => 'Y',
             'EDIT_FILE_BEFORE' => '',
             'EDIT_FILE_AFTER' => '',
@@ -170,7 +170,7 @@ class Create_infoblocks
             'ACTIVE' => 'Y',
             'NAME' => 'Карточки информации',
             'CODE' => 'cards_info',
-            'IBLOCK_TYPE_ID' => 'cards_info',
+            'IBLOCK_TYPE_ID' => 'easy_cardsinfo',
             'SORT' => 110,
             'LIST_PAGE_URL' => '#SITE_DIR#/cards/index.php?ID=#IBLOCK_ID#',
             'SECTION_PAGE_URL' => '#SITE_DIR#/cards/list.php?SECTION_ID=#SECTION_ID#',
@@ -219,7 +219,7 @@ class Create_infoblocks
     ),
     array(
         'type' => array(
-            'ID' => 'news_and_changes',
+            'ID' => 'easy_news_articles',
             'SECTIONS' => 'Y',
             'EDIT_FILE_BEFORE' => '',
             'EDIT_FILE_AFTER' => '',
@@ -253,12 +253,12 @@ class Create_infoblocks
         'iblock' => array(
             'ACTIVE' => 'Y',
             'NAME' => 'Новости компании',
-            'CODE' => 'news',
-            'IBLOCK_TYPE_ID' => 'news_and_changes',
+            'CODE' => 'news_company',
+            'IBLOCK_TYPE_ID' => 'easy_news_articles',
             'SORT' => 120,
-            'LIST_PAGE_URL' => '#SITE_DIR#/news_and_changes/index.php?ID=#IBLOCK_ID#',
-            'SECTION_PAGE_URL' => '#SITE_DIR#/izmeneniya-v-raspisanii/',
-            'DETAIL_PAGE_URL' => '#SITE_DIR#/izmeneniya-v-raspisanii/#ELEMENT_CODE#/',
+            'LIST_PAGE_URL' => '#SITE_DIR#/novosti-kompanii/index.php?ID=#IBLOCK_ID#',
+            'SECTION_PAGE_URL' => '#SITE_DIR#/novosti-kompanii/',
+            'DETAIL_PAGE_URL' => '#SITE_DIR#/novosti-kompanii/#ELEMENT_CODE#/',
             'INDEX_ELEMENT' => 'Y',
             'INDEX_SECTION' => 'Y',
             'WORKFLOW' => 'N',
@@ -304,7 +304,7 @@ class Create_infoblocks
     ),
     array(
         'type' => array(
-            'ID' => 'news_and_changes',
+            'ID' => 'easy_news_articles',
             'SECTIONS' => 'Y',
             'EDIT_FILE_BEFORE' => '',
             'EDIT_FILE_AFTER' => '',
@@ -338,12 +338,12 @@ class Create_infoblocks
         'iblock' => array(
             'ACTIVE' => 'Y',
             'NAME' => 'Изменения в расписании',
-            'CODE' => 'schedule_changes',
-            'IBLOCK_TYPE_ID' => 'news_and_changes',
+            'CODE' => 'articles_company',
+            'IBLOCK_TYPE_ID' => 'easy_news_articles',
             'SORT' => 121,
-            'LIST_PAGE_URL' => '#SITE_DIR#/news_and_changes/index.php?ID=#IBLOCK_ID#',
-            'SECTION_PAGE_URL' => '#SITE_DIR#/novosti-kompanii/',
-            'DETAIL_PAGE_URL' => '#SITE_DIR#/novosti-kompanii/#ELEMENT_CODE#/',
+            'LIST_PAGE_URL' => '#SITE_DIR#/izmeneniya-v-raspisanii/index.php?ID=#IBLOCK_ID#',
+            'SECTION_PAGE_URL' => '#SITE_DIR#/izmeneniya-v-raspisanii/',
+            'DETAIL_PAGE_URL' => '#SITE_DIR#/izmeneniya-v-raspisanii/#ELEMENT_CODE#/',
             'INDEX_ELEMENT' => 'Y',
             'INDEX_SECTION' => 'Y',
             'WORKFLOW' => 'N',
@@ -389,7 +389,7 @@ class Create_infoblocks
     ),
     array(
         'type' => array(
-            'ID' => 'sevices',
+            'ID' => 'easy_services',
             'SECTIONS' => 'Y',
             'EDIT_FILE_BEFORE' => '',
             'EDIT_FILE_AFTER' => '',
@@ -408,9 +408,9 @@ class Create_infoblocks
                     'SECTION_DELETE' => 'Удалить раздел',
                 ),
                 'en' => array(
-                    'NAME' => 'Sevices',
+                    'NAME' => 'Services',
                     'SECTION_NAME' => 'Sections',
-                    'ELEMENT_NAME' => 'Sevices',
+                    'ELEMENT_NAME' => 'Services',
                     'ELEMENT_ADD' => 'Add service',
                     'ELEMENT_EDIT' => 'Edit service',
                     'ELEMENT_DELETE' => 'Delete service',
@@ -423,12 +423,12 @@ class Create_infoblocks
         'iblock' => array(
             'ACTIVE' => 'Y',
             'NAME' => 'Услуги',
-            'CODE' => 'sevices',
-            'IBLOCK_TYPE_ID' => 'sevices',
+            'CODE' => 'services',
+            'IBLOCK_TYPE_ID' => 'easy_services',
             'SORT' => 121,
-            'LIST_PAGE_URL' => '#SITE_DIR#/services/index.php?ID=#IBLOCK_ID#',
-            'SECTION_PAGE_URL' => '#SITE_DIR#/services/',
-            'DETAIL_PAGE_URL' => '#SITE_DIR#/services/detail.php?ID=#ELEMENT_ID#',
+            'LIST_PAGE_URL' => '#SITE_DIR#/uslugi/index.php?ID=#IBLOCK_ID#',
+            'SECTION_PAGE_URL' => '#SITE_DIR#/uslugi/',
+            'DETAIL_PAGE_URL' => '#SITE_DIR#/uslugi/#ELEMENT_CODE#/',
             'INDEX_ELEMENT' => 'Y',
             'INDEX_SECTION' => 'Y',
             'WORKFLOW' => 'N',
@@ -462,7 +462,7 @@ class Create_infoblocks
     ),
     array(
         'type' => array(
-            'ID' => 'products',
+            'ID' => 'easy_products',
             'SECTIONS' => 'Y',
             'EDIT_FILE_BEFORE' => '',
             'EDIT_FILE_AFTER' => '',
@@ -497,11 +497,11 @@ class Create_infoblocks
             'ACTIVE' => 'Y',
             'NAME' => 'Товары',
             'CODE' => 'products',
-            'IBLOCK_TYPE_ID' => 'products',
+            'IBLOCK_TYPE_ID' => 'easy_products',
             'SORT' => 121,
-            'LIST_PAGE_URL' => '#SITE_DIR#/products/index.php?ID=#IBLOCK_ID#',
-            'SECTION_PAGE_URL' => '#SITE_DIR#/products/',
-            'DETAIL_PAGE_URL' => '#SITE_DIR#/products/detail.php?ID=#ELEMENT_ID#',
+            'LIST_PAGE_URL' => '#SITE_DIR#/tovary/index.php?ID=#IBLOCK_ID#',
+            'SECTION_PAGE_URL' => '#SITE_DIR#/tovary/',
+            'DETAIL_PAGE_URL' => '#SITE_DIR#/tovary/#ELEMENT_CODE#/',
             'INDEX_ELEMENT' => 'Y',
             'INDEX_SECTION' => 'Y',
             'WORKFLOW' => 'N',
@@ -581,11 +581,11 @@ class Create_infoblocks
             
             // Маппинг кодов инфоблоков на имена XML файлов
             $xmlMapping = array(
-                'advertising_bannerss' => 'banners.xml',
-                'cards_info' => 'cards_info.xml',
-                'news' => 'news.xml',
-                'schedule_changes' => 'schedule_changes.xml',
-                'sevices' => 'sevices.xml',
+                'promo_banners' => 'banners.xml',
+                'cards_info' => 'cards-info.xml',
+                'news_company' => 'news.xml',
+                'articles_company' => 'schedule_changes.xml',
+                'services' => 'sevices.xml',
                 'products' => 'products.xml',
             );
             

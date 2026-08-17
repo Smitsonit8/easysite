@@ -39,7 +39,7 @@
 
         if (widthInput) {
             var siteWidth = getComputedStyle(document.documentElement).getPropertyValue('--site-max-width').trim().replace(/px$/, '');
-            if (siteWidth === '1200' || siteWidth === '1440' || siteWidth === '1920') widthInput.value = siteWidth;
+            if (siteWidth === '1600' || siteWidth === '1920' || siteWidth === '2560') widthInput.value = siteWidth;
         }
 
         root.querySelectorAll('[data-role="category"]').forEach(function (tab) {

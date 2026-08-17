@@ -161,6 +161,11 @@ $wizardNewsPaths = array(
 	WIZARD_SITE_DIR . "tovary/index.php",
 );
 
+// Служебный маркер, которым мастер помечает свои правила при генерации.
+// Позволяет при повторном запуске удалять ТОЛЬКО собственные правила, не трогая
+// правила, добавленные/изменённые пользователем под теми же путями.
+$wizardRuleMarker = "sporina.easysite";
+
 $filteredUrlRewrite = array();
 foreach ($arUrlRewrite as $rule)
 {
@@ -169,11 +174,12 @@ foreach ($arUrlRewrite as $rule)
 		continue;
 	}
 
+	// Удаляем только правила, сгенерированные мастером: у них есть служебный маркер
+	// MODULE => 'sporina.easysite'. Правила без маркера (пользовательские) всегда
+	// сохраняются, даже если их ID === "bitrix:news" и PATH совпадает с путями мастера.
 	$isWizardNewsRule = (
-		array_key_exists("ID", $rule)
-		&& $rule["ID"] === "bitrix:news"
-		&& array_key_exists("PATH", $rule)
-		&& in_array($rule["PATH"], $wizardNewsPaths, true)
+		isset($rule["MODULE"])
+		&& $rule["MODULE"] === $wizardRuleMarker
 	);
 
 	if ($isWizardNewsRule)
@@ -192,6 +198,7 @@ $arNewUrlRewrite = array(
 		'ID' => "bitrix:news",
 		'PATH' => WIZARD_SITE_DIR . "novosti-kompanii/index.php",
 		'SORT' => 90,
+		'MODULE' => $wizardRuleMarker,
 	),
 	// Список novosti-kompanii (SORT=100 — ниже)
 	array(
@@ -200,6 +207,7 @@ $arNewUrlRewrite = array(
 		'ID' => "bitrix:news",
 		'PATH' => WIZARD_SITE_DIR . "novosti-kompanii/index.php",
 		'SORT' => 100,
+		'MODULE' => $wizardRuleMarker,
 	),
 	// Детальные страницы izmeneniya-v-raspisanii
 	array(
@@ -208,6 +216,7 @@ $arNewUrlRewrite = array(
 		'ID' => "bitrix:news",
 		'PATH' => WIZARD_SITE_DIR . "izmeneniya-v-raspisanii/index.php",
 		'SORT' => 90,
+		'MODULE' => $wizardRuleMarker,
 	),
 	// Список izmeneniya-v-raspisanii
 	array(
@@ -216,6 +225,7 @@ $arNewUrlRewrite = array(
 		'ID' => "bitrix:news",
 		'PATH' => WIZARD_SITE_DIR . "izmeneniya-v-raspisanii/index.php",
 		'SORT' => 100,
+		'MODULE' => $wizardRuleMarker,
 	),
 	// Детальные страницы uslugi
 	array(
@@ -224,6 +234,7 @@ $arNewUrlRewrite = array(
 		'ID' => "bitrix:news",
 		'PATH' => WIZARD_SITE_DIR . "uslugi/index.php",
 		'SORT' => 90,
+		'MODULE' => $wizardRuleMarker,
 	),
 	// Список uslugi
 	array(
@@ -232,6 +243,7 @@ $arNewUrlRewrite = array(
 		'ID' => "bitrix:news",
 		'PATH' => WIZARD_SITE_DIR . "uslugi/index.php",
 		'SORT' => 100,
+		'MODULE' => $wizardRuleMarker,
 	),
 	// Детальные страницы tovary
 	array(
@@ -240,6 +252,7 @@ $arNewUrlRewrite = array(
 		'ID' => "bitrix:news",
 		'PATH' => WIZARD_SITE_DIR . "tovary/index.php",
 		'SORT' => 90,
+		'MODULE' => $wizardRuleMarker,
 	),
 	// Список tovary
 	array(
@@ -248,6 +261,7 @@ $arNewUrlRewrite = array(
 		'ID' => "bitrix:news",
 		'PATH' => WIZARD_SITE_DIR . "tovary/index.php",
 		'SORT' => 100,
+		'MODULE' => $wizardRuleMarker,
 	),
 );
 

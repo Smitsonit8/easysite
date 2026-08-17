@@ -62,20 +62,23 @@
 
 | Код типа            | Назначение (по смыслу модуля)   |
 |---------------------|----------------------------------|
-| `advertising_bannerss` | Рекламные баннеры             |
-| `cards_info`        | Карточки информации              |
-| `news_and_changes`  | Новости и изменения              |
-| `services`          | Услуги                           |
-| `products`          | Товары                           |
+| `easy_promobanners` | Рекламные баннеры                |
+| `easy_cardsinfo`    | Карточки информации              |
+| `easy_news_articles`| Новости и статьи                 |
+| `easy_infocompany`  | Информация о компании            |
+| `easy_services`     | Услуги                           |
+| `easy_products`     | Товары                           |
 
 Импорт из XML (`site/services/iblock/import.php`) создаёт инфоблоки с символьными кодами:
 
-- `advertising_bannerss`
+- `promo_banners`
 - `cards_info`
-- `news_companii`
-- `schedule_changes`
+- `news_company`
+- `articles_company`
 - `services`
 - `products`
+- `jobs_company`
+- `staff_company`
 
 Файлы XML лежат в `install/wizards/sporina/easy_site/site/services/iblock/xml/<язык>/`.
 

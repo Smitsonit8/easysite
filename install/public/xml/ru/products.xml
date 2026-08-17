@@ -86,9 +86,9 @@
 		<БитриксКод>products</БитриксКод>
 		<БитриксСимвольныйКодAPI></БитриксСимвольныйКодAPI>
 		<БитриксСортировка>500</БитриксСортировка>
-		<БитриксURLСписок>#SITE_DIR#/products/index.php?ID=#IBLOCK_ID#</БитриксURLСписок>
-		<БитриксURLДеталь>#SITE_DIR#/products/detail.php?ID=#ELEMENT_ID#</БитриксURLДеталь>
-		<БитриксURLРаздел>#SITE_DIR#/products/list.php?SECTION_ID=#SECTION_ID#</БитриксURLРаздел>
+		<БитриксURLСписок>#SITE_DIR#/tovary/index.php?ID=#IBLOCK_ID#</БитриксURLСписок>
+		<БитриксURLДеталь>#SITE_DIR#/tovary/#ELEMENT_CODE#/</БитриксURLДеталь>
+		<БитриксURLРаздел>#SITE_DIR#/tovary/</БитриксURLРаздел>
 		<БитриксURLКанонический></БитриксURLКанонический>
 		<БитриксКартинка></БитриксКартинка>
 		<БитриксИндексироватьЭлементы>true</БитриксИндексироватьЭлементы>

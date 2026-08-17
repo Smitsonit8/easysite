@@ -24,8 +24,11 @@ else
 
 // Устанавливаем флаг использования шаблона сайта
 COption::SetOptionString("sporina.easysite", "use_site_template", "Y", false, WIZARD_SITE_ID);
-if (COption::GetOptionString("sporina.easysite", "wizard_installed", "N", WIZARD_SITE_ID) !== "Y")
-{
-	COption::SetOptionString("sporina.easysite", "pages-main-banner-use", "Y", false, WIZARD_SITE_ID);
-}
+
+// Баннер на главной странице должен быть ВКЛЮЧЁН после установки (а также переустановки)
+// мастера. Раньше запись выполнялась только при wizard_installed !== "Y", из-за чего при
+// повторной установке старое значение 'N' (оставшееся от прошлой установки либо сохранённое
+// через панель настроек system.settings) не перезаписывалось, и баннер оставался выключенным.
+// Запись делаем безусловной, чтобы гарантировать корректное значение после каждого запуска мастера.
+COption::SetOptionString("sporina.easysite", "pages-main-banner-use", "Y", false, WIZARD_SITE_ID);
 ?>

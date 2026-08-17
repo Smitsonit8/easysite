@@ -44,21 +44,24 @@ function getFormIdBySID($sid) {
 			return false;
 		}
 	}
-	global $DB;
 
-	// Безопасно экранируем входные данные для предотвращения SQL-инъекций
-	$safeSid = $DB->ForSql($sid);
-	
-	// Запрос к таблице b_form для получения ID по SID
-	$rs = $DB->Query("
-		SELECT ID
-		FROM b_form
-		WHERE SID = '{$safeSid}'
-	");
-	
+	// Используем стандартный API CForm::GetList вместо прямого запроса к системной
+	// таблице b_form. Структура таблицы не гарантируется между мажорными версиями,
+	// поэтому обход API хрупок. Паттерн (SID_EXACT_MATCH => 'Y') симметричен тому,
+	// что уже используется для полей формы в form_handler.php.
+	$by = "s_id";
+	$order = "asc";
+	$isFiltered = false;
+	$arForm = CForm::GetList(
+		$by,
+		$order,
+		array("SID" => $sid, "SID_EXACT_MATCH" => "Y"),
+		$isFiltered
+	)->Fetch();
+
 	// Если форма найдена — возвращаем её ID
-	if ($ar = $rs->Fetch()) {
-		return (int)$ar['ID'];
+	if ($arForm) {
+		return (int)$arForm['ID'];
 	}
 	return false;
 }

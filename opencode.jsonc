@@ -20,7 +20,7 @@
     },
     "openwork-ui": {
       "type": "remote",
-      "url": "http://127.0.0.1:56172/mcp"
+      "url": "http://127.0.0.1:57786/mcp"
     }
   }
 }

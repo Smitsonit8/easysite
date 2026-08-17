@@ -26,9 +26,9 @@ return [
         ['key' => 'template-background-use', 'view' => 'boolean', 'name' => Loc::getMessage('SPORINA_SETTINGS_BACKGROUND_USE')],
         ['key' => 'template-background-color', 'view' => 'color', 'name' => Loc::getMessage('SPORINA_SETTINGS_BACKGROUND_COLOR'), 'palette' => ['#f8fbff', '#ffffff', '#f1f5ff', '#f5f5f5']],
         ['key' => 'template-width', 'view' => 'list', 'name' => Loc::getMessage('SPORINA_SETTINGS_WIDTH'), 'values' => [
-            ['value' => '1200', 'name' => '1200 px'],
-            ['value' => '1440', 'name' => '1440 px'],
+            ['value' => '1600', 'name' => '1600 px'],
             ['value' => '1920', 'name' => '1920 px'],
+            ['value' => '2560', 'name' => '2560 px'],
         ]],
         ['key' => 'template-font', 'view' => 'list', 'name' => Loc::getMessage('SPORINA_SETTINGS_FONT'), 'values' => [
             ['value' => 'ibm-plex-sans', 'name' => 'IBM Plex Sans'],

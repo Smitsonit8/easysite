@@ -99,10 +99,10 @@
 		<Ид>2</Ид>
 		<ИдКлассификатора>2</ИдКлассификатора>
 		<Наименование>Изменения в расписании</Наименование>
-		<БитриксКод>schedule_changes</БитриксКод>
+		<БитриксКод>articles_company</БитриксКод>
 		<БитриксСимвольныйКодAPI></БитриксСимвольныйКодAPI>
 		<БитриксСортировка>500</БитриксСортировка>
-		<БитриксURLСписок>#SITE_DIR#/news_and_changes/index.php?ID=#IBLOCK_ID#</БитриксURLСписок>
+		<БитриксURLСписок>#SITE_DIR#/izmeneniya-v-raspisanii/index.php?ID=#IBLOCK_ID#</БитриксURLСписок>
 		<БитриксURLДеталь>#SITE_DIR#/izmeneniya-v-raspisanii/#ELEMENT_CODE#/</БитриксURLДеталь>
 		<БитриксURLРаздел>#SITE_DIR#/izmeneniya-v-raspisanii/</БитриксURLРаздел>
 		<БитриксURLКанонический></БитриксURLКанонический>

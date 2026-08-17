@@ -164,7 +164,17 @@ class SiteSettingsStep extends CSiteSettingsWizardStep
 	function ShowStep()
 	{
 		$wizard = $this->GetWizard();
-		
+
+		// При повторной установке с демо-данными существующие инфоблоки будут удалены
+		// и пересозданы (CIBlock::Delete в import.php). Предупреждаем пользователя об этом.
+		$siteID = $wizard->GetVar("siteID");
+		$wizardInstalled = COption::GetOptionString("sporina.easysite", "wizard_installed", "N", $siteID) === "Y";
+		if ($wizardInstalled) {
+			$this->content .= '<div class="wizard-warning">'
+				. GetMessage("WIZ_DEMO_DATA_REINSTALL_WARNING")
+				. '</div>';
+		}
+
 		$this->content .= '<div class="wizard-input-form">';
 		/*
 		$this->content .= '

@@ -80,47 +80,105 @@ Class sporina_easysite extends CModule
 			);
 		}
 
-		// Копируем файлы в /bitrix/php_interface/
+		// Копируем файлы в /bitrix/php_interface/.
+		// НЕ копируем init.php целиком через CopyDirFiles — это безусловно перезаписывало бы
+		// пользовательский init.php минимальным init.php модуля. Вместо этого копируем
+		// form_handler.php и constants.php по отдельности, а init.php только дополняем
+		// строками (идемпотентно) в блоке ниже.
+		$phpInterfaceSrc = $_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/sporina.easysite/install/php_interface";
+		$phpInterfaceDst = $_SERVER["DOCUMENT_ROOT"]."/bitrix/php_interface";
+
 		CopyDirFiles(
-			$_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/sporina.easysite/install/php_interface",
-			$_SERVER["DOCUMENT_ROOT"]."/bitrix/php_interface",
+			$phpInterfaceSrc."/form_handler.php",
+			$phpInterfaceDst."/form_handler.php",
 			true,
 			true
 		);
-		
-		// Проверяем, существует ли init.php в целевой директории
+		CopyDirFiles(
+			$phpInterfaceSrc."/constants.php",
+			$phpInterfaceDst."/constants.php",
+			true,
+			true
+		);
+
+		// Проверяем, существует ли init.php в целевой директории.
 		$targetInitFile = $_SERVER["DOCUMENT_ROOT"]."/bitrix/php_interface/init.php";
-		$sourceInitFile = $_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/sporina.easysite/install/php_interface/init.php";
-		
-		// Если init.php уже существует, добавляем строки перед закрывающим тегом
-		if (file_exists($targetInitFile)) {
-			// Проверяем, содержатся ли уже нужные строки в файле
-			$content = file_get_contents($targetInitFile);
-			$formHandlerLine = 'require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/php_interface/form_handler.php");';
-			$constantsLine = 'require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/php_interface/constants.php");';
-			
-			// Добавляем строки, если их еще нет в файле
-			$linesToAdd = [];
-			if (strpos($content, $formHandlerLine) === false) {
-				$linesToAdd[] = $formHandlerLine;
-			}
-			if (strpos($content, $constantsLine) === false) {
-				$linesToAdd[] = $constantsLine;
-			}
-			
-			// Если есть строки для добавления, вставляем их перед закрывающим тегом
-			if (!empty($linesToAdd)) {
-				// Находим позицию закрывающего тега
-				$endPos = strrpos($content, '?>');
-				
-				if ($endPos !== false) {
-					// Вставляем строки перед 
-					$newContent = substr($content, 0, $endPos) . "\n" . implode("\n", $linesToAdd) . "\n" . substr($content, $endPos);
-					file_put_contents($targetInitFile, $newContent);
-				} else {
-					// Если закрывающий не найден, добавляем строки в конец файла
-					file_put_contents($targetInitFile, "\n" . implode("\n", $linesToAdd) . "\n", FILE_APPEND);
+
+		// Строки (require_once), которые должны быть подключены из init.php.
+		$formHandlerLine = 'require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/php_interface/form_handler.php");';
+		$constantsLine = 'require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/php_interface/constants.php");';
+
+		// Маркерные комментарии, чтобы UnInstallFiles() мог удалить только наш блок,
+		// не трогая чужой код в пользовательском init.php.
+		$blockStartMarker = "// >>> sporina.easysite";
+		$blockEndMarker = "// <<< sporina.easysite";
+		$blockLines = "\n" . $blockStartMarker . "\n" . $formHandlerLine . "\n" . $constantsLine . "\n" . $blockEndMarker;
+
+		// Идемпотентность: если файл уже содержит маркерный блок, ничего не делаем —
+		// это гарантирует отсутствие дублирования и при частично изменённом содержимом.
+		if (file_exists($targetInitFile)
+			&& strpos(file_get_contents($targetInitFile), $blockStartMarker) !== false
+		) {
+			// Блок уже установлен — выходим из обработки.
+		} else {
+			// Формируем новый контент в зависимости от состояния файла.
+			// init.php — PHP-файл; отсутствие закрывающего тега допустимо и даже
+			// рекомендуется, поэтому НИКОГДА не дописываем строки «как есть» в файл без
+			// открывающего тега: иначе require_once выведется как HTML и сломает вывод.
+			$newContent = "";
+
+			if (file_exists($targetInitFile)) {
+				$content = file_get_contents($targetInitFile);
+				if ($content === false) {
+					\CEventLog::Add([
+						"SEVERITY" => "ERROR",
+						"AUDIT_TYPE_ID" => "SPORINA_INSTALL",
+						"MODULE_ID" => "sporina.easysite",
+						"DESCRIPTION" => "Не удалось прочитать /bitrix/php_interface/init.php",
+					]);
+					return false;
 				}
+
+				// Ищем последний закрывающий тег. PHP-файл может быть без,
+				// тогда вставляем блок в самый конец, не нарушая синтаксис.
+				$endPos = strrpos($content, '?' . '>');
+
+				// Проверяем наличие открывающего PHP-тега. Тег может быть
+				// в вариантах php/PHP/пробел/= и т.п., поэтому надёжно ищем
+				// подстроку открывающего тега. Для заведомо пустого или
+				// пробельного файла он отсутствует.
+				$hasOpenTag = (strpos($content, '<' . '?') !== false);
+
+				if ($endPos !== false) {
+					// Файл содержит открывающий тег и закрывающий — вставляем блок
+					// перед закрывающим тегом, сохраняя его в конце.
+					$newContent = substr($content, 0, $endPos) . $blockLines . "\n" . substr($content, $endPos);
+				} elseif ($hasOpenTag) {
+					// Есть открывающий тег, но нет закрывающего — добавляем блок
+					// в конец файла, оставаясь в PHP-контексте.
+					$newContent = $content . $blockLines . "\n";
+				} else {
+					// Открывающего тега нет вовсе (в т.ч. пустой/пробельный файл) —
+					// аккуратно открываем PHP-контекст и добавляем блок в конец.
+					// Тег собираем конкатенацией, чтобы не разрывать PHP-токенизатор.
+					$newContent = "<" . "?php\n" . $content . $blockLines . "\n";
+				}
+			} else {
+				// Файл не существует — создаём с открывающим PHP-тегом и сразу с блоком.
+				// Без открывающего тега require_once вывелся бы как текст и сломал вывод.
+				// Собираем тег конкатенацией, чтобы он не разрывал PHP-токенизатор.
+				$newContent = "<" . "?php" . $blockLines . "\n";
+			}
+
+			// Атомарная запись с блокировкой и контролем результата.
+			if (file_put_contents($targetInitFile, $newContent, LOCK_EX) === false) {
+				\CEventLog::Add([
+					"SEVERITY" => "ERROR",
+					"AUDIT_TYPE_ID" => "SPORINA_INSTALL",
+					"MODULE_ID" => "sporina.easysite",
+					"DESCRIPTION" => "Не удалось записать /bitrix/php_interface/init.php",
+				]);
+				return false;
 			}
 		}
 
@@ -174,21 +232,33 @@ Class sporina_easysite extends CModule
 		// Удаляем только те файлы, которые были установлены модулем
 		// В данном случае это form_handler.php и constants.php
 		
-		// Удаляем только строки из init.php, а не весь файл
+		// Удаляем только строки из init.php, а не весь файл.
+		// Согласовано с InstallFiles(): удаляем весь блок, ограниченный маркерными
+		// комментариями // >>> sporina.easysite и // <<< sporina.easysite, чтобы не
+		// трогать чужой код пользовательского init.php.
 		$initFile = $_SERVER["DOCUMENT_ROOT"]."/bitrix/php_interface/init.php";
 		if (file_exists($initFile)) {
 			$content = file_get_contents($initFile);
-			$formHandlerLine = 'require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/php_interface/form_handler.php");';
-			$constantsLine = 'require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/php_interface/constants.php");';
-			
-			// Удаляем строки из файла
-			$content = str_replace($formHandlerLine . "\n", "", $content);
-			$content = str_replace($constantsLine . "\n", "", $content);
-			$content = str_replace("\n" . $formHandlerLine, "", $content);
-			$content = str_replace("\n" . $constantsLine, "", $content);
-			$content = str_replace($formHandlerLine, "", $content);
-			$content = str_replace($constantsLine, "", $content);
-			
+			$blockStartMarker = "// >>> sporina.easysite";
+			$blockEndMarker = "// <<< sporina.easysite";
+
+			// Собираем блок целиком (маркеры и строки между ними) и удаляем его
+			$blockPattern = preg_quote($blockStartMarker, '/') . '.*?' . preg_quote($blockEndMarker, '/');
+			$content = preg_replace('/' . $blockPattern . '/s', '', $content);
+
+			// Если маркерный блок не найден (старая установка без маркеров), точечно
+			// удаляем строки require_once как раньше
+			if (strpos($content, $blockStartMarker) === false && strpos($content, $blockEndMarker) === false) {
+				$formHandlerLine = 'require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/php_interface/form_handler.php");';
+				$constantsLine = 'require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/php_interface/constants.php");';
+				$content = str_replace($formHandlerLine . "\n", "", $content);
+				$content = str_replace($constantsLine . "\n", "", $content);
+				$content = str_replace("\n" . $formHandlerLine, "", $content);
+				$content = str_replace("\n" . $constantsLine, "", $content);
+				$content = str_replace($formHandlerLine, "", $content);
+				$content = str_replace($constantsLine, "", $content);
+			}
+
 			file_put_contents($initFile, $content);
 		}
 
