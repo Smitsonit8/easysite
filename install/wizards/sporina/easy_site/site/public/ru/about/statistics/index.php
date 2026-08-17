@@ -5,7 +5,7 @@ $APPLICATION->SetTitle("Статистика");
 <!-- слайдер с текстом на нем отличается от главной страници-->
 <?$APPLICATION->IncludeComponent("bitrix:main.include","sporina-slider-pages", array(
 		"AREA_FILE_SHOW" => "file",
-		"PATH" => SITE_DIR."include/slider-pages.php",
+		"PATH" => "#SITE_DIR#include/slider-pages.php",
 	),
 	false
 );?>
@@ -54,7 +54,7 @@ $APPLICATION->SetTitle("Статистика");
 <!-- подписаться на телеграм-->
 <?$APPLICATION->IncludeComponent("bitrix:main.include","sporina-subscribe-t", array(
 		"AREA_FILE_SHOW" => "file",
-		"PATH" => SITE_DIR."include/subscribe.php",
+		"PATH" => "#SITE_DIR#include/subscribe.php",
 	),
 	false
 	);?>

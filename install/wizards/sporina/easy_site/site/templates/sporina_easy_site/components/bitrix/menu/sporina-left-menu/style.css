@@ -14,7 +14,7 @@
   padding-bottom: 40px !important;
 }
 
-.nav_company-border:after {
+.nav_company .nav_company-border:after {
   content: "";
   display: block;
   position: absolute;

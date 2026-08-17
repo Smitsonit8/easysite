@@ -6,12 +6,12 @@ $APPLICATION->SetTitle("Новости компании");
 	"sporina:banner", 
 	"compact", 
 	[
-		"BACKGROUND_IMAGE_SRC" => SITE_TEMPLATE_PATH."/style/img/bg_w.png",
-		"BUTTON_LINK" => SITE_DIR."contacts/",
+		"BACKGROUND_IMAGE_SRC" => SITE_TEMPLATE_PATH."/style/img/fon.png",
+		"BUTTON_LINK" => "#SITE_DIR#contacts/",
 		"BUTTON_TEXT" => "Связаться с нами",
 		"COMPONENT_TEMPLATE" => "compact",
 		"IMAGE_SRC" => "",
-		"MOBILE_IMAGE_SRC" => SITE_TEMPLATE_PATH."/style/img/application_img.svg",
+		"MOBILE_IMAGE_SRC" => SITE_TEMPLATE_PATH."/style/img/women-small.png",
 		"SHOW_BUTTON" => "Y",
 		"SHOW_IMAGE" => "Y",
 		"SLOGAN" => "Работаем для вашего удобства",
@@ -91,9 +91,7 @@ $APPLICATION->SetTitle("Новости компании");
 		"SEF_FOLDER" => "#SITE_DIR#novosti-kompanii/",
 		"SEF_MODE" => "Y",
 		"SET_LAST_MODIFIED" => "N",
-		"SET_STATUS_404" => "N",
 		"SET_TITLE" => "N",
-		"SHOW_404" => "N",
 		"SORT_BY1" => "TIMESTAMP_X",
 		"SORT_BY2" => "TIMESTAMP_X",
 		"SORT_ORDER1" => "DESC",
@@ -105,7 +103,7 @@ $APPLICATION->SetTitle("Новости компании");
 		"USE_RATING" => "N",
 		"USE_RSS" => "N",
 		"USE_SEARCH" => "N",
-		"USE_SHARE" => "N",
+		"USE_SHARE" => "Y",
 		"COMPONENT_TEMPLATE" => "sporina-news",
 		"USE_REVIEW" => "N",
 		"NEWS_LIST_TEMPLATE" => "list.2",
@@ -120,7 +118,10 @@ $APPLICATION->SetTitle("Новости компании");
 			"news" => "",
 			"section" => "",
 			"detail" => "#ELEMENT_CODE#/",
-		]
+		],
+		"SET_STATUS_404" => "Y",
+		"SHOW_404" => "Y",
+		"FILE_404" => "#SITE_DIR#404.php"
 	],
 	false
 );?>
@@ -128,7 +129,7 @@ $APPLICATION->SetTitle("Новости компании");
 </section>
 <?$APPLICATION->IncludeComponent("bitrix:main.include","sporina-subscribe-t", array(
 		"AREA_FILE_SHOW" => "file",
-		"PATH" => SITE_DIR."include/subscribe.php",
+		"PATH" => "#SITE_DIR#include/subscribe.php",
 	),
 	false
 	);?>

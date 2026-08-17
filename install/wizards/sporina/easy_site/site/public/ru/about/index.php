@@ -8,7 +8,7 @@ $APPLICATION->SetTitle("О компании");
 
 <?$APPLICATION->IncludeComponent("bitrix:main.include","sporina-slider-pages", array(
 		"AREA_FILE_SHOW" => "file",
-		"PATH" => SITE_DIR."include/slider-pages.php",
+		"PATH" => "#SITE_DIR#include/slider-pages.php",
 	),
 	false
 );?>
@@ -57,7 +57,7 @@ $APPLICATION->SetTitle("О компании");
 <!-- подписаться на телеграм-->
 <?$APPLICATION->IncludeComponent("bitrix:main.include","sporina-subscribe-t", array(
 		"AREA_FILE_SHOW" => "file",
-		"PATH" => SITE_DIR."include/subscribe.php",
+		"PATH" => "#SITE_DIR#include/subscribe.php",
 	),
 	false
 	);?>

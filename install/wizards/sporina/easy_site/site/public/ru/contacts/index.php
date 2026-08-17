@@ -8,12 +8,12 @@ $APPLICATION->IncludeComponent(
 	"sporina:banner",
 	"compact",
 	array(
-		"BACKGROUND_IMAGE_SRC" => SITE_TEMPLATE_PATH."/style/img/bg_w.png",
-		"BUTTON_LINK" => SITE_DIR."contacts/",
+		"BACKGROUND_IMAGE_SRC" => SITE_TEMPLATE_PATH."/style/fon.png",
+		"BUTTON_LINK" => "#SITE_DIR#contacts/",
 		"BUTTON_TEXT" => "Связаться с нами",
 		"COMPONENT_TEMPLATE" => "compact",
 		"IMAGE_SRC" => "",
-		"MOBILE_IMAGE_SRC" => SITE_TEMPLATE_PATH."/style/img/application_img.svg",
+		"MOBILE_IMAGE_SRC" => "",
 		"SHOW_BUTTON" => "Y",
 		"SHOW_IMAGE" => "Y",
 		"SLOGAN" => "Работаем для вашего удобства",
@@ -71,7 +71,7 @@ $APPLICATION->IncludeComponent(
 	"sporina-subscribe-t",
 	array(
 		"AREA_FILE_SHOW" => "file",
-		"PATH" => SITE_DIR."include/subscribe.php",
+		"PATH" => "#SITE_DIR#include/subscribe.php",
 	),
 	false
 );

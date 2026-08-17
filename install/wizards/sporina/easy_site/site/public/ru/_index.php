@@ -17,7 +17,7 @@ $sporinaSettings = isset($GLOBALS["SPORINA_EASY_SITE_SETTINGS"]) && is_array($GL
 	[
 		"BACKGROUND_COLOR" => "",
 		"BACKGROUND_IMAGE_SRC" => "",
-		"BUTTON_LINK" => SITE_DIR."about/",
+		"BUTTON_LINK" => "#SITE_DIR#about/",
 		"BUTTON_TEXT" => "Подробнее",
 		"COMPONENT_TEMPLATE" => ".default",
 		"IMAGE_SRC" => SITE_TEMPLATE_PATH."/style/img/driver.png",
@@ -106,7 +106,7 @@ $sporinaSettings = isset($GLOBALS["SPORINA_EASY_SITE_SETTINGS"]) && is_array($GL
 <?if (($sporinaSettings["pages-main-subscribe-use"] ?? "Y") === "Y"):?>
 <?$APPLICATION->IncludeComponent("bitrix:main.include","sporina-subscribe-t", array(
 		"AREA_FILE_SHOW" => "file",
-		"PATH" => SITE_DIR."include/subscribe.php",
+		"PATH" => "#SITE_DIR#include/subscribe.php",
 	),
 	false
 	);?>
@@ -179,7 +179,7 @@ $sporinaSettings = isset($GLOBALS["SPORINA_EASY_SITE_SETTINGS"]) && is_array($GL
 		"PAGER_TEMPLATE" => ".default",
 		"PAGER_TITLE" => "Изменения в расписании",
 		"PREVIEW_TRUNCATE_LEN" => "",
-		"SEF_FOLDER" => SITE_DIR."izmeneniya-v-raspisanii/",
+		"SEF_FOLDER" => "#SITE_DIR#izmeneniya-v-raspisanii/",
 		"SEF_MODE" => "Y",
 		"SET_LAST_MODIFIED" => "N",
 		"SET_STATUS_404" => "N",
@@ -275,7 +275,7 @@ $sporinaSettings = isset($GLOBALS["SPORINA_EASY_SITE_SETTINGS"]) && is_array($GL
 		"PAGER_TEMPLATE" => ".default",
 		"PAGER_TITLE" => "Новости",
 		"PREVIEW_TRUNCATE_LEN" => "",
-		"SEF_FOLDER" => SITE_DIR."novosti-kompanii/",
+		"SEF_FOLDER" => "#SITE_DIR#novosti-kompanii/",
 		"SEF_MODE" => "Y",
 		"SET_LAST_MODIFIED" => "N",
 		"SET_STATUS_404" => "N",

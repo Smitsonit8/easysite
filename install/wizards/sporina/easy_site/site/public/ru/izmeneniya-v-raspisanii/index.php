@@ -6,12 +6,12 @@ $APPLICATION->SetTitle("Изменения в расписании");
 	"sporina:banner",
 	"compact",
 	Array(
-		"BACKGROUND_IMAGE_SRC" => SITE_TEMPLATE_PATH."/style/img/bg_w.png",
-		"BUTTON_LINK" => SITE_DIR."contacts/",
+		"BACKGROUND_IMAGE_SRC" => SITE_TEMPLATE_PATH."/style/img/fon.png",
+		"BUTTON_LINK" => "#SITE_DIR#contacts/",
 		"BUTTON_TEXT" => "Связаться с нами",
 		"COMPONENT_TEMPLATE" => "compact",
 		"IMAGE_SRC" => "",
-		"MOBILE_IMAGE_SRC" => SITE_TEMPLATE_PATH."/style/img/application_img.svg",
+		"MOBILE_IMAGE_SRC" => "",
 		"SHOW_BUTTON" => "Y",
 		"SHOW_IMAGE" => "Y",
 		"SLOGAN" => "Работаем для вашего удобства",
@@ -93,9 +93,7 @@ $APPLICATION->SetTitle("Изменения в расписании");
 				"SEF_FOLDER" => "#SITE_DIR#izmeneniya-v-raspisanii/",
 				"SEF_MODE" => "Y",
 				"SET_LAST_MODIFIED" => "N",
-				"SET_STATUS_404" => "N",
 				"SET_TITLE" => "N",
-				"SHOW_404" => "N",
 				"SORT_BY1" => "TIMESTAMP_X",
 				"SORT_BY2" => "TIMESTAMP_X",
 				"SORT_ORDER1" => "DESC",
@@ -112,12 +110,6 @@ $APPLICATION->SetTitle("Изменения в расписании");
 				"USE_REVIEW" => "N",
 				"SHARE_HIDE" => "N",
 				"SHARE_TEMPLATE" => "",
-				"SHARE_HANDLERS" => [
-					0 => "mailru",
-					1 => "vk",
-				],
-				"SHARE_SHORTEN_URL_LOGIN" => "",
-				"SHARE_SHORTEN_URL_KEY" => "",
 				"NEWS_LIST_TEMPLATE" => "list.3",
 				"NEWS_DETAIL_TEMPLATE" => "detail.3",
 				"SHARE_MAX" => "Y",
@@ -128,7 +120,10 @@ $APPLICATION->SetTitle("Изменения в расписании");
 					"news" => "",
 					"section" => "",
 					"detail" => "#ELEMENT_CODE#/",
-				]
+				],
+				"SET_STATUS_404" => "Y",
+				"SHOW_404" => "Y",
+				"FILE_404" => "#SITE_DIR#404.php"
 			],
 			false
 		);?>
@@ -136,7 +131,7 @@ $APPLICATION->SetTitle("Изменения в расписании");
 </section>
 <?$APPLICATION->IncludeComponent("bitrix:main.include","sporina-subscribe-t", array(
 		"AREA_FILE_SHOW" => "file",
-		"PATH" => SITE_DIR."include/subscribe.php",
+		"PATH" => "#SITE_DIR#include/subscribe.php",
 	),
 	false
 	);?>

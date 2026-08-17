@@ -8,7 +8,7 @@ $APPLICATION->SetTitle("Руководство компании");
 	"sporina-slider-pages",
 	Array(
 		"AREA_FILE_SHOW" => "file",
-		"PATH" => SITE_DIR."include/slider-pages.php"
+		"PATH" => "#SITE_DIR#include/slider-pages.php"
 	)
 );?> <!--меню, контент--> <section class="container content_flex">
 <div class="content_nav">
@@ -143,6 +143,6 @@ $APPLICATION->SetTitle("Руководство компании");
 	"sporina-subscribe-t",
 	Array(
 		"AREA_FILE_SHOW" => "file",
-		"PATH" => SITE_DIR."include/subscribe.php"
+		"PATH" => "#SITE_DIR#include/subscribe.php"
 	)
 );?><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
