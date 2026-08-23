@@ -1,0 +1,1 @@
+<?php $MESS['SPORINA_PRODUCT_GALLERY']='Галерея товара';$MESS['SPORINA_PRODUCT_CLOSE']='Закрыть';$MESS['SPORINA_PRODUCT_PREVIOUS']='Предыдущее изображение';$MESS['SPORINA_PRODUCT_NEXT']='Следующее изображение';$MESS['SPORINA_PRODUCT_IMAGE']='Изображение';

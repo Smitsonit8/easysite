@@ -1,0 +1,133 @@
+.sporina-vacancies{
+    display:block
+}
+.sporina-vacancies__section{
+    margin-top:40px
+}
+.sporina-vacancies__section:first-child{
+    margin-top:0
+}
+.sporina-vacancies__section-title{
+    margin:0 0 15px;
+    color:var(--primary);
+    font-size:var(--font-size-news-section-title);
+    line-height:var(--line-height-news-section-title)
+}
+.sporina-vacancies__section-title+ .sporina-vacancies__item{
+    border-top:1px solid #e8e8e8
+}
+.sporina-vacancies__item{
+    display:block;
+    padding:25px 35px;
+    border-right:1px solid #e8e8e8;
+    border-bottom:1px solid #e8e8e8;
+    border-left:1px solid #e8e8e8
+}
+.sporina-vacancies__item:last-child{
+    border-bottom:1px solid #e8e8e8
+}
+.sporina-vacancies__toggle{
+    display:block;
+    position:relative;
+    width:100%;
+    min-height:24px;
+    padding:0;
+    border:0;
+    background:var(--surface);
+    color:var(--text);
+    text-align:left;
+    cursor:pointer
+}
+.sporina-vacancies__title{
+    display:block;
+    margin-right:250px;
+    font-size:var(--font-size-md);
+    line-height:var(--line-height-body)
+}
+.sporina-vacancies__salary{
+    position:absolute;
+    top:-25px;
+    right:70px;
+    bottom:-25px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:140px;
+    overflow:hidden;
+    background:var(--accent);
+    color:var(--text);
+    font-size:var(--font-size-news-meta);
+    font-weight:var(--font-weight-bold);
+    white-space:nowrap
+}
+.sporina-vacancies__indicators{
+    position:absolute;
+    top:0;
+    right:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:100%;
+}
+
+.sporina-vacancies-accordion__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    transition: transform 0.35s ease;
+    transform-origin: center;
+}
+
+.sporina-vacancies-accordion__arrow-svg {
+    display: block;
+    fill: var(--text-muted);
+}
+
+.sporina-vacancies__item.is-open
+.sporina-vacancies-accordion__arrow {
+    transform: rotate(90deg);
+}
+
+.sporina-vacancies__description {
+    display: block;
+    max-height: 0;
+    padding-top: 0;
+    overflow: hidden;
+    opacity: 0;
+    color: #888;
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-body);
+
+    transition:
+        max-height 0.45s ease,
+        padding-top 0.35s ease,
+        opacity 0.3s ease;
+}
+
+.sporina-vacancies__item.is-open
+.sporina-vacancies__description {
+    padding-top: 25px;
+    opacity: 1;
+}
+@media(max-width:520px){
+    .sporina-vacancies__item{
+        padding:20px
+    }
+    .sporina-vacancies__title{
+        margin-right:70px
+    }
+    .sporina-vacancies__salary{
+        position:static;
+        width:auto;
+        margin-top:10px;
+        margin-right:70px;
+        background:transparent;
+        justify-content:flex-start
+    }
+    .sporina-vacancies__indicators{
+        top:0;
+        width:40px
+    }
+}

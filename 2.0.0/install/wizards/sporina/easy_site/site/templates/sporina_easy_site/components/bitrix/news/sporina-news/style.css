@@ -1,0 +1,130 @@
+/* --- Кнопка "назад" (общая для всех страниц) --- */
+
+.sporina-news-company__back
+{
+	display: inline-flex;
+	align-items: center;
+	gap: 12px;
+	padding: 14px 22px;
+	color: var(--text);
+	text-decoration: none;
+	transition: transform 0.25s ease, box-shadow 0.25s ease, color 0.25s ease;
+}
+
+.sporina-news-company__back:hover
+{
+	transform: translateX(-4px);
+	color: var(--primary-hover);
+}
+
+.sporina-news-company__back-icon
+{
+	width: 24px;
+	height: 24px;
+	flex: 0 0 24px;
+	stroke: var(--text);
+	stroke-width: 2;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	fill: none;
+}
+
+.sporina-news-company__back:hover .sporina-news-company__back-icon{
+	stroke: var(--primary-hover);
+}
+
+.sporina-news-company__back-text
+{
+	font-size: var(--font-size-base);
+	font-weight: var(--font-weight-semibold);
+	line-height: var(--line-height-ui);
+	text-transform: uppercase;
+}
+
+
+/* --- Пагинация (общая) --- */
+
+.sporina-news-company__pager
+{
+	margin-top: 34px;
+}
+
+.sporina-news-company__pager .modern-page-navigation,
+.sporina-news-company__pager .pagination,
+.sporina-news-company__pager ul
+{
+	display: inline-flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	padding: 14px;
+	margin: 0 auto;
+	list-style: none;
+	border-radius: 999px;
+	background: var(--primary);
+	box-shadow: 0 12px 28px rgba(18, 45, 66, 0.08);
+}
+
+.sporina-news-company__pager table
+{
+	margin: 0 auto;
+	border-collapse: separate;
+	border-spacing: 10px 8px;
+}
+
+.sporina-news-company__pager td
+{
+	padding: 0;
+}
+
+.sporina-news-company__pager a,
+.sporina-news-company__pager .modern-page-current,
+.sporina-news-company__pager .bx-pagination-current,
+.sporina-news-company__pager .current,
+.sporina-news-company__pager font
+{
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 44px;
+	height: 44px;
+	padding: 0 16px;
+	border: 1px solid rgba(27, 40, 53, 0.12);
+	background: var(--primary);
+	color: var(--text-inverse);
+	line-height: var(--line-height-ui);
+	text-decoration: none;
+	box-sizing: border-box;
+	transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+.sporina-news-company__pager a:hover
+{
+	background: var(--primary-hover);
+	border-color: transparent;
+	color: var(--text-inverse);
+}
+
+.sporina-news-company__pager .modern-page-current,
+.sporina-news-company__pager .bx-pagination-current,
+.sporina-news-company__pager .current,
+.sporina-news-company__pager font
+{
+	background: var(--primary);
+	border-color: transparent;
+	color: var(--text-inverse);
+}
+
+.text b{
+	margin: 0 16px;
+}
+
+@media screen and (max-width: 768px)
+{
+	.sporina-news-company__back-text
+	{
+		font-size: var(--font-size-news-more);
+	}
+
+}

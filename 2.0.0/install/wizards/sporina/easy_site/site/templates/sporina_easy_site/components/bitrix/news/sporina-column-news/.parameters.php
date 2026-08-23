@@ -1,0 +1,111 @@
+<?
+if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
+
+$arTemplateParameters = array(
+	"NEWS_LIST_TEMPLATE" => array(
+		"PARENT" => "BASE",
+		"NAME" => GetMessage("SPORINA_COLUMN_NEWS_LIST_TEMPLATE"),
+		"TYPE" => "LIST",
+		"VALUES" => array(
+			"list.1" => GetMessage("SPORINA_COLUMN_NEWS_LIST_TEMPLATE_DEFAULT"),
+			"list.2" => GetMessage("SPORINA_COLUMN_NEWS_LIST_TEMPLATE_CARDS"),
+			"list.3" => GetMessage("SPORINA_COLUMN_NEWS_LIST_TEMPLATE_TIMELINE"),
+		),
+		"DEFAULT" => "list.1",
+	),
+	"COLUMNS_LAYOUT" => array(
+		"PARENT" => "BASE",
+		"NAME" => GetMessage("SPORINA_COLUMN_NEWS_COLUMNS_LAYOUT"),
+		"TYPE" => "LIST",
+		"VALUES" => array(
+			"two" => GetMessage("SPORINA_COLUMN_NEWS_COLUMNS_LAYOUT_TWO"),
+			"stacked" => GetMessage("SPORINA_COLUMN_NEWS_COLUMNS_LAYOUT_STACKED"),
+		),
+		"DEFAULT" => "two",
+	),
+	"SHOW_IBLOCK_TITLE" => array(
+		"PARENT" => "BASE",
+		"NAME" => GetMessage("SPORINA_COLUMN_NEWS_SHOW_IBLOCK_TITLE"),
+		"TYPE" => "CHECKBOX",
+		"DEFAULT" => "Y",
+	),
+	"SHOW_MORE_BUTTON" => array(
+		"PARENT" => "BASE",
+		"NAME" => GetMessage("SPORINA_COLUMN_NEWS_SHOW_MORE_BUTTON"),
+		"TYPE" => "CHECKBOX",
+		"DEFAULT" => "Y",
+	),
+	"DISPLAY_DATE" => Array(
+		"NAME" => GetMessage("T_IBLOCK_DESC_NEWS_DATE"),
+		"TYPE" => "CHECKBOX",
+		"DEFAULT" => "Y",
+	),
+	"DISPLAY_PICTURE" => Array(
+		"NAME" => GetMessage("T_IBLOCK_DESC_NEWS_PICTURE"),
+		"TYPE" => "CHECKBOX",
+		"DEFAULT" => "Y",
+	),
+	"DISPLAY_PREVIEW_TEXT" => Array(
+		"NAME" => GetMessage("T_IBLOCK_DESC_NEWS_TEXT"),
+		"TYPE" => "CHECKBOX",
+		"DEFAULT" => "Y",
+	),
+	"USE_SHARE" => Array(
+		"NAME" => GetMessage("T_IBLOCK_DESC_NEWS_USE_SHARE"),
+		"TYPE" => "CHECKBOX",
+		"MULTIPLE" => "N",
+		"VALUE" => "Y",
+		"DEFAULT" =>"N",
+		"REFRESH"=> "Y",
+	),
+);
+
+if ($arCurrentValues["USE_SHARE"] == "Y")
+{
+	$arTemplateParameters["SHARE_HIDE"] = array(
+		"NAME" => GetMessage("T_IBLOCK_DESC_NEWS_SHARE_HIDE"),
+		"TYPE" => "CHECKBOX",
+		"VALUE" => "Y",
+		"DEFAULT" => "N",
+	);
+
+	$arTemplateParameters["SHARE_TEMPLATE"] = array(
+		"NAME" => GetMessage("T_IBLOCK_DESC_NEWS_SHARE_TEMPLATE"),
+		"DEFAULT" => "",
+		"TYPE" => "STRING",
+		"MULTIPLE" => "N",
+		"COLS" => 25,
+		"REFRESH"=> "Y",
+	);
+	
+	if (trim($arCurrentValues["SHARE_TEMPLATE"]) == '')
+		$shareComponentTemlate = false;
+	else
+		$shareComponentTemlate = trim($arCurrentValues["SHARE_TEMPLATE"]);
+
+	include_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/components/bitrix/main.share/util.php");
+
+	$arHandlers = __bx_share_get_handlers($shareComponentTemlate);
+
+	$arTemplateParameters["SHARE_HANDLERS"] = array(
+		"NAME" => GetMessage("T_IBLOCK_DESC_NEWS_SHARE_SYSTEM"),
+		"TYPE" => "LIST",
+		"MULTIPLE" => "Y",
+		"VALUES" => $arHandlers["HANDLERS"],
+		"DEFAULT" => $arHandlers["HANDLERS_DEFAULT"],
+	);
+
+	$arTemplateParameters["SHARE_SHORTEN_URL_LOGIN"] = array(
+		"NAME" => GetMessage("T_IBLOCK_DESC_NEWS_SHARE_SHORTEN_URL_LOGIN"),
+		"TYPE" => "STRING",
+		"DEFAULT" => "",
+	);
+	
+	$arTemplateParameters["SHARE_SHORTEN_URL_KEY"] = array(
+		"NAME" => GetMessage("T_IBLOCK_DESC_NEWS_SHARE_SHORTEN_URL_KEY"),
+		"TYPE" => "STRING",
+		"DEFAULT" => "",
+	);
+}
+
+?>

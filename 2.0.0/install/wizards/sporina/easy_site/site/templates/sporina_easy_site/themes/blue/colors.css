@@ -1,0 +1,112 @@
+:root {
+  /*--main-background: #f8fbff; 
+  --header-color: #0e035f; 
+  --main-color: #0e035f;
+  --main-color-hover: #140c87; 
+
+
+  --arrow-color: invert(10%) sepia(87%) saturate(6921%) hue-rotate(256deg) brightness(55%) contrast(115%);
+  --arrow-color-2: invert(100%) sepia(0%) saturate(7500%) hue-rotate(19deg) brightness(99%) contrast(102%);
+
+  --menu-hover:  invert(86%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(15%) contrast(100%);
+  --gradient: linear-gradient(135deg, #1a0d7d 0%, #0e035f 100%);
+  --gradient-banner-centered: linear-gradient(0deg, #f4f4f4 0%, #0e035f 100%);
+  --gradient-banner-compact: linear-gradient(90deg, rgb(0 0 0 / 72%), rgb(62 110 213 / 62%));
+  
+  --link-color-hover: #242424;
+  --gradient-news: radial-gradient(circle at top left, rgba(24, 0, 143, 0.2), transparent 34%);
+  --gradient-news-2: radial-gradient(circle, rgba(24, 0, 143, 0.14) 0%, rgba(62, 110, 213, 0) 72%);
+  --gradient-news-3: radial-gradient(circle at top left, rgba(72, 109, 170, 0.14), transparent 34%), linear-gradient(180deg, #f7faff 0%, #ffffff 100%);
+  --color-news-date: rgba(24, 0, 143, 0.12);
+  --color-page-text: #4a5568;
+  --color-text-another:#828282;
+*/
+
+  /* Основной фирменный цвет:шапка, кнопки, логотип, заголовки */
+  --primary: #005b8d;
+  /* Более тёмная версия:футер, тёмные блоки */
+  --primary-dark: #080137;
+  /* Hover для кнопок и ссылок */
+   --primary-hover: #12354e;
+   --footer: #334155;
+
+   
+  --gradient: linear-gradient(135deg, #005b8d 0%, #12354e 100%);
+
+  --banner-gradient-1: radial-gradient(circle at top left, rgba(255, 255, 255, 0.22), transparent 34%),
+    linear-gradient(135deg, rgba(18, 46, 89, 0.72), rgba(0, 0, 0, 0.64));
+  --banner-gradient-2: radial-gradient(circle at top left, rgb(255 255 255 / 22%), #b1757500 34%),
+   linear-gradient(135deg, rgb(86 119 169 / 68%), rgb(17 54 111 / 64%));
+
+  /* Акцент:ссылки, иконки, активные элементы */
+    --accent: #f0f7ff;
+    /* Hover акцентов */
+    --accent-hover: #0ea5e9;
+    /* Светлый фон для бейджей,выделенных блоков */
+    --accent-light: #e0f2fe;
+  
+      /* Основной фон сайта */
+    --bg: #f8fbff;
+
+    /* Альтернативный фон секции */
+    --bg-alt: #f1f5ff;
+
+    /* Фон карточек */
+    --surface: #ffffff;
+
+
+    /* Рамки карточек, таблиц и форм */
+    --border: #ffffff;
+
+    /* Hover рамок */
+    --border-hover: #c6d3ea;
+
+    --icons: #005b8d;
+    --icons-hover: #12354e;
+    --icons-alt: #64748b;
+    --icons-alt-hover:#334155;
+
+
+    /* =======================================
+       ТЕКСТ
+       ======================================= */
+
+    /* Основной текст */
+    --text: #334155;
+
+    /* Вторичный текст */
+    --text-secondary: #64748b;
+
+    /* Подсказки, даты, мета-информация */
+    --text-muted: #94a3b8;
+
+    /* Текст на тёмном фоне */
+    --text-inverse: #ffffff;
+
+
+    /* =======================================
+       СОСТОЯНИЯ
+       ======================================= */
+
+    /* Успех */
+    --success: #22c55e;
+
+    /* Предупреждение */
+    --warning: #f59e0b;
+
+    /* Ошибка */
+    --error: #ef4444;
+
+
+    /* =======================================
+       ТЕНИ
+       ======================================= */
+
+    /* Карточки */
+    --shadow-sm: 0 14px 35px rgba(16, 46, 78, 0.08);
+
+    /* Большие блоки */
+    --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
+
+
+}

@@ -1,0 +1,131 @@
+.card_padding{
+  position: relative;
+  display: flex;
+  height: 100%;
+  background-color: var(--surface);
+  box-shadow: var(--shadow-sm);
+  /*margin: 0 10px 20px;*/
+}
+
+.card_padding h3{
+  margin: 20px 20px;
+}
+
+.news--default-two {
+
+  flex-direction: column;
+  flex: 1 1 auto;
+  
+  width: 100%;
+  max-width: 450px;
+  
+}
+
+.news--default-stacked{
+    flex-direction: column;
+    width: 80%;
+    margin: 0px auto 40px;
+}
+
+.card {
+  border-bottom: 1px solid rgb(211, 211, 211);
+  padding: 0px 16px;
+  transition: background-color .1s ease;
+}
+
+.card-anim {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: sporinaCardIn 0.65s ease forwards;
+}
+
+.card-a{
+  color: var(--text);
+}
+
+.card-a:hover{
+	background-color: var(--primary);
+  color: var(--text-inverse);
+}
+
+.card_bottom {
+  border: none;
+}
+
+.card .card-a {
+  color: var(--primary);
+  font-size: var(--font-size-news-column-item);
+  line-height: var(--line-height-news-column-item);
+  letter-spacing: 0.01em;
+}
+.card .card-a p {
+  margin: 20px 0;
+  max-width: 400px;
+}
+
+.card_date {
+  color: var(--primary);
+}
+.card_time {
+  color: var(--text-muted);
+  padding-left: 13px;
+}
+
+.card-a:hover .card_date,
+.card-a:hover .card_time {
+  color: var(--text-inverse);
+}
+
+.card .card-a,
+.card_date,
+.card_time {
+  transition: color .1s ease;
+}
+
+.block-margin{
+	margin: 20px 20px;
+}
+
+.svg_arrow {
+    fill: var(--text-muted);
+}
+
+.block-margin:hover .svg_arrow path {
+	fill: var(--primary-hover);
+}
+
+.block-margin h4{
+  margin: 0;
+}
+
+.block-margin:hover h4{
+  color:var(--primary-hover);
+}
+
+
+div.news-list
+{
+	word-wrap: break-word;
+}
+div.news-list img.preview_picture
+{
+	float:left;
+	margin:0 4px 6px 0;
+}
+
+@keyframes sporinaCardIn
+{
+	from { opacity: 0; transform: translateY(20px); }
+	to { opacity: 1; transform: translateY(0); }
+}
+
+@media screen and (max-width: 992px) {
+	.card_padding {
+		max-width: 100%;
+	}
+
+  .news--default-stacked{
+    width: 100%;
+    margin: 0 0 40px 0;
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "success": true,
+  "requestId": "sporina.easysite-1787490050",
+  "data": {
+    "vulnerabilities": [
+      {
+        "file": "install/wizards/sporina/easy_site/site/public/ru/auth/index.php",
+        "line": "5-6",
+        "type": "Open Redirect",
+        "severity": "medium",
+        "description": "Подтверждена потенциальная переадресация на внешний ресурс: наличие параметра запроса backurl проверяется через $_REQUEST, после чего его значение передаётся в LocalRedirect($backurl) без allowlist локальных путей. На страницах авторизации это позволяет сформировать фишинговую ссылку, которая после входа перенаправит пользователя на контролируемый атакующим домен.",
+        "recommendation": "Получать backurl из запроса явно и разрешать только локальные пути сайта. Отклонять URL, начинающиеся с //, и любые значения со схемой или внешним хостом.",
+        "fix": "Before:\nif (isset($_REQUEST[\"backurl\"]) && strlen($_REQUEST[\"backurl\"]) > 0) {\n    LocalRedirect($backurl);\n}\n\nAfter:\n$backurl = (string)($_REQUEST[\"backurl\"] ?? \"\");\nif (preg_match(\"#^/(?!/)#\", $backurl)) {\n    LocalRedirect($backurl);\n}"
+      }
+    ],
+    "summary": "Обнаружена 1 уязвимость Open Redirect в 849 целевых PHP/шаблонных файлах обновления 2.0.0. Максимальная severity: medium.",
+    "scannedFiles": 849,
+    "riskLevel": "medium",
+    "auditedFiles": [
+      "updater.php",
+      "install/components/sporina/system.settings/class.php",
+      "install/php_interface/form_handler.php",
+      "install/wizards/sporina/easy_site/site/public/ru/auth/index.php",
+      "install/wizards/sporina/easy_site/site/public/ru/include/logo.php",
+      "install/wizards/sporina/easy_site/site/templates/sporina_easy_site/components/sporina/banner/.default/template.php"
+    ]
+  }
+}
