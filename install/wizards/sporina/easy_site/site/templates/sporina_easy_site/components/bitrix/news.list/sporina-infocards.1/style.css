@@ -94,6 +94,30 @@ div.news-list .block_between {
 	transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.sporina-cards-bayinfo__card--image
+{
+	overflow: hidden;
+}
+
+.sporina-cards-bayinfo__link
+{
+	position: relative;
+	overflow: hidden;
+}
+
+.sporina-cards-bayinfo__card--image .sporina-cards-bayinfo__link::before
+{
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	background-image: var(--sporina-cards-bayinfo-bg-image);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	transition: transform 0.45s ease;
+}
+
 .sporina-cards-bayinfo__card:hover
 {
 	transform: translateY(-8px);
@@ -111,44 +135,15 @@ div.news-list .block_between {
 	transform: translateX(6px);
 }
 
-.sporina-cards-bayinfo__media
+.sporina-cards-bayinfo__link > div
 {
-	overflow: hidden;
+	position: relative;
+	z-index: 1;
 }
 
-.sporina-cards-bayinfo__image
-{
-	transition: transform 0.45s ease;
-}
-
-.sporina-cards-bayinfo__card:hover .sporina-cards-bayinfo__image
+.sporina-cards-bayinfo__card:hover .sporina-cards-bayinfo__link::before
 {
 	transform: scale(1.05);
-}
-
-.bgImg a {
-  position: relative;
-}
-
-.bgImg-position {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-.bgImg-position > img {
-  position: absolute;
-  z-index: -10;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
 }
 
 .icon_top {

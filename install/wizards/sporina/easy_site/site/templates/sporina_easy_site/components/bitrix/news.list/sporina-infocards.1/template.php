@@ -22,11 +22,15 @@ $this->setFrameMode(true);
 	<?
 	$this->AddEditAction($arItem['ID'], $arItem['EDIT_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_EDIT"));
 	$this->AddDeleteAction($arItem['ID'], $arItem['DELETE_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_DELETE"), array("CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM')));
+	$hasImage = !empty($arItem["PREVIEW_PICTURE"]["SRC"]);
+	$imageStyle = $hasImage
+		? '--sporina-cards-bayinfo-bg-image: url(\'' . htmlspecialcharsbx($arItem["PREVIEW_PICTURE"]["SRC"]) . '\');'
+		: '';
 	?>
-	<?if($arItem["PREVIEW_PICTURE"]["SRC"]):?>
+	<?if($hasImage):?>
 		<article class="news-item sporina-cards-bayinfo__item" id="<?=$this->GetEditAreaId($arItem['ID']);?>" style="animation-delay: <?=($index * 0.08)?>s;">
 			<div class="block_info block_info--bgImg bgImg_schedule bgImg sporina-cards-bayinfo__card sporina-cards-bayinfo__card--image">
-				<a href='<?=$arItem["DISPLAY_PROPERTIES"]["LINK_CARD"]["VALUE"]?>' class="svg sporina-cards-bayinfo__link">
+				<a href='<?=$arItem["DISPLAY_PROPERTIES"]["LINK_CARD"]["VALUE"]?>' class="svg sporina-cards-bayinfo__link" style="<?=$imageStyle?>">
 					<div class="block">
                         <div>
                             <h3 class="service-title"><?echo $arItem["NAME"]?></h3>
@@ -44,17 +48,6 @@ $this->setFrameMode(true);
 							<?endif;?>
 						</p>
 
-                    </div>
-                    <div class="bgImg-position sporina-cards-bayinfo__media">
-						<img
-							class="preview_picture sporina-cards-bayinfo__image"
-							border="0"
-							src="<?=$arItem["PREVIEW_PICTURE"]["SRC"]?>"
-
-							alt="<?=$arItem["PREVIEW_PICTURE"]["ALT"]?>"
-							title="<?=$arItem["PREVIEW_PICTURE"]["TITLE"]?>"
-							style="float:left; margin:auto;"
-						/>
                     </div>
 				</a>
 			</div>

@@ -10,6 +10,7 @@
 	line-height: var(--line-height-news-meta);
 	color: var(--text-muted);
 	margin-bottom: 15px;
+	margin-top: 30px;
 }
 
 .sporina-news-company-stand__detail-title {
@@ -38,7 +39,7 @@
 .sporina-news-company-stand__detail-image {
     /* height: 100%; */
     object-fit: cover;
-    aspect-ratio: 4 / 3;
+    /*aspect-ratio: 4 / 3;*/
     max-width: 700px;
     width: 100%;
 }
