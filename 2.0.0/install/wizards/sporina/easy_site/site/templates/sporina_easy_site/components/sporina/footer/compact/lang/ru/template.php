@@ -1,3 +1,0 @@
-<?php
-$MESS["SPORINA_FOOTER_COMPACT_CONTACTS"] = "Контакты";
-$MESS["SPORINA_FOOTER_COMPACT_LINKS"] = "Документы";

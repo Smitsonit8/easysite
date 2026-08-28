@@ -1,0 +1,90 @@
+{
+  "schema_version": "1.0",
+  "module": {
+    "code": "sporina.easysite"
+  },
+  "current_state": {
+    "status": "needs_review",
+    "last_run_id": "sporina.easysite-1787943905",
+    "archive_sha256": null,
+    "open_findings": 1,
+    "blocking_findings_open": 0,
+    "false_positive_findings": 0,
+    "accepted_risk_findings": 0,
+    "fixed_findings": 0,
+    "removed_findings": 0,
+    "total_findings": 1
+  },
+  "runs": [
+    {
+      "run_id": "sporina.easysite-1787943905",
+      "created_at": "2026-08-28T16:07:56+00:00",
+      "archive_sha256": null,
+      "scanner_request_id": "sporina.easysite-1787943905",
+      "input_summary": "Обнаружена 1 уязвимость Open Redirect в 852 целевых PHP/шаблонных файлах. Максимальная severity: medium. Вывод данных из доверенно редактируемых полей Bitrix рассмотрен в BUS-триаже и не классифицирован как самостоятельная уязвимость модуля.",
+      "summary": {
+        "current_scan_findings": 1,
+        "severity_counts": {
+          "medium": 1
+        },
+        "new_findings": 1,
+        "still_open_findings": 0,
+        "reopened_findings": 0,
+        "resolved_since_previous_run": 0
+      }
+    }
+  ],
+  "findings": [
+    {
+      "journal_finding_id": "JF-00001",
+      "fingerprint": "666b8a4960043cba3f400086d3b64515",
+      "type": "Open Redirect",
+      "severity": "medium",
+      "status": "open",
+      "first_seen_run_id": "sporina.easysite-1787943905",
+      "last_seen_run_id": "sporina.easysite-1787943905",
+      "resolved_run_id": null,
+      "original_location": {
+        "file": "install/wizards/sporina/easy_site/site/public/ru/auth/index.php",
+        "line": "5-6"
+      },
+      "current_location": {
+        "file": "install/wizards/sporina/easy_site/site/public/ru/auth/index.php",
+        "line": "5-6"
+      },
+      "latest_vulnerability": {
+        "file": "install/wizards/sporina/easy_site/site/public/ru/auth/index.php",
+        "line": "5-6",
+        "type": "Open Redirect",
+        "severity": "medium",
+        "description": "Подтверждена потенциальная переадресация на внешний ресурс: наличие параметра запроса backurl проверяется через $_REQUEST, после чего его значение передаётся в LocalRedirect($backurl) без allowlist локальных путей. На странице авторизации это позволяет сформировать фишинговую ссылку, которая после входа перенаправит пользователя на контролируемый атакующим домен.",
+        "recommendation": "Получать backurl из запроса явно и разрешать только локальные пути сайта. Отклонять URL, начинающиеся с //, и любые значения со схемой или внешним хостом.",
+        "fix": "Before:\nif (isset($_REQUEST[\"backurl\"]) && strlen($_REQUEST[\"backurl\"]) > 0) {\n    LocalRedirect($backurl);\n}\n\nAfter:\n$backurl = (string)($_REQUEST[\"backurl\"] ?? \"\");\nif (preg_match(\"#^/(?!/)#\", $backurl)) {\n    LocalRedirect($backurl);\n}",
+        "reviewed": {
+          "oldSeverity": "medium",
+          "newSeverity": "medium",
+          "changed": false,
+          "category": "public-open-redirect",
+          "versionScope": "current",
+          "version": "current",
+          "currentVersionRelevance": "present-in-current-scan",
+          "action": "allowlist-local-redirects",
+          "confidence": "medium",
+          "rationale": "Kept as medium because request-controlled backurl redirect can support phishing after login; restrict to relative/local URLs."
+        }
+      },
+      "events": [
+        {
+          "run_id": "sporina.easysite-1787943905",
+          "event": "detected",
+          "at": "2026-08-28T16:07:56+00:00",
+          "location": {
+            "file": "install/wizards/sporina/easy_site/site/public/ru/auth/index.php",
+            "line": "5-6"
+          },
+          "status": "open"
+        }
+      ]
+    }
+  ]
+}

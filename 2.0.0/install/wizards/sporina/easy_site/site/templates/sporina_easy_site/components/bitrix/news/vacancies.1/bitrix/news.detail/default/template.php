@@ -1,2 +1,0 @@
-<?php if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) die(); ?>
-<article class="sporina-vacancy-detail"><h1 class="sporina-vacancy-detail__title"><?=$arResult['NAME']?></h1><div class="sporina-vacancy-detail__text"><?=$arResult['DETAIL_TEXT'] ?: $arResult['PREVIEW_TEXT']?></div><p><a class="sporina-vacancy-detail__back" href="<?=$arResult['LIST_PAGE_URL']?>">← <?=GetMessage('SPORINA_VACANCIES_BACK')?></a></p></article>

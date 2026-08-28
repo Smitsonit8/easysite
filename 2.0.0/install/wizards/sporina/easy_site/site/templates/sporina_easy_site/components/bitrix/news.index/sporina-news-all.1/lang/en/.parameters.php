@@ -1,4 +1,0 @@
-<?
-$MESS["SPORINA_NEWS_ALL_SHOW_SLIDER_NAVIGATION"] = "Show navigation arrows";
-$MESS["SPORINA_NEWS_ALL_ENABLE_SLIDER_AUTOPLAY"] = "Enable slider autoplay";
-$MESS["SPORINA_NEWS_ALL_SLIDER_AUTOPLAY_TIMEOUT"] = "Autoplay interval, ms";

@@ -1,6 +1,0 @@
-<?php
-
-$MESS['SPORINA_SYSTEM_SETTINGS_MODE'] = 'Режим работы';
-$MESS['SPORINA_SYSTEM_SETTINGS_MODE_RENDER'] = 'Получение настроек';
-$MESS['SPORINA_SYSTEM_SETTINGS_MODE_CONFIGURE'] = 'Настройка';
-$MESS['SPORINA_SYSTEM_SETTINGS_ACTION_VARIABLE'] = 'Имя переменной AJAX-действия';
