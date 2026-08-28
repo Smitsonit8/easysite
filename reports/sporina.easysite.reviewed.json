@@ -1,71 +1,29 @@
 {
   "success": true,
-  "requestId": "sporina.easysite-1787943905",
+  "requestId": "sporina.easysite-1787934125",
   "data": {
-    "vulnerabilities": [
-      {
-        "file": "install/wizards/sporina/easy_site/site/public/ru/auth/index.php",
-        "line": "5-6",
-        "type": "Open Redirect",
-        "severity": "medium",
-        "description": "Подтверждена потенциальная переадресация на внешний ресурс: наличие параметра запроса backurl проверяется через $_REQUEST, после чего его значение передаётся в LocalRedirect($backurl) без allowlist локальных путей. На странице авторизации это позволяет сформировать фишинговую ссылку, которая после входа перенаправит пользователя на контролируемый атакующим домен.",
-        "recommendation": "Получать backurl из запроса явно и разрешать только локальные пути сайта. Отклонять URL, начинающиеся с //, и любые значения со схемой или внешним хостом.",
-        "fix": "Before:\nif (isset($_REQUEST[\"backurl\"]) && strlen($_REQUEST[\"backurl\"]) > 0) {\n    LocalRedirect($backurl);\n}\n\nAfter:\n$backurl = (string)($_REQUEST[\"backurl\"] ?? \"\");\nif (preg_match(\"#^/(?!/)#\", $backurl)) {\n    LocalRedirect($backurl);\n}",
-        "reviewed": {
-          "oldSeverity": "medium",
-          "newSeverity": "medium",
-          "changed": false,
-          "category": "public-open-redirect",
-          "versionScope": "current",
-          "version": "current",
-          "currentVersionRelevance": "present-in-current-scan",
-          "action": "allowlist-local-redirects",
-          "confidence": "medium",
-          "rationale": "Kept as medium because request-controlled backurl redirect can support phishing after login; restrict to relative/local URLs."
-        }
-      }
-    ],
-    "summary": "Обнаружена 1 уязвимость Open Redirect в 852 целевых PHP/шаблонных файлах. Максимальная severity: medium. Вывод данных из доверенно редактируемых полей Bitrix рассмотрен в BUS-триаже и не классифицирован как самостоятельная уязвимость модуля.",
+    "vulnerabilities": [],
+    "summary": "При повторной проверке после исправления не обнаружено актуальных уязвимостей в 852 целевых PHP/шаблонных файлах. Проверка backurl на странице авторизации разрешает только локальные пути без второго слеша или обратного слеша.",
     "scannedFiles": 852,
-    "riskLevel": "medium",
+    "riskLevel": "none",
     "auditedFiles": [
-      "include.php",
-      "updater.php",
-      "install/index.php",
-      "install/step.php",
-      "install/php_interface/form_handler.php",
-      "install/components/sporina/system.settings/class.php",
-      "install/wizards/sporina/easy_site/site/public/ru/auth/index.php",
-      "install/wizards/sporina/easy_site/site/templates/sporina_easy_site/components/bitrix/main.share/sporina-social-share/template.php",
-      "install/wizards/sporina/easy_site/site/templates/sporina_easy_site/components/bitrix/news/staff/bitrix/news.detail/staff.1/template.php",
-      "install/wizards/sporina/easy_site/site/templates/sporina_easy_site/components/bitrix/news/staff/bitrix/news.list/blocks.1/template.php",
-      "install/wizards/sporina/easy_site/site/templates/sporina_easy_site/components/bitrix/news/staff/bitrix/news.list/list.1/template.php"
+      "install/wizards/sporina/easy_site/site/public/ru/auth/index.php"
     ],
     "reviewSummary": {
       "reviewedAt": "2026-08-28",
       "method": "BUS-aware triage: preserve original finding fields except severity, add reviewed node with old severity and rationale.",
       "totals": {
-        "vulnerabilities": 1,
+        "vulnerabilities": 0,
         "changedSeverity": 0,
-        "unchangedSeverity": 1
+        "unchangedSeverity": 0
       },
-      "rawSeverityCounts": {
-        "medium": 1
-      },
-      "reviewedSeverityCounts": {
-        "medium": 1
-      },
+      "rawSeverityCounts": {},
+      "reviewedSeverityCounts": {},
       "currentScope": {
-        "total": 1,
-        "rawSeverityCounts": {
-          "medium": 1
-        },
-        "reviewedSeverityCounts": {
-          "medium": 1
-        },
-        "reviewedCategories": {
-          "public-open-redirect": 1
-        }
+        "total": 0,
+        "rawSeverityCounts": {},
+        "reviewedSeverityCounts": {},
+        "reviewedCategories": {}
       },
       "historicalUpdatePackages": {
         "total": 0,

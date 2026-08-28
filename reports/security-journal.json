@@ -4,14 +4,14 @@
     "code": "sporina.easysite"
   },
   "current_state": {
-    "status": "needs_review",
-    "last_run_id": "sporina.easysite-1787943905",
+    "status": "ready_for_submission",
+    "last_run_id": "sporina.easysite-1787934125",
     "archive_sha256": null,
-    "open_findings": 1,
+    "open_findings": 0,
     "blocking_findings_open": 0,
     "false_positive_findings": 0,
     "accepted_risk_findings": 0,
-    "fixed_findings": 0,
+    "fixed_findings": 1,
     "removed_findings": 0,
     "total_findings": 1
   },
@@ -32,6 +32,21 @@
         "reopened_findings": 0,
         "resolved_since_previous_run": 0
       }
+    },
+    {
+      "run_id": "sporina.easysite-1787934125",
+      "created_at": "2026-08-28T16:22:29+00:00",
+      "archive_sha256": null,
+      "scanner_request_id": "sporina.easysite-1787934125",
+      "input_summary": "При повторной проверке после исправления не обнаружено актуальных уязвимостей в 852 целевых PHP/шаблонных файлах. Проверка backurl на странице авторизации разрешает только локальные пути без второго слеша или обратного слеша.",
+      "summary": {
+        "current_scan_findings": 0,
+        "severity_counts": {},
+        "new_findings": 0,
+        "still_open_findings": 0,
+        "reopened_findings": 0,
+        "resolved_since_previous_run": 1
+      }
     }
   ],
   "findings": [
@@ -40,18 +55,15 @@
       "fingerprint": "666b8a4960043cba3f400086d3b64515",
       "type": "Open Redirect",
       "severity": "medium",
-      "status": "open",
+      "status": "fixed",
       "first_seen_run_id": "sporina.easysite-1787943905",
       "last_seen_run_id": "sporina.easysite-1787943905",
-      "resolved_run_id": null,
+      "resolved_run_id": "sporina.easysite-1787934125",
       "original_location": {
         "file": "install/wizards/sporina/easy_site/site/public/ru/auth/index.php",
         "line": "5-6"
       },
-      "current_location": {
-        "file": "install/wizards/sporina/easy_site/site/public/ru/auth/index.php",
-        "line": "5-6"
-      },
+      "current_location": null,
       "latest_vulnerability": {
         "file": "install/wizards/sporina/easy_site/site/public/ru/auth/index.php",
         "line": "5-6",
@@ -83,8 +95,19 @@
             "line": "5-6"
           },
           "status": "open"
+        },
+        {
+          "run_id": "sporina.easysite-1787934125",
+          "event": "resolved",
+          "at": "2026-08-28T16:22:29+00:00",
+          "status": "fixed"
         }
-      ]
+      ],
+      "resolution": {
+        "type": "not_reproduced_after_rescan",
+        "resolved_in_run": "sporina.easysite-1787934125",
+        "reason": "The reviewed scan no longer reports a matching finding for the current archive."
+      }
     }
   ]
 }

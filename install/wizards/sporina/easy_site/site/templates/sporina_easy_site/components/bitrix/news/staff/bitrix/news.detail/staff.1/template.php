@@ -12,11 +12,11 @@ $phone = $propertyValue('PROPERTY_PHONE'); $email = $propertyValue('PROPERTY_EMA
     <div class="sporina-staff-detail__information">
         <div class="sporina-staff-detail__photo"><img src="<?= htmlspecialcharsbx($picture) ?>" alt="<?= htmlspecialcharsbx($arResult['NAME']) ?>"></div>
         <div class="sporina-staff-detail__body">
-            <?php if ($position = $propertyValue('PROPERTY_POSITION')) { ?><div class="sporina-staff-detail__position"><?= $position ?></div><?php } ?>
-            <h1 class="sporina-staff-detail__name"><?= $arResult['NAME'] ?></h1>
+            <?php if ($position = $propertyValue('PROPERTY_POSITION')) { ?><div class="sporina-staff-detail__position"><?= htmlspecialcharsbx($position) ?></div><?php } ?>
+            <h1 class="sporina-staff-detail__name"><?= htmlspecialcharsbx($arResult['NAME']) ?></h1>
             <?php if ($phone || $email) { ?><div class="sporina-staff-detail__contacts">
-                <?php if ($phone) { ?><a href="tel:<?= htmlspecialcharsbx(preg_replace('/[^+0-9]/', '', strip_tags($phone))) ?>"><?= file_get_contents(__DIR__.'/svg/contact.phone.svg') ?><span><?= $phone ?></span></a><?php } ?>
-                <?php if ($email) { ?><a href="mailto:<?= htmlspecialcharsbx(strip_tags($email)) ?>"><?= file_get_contents(__DIR__.'/svg/contact.email.svg') ?><span><?= $email ?></span></a><?php } ?>
+                <?php if ($phone) { ?><a href="tel:<?= htmlspecialcharsbx(preg_replace('/[^+0-9]/', '', strip_tags($phone))) ?>"><?= file_get_contents(__DIR__.'/svg/contact.phone.svg') ?><span><?= htmlspecialcharsbx($phone) ?></span></a><?php } ?>
+                <?php if ($email) { ?><a href="mailto:<?= htmlspecialcharsbx(strip_tags($email)) ?>"><?= file_get_contents(__DIR__.'/svg/contact.email.svg') ?><span><?= htmlspecialcharsbx($email) ?></span></a><?php } ?>
             </div><?php } ?>
             <?php if ($arParams['SOCIAL_SHOW'] === 'Y') { ?><div class="sporina-staff-detail__social"><?php foreach ($icons as $name => $icon) { $value = $propertyValue('PROPERTY_SOCIAL_'.$name); $href = $safeUrl($value); if (!$href) continue; ?><a href="<?= htmlspecialcharsbx($href) ?>" target="_blank" rel="noopener noreferrer"><?= file_get_contents(__DIR__.'/svg/'.$icon) ?></a><?php } ?></div><?php } ?>
         </div>
