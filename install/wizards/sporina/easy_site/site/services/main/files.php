@@ -41,7 +41,7 @@ $wizardInstalled = COption::GetOptionString("sporina.easysite", "wizard_installe
 $installDemoData = (defined("WIZARD_INSTALL_DEMO_DATA") && WIZARD_INSTALL_DEMO_DATA);
 $filesNotExist = !file_exists(WIZARD_SITE_PATH . "index.php");
 
-// 1. Копирование публичной части из /site/public/ru/ на сайт 
+// 1. Копирование публичной части из /site/public/<template-id>/ru/ на сайт
 // Копируем, если мастер ещё не устанавливался для этого сайта,
 // либо явно выбрана установка демо-данных, либо на сайте ещё нет index.php.
 if (
@@ -50,7 +50,13 @@ if (
 	|| $filesNotExist
 )
 {
-	$sourcePath = WIZARD_ABSOLUTE_PATH . "/site/public/" . LANGUAGE_ID . "/";
+	$publicTemplateID = defined("WIZARD_TEMPLATE_ID") ? WIZARD_TEMPLATE_ID : $wizard->GetVar("templateID");
+	if (!in_array($publicTemplateID, array("sporina_easy_site", "sporina_easy_site_v2")))
+	{
+		$publicTemplateID = "sporina_easy_site";
+	}
+
+	$sourcePath = WIZARD_ABSOLUTE_PATH . "/site/public/" . $publicTemplateID . "/" . LANGUAGE_ID . "/";
 	if (file_exists($sourcePath))
 	{
 		CopyDirFiles(

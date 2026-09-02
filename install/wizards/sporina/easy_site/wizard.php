@@ -42,15 +42,15 @@ class SelectTemplateStep extends CSelectTemplateWizardStep
 		
 		if ($wizard->IsNextButtonClick())
 		{
-			$arTemplates = array("sporina_easy_site");
+			$arTemplates = array("sporina_easy_site", "sporina_easy_site_v2");
 			
 			$templateID = $wizard->GetVar("wizTemplateID");
 			
 			if (!in_array($templateID, $arTemplates))
 				$this->SetError(GetMessage("wiz_template"));
 			
-			if (in_array($templateID, array("sporina_easy_site")))
-				$wizard->SetVar("templateID", "sporina_easy_site");
+			if (in_array($templateID, array("sporina_easy_site", "sporina_easy_site_v2")))
+				$wizard->SetVar("templateID", $templateID);
 		}
 	}
 	
@@ -63,19 +63,28 @@ class SelectTemplateStep extends CSelectTemplateWizardStep
 		
 		$arTemplateOrder = array();
 		
-		if (in_array("sporina_easy_site", array_keys($arTemplates)))
+		foreach (array("sporina_easy_site", "sporina_easy_site_v2") as $templateID)
 		{
-			$arTemplateOrder[] = "sporina_easy_site";
+			if (in_array($templateID, array_keys($arTemplates)))
+			{
+				$arTemplateOrder[] = $templateID;
+			}
 		}
 		
 		$defaultTemplateID = COption::GetOptionString("main", "wizard_template_id", "sporina_easy_site", $wizard->GetVar("siteID"));
-		if (!in_array($defaultTemplateID, array("sporina_easy_site"))) $defaultTemplateID = "sporina_easy_site";
+		if (!in_array($defaultTemplateID, array("sporina_easy_site", "sporina_easy_site_v2"))) $defaultTemplateID = "sporina_easy_site";
 		$wizard->SetDefaultVar("wizTemplateID", $defaultTemplateID);
 		
 		$arTemplateInfo = array(
 			"sporina_easy_site" => array(
 				"NAME" => GetMessage("WIZ_TEMPLATE_EASY_SITE"),
 				"DESCRIPTION" => GetMessage("WIZ_TEMPLATE_EASY_SITE_DESC"),
+				"PREVIEW" => $wizard->GetPath()."/images/".LANGUAGE_ID."/preview.gif",
+				"SCREENSHOT" => $wizard->GetPath()."/images/".LANGUAGE_ID."/screen.gif",
+			),
+			"sporina_easy_site_v2" => array(
+				"NAME" => "Sporina Easy Site v2",
+				"DESCRIPTION" => "Modern editorial business-card template",
 				"PREVIEW" => $wizard->GetPath()."/images/".LANGUAGE_ID."/preview.gif",
 				"SCREENSHOT" => $wizard->GetPath()."/images/".LANGUAGE_ID."/screen.gif",
 			),

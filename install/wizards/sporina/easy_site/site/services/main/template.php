@@ -73,7 +73,7 @@ if ($arSite = $obSite->Fetch())
 }
 
 $wizrdTemplateId = $wizard->GetVar("wizTemplateID");
-if (!in_array($wizrdTemplateId, array("sporina_easy_site")))
+if (!in_array($wizrdTemplateId, array("sporina_easy_site", "sporina_easy_site_v2")))
 	$wizrdTemplateId = "sporina_easy_site";
 COption::SetOptionString("main", "wizard_template_id", $wizrdTemplateId, false, WIZARD_SITE_ID);
 
