@@ -18,6 +18,8 @@ class SporinaSystemSettingsComponent extends CBitrixComponent
     public const MODE_RENDER = 'render';
     public const MODE_CONFIGURE = 'configure';
     public const ACTION_VARIABLE = 'sporina-system-settings-action';
+    public const DISPLAY_FOR_ALL = 'all';
+    public const DISPLAY_FOR_AUTHORIZED = 'authorized';
 
     private const SESSION_CATEGORY = 'sporina-system-settings-category';
 
@@ -27,21 +29,29 @@ class SporinaSystemSettingsComponent extends CBitrixComponent
         $params['ACTION_VARIABLE'] = !empty($params['ACTION_VARIABLE'])
             ? (string) $params['ACTION_VARIABLE']
             : self::ACTION_VARIABLE;
+        $params['DISPLAY_FOR'] = isset($params['DISPLAY_FOR'])
+            ? (string) $params['DISPLAY_FOR']
+            : self::DISPLAY_FOR_AUTHORIZED;
+        if (!in_array($params['DISPLAY_FOR'], [self::DISPLAY_FOR_ALL, self::DISPLAY_FOR_AUTHORIZED], true)) {
+            $params['DISPLAY_FOR'] = self::DISPLAY_FOR_AUTHORIZED;
+        }
 
         return $params;
     }
 
     public function executeComponent()
     {
-        global $USER;
-
         if (!Loader::includeModule('sporina.easysite')) {
             return null;
         }
 
         $request = Context::getCurrent()->getRequest();
         $actionVariable = $this->arParams['ACTION_VARIABLE'];
-        if ($request->isPost() && $request->getPost($actionVariable) !== null) {
+        if (
+            $this->arParams['MODE'] === self::MODE_CONFIGURE
+            && $request->isPost()
+            && $request->getPost($actionVariable) !== null
+        ) {
             $this->processAction((string) $request->getPost($actionVariable));
 
             return null;
@@ -51,7 +61,7 @@ class SporinaSystemSettingsComponent extends CBitrixComponent
             return Settings::getAll();
         }
 
-        if ($this->arParams['MODE'] === self::MODE_CONFIGURE && $USER->IsAdmin()) {
+        if ($this->arParams['MODE'] === self::MODE_CONFIGURE && $this->canConfigure()) {
             $this->arResult = [
                 'SETTINGS' => Settings::getAll(),
                 'PANEL' => Settings::getPanel(),
@@ -66,9 +76,7 @@ class SporinaSystemSettingsComponent extends CBitrixComponent
 
     private function processAction(string $action): void
     {
-        global $USER;
-
-        if (!$USER->IsAdmin()) {
+        if (!$this->canConfigure()) {
             $this->sendJson(['success' => false, 'error' => 'Forbidden'], 403);
         }
         if (!check_bitrix_sessid()) {
@@ -139,6 +147,17 @@ class SporinaSystemSettingsComponent extends CBitrixComponent
         $value = Application::getInstance()->getSession()->get(self::SESSION_CATEGORY);
 
         return is_string($value) ? $value : '';
+    }
+
+    private function canConfigure(): bool
+    {
+        global $USER;
+
+        if ($this->arParams['DISPLAY_FOR'] === self::DISPLAY_FOR_ALL) {
+            return true;
+        }
+
+        return is_object($USER) && $USER->IsAuthorized();
     }
 
     private function sendJson(array $payload, int $status = 200): void

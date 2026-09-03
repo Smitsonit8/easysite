@@ -165,7 +165,10 @@ $mobileHeaderHideOnScroll = $mobileHeaderFixed && $appearance['mobileHeaderHideO
     <?$APPLICATION->IncludeComponent(
 		"sporina:system.settings",
 		"",
-		array("MODE" => "configure"),
+		array(
+			"MODE" => "configure",
+			"DISPLAY_FOR" => "authorized",
+		),
 		false
 	);?>
 

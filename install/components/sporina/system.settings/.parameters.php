@@ -25,5 +25,15 @@ $arComponentParameters = [
             'TYPE' => 'STRING',
             'DEFAULT' => 'sporina-system-settings-action',
         ],
+        'DISPLAY_FOR' => [
+            'PARENT' => 'BASE',
+            'NAME' => Loc::getMessage('SPORINA_SYSTEM_SETTINGS_DISPLAY_FOR'),
+            'TYPE' => 'LIST',
+            'VALUES' => [
+                'all' => Loc::getMessage('SPORINA_SYSTEM_SETTINGS_DISPLAY_FOR_ALL'),
+                'authorized' => Loc::getMessage('SPORINA_SYSTEM_SETTINGS_DISPLAY_FOR_AUTHORIZED'),
+            ],
+            'DEFAULT' => 'authorized',
+        ],
     ],
 ];
