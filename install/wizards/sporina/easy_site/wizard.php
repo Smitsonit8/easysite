@@ -42,14 +42,16 @@ class SelectTemplateStep extends CSelectTemplateWizardStep
 		
 		if ($wizard->IsNextButtonClick())
 		{
-			$arTemplates = array("sporina_easy_site", "sporina_easy_site_v2");
+			// v2 is shipped for backward compatibility, but is not yet available
+			// for new installations from Marketplace.
+			$arTemplates = array("sporina_easy_site");
 			
 			$templateID = $wizard->GetVar("wizTemplateID");
 			
 			if (!in_array($templateID, $arTemplates))
 				$this->SetError(GetMessage("wiz_template"));
 			
-			if (in_array($templateID, array("sporina_easy_site", "sporina_easy_site_v2")))
+			if (in_array($templateID, $arTemplates))
 				$wizard->SetVar("templateID", $templateID);
 		}
 	}
@@ -63,7 +65,8 @@ class SelectTemplateStep extends CSelectTemplateWizardStep
 		
 		$arTemplateOrder = array();
 		
-		foreach (array("sporina_easy_site", "sporina_easy_site_v2") as $templateID)
+		// Do not expose v2 in the installation wizard until it is ready for release.
+		foreach (array("sporina_easy_site") as $templateID)
 		{
 			if (in_array($templateID, array_keys($arTemplates)))
 			{
@@ -72,7 +75,7 @@ class SelectTemplateStep extends CSelectTemplateWizardStep
 		}
 		
 		$defaultTemplateID = COption::GetOptionString("main", "wizard_template_id", "sporina_easy_site", $wizard->GetVar("siteID"));
-		if (!in_array($defaultTemplateID, array("sporina_easy_site", "sporina_easy_site_v2"))) $defaultTemplateID = "sporina_easy_site";
+		if ($defaultTemplateID !== "sporina_easy_site") $defaultTemplateID = "sporina_easy_site";
 		$wizard->SetDefaultVar("wizTemplateID", $defaultTemplateID);
 		
 		$arTemplateInfo = array(
