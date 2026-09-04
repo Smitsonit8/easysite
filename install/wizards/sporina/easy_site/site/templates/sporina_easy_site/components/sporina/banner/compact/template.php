@@ -9,6 +9,8 @@ $renderText = static function ($value)
 	return nl2br(htmlspecialcharsbx($value));
 };
 
+$formModalId = "sporina-banner-form-modal-" . randString(8);
+
 $bannerStyle = "";
 if ($arResult["BACKGROUND_IMAGE_SRC"] !== "")
 {
@@ -33,9 +35,11 @@ elseif ($arResult["BACKGROUND_COLOR"] !== "")
 				<div class="sporina-banner-compact__text"><?=$renderText($arResult["TEXT"])?></div>
 			<?php endif; ?>
 			<?php if ($arResult["SHOW_BUTTON"]): ?>
-				<a class="sporina-button sporina-banner-compact__button" href="<?=htmlspecialcharsbx($arResult["BUTTON_LINK"])?>">
-					<?=htmlspecialcharsbx($arResult["BUTTON_TEXT"])?>
-				</a>
+				<?php if ($arResult["BUTTON_ACTION"] === "form"): ?>
+					<button class="sporina-button sporina-banner-compact__button" type="button" data-banner-form-open="<?=$formModalId?>" aria-controls="<?=$formModalId?>" aria-expanded="false" aria-haspopup="dialog"><?=htmlspecialcharsbx($arResult["BUTTON_TEXT"])?></button>
+				<?php else: ?>
+					<a class="sporina-button sporina-banner-compact__button" href="<?=htmlspecialcharsbx($arResult["BUTTON_LINK"])?>"><?=htmlspecialcharsbx($arResult["BUTTON_TEXT"])?></a>
+				<?php endif; ?>
 			<?php endif; ?>
 		</div>
 		<?php if ($arResult["SHOW_IMAGE"]): ?>
@@ -50,3 +54,5 @@ elseif ($arResult["BACKGROUND_COLOR"] !== "")
 		<?php endif; ?>
 	</div>
 </section>
+
+<?php require dirname(__DIR__) . "/form-modal.php"; ?>

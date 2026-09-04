@@ -30,6 +30,8 @@ $slogan = trim((string)($arParams["SLOGAN"] ?? ""));
 $text = trim((string)($arParams["TEXT"] ?? ""));
 $buttonText = trim((string)($arParams["BUTTON_TEXT"] ?? ""));
 $buttonLink = trim((string)($arParams["BUTTON_LINK"] ?? ""));
+$buttonAction = ($arParams["BUTTON_ACTION"] ?? "link") === "form" ? "form" : "link";
+$formId = (int)($arParams["FORM_ID"] ?? 0);
 $imageSrc = $resolvePath($arParams["IMAGE_SRC"] ?? "");
 $mobileImageSrc = $resolvePath($arParams["MOBILE_IMAGE_SRC"] ?? "");
 $backgroundImageSrc = $resolvePath($arParams["BACKGROUND_IMAGE_SRC"] ?? "");
@@ -41,7 +43,9 @@ $arResult = array(
 	"TEXT" => $text,
 	"BUTTON_TEXT" => $buttonText,
 	"BUTTON_LINK" => $buttonLink,
-	"SHOW_BUTTON" => $arParams["SHOW_BUTTON"] !== "N" && $buttonText !== "" && $buttonLink !== "",
+	"BUTTON_ACTION" => $buttonAction,
+	"FORM_ID" => $formId,
+	"SHOW_BUTTON" => $arParams["SHOW_BUTTON"] !== "N" && $buttonText !== "" && ($buttonAction === "form" ? $formId > 0 : $buttonLink !== ""),
 	"SHOW_IMAGE" => $arParams["SHOW_IMAGE"] !== "N" && ($imageSrc !== "" || $mobileImageSrc !== ""),
 	"IMAGE_SRC" => $imageSrc,
 	"MOBILE_IMAGE_SRC" => $mobileImageSrc,
@@ -49,4 +53,7 @@ $arResult = array(
 	"BACKGROUND_COLOR" => $backgroundColor,
 );
 
-$this->IncludeComponentTemplate();
+if ($buttonAction === "form" || $this->StartResultCache())
+{
+	$this->IncludeComponentTemplate();
+}

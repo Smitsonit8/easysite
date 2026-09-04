@@ -1,0 +1,47 @@
+.sporina-banner-form-modal[hidden] {
+    display: none;
+}
+
+.sporina-banner-form-modal {
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+}
+
+.sporina-banner-form-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, .58);
+}
+
+.sporina-banner-form-modal__content {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 640px);
+    max-height: calc(100dvh - 40px);
+    overflow: auto;
+    padding: 40px;
+    background: #fff;
+    border-radius: 12px;
+}
+
+.sporina-banner-form-modal__close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    background: transparent;
+    font-size: 30px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.sporina-banner-form-modal :focus-visible {
+    outline: 3px solid #1c6cd5;
+    outline-offset: 3px;
+}

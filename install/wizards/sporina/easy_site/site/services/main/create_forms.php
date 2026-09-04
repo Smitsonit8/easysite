@@ -312,5 +312,18 @@ if ($FORM_ID > 0 && !$arExistingForm2) {
     setCreatorMoveAccess($FORM_ID, "Default");
 }
 
+// Форма обратной связи для кнопок баннера.
+$feedbackForm = CForm::GetList("", "", array("SID" => "FEEDBACK_FORM"))->Fetch();
+if (!$feedbackForm) {
+    $feedbackId = (new CForm())->Set(array("SID" => "FEEDBACK_FORM", "NAME" => "Обратная связь", "BUTTON" => "Отправить", "ACTIVE" => "Y", "arSITE" => array($siteID)));
+    if ($feedbackId > 0) {
+        foreach (array(array("NAME", "Имя", "text", "Y"), array("EMAIL", "Email", "email", "Y"), array("MESSAGE", "Сообщение", "textarea", "N")) as $item) {
+            $fieldId = (new CFormField())->Set(array("FORM_ID" => $feedbackId, "ACTIVE" => "Y", "TITLE" => $item[1], "SID" => $item[0], "C_SORT" => 100, "REQUIRED" => $item[3], "FIELD_TYPE" => $item[2]), "N");
+            if ($fieldId > 0) (new CFormAnswer())->Set(array("FIELD_ID" => $fieldId, "ACTIVE" => "Y", "MESSAGE" => " ", "C_SORT" => 100, "FIELD_TYPE" => $item[2]));
+        }
+        setCreatorMoveAccess($feedbackId, "Default");
+    }
+}
+
 return true;
 ?>

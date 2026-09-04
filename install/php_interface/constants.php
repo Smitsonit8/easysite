@@ -98,4 +98,8 @@ if (!defined('ORDER_FORM_ID')) {
 if (!defined('BUY_FORM_ID')) {
     define('BUY_FORM_ID', getFormIdBySID('BUY_FORM'));
 }
+
+if (!defined('FEEDBACK_FORM_ID')) {
+    define('FEEDBACK_FORM_ID', getFormIdBySID('FEEDBACK_FORM'));
+}
 ?>
