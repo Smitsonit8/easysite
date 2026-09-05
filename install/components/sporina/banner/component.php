@@ -32,6 +32,7 @@ $buttonText = trim((string)($arParams["BUTTON_TEXT"] ?? ""));
 $buttonLink = trim((string)($arParams["BUTTON_LINK"] ?? ""));
 $buttonAction = ($arParams["BUTTON_ACTION"] ?? "link") === "form" ? "form" : "link";
 $formId = (int)($arParams["FORM_ID"] ?? 0);
+$personalDataUrl = trim((string)($arParams["FORM_PERSONAL_DATA_URL"] ?? ""));
 $imageSrc = $resolvePath($arParams["IMAGE_SRC"] ?? "");
 $mobileImageSrc = $resolvePath($arParams["MOBILE_IMAGE_SRC"] ?? "");
 $backgroundImageSrc = $resolvePath($arParams["BACKGROUND_IMAGE_SRC"] ?? "");
@@ -45,6 +46,7 @@ $arResult = array(
 	"BUTTON_LINK" => $buttonLink,
 	"BUTTON_ACTION" => $buttonAction,
 	"FORM_ID" => $formId,
+	"FORM_PERSONAL_DATA_URL" => $personalDataUrl,
 	"SHOW_BUTTON" => $arParams["SHOW_BUTTON"] !== "N" && $buttonText !== "" && ($buttonAction === "form" ? $formId > 0 : $buttonLink !== ""),
 	"SHOW_IMAGE" => $arParams["SHOW_IMAGE"] !== "N" && ($imageSrc !== "" || $mobileImageSrc !== ""),
 	"IMAGE_SRC" => $imageSrc,
