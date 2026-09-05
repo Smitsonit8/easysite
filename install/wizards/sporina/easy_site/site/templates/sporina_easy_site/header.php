@@ -6,7 +6,7 @@ CJSCore::Init(array("jquery"));
 $sporinaSettings = $APPLICATION->IncludeComponent(
 	"sporina:system.settings",
 	"",
-	array("MODE" => "render"),
+	array("MODE" => "render", "PROFILE" => "sporina_easy_site"),
 	false,
 	array("HIDE_ICONS" => "Y")
 );
@@ -15,15 +15,15 @@ use Bitrix\Main\Page\Asset;
 
 if (!is_array($sporinaSettings) && \Bitrix\Main\Loader::includeModule('sporina.easysite'))
 {
-	$sporinaSettings = \Sporina\EasySite\Settings::getAll();
+	$sporinaSettings = \Sporina\EasySite\Settings::getAll("sporina_easy_site");
 }
 if (!is_array($sporinaSettings))
 {
 	return;
 }
 $GLOBALS["SPORINA_EASY_SITE_SETTINGS"] = $sporinaSettings;
-$appearance = \Sporina\EasySite\Settings::getAppearance();
-$logoSrc = \Sporina\EasySite\Settings::getLogoUrl();
+$appearance = \Sporina\EasySite\Settings::getAppearance("sporina_easy_site");
+$logoSrc = \Sporina\EasySite\Settings::getLogoUrl("sporina_easy_site");
 $theme = $appearance['theme'];
 $headerTemplate = $appearance['headerTemplate'];
 $fontFamily = $appearance['fontFamily'];
@@ -167,6 +167,7 @@ $mobileHeaderHideOnScroll = $mobileHeaderFixed && $appearance['mobileHeaderHideO
 		"",
 		array(
 			"MODE" => "configure",
+			"PROFILE" => "sporina_easy_site",
 			"DISPLAY_FOR" => "authorized",
 		),
 		false

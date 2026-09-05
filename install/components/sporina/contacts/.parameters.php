@@ -11,7 +11,7 @@ Loc::loadMessages(__FILE__);
 $contactPropertyOptions = array("" => Loc::getMessage("SPORINA_CONTACTS_DEFAULT_PROPERTY"));
 if (CModule::IncludeModule("iblock"))
 {
-	$iblockResult = CIBlock::GetList(array(), array("TYPE" => "easy_infocompany", "CODE" => "company_contacts"));
+	$iblockResult = CIBlock::GetList(array(), array("TYPE" => "easy_infocompany", "CODE" => "company_contacts_v1"));
 	if ($iblock = $iblockResult->Fetch())
 	{
 		$propertyResult = CIBlockProperty::GetList(array("SORT" => "ASC", "NAME" => "ASC"), array("IBLOCK_ID" => $iblock["ID"], "ACTIVE" => "Y"));

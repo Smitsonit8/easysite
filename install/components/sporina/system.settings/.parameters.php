@@ -35,5 +35,11 @@ $arComponentParameters = [
             ],
             'DEFAULT' => 'authorized',
         ],
+        'PROFILE' => [
+            'PARENT' => 'BASE',
+            'NAME' => 'Профиль настроек шаблона',
+            'TYPE' => 'STRING',
+            'DEFAULT' => 'sporina_easy_site',
+        ],
     ],
 ];

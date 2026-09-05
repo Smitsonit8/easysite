@@ -68,27 +68,27 @@ function getFormIdBySID($sid) {
 
 // Определяем константы — только если ядро загружено
 if (!defined('ARTICLES_IBLOCK_ID')) {
-    define('ARTICLES_IBLOCK_ID', getIblockIdByCode('articles_company'));
+    define('ARTICLES_IBLOCK_ID', getIblockIdByCode('articles_company_v1'));
 }
 
 if (!defined('NEWS_IBLOCK_ID')) {
-    define('NEWS_IBLOCK_ID', getIblockIdByCode('news_company'));
+    define('NEWS_IBLOCK_ID', getIblockIdByCode('news_company_v1'));
 }
 
 if (!defined('SERVICES_IBLOCK_ID')) {
-    define('SERVICES_IBLOCK_ID', getIblockIdByCode('services'));
+    define('SERVICES_IBLOCK_ID', getIblockIdByCode('services_v1'));
 }
 
 if (!defined('PRODUCTS_IBLOCK_ID')) {
-    define('PRODUCTS_IBLOCK_ID', getIblockIdByCode('products'));
+    define('PRODUCTS_IBLOCK_ID', getIblockIdByCode('products_v1'));
 }
 
 if (!defined('JOBS_IBLOCK_ID')) {
-    define('JOBS_IBLOCK_ID', getIblockIdByCode('jobs_company'));
+    define('JOBS_IBLOCK_ID', getIblockIdByCode('jobs_company_v1'));
 }
 
 if (!defined('STAFF_IBLOCK_ID')) {
-    define('STAFF_IBLOCK_ID', getIblockIdByCode('staff_company'));
+    define('STAFF_IBLOCK_ID', getIblockIdByCode('staff_company_v1'));
 }
 
 if (!defined('ORDER_FORM_ID')) {

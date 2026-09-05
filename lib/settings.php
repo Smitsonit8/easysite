@@ -8,6 +8,7 @@ use InvalidArgumentException;
 final class Settings
 {
     private const MODULE_ID = 'sporina.easysite';
+    private const DEFAULT_PROFILE = 'sporina_easy_site';
     private const OPTION_NOT_FOUND = '__sporina_easysite_option_not_found__';
     private const CATEGORIES = [
         'template' => 'Оформление',
@@ -85,15 +86,16 @@ final class Settings
     }
 
     /** Мемоизация результата getAll() на время одного запроса. */
-    private static $allCache = null;
+    private static $allCache = [];
 
     /** Returns safe values: invalid stored options fall back to declared defaults. */
-    public static function getAll(): array
+    public static function getAll(string $profile = self::DEFAULT_PROFILE): array
     {
+		$profile = self::normalizeProfile($profile);
         // Кэшируем результат в пределах одного запроса: файлы страниц (index.php, header.php)
         // в рамках одного хита не меняются, а getAll() вызывается многократно из шаблонов.
-        if (self::$allCache !== null) {
-            return self::$allCache;
+        if (isset(self::$allCache[$profile])) {
+            return self::$allCache[$profile];
         }
 
         $settings = [];
@@ -104,29 +106,29 @@ final class Settings
 
                 continue;
             }
-            $value = Option::get(self::MODULE_ID, $definition['key'], $definition['default'], SITE_ID);
+            $value = Option::get(self::MODULE_ID, self::getOptionKey($definition['key'], $profile), $definition['default'], SITE_ID);
             $settings[$definition['key']] = self::getBoundSourceValue($definition)
                 ?? self::normalize($definition, (string) $value)
                 ?? $definition['default'];
         }
 
-        return self::$allCache = $settings;
+        return self::$allCache[$profile] = $settings;
     }
 
     /** Returns true only when a value was explicitly saved for the current site. */
-    public static function hasStoredValue(string $key): bool
+    public static function hasStoredValue(string $key, string $profile = self::DEFAULT_PROFILE): bool
     {
         if (self::getDefinition($key) === null) {
             return false;
         }
 
-        return Option::get(self::MODULE_ID, $key, self::OPTION_NOT_FOUND, SITE_ID) !== self::OPTION_NOT_FOUND;
+        return Option::get(self::MODULE_ID, self::getOptionKey($key, self::normalizeProfile($profile)), self::OPTION_NOT_FOUND, SITE_ID) !== self::OPTION_NOT_FOUND;
     }
 
     /** Builds category and field data consumed by the generic configuration template. */
-    public static function getPanel(): array
+    public static function getPanel(string $profile = self::DEFAULT_PROFILE): array
     {
-        $settings = self::getAll();
+        $settings = self::getAll($profile);
         $panel = [];
 
         foreach (self::CATEGORIES as $category => $title) {
@@ -147,10 +149,10 @@ final class Settings
 
             $definition['value'] = $settings[$definition['key']];
             if ($definition['type'] === 'file' && $definition['key'] === 'template-logo') {
-                $definition['logoUrl'] = self::getLogoUrl();
+                $definition['logoUrl'] = self::getLogoUrl($profile);
             }
             $definition['values'] = self::getAllowedValues($definition);
-            $definition['stored'] = self::hasStoredValue($definition['key']);
+            $definition['stored'] = self::hasStoredValue($definition['key'], $profile);
             $panel[$category]['fields'][] = $definition;
         }
 
@@ -161,9 +163,9 @@ final class Settings
      * Template-ready values derived from the same catalogue as saved options.
      * No template-level defaults or lookup tables are required.
      */
-    public static function getAppearance(): array
+    public static function getAppearance(string $profile = self::DEFAULT_PROFILE): array
     {
-        $settings = self::getAll();
+        $settings = self::getAll($profile);
         $font = self::getDefinition('template-font');
         $buttonEffects = self::getDefinition('template-button-effect');
 
@@ -186,8 +188,9 @@ final class Settings
         ];
     }
 
-    public static function apply(array $postedSettings): void
+    public static function apply(array $postedSettings, string $profile = self::DEFAULT_PROFILE): void
     {
+		$profile = self::normalizeProfile($profile);
         $normalizedSettings = [];
 
         foreach ($postedSettings as $key => $value) {
@@ -215,19 +218,20 @@ final class Settings
         self::synchronizeBoundSources($normalizedSettings);
 
         foreach ($normalizedSettings as $key => $normalized) {
-            Option::set(self::MODULE_ID, $key, $normalized, SITE_ID);
+            Option::set(self::MODULE_ID, self::getOptionKey($key, $profile), $normalized, SITE_ID);
         }
 
         // Инвалидируем мемоизированный getAll(), т.к. сохранённые значения изменились
-        self::$allCache = null;
+        self::$allCache = [];
     }
 
-    public static function reset(): void
+    public static function reset(string $profile = self::DEFAULT_PROFILE): void
     {
+		$profile = self::normalizeProfile($profile);
         $defaultSettings = [];
         foreach (self::DEFINITIONS as $definition) {
             if ($definition['type'] === 'file') {
-                self::resetLogo();
+                self::resetLogo($profile);
 
                 continue;
             }
@@ -240,24 +244,24 @@ final class Settings
                 continue;
             }
             if (empty($definition['componentFallback'])) {
-                Option::set(self::MODULE_ID, $definition['key'], $definition['default'], SITE_ID);
+                Option::set(self::MODULE_ID, self::getOptionKey($definition['key'], $profile), $definition['default'], SITE_ID);
 
                 continue;
             }
 
             Option::delete(self::MODULE_ID, [
-                'name' => $definition['key'],
+                'name' => self::getOptionKey($definition['key'], $profile),
                 'site_id' => SITE_ID,
             ]);
         }
 
         // Инвалидируем мемоизированный getAll(), т.к. значения сброшены к дефолтам
-        self::$allCache = null;
+        self::$allCache = [];
     }
 
-    public static function getLogoUrl(): string
+    public static function getLogoUrl(string $profile = self::DEFAULT_PROFILE): string
     {
-        $fileId = self::getLogoFileId();
+        $fileId = self::getLogoFileId($profile);
         if ($fileId > 0) {
             $file = \CFile::GetFileArray($fileId);
             if (is_array($file) && !empty($file['SRC'])) {
@@ -268,7 +272,7 @@ final class Settings
         return SITE_TEMPLATE_PATH . '/img/logo.svg';
     }
 
-    public static function saveLogo(array $file): void
+    public static function saveLogo(array $file, string $profile = self::DEFAULT_PROFILE): void
     {
         if (($file['error'] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_OK || empty($file['tmp_name']) || !is_uploaded_file($file['tmp_name'])) {
             throw new InvalidArgumentException('Не удалось загрузить файл логотипа.');
@@ -299,26 +303,38 @@ final class Settings
             throw new \RuntimeException('Не удалось сохранить файл логотипа.');
         }
 
-        $oldFileId = self::getLogoFileId();
-        Option::set(self::MODULE_ID, 'template-logo', (string) $newFileId, SITE_ID);
+        $profile = self::normalizeProfile($profile);
+        $oldFileId = self::getLogoFileId($profile);
+        Option::set(self::MODULE_ID, self::getOptionKey('template-logo', $profile), (string) $newFileId, SITE_ID);
         if ($oldFileId > 0 && $oldFileId !== $newFileId) {
             \CFile::Delete($oldFileId);
         }
     }
 
-    public static function resetLogo(): void
+    public static function resetLogo(string $profile = self::DEFAULT_PROFILE): void
     {
-        $fileId = self::getLogoFileId();
+        $profile = self::normalizeProfile($profile);
+        $fileId = self::getLogoFileId($profile);
         if ($fileId > 0) {
             \CFile::Delete($fileId);
         }
 
-        Option::delete(self::MODULE_ID, ['name' => 'template-logo', 'site_id' => SITE_ID]);
+        Option::delete(self::MODULE_ID, ['name' => self::getOptionKey('template-logo', $profile), 'site_id' => SITE_ID]);
     }
 
-    private static function getLogoFileId(): int
+    private static function getLogoFileId(string $profile = self::DEFAULT_PROFILE): int
     {
-        return max(0, (int) Option::get(self::MODULE_ID, 'template-logo', '', SITE_ID));
+        return max(0, (int) Option::get(self::MODULE_ID, self::getOptionKey('template-logo', self::normalizeProfile($profile)), '', SITE_ID));
+    }
+
+    private static function normalizeProfile(string $profile): string
+    {
+        return preg_match('/^[a-z0-9_]{1,64}$/', $profile) ? $profile : self::DEFAULT_PROFILE;
+    }
+
+    private static function getOptionKey(string $key, string $profile): string
+    {
+        return $profile === self::DEFAULT_PROFILE ? $key : $profile . '.' . $key;
     }
 
     private static function getDefinition(string $key): ?array

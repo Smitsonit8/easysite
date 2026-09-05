@@ -45,7 +45,7 @@ test('component has runtime, metadata, parameters, and Russian localization file
 
 test('runtime declares render/configure modes and configurable AJAX actions', () => {
   const source = read('install', 'components', 'sporina', 'system.settings', 'class.php');
-  const settings = read('install', 'lib', 'settings.php');
+  const settings = read('lib', 'settings.php');
   assert.match(source, /MODE_RENDER\s*=\s*['"]render['"]/);
   assert.match(source, /MODE_CONFIGURE\s*=\s*['"]configure['"]/);
   assert.match(settings, /MODULE_ID\s*=\s*['"]sporina\.easysite['"]/);
@@ -76,6 +76,19 @@ test('runtime uses site-scoped Bitrix options and session category state', () =>
   assert.match(settings, /Option::get\(self::MODULE_ID,[\s\S]*?SITE_ID/);
   assert.match(settings, /Option::set\(self::MODULE_ID,[\s\S]*?SITE_ID/);
   assert.match(settings, /Option::delete\(self::MODULE_ID,[\s\S]*?SITE_ID/);
+});
+
+test('settings support isolated template profiles without changing legacy option keys', () => {
+  const runtime = read('install', 'components', 'sporina', 'system.settings', 'class.php');
+  const settings = read('lib', 'settings.php');
+  const primaryHeader = read('install', 'wizards', 'sporina', 'easy_site', 'site', 'templates', 'sporina_easy_site', 'header.php');
+  const v2Header = read('install', 'wizards', 'sporina', 'easy_site', 'site', 'templates', 'sporina_easy_site_v2', 'header.php');
+
+  assert.match(runtime, /PROFILE/);
+  assert.match(settings, /DEFAULT_PROFILE/);
+  assert.match(settings, /getOptionKey/);
+  assert.match(primaryHeader, /["']PROFILE["']\s*=>\s*["']sporina_easy_site["']/);
+  assert.match(v2Header, /["']PROFILE["']\s*=>\s*["']sporina_easy_site_v2["']/);
 });
 
 test('runtime defines the exact settings keys and required defaults', () => {

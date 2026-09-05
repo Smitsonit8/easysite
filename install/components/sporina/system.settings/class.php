@@ -35,6 +35,9 @@ class SporinaSystemSettingsComponent extends CBitrixComponent
         if (!in_array($params['DISPLAY_FOR'], [self::DISPLAY_FOR_ALL, self::DISPLAY_FOR_AUTHORIZED], true)) {
             $params['DISPLAY_FOR'] = self::DISPLAY_FOR_AUTHORIZED;
         }
+        $params['PROFILE'] = isset($params['PROFILE']) && preg_match('/^[a-z0-9_]{1,64}$/', (string) $params['PROFILE'])
+            ? (string) $params['PROFILE']
+            : 'sporina_easy_site';
 
         return $params;
     }
@@ -58,13 +61,13 @@ class SporinaSystemSettingsComponent extends CBitrixComponent
         }
 
         if ($this->arParams['MODE'] === self::MODE_RENDER) {
-            return Settings::getAll();
+            return Settings::getAll($this->arParams['PROFILE']);
         }
 
         if ($this->arParams['MODE'] === self::MODE_CONFIGURE && $this->canConfigure()) {
             $this->arResult = [
-                'SETTINGS' => Settings::getAll(),
-                'PANEL' => Settings::getPanel(),
+                'SETTINGS' => Settings::getAll($this->arParams['PROFILE']),
+                'PANEL' => Settings::getPanel($this->arParams['PROFILE']),
                 'ACTIVE_CATEGORY' => $this->loadActiveCategory(),
                 'ACTION_VARIABLE' => $actionVariable,
             ];
@@ -93,13 +96,13 @@ class SporinaSystemSettingsComponent extends CBitrixComponent
                     if (!is_array($settings)) {
                         throw new InvalidArgumentException('Settings must be an array');
                     }
-                    Settings::apply($settings);
-                    $this->sendJson(['success' => true, 'settings' => Settings::getAll()]);
+                    Settings::apply($settings, $this->arParams['PROFILE']);
+                    $this->sendJson(['success' => true, 'settings' => Settings::getAll($this->arParams['PROFILE'])]);
                     break;
 
                 case 'reset':
-                    Settings::reset();
-                    $this->sendJson(['success' => true, 'settings' => Settings::getAll()]);
+                    Settings::reset($this->arParams['PROFILE']);
+                    $this->sendJson(['success' => true, 'settings' => Settings::getAll($this->arParams['PROFILE'])]);
                     break;
 
                 case 'upload-logo':
@@ -114,13 +117,13 @@ class SporinaSystemSettingsComponent extends CBitrixComponent
                         'error' => $files['error']['template-logo'] ?? UPLOAD_ERR_NO_FILE,
                         'size' => $files['size']['template-logo'] ?? 0,
                     ];
-                    Settings::saveLogo($file);
-                    $this->sendJson(['success' => true, 'logoUrl' => Settings::getLogoUrl()]);
+                    Settings::saveLogo($file, $this->arParams['PROFILE']);
+                    $this->sendJson(['success' => true, 'logoUrl' => Settings::getLogoUrl($this->arParams['PROFILE'])]);
                     break;
 
                 case 'reset-logo':
-                    Settings::resetLogo();
-                    $this->sendJson(['success' => true, 'logoUrl' => Settings::getLogoUrl()]);
+                    Settings::resetLogo($this->arParams['PROFILE']);
+                    $this->sendJson(['success' => true, 'logoUrl' => Settings::getLogoUrl($this->arParams['PROFILE'])]);
                     break;
 
                 case 'remember-section':
