@@ -35,6 +35,12 @@ $arComponentParameters = [
             ],
             'DEFAULT' => 'authorized',
         ],
+        'DEMO_EDIT_MODE' => [
+            'PARENT' => 'BASE',
+            'NAME' => Loc::getMessage('SPORINA_SYSTEM_SETTINGS_DEMO_EDIT_MODE'),
+            'TYPE' => 'CHECKBOX',
+            'DEFAULT' => 'N',
+        ],
         'PROFILE' => [
             'PARENT' => 'BASE',
             'NAME' => 'Профиль настроек шаблона',

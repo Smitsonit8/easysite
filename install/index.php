@@ -362,6 +362,12 @@ Class sporina_easysite extends CModule
 		while ($arForm = $dbForm->Fetch()) {
 			CForm::Delete($arForm["ID"]);
 		}
+
+		// Удаляем форму "Обратная связь" по SID
+		$dbForm = CForm::GetList($by="", $order="", array("SID" => "FEEDBACK_FORM"), $is_filtered=false);
+		while ($arForm = $dbForm->Fetch()) {
+			CForm::Delete($arForm["ID"]);
+		}
 		
 		return true;
 	}

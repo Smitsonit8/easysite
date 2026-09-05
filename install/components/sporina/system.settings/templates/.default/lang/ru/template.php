@@ -1,6 +1,6 @@
 <?php
 $MESS['SPORINA_SETTINGS_TITLE'] = 'Настройки сайта';
-$MESS['SPORINA_SETTINGS_TITLE_2'] = 'Настройки сайта v1.1';
+$MESS['SPORINA_SETTINGS_TITLE_2'] = 'Настройки сайта v2.0';
 $MESS['SPORINA_SETTINGS_DESCRIPTION'] = 'Изменения применяются ко всему сайту.';
 $MESS['SPORINA_SETTINGS_OPEN'] = 'Открыть настройки сайта';
 $MESS['SPORINA_SETTINGS_CLOSE'] = 'Закрыть';

@@ -120,6 +120,7 @@ if ($ElementID && ($arParams["FORM_SHOW"] ?? "Y") === "Y") {
 			"IGNORE_CUSTOM_TEMPLATE" => "N",
 			"SUCCESS_URL" => $formSuccessUrl,
 			"PERSONAL_DATA_URL" => trim((string)($arParams["FORM_PERSONAL_DATA_URL"] ?? "")),
+			"ENABLE_PERSONAL_DATA_CONSENT" => "Y",
 			"USE_EXTENDED_ERRORS" => (($arParams["FORM_USE_EXTENDED_ERRORS"] ?? "N") === "Y" ? "Y" : "N"),
 		],
 		false,

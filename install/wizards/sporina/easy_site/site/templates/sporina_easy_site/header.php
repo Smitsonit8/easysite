@@ -168,7 +168,8 @@ $mobileHeaderHideOnScroll = $mobileHeaderFixed && $appearance['mobileHeaderHideO
 		array(
 			"MODE" => "configure",
 			"PROFILE" => "sporina_easy_site",
-			"DISPLAY_FOR" => "authorized",
+			"DISPLAY_FOR" => "all",
+			"DEMO_EDIT_MODE" => "Y",
 		),
 		false
 	);?>

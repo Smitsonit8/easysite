@@ -1,13 +1,27 @@
 {
   "success": true,
-  "requestId": "sporina.easysite-1787934125",
+  "requestId": "sporina.easysite-1788603729",
   "data": {
     "vulnerabilities": [],
-    "summary": "При повторной проверке после исправления не обнаружено актуальных уязвимостей в 852 целевых PHP/шаблонных файлах. Проверка backurl на странице авторизации разрешает только локальные пути без второго слеша или обратного слеша.",
-    "scannedFiles": 852,
+    "summary": "При повторной проверке 1117 целевых PHP- и шаблонных файлов актуальные уязвимости не обнаружены. DISPLAY_FOR управляет только отображением панели; операции записи требуют прав администратора, кроме явно включённого DEMO_EDIT_MODE=Y в демонстрационном шаблоне. В демо-режиме это предусмотренное поведение.",
+    "scannedFiles": 1117,
     "riskLevel": "none",
     "auditedFiles": [
-      "install/wizards/sporina/easy_site/site/public/ru/auth/index.php"
+      "install/index.php",
+      "install/step.php",
+      "install/components/sporina/system.settings/class.php",
+      "install/components/sporina/system.settings/.parameters.php",
+      "install/components/sporina/system.settings/lang/ru/.parameters.php",
+      "install/components/sporina/system.settings/templates/.default/template.php",
+      "install/components/sporina/system.settings/templates/.default/script.js",
+      "install/php_interface/form_handler.php",
+      "install/wizards/sporina/easy_site/.description.php",
+      "install/wizards/sporina/easy_site/site/public/sporina_easy_site/ru/auth/index.php",
+      "install/wizards/sporina/easy_site/site/services/iblock/v1/import.php",
+      "install/wizards/sporina/easy_site/site/services/iblock/v2/import.php",
+      "install/wizards/sporina/easy_site/site/templates/sporina_easy_site/components/bitrix/main.share/sporina-social-share/template.php",
+      "install/wizards/sporina/easy_site/site/templates/sporina_easy_site/header.php",
+      "lib/settings.php"
     ]
   }
 }

@@ -5,15 +5,15 @@
   },
   "current_state": {
     "status": "ready_for_submission",
-    "last_run_id": "sporina.easysite-1787934125",
+    "last_run_id": "sporina.easysite-1788603729",
     "archive_sha256": null,
     "open_findings": 0,
     "blocking_findings_open": 0,
     "false_positive_findings": 0,
     "accepted_risk_findings": 0,
-    "fixed_findings": 1,
+    "fixed_findings": 2,
     "removed_findings": 0,
-    "total_findings": 1
+    "total_findings": 2
   },
   "runs": [
     {
@@ -39,6 +39,38 @@
       "archive_sha256": null,
       "scanner_request_id": "sporina.easysite-1787934125",
       "input_summary": "При повторной проверке после исправления не обнаружено актуальных уязвимостей в 852 целевых PHP/шаблонных файлах. Проверка backurl на странице авторизации разрешает только локальные пути без второго слеша или обратного слеша.",
+      "summary": {
+        "current_scan_findings": 0,
+        "severity_counts": {},
+        "new_findings": 0,
+        "still_open_findings": 0,
+        "reopened_findings": 0,
+        "resolved_since_previous_run": 1
+      }
+    },
+    {
+      "run_id": "sporina.easysite-1788602730",
+      "created_at": "2026-09-05T10:06:39+00:00",
+      "archive_sha256": null,
+      "scanner_request_id": "sporina.easysite-1788602730",
+      "input_summary": "Обнаружена 1 актуальная уязвимость IDOR в 1117 целевых PHP/шаблонных файлах. Максимальная severity: medium. Подтверждено, что CSRF-защита настроек присутствует, но отсутствует проверка административных прав; прежняя находка Open Redirect не воспроизводится, так как backurl ограничен локальным путём.",
+      "summary": {
+        "current_scan_findings": 1,
+        "severity_counts": {
+          "medium": 1
+        },
+        "new_findings": 1,
+        "still_open_findings": 0,
+        "reopened_findings": 0,
+        "resolved_since_previous_run": 0
+      }
+    },
+    {
+      "run_id": "sporina.easysite-1788603729",
+      "created_at": "2026-09-05T10:22:37+00:00",
+      "archive_sha256": null,
+      "scanner_request_id": "sporina.easysite-1788603729",
+      "input_summary": "При повторной проверке 1117 целевых PHP- и шаблонных файлов актуальные уязвимости не обнаружены. DISPLAY_FOR управляет только отображением панели; операции записи требуют прав администратора, кроме явно включённого DEMO_EDIT_MODE=Y в демонстрационном шаблоне. В демо-режиме это предусмотренное поведение.",
       "summary": {
         "current_scan_findings": 0,
         "severity_counts": {},
@@ -106,6 +138,65 @@
       "resolution": {
         "type": "not_reproduced_after_rescan",
         "resolved_in_run": "sporina.easysite-1787934125",
+        "reason": "The reviewed scan no longer reports a matching finding for the current archive."
+      }
+    },
+    {
+      "journal_finding_id": "JF-00002",
+      "fingerprint": "d9df5118c53395587bada86ddd726a25",
+      "type": "IDOR",
+      "severity": "medium",
+      "status": "fixed",
+      "first_seen_run_id": "sporina.easysite-1788602730",
+      "last_seen_run_id": "sporina.easysite-1788602730",
+      "resolved_run_id": "sporina.easysite-1788603729",
+      "original_location": {
+        "file": "install/components/sporina/system.settings/class.php",
+        "line": "74-136,158-164"
+      },
+      "current_location": null,
+      "latest_vulnerability": {
+        "file": "install/components/sporina/system.settings/class.php",
+        "line": "74-136,158-164",
+        "type": "IDOR",
+        "severity": "medium",
+        "description": "Подтверждена недостаточная проверка прав для изменения настроек сайта. Обработчик POST-действий apply, reset, upload-logo и reset-logo защищён CSRF-токеном, но processAction() разрешает его через canConfigure(), а тот проверяет только IsAuthorized(). В поставляемом header.php компонент включён с DISPLAY_FOR=authorized. Поэтому любой зарегистрированный пользователь с действительной сессией и токеном может изменить настройки шаблона, сбросить их, загрузить логотип и инициировать запись привязанных параметров в PHP-файлы сайта через Settings::synchronizeBoundSources().",
+        "recommendation": "Ограничить настройку сайта администраторами либо отдельной группой с правом записи модуля. Проверка должна выполняться в canConfigure() до обработки любого действия; CSRF-проверку сохранить.",
+        "fix": "Before:\nprivate function canConfigure(): bool\n{\n    global $USER;\n\n    if ($this->arParams['DISPLAY_FOR'] === self::DISPLAY_FOR_ALL) {\n        return true;\n    }\n\n    return is_object($USER) && $USER->IsAuthorized();\n}\n\nAfter:\nprivate function canConfigure(): bool\n{\n    global $USER;\n\n    return is_object($USER) && $USER->IsAdmin();\n}",
+        "reviewed": {
+          "oldSeverity": "medium",
+          "newSeverity": "medium",
+          "changed": false,
+          "category": "kept-as-reported",
+          "versionScope": "current",
+          "version": "current",
+          "currentVersionRelevance": "present-in-current-scan",
+          "action": "fix",
+          "confidence": "medium",
+          "rationale": "Severity left unchanged after review; no stronger Bitrix/BUS-specific downgrade condition was identified from the journal text alone."
+        }
+      },
+      "events": [
+        {
+          "run_id": "sporina.easysite-1788602730",
+          "event": "detected",
+          "at": "2026-09-05T10:06:39+00:00",
+          "location": {
+            "file": "install/components/sporina/system.settings/class.php",
+            "line": "74-136,158-164"
+          },
+          "status": "open"
+        },
+        {
+          "run_id": "sporina.easysite-1788603729",
+          "event": "resolved",
+          "at": "2026-09-05T10:22:37+00:00",
+          "status": "fixed"
+        }
+      ],
+      "resolution": {
+        "type": "not_reproduced_after_rescan",
+        "resolved_in_run": "sporina.easysite-1788603729",
         "reason": "The reviewed scan no longer reports a matching finding for the current archive."
       }
     }

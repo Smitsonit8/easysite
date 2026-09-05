@@ -35,6 +35,7 @@ class SporinaSystemSettingsComponent extends CBitrixComponent
         if (!in_array($params['DISPLAY_FOR'], [self::DISPLAY_FOR_ALL, self::DISPLAY_FOR_AUTHORIZED], true)) {
             $params['DISPLAY_FOR'] = self::DISPLAY_FOR_AUTHORIZED;
         }
+        $params['DEMO_EDIT_MODE'] = ($params['DEMO_EDIT_MODE'] ?? 'N') === 'Y' ? 'Y' : 'N';
         $params['PROFILE'] = isset($params['PROFILE']) && preg_match('/^[a-z0-9_]{1,64}$/', (string) $params['PROFILE'])
             ? (string) $params['PROFILE']
             : 'sporina_easy_site';
@@ -64,7 +65,7 @@ class SporinaSystemSettingsComponent extends CBitrixComponent
             return Settings::getAll($this->arParams['PROFILE']);
         }
 
-        if ($this->arParams['MODE'] === self::MODE_CONFIGURE && $this->canConfigure()) {
+        if ($this->arParams['MODE'] === self::MODE_CONFIGURE && $this->canDisplay()) {
             $this->arResult = [
                 'SETTINGS' => Settings::getAll($this->arParams['PROFILE']),
                 'PANEL' => Settings::getPanel($this->arParams['PROFILE']),
@@ -152,7 +153,7 @@ class SporinaSystemSettingsComponent extends CBitrixComponent
         return is_string($value) ? $value : '';
     }
 
-    private function canConfigure(): bool
+    private function canDisplay(): bool
     {
         global $USER;
 
@@ -161,6 +162,17 @@ class SporinaSystemSettingsComponent extends CBitrixComponent
         }
 
         return is_object($USER) && $USER->IsAuthorized();
+    }
+
+    private function canConfigure(): bool
+    {
+        global $USER;
+
+        if ($this->arParams['DEMO_EDIT_MODE'] === 'Y') {
+            return true;
+        }
+
+        return is_object($USER) && $USER->IsAdmin();
     }
 
     private function sendJson(array $payload, int $status = 200): void

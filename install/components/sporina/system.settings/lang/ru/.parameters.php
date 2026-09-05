@@ -7,3 +7,4 @@ $MESS['SPORINA_SYSTEM_SETTINGS_ACTION_VARIABLE'] = 'Имя переменной 
 $MESS['SPORINA_SYSTEM_SETTINGS_DISPLAY_FOR'] = 'Показывать настройки';
 $MESS['SPORINA_SYSTEM_SETTINGS_DISPLAY_FOR_ALL'] = 'Всем посетителям';
 $MESS['SPORINA_SYSTEM_SETTINGS_DISPLAY_FOR_AUTHORIZED'] = 'Только авторизованным пользователям';
+$MESS['SPORINA_SYSTEM_SETTINGS_DEMO_EDIT_MODE'] = 'Разрешить изменение настроек всем посетителям (демо-режим)';
