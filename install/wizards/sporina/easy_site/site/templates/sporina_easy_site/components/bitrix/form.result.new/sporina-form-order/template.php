@@ -132,22 +132,22 @@ if($arResult["isUseCaptcha"] == "Y")
 				$consentSuffix = md5((string)$arResult["arForm"]["ID"] . ':' . (string)($arParams["CONTEXT_ELEMENT_ID"] ?? ''));
 				$consentId = 'sporina-form-order-consent-' . $consentSuffix;
 				$submitId = 'sporina-form-order-submit-' . $consentSuffix;
-				$personalDataUrl = trim((string)($arParams["PERSONAL_DATA_URL"] ?? ''));
-				$hasPersonalDataUrl = $personalDataUrl !== '' && (mb_substr($personalDataUrl, 0, 1) === '/' || preg_match('#^https?://#i', $personalDataUrl));
 				$canSubmit = intval($arResult["F_RIGHT"]) >= 10;
+				$submitDisabled = !$canSubmit;
+				$personalDataUrl = trim((string)($arParams["PERSONAL_DATA_URL"] ?? ""));
+				$hasPersonalDataUrl = ($arParams["ENABLE_PERSONAL_DATA_CONSENT"] ?? "N") === "Y" && $personalDataUrl !== '' && (mb_substr($personalDataUrl, 0, 1) === '/' || preg_match('#^https?://#i', $personalDataUrl));
+				$submitDisabled = $submitDisabled || $hasPersonalDataUrl;
 				?>
+				<?php if ($hasPersonalDataUrl): ?>
 				<label class="sporina-form-order__consent" for="<?=htmlspecialcharsbx($consentId)?>">
 					<input class="sporina-form-order__consent-input" id="<?=htmlspecialcharsbx($consentId)?>" type="checkbox" data-sporina-consent-submit="<?=htmlspecialcharsbx($submitId)?>">
 					<span>
 						<?=GetMessage("FORM_PERSONAL_DATA_CONSENT_PREFIX")?>
-						<?php if ($hasPersonalDataUrl): ?>
-							<a href="<?=htmlspecialcharsbx($personalDataUrl)?>" target="_blank" rel="noopener noreferrer"><?=GetMessage("FORM_PERSONAL_DATA_CONSENT_LINK")?></a>
-						<?php else: ?>
-							<?=GetMessage("FORM_PERSONAL_DATA_CONSENT_LINK")?>
-						<?php endif; ?>
+						<a href="<?=htmlspecialcharsbx($personalDataUrl)?>" target="_blank" rel="noopener noreferrer"><?=GetMessage("FORM_PERSONAL_DATA_CONSENT_LINK")?></a>
 					</span>
 				</label>
-				<button id="<?=htmlspecialcharsbx($submitId)?>" disabled data-sporina-can-submit="<?=($canSubmit ? 'Y' : 'N')?>" type="submit" class="sporina-button" name="web_form_submit" value="<?=htmlspecialcharsbx($submitLabel)?>"><?=htmlspecialcharsbx($submitLabel)?></button>
+				<?php endif; ?>
+				<button id="<?=htmlspecialcharsbx($submitId)?>"<?=($submitDisabled ? ' disabled' : '')?> data-sporina-can-submit="<?=($canSubmit ? 'Y' : 'N')?>" type="submit" class="sporina-button" name="web_form_submit" value="<?=htmlspecialcharsbx($submitLabel)?>"><?=htmlspecialcharsbx($submitLabel)?></button>
 
 			</th>
 		</tr>

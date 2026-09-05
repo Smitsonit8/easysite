@@ -1,4 +1,5 @@
 <?php
+$MESS["FORM_PERSONAL_DATA_URL_TIP"] = "When set, the feedback form displays a required consent checkbox.";
 $MESS["BACKGROUND_COLOR"] = "Background color";
 $MESS["TITLE_TIP"] = "Main banner heading.";
 $MESS["SLOGAN_TIP"] = "Short text displayed above the heading.";

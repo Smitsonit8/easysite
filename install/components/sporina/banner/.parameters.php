@@ -112,6 +112,13 @@ foreach ($parameterDescriptions as $parameterCode => $description)
 
 if ($buttonAction === "form")
 {
+	$arComponentParameters["PARAMETERS"]["FORM_PERSONAL_DATA_URL"] = array(
+		"PARENT" => "BASE",
+		"NAME" => "Ссылка на документ об обработке персональных данных",
+		"TYPE" => "STRING",
+		"DEFAULT" => "",
+	);
+
 	$arComponentParameters["PARAMETERS"]["FORM_ID"] = array(
 		"PARENT" => "BASE",
 		"NAME" => "Веб-форма",
