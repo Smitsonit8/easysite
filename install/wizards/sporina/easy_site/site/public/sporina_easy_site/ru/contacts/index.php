@@ -9,7 +9,6 @@ $APPLICATION->IncludeComponent(
 	"compact",
 	array(
 		"BACKGROUND_IMAGE_SRC" => SITE_TEMPLATE_PATH."/style/fon.png",
-		"BUTTON_LINK" => "#SITE_DIR#contacts/",
 		"BUTTON_TEXT" => "Связаться с нами",
 		"COMPONENT_TEMPLATE" => "compact",
 		"IMAGE_SRC" => "",
@@ -19,6 +18,9 @@ $APPLICATION->IncludeComponent(
 		"SLOGAN" => "Работаем для вашего удобства",
 		"TEXT" => "Подберите нужный раздел, изучите услуги и свяжитесь с нами, если нужна помощь или персональная консультация.",
 		"TITLE" => $APPLICATION->GetTitle(false),
+		"BUTTON_ACTION" => "form",
+		"FORM_ID" => FEEDBACK_FORM_ID,
+		"FORM_PERSONAL_DATA_URL" => "#SITE_DIR#about/policy/"
 	),
 	false
 );

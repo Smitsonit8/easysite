@@ -18,7 +18,7 @@ $sporinaSettings = isset($GLOBALS["SPORINA_EASY_SITE_SETTINGS"]) && is_array($GL
 		"BACKGROUND_COLOR" => "",
 		"BACKGROUND_IMAGE_SRC" => "",
 		"BUTTON_LINK" => "",
-		"BUTTON_TEXT" => "Связаться",
+		"BUTTON_TEXT" => "Связаться с нами",
 		"COMPONENT_TEMPLATE" => ".default",
 		"IMAGE_SRC" => SITE_TEMPLATE_PATH."/style/img/driver.png",
 		"MOBILE_IMAGE_SRC" => SITE_TEMPLATE_PATH."/style/img/driver.png",
@@ -28,7 +28,8 @@ $sporinaSettings = isset($GLOBALS["SPORINA_EASY_SITE_SETTINGS"]) && is_array($GL
 		"TEXT" => "Быстро. Точно. В срок. Организуем доставку, сопровождаем клиентов и помогаем бизнесу двигаться без остановок.",
 		"TITLE" => "АО «Путь-Экспресс»",
 		"BUTTON_ACTION" => "form",
-		"FORM_ID" => FEEDBACK_FORM_ID
+		"FORM_ID" => FEEDBACK_FORM_ID,
+		"FORM_PERSONAL_DATA_URL" => "#SITE_DIR#about/policy/"
 	],
 	false
 );?>

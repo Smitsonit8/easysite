@@ -12,7 +12,7 @@ $APPLICATION->SetTitle("Товары");
 	Array(
 		"BACKGROUND_IMAGE_SRC" => SITE_TEMPLATE_PATH."/style/img/fon.png",
 		"BUTTON_LINK" => "#SITE_DIR#contacts/",
-		"BUTTON_TEXT" => "Связаться с нами",
+		"BUTTON_TEXT" => "Наши контакты",
 		"COMPONENT_TEMPLATE" => "compact",
 		"IMAGE_SRC" => "",
 		"MOBILE_IMAGE_SRC" => SITE_TEMPLATE_PATH."/style/img/women-small.png",
