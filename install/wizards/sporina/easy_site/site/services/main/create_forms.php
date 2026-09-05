@@ -30,6 +30,41 @@ function setCreatorMoveAccess($formId, $statusTitle = "Default") {
 
 }
 
+// Посетители могут только создавать результаты веб-формы.
+// Право 10 исключает переход к списку и редактированию своего результата.
+function setFormFillOnlyAccess($formId, $siteId) {
+    $form = CForm::GetByID($formId)->Fetch();
+    if (!$form) {
+        return false;
+    }
+
+    $by = "c_sort";
+    $order = "asc";
+    $groups = CGroup::GetList($by, $order, array("ADMIN" => "N"));
+    $permissions = array();
+    while ($group = $groups->Fetch()) {
+        $permissions[$group["ID"]] = "10";
+    }
+
+    $sites = CForm::GetSiteArray($formId);
+    if (empty($sites)) {
+        $sites = array($siteId);
+    }
+
+    return (new CForm())->Set(array(
+        "SID" => $form["SID"],
+        "NAME" => $form["NAME"],
+        "BUTTON" => $form["BUTTON"],
+        "ACTIVE" => $form["ACTIVE"],
+        "C_SORT" => $form["C_SORT"],
+        "DESCRIPTION" => $form["DESCRIPTION"],
+        "DESCRIPTION_TYPE" => $form["DESCRIPTION_TYPE"],
+        "USE_CAPTCHA" => $form["USE_CAPTCHA"],
+        "arSITE" => $sites,
+        "arGROUP" => $permissions,
+    ), $formId, "N");
+}
+
 // Создаем форму "Заказать"
 // Проверяем, не существует ли уже форма с таким SID
 $dbForm = CForm::GetList("", "", array("SID" => "ORDER_FORM"));
@@ -169,6 +204,10 @@ if ($FORM_ID > 0 && !$arExistingForm) {
     $answer->Set($arAnswer);
     
     setCreatorMoveAccess($FORM_ID, "Default");
+}
+
+if ($FORM_ID > 0) {
+    setFormFillOnlyAccess($FORM_ID, $siteID);
 }
 
 // Создаем форму "Купить"
@@ -312,6 +351,10 @@ if ($FORM_ID > 0 && !$arExistingForm2) {
     setCreatorMoveAccess($FORM_ID, "Default");
 }
 
+if ($FORM_ID > 0) {
+    setFormFillOnlyAccess($FORM_ID, $siteID);
+}
+
 // Форма обратной связи для кнопок баннера.
 $feedbackForm = CForm::GetList("", "", array("SID" => "FEEDBACK_FORM"))->Fetch();
 if (!$feedbackForm) {
@@ -323,6 +366,14 @@ if (!$feedbackForm) {
         }
         setCreatorMoveAccess($feedbackId, "Default");
     }
+}
+
+if ($feedbackForm) {
+    $feedbackId = $feedbackForm["ID"];
+}
+
+if ($feedbackId > 0) {
+    setFormFillOnlyAccess($feedbackId, $siteID);
 }
 
 return true;
