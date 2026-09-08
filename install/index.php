@@ -50,8 +50,164 @@ Class sporina_easysite extends CModule
 		return true;
 	}
 
+	function InstallHtaccessRules()
+	{
+		$documentRoot = rtrim($_SERVER["DOCUMENT_ROOT"], "/\\");
+		$htaccessPath = $documentRoot . "/.htaccess";
+		$rewriteBlockStartMarker = "# BEGIN SPORINA.EASYSITE BITRIX REWRITE";
+
+		$rewriteBlock = <<<'HTACCESS'
+
+# BEGIN SPORINA.EASYSITE BITRIX REWRITE
+<IfModule mod_rewrite.c>
+  Options +FollowSymLinks
+  RewriteEngine On
+
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-l
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !/bitrix/urlrewrite.php$
+
+  RewriteRule .* - [E=REMOTE_USER:%{HTTP:Authorization}]
+  RewriteRule ^(.*)$ /bitrix/urlrewrite.php [L]
+</IfModule>
+# END SPORINA.EASYSITE BITRIX REWRITE
+
+HTACCESS;
+
+		// Если .htaccess отсутствует — создаём базовый файл с правилами Bitrix.
+		if (!file_exists($htaccessPath)) {
+			$defaultContent = <<<'HTACCESS'
+Options -Indexes
+ErrorDocument 404 /404.php
+
+HTACCESS;
+
+			if (file_put_contents($htaccessPath, $defaultContent . $rewriteBlock, LOCK_EX) === false) {
+				\CEventLog::Add([
+					"SEVERITY" => "ERROR",
+					"AUDIT_TYPE_ID" => "SPORINA_INSTALL",
+					"MODULE_ID" => "sporina.easysite",
+					"DESCRIPTION" => "Не удалось создать /.htaccess",
+				]);
+				return false;
+			}
+
+			return true;
+		}
+
+		$content = file_get_contents($htaccessPath);
+		if ($content === false) {
+			\CEventLog::Add([
+				"SEVERITY" => "ERROR",
+				"AUDIT_TYPE_ID" => "SPORINA_INSTALL",
+				"MODULE_ID" => "sporina.easysite",
+				"DESCRIPTION" => "Не удалось прочитать /.htaccess",
+			]);
+			return false;
+		}
+
+		// Если маршрутизация Bitrix уже настроена, ничего не меняем.
+		if (strpos($content, $rewriteBlockStartMarker) !== false) {
+			return true;
+		}
+
+		// Резервная копия существующего .htaccess перед изменением.
+		$backupPath = $htaccessPath . '.sporina.backup';
+		if (!file_exists($backupPath)) {
+			if (!copy($htaccessPath, $backupPath)) {
+				\CEventLog::Add([
+					"SEVERITY" => "ERROR",
+					"AUDIT_TYPE_ID" => "SPORINA_INSTALL",
+					"MODULE_ID" => "sporina.easysite",
+					"DESCRIPTION" => "Не удалось создать резервную копию /.htaccess",
+				]);
+				return false;
+			}
+		}
+
+		$newContent = rtrim($content) . PHP_EOL . PHP_EOL . $rewriteBlock;
+		if (file_put_contents($htaccessPath, $newContent, LOCK_EX) === false) {
+			\CEventLog::Add([
+				"SEVERITY" => "ERROR",
+				"AUDIT_TYPE_ID" => "SPORINA_INSTALL",
+				"MODULE_ID" => "sporina.easysite",
+				"DESCRIPTION" => "Не удалось добавить правила Bitrix в /.htaccess",
+			]);
+			return false;
+		}
+
+		return true;
+	}
+
+	function UninstallHtaccessRules()
+	{
+		$documentRoot = rtrim($_SERVER["DOCUMENT_ROOT"], "/\\");
+		$htaccessPath = $documentRoot . "/.htaccess";
+		$rewriteBlockStartMarker = "# BEGIN SPORINA.EASYSITE BITRIX REWRITE";
+		$rewriteBlockEndMarker = "# END SPORINA.EASYSITE BITRIX REWRITE";
+
+		if (!file_exists($htaccessPath)) {
+			return true;
+		}
+
+		$content = file_get_contents($htaccessPath);
+		if ($content === false) {
+			\CEventLog::Add([
+				"SEVERITY" => "ERROR",
+				"AUDIT_TYPE_ID" => "SPORINA_UNINSTALL",
+				"MODULE_ID" => "sporina.easysite",
+				"DESCRIPTION" => "Не удалось прочитать /.htaccess",
+			]);
+			return false;
+		}
+
+		if (strpos($content, $rewriteBlockStartMarker) === false) {
+			return true;
+		}
+
+		if (strpos($content, $rewriteBlockEndMarker) === false) {
+			\CEventLog::Add([
+				"SEVERITY" => "ERROR",
+				"AUDIT_TYPE_ID" => "SPORINA_UNINSTALL",
+				"MODULE_ID" => "sporina.easysite",
+				"DESCRIPTION" => "Не найден конец блока правил sporina.easysite в /.htaccess",
+			]);
+			return false;
+		}
+
+		$rewriteBlockPattern = '/# BEGIN SPORINA\\.EASYSITE BITRIX REWRITE\\r?\\n.*?# END SPORINA\\.EASYSITE BITRIX REWRITE\\r?\\n?/s';
+		$newContent = preg_replace($rewriteBlockPattern, '', $content, 1, $replacements);
+		if ($newContent === null || $replacements !== 1) {
+			\CEventLog::Add([
+				"SEVERITY" => "ERROR",
+				"AUDIT_TYPE_ID" => "SPORINA_UNINSTALL",
+				"MODULE_ID" => "sporina.easysite",
+				"DESCRIPTION" => "Не удалось удалить блок правил sporina.easysite из /.htaccess",
+			]);
+			return false;
+		}
+
+		if (file_put_contents($htaccessPath, $newContent, LOCK_EX) === false) {
+			\CEventLog::Add([
+				"SEVERITY" => "ERROR",
+				"AUDIT_TYPE_ID" => "SPORINA_UNINSTALL",
+				"MODULE_ID" => "sporina.easysite",
+				"DESCRIPTION" => "Не удалось обновить /.htaccess при удалении модуля",
+			]);
+			return false;
+		}
+
+		return true;
+	}
+
 	function InstallFiles()
 	{
+		// Гарантируем работу ЧПУ Bitrix на Apache.
+		if (!$this->InstallHtaccessRules()) {
+			return false;
+		}
+
 		// Копируем шаблон сайта в /bitrix/templates/
 		CopyDirFiles(
 			$_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/sporina.easysite/install/wizards/sporina/easy_site/site/templates/sporina_easy_site",
@@ -378,7 +534,11 @@ Class sporina_easysite extends CModule
 
 		$this->InstallDB();
 		$this->InstallEvents();
-		$this->InstallFiles();
+		if (!$this->InstallFiles()) {
+			$this->UnInstallEvents();
+			$this->UnInstallDB();
+			return false;
+		}
 		$APPLICATION->IncludeAdminFile(GetMessage("SPORINA_MODULE_INSTALL_TITLE"), $_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/".$this->MODULE_ID."/install/step.php");
 		return true;
 	}
@@ -387,6 +547,9 @@ Class sporina_easysite extends CModule
 	{
 		global $APPLICATION;
 
+		if (!$this->UninstallHtaccessRules()) {
+			return false;
+		}
 		$this->UnInstallFiles();
 		$this->UnInstallEvents();
 		$this->UnInstallDB();

@@ -101,6 +101,26 @@ width:100%;
   transition: all 0.2s ease-in;
   color: var(--text-inverse);
 }
+
+.sporina-banner__button.btn-effect-4 {
+  background-color: transparent;
+}
+
+.sporina-banner-form-modal__content .sporina-button.btn-effect-4,
+.block-form .sporina-button.btn-effect-4{
+  border-color: var(--primary);
+  color: var(--primary);
+  background-color: transparent;
+  z-index: 0;
+  isolation: isolate;
+}
+
+.sporina-banner-form-modal__content .sporina-button.btn-effect-4:hover,
+.block-form .sporina-button.btn-effect-4:hover
+{
+  color: var(--text-inverse);
+}
+
 .btn-effect-4::before {
   content: "";
   position: absolute;
