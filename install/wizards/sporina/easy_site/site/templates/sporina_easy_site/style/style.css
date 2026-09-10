@@ -100,6 +100,9 @@ width:100%;
   border-radius: 4px;
   transition: all 0.2s ease-in;
   color: var(--text-inverse);
+  background-color: unset;
+  border-color: var(--primary);
+  color: var(--primary);
 }
 
 .sporina-banner__button.btn-effect-4 {

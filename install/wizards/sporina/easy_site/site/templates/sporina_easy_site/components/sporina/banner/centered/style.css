@@ -86,9 +86,6 @@
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  background-color: unset;
-  border-color: var(--primary);
-  color: var(--primary);
 }
 
 /* Контент внутри карточки — fadeInUp с задержками */
