@@ -9,7 +9,7 @@ if (CModule::IncludeModule("iblock"))
 {
 	$iblockResult = CIBlock::GetList(array(), array(
 		"TYPE" => "easy_infocompany",
-		"CODE" => "company_contacts_v1",
+		"CODE" => "company_contacts",
 		"ACTIVE" => "Y",
 	));
 	if ($iblock = $iblockResult->Fetch())
@@ -17,7 +17,7 @@ if (CModule::IncludeModule("iblock"))
 		$elementResult = CIBlockElement::GetList(array(), array(
 			"IBLOCK_ID" => $iblock["ID"],
 			"ACTIVE" => "Y",
-			"CODE" => "company_contacts_v1",
+			"CODE" => "company_contacts",
 		), false, array("nTopCount" => 1), array("ID", "IBLOCK_ID"));
 		if ($element = $elementResult->GetNextElement())
 		{

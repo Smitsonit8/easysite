@@ -51,7 +51,7 @@ if (
 )
 {
 	$publicTemplateID = defined("WIZARD_TEMPLATE_ID") ? WIZARD_TEMPLATE_ID : $wizard->GetVar("templateID");
-	if (!in_array($publicTemplateID, array("sporina_easy_site", "sporina_easy_site_v2")))
+	if ($publicTemplateID !== "sporina_easy_site")
 	{
 		$publicTemplateID = "sporina_easy_site";
 	}

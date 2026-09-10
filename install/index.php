@@ -60,7 +60,6 @@ Class sporina_easysite extends CModule
 
 # BEGIN SPORINA.EASYSITE BITRIX REWRITE
 <IfModule mod_rewrite.c>
-  Options +FollowSymLinks
   RewriteEngine On
 
   RewriteCond %{REQUEST_FILENAME} !-f
@@ -204,10 +203,6 @@ HTACCESS;
 	function InstallFiles()
 	{
 		// Гарантируем работу ЧПУ Bitrix на Apache.
-		if (!$this->InstallHtaccessRules()) {
-			return false;
-		}
-
 		// Копируем шаблон сайта в /bitrix/templates/
 		CopyDirFiles(
 			$_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/sporina.easysite/install/wizards/sporina/easy_site/site/templates/sporina_easy_site",
@@ -547,9 +542,6 @@ HTACCESS;
 	{
 		global $APPLICATION;
 
-		if (!$this->UninstallHtaccessRules()) {
-			return false;
-		}
 		$this->UnInstallFiles();
 		$this->UnInstallEvents();
 		$this->UnInstallDB();

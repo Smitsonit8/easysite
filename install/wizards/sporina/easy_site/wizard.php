@@ -42,8 +42,6 @@ class SelectTemplateStep extends CSelectTemplateWizardStep
 		
 		if ($wizard->IsNextButtonClick())
 		{
-			// v2 is shipped for backward compatibility, but is not yet available
-			// for new installations from Marketplace.
 			$arTemplates = array("sporina_easy_site");
 			
 			$templateID = $wizard->GetVar("wizTemplateID");
@@ -65,7 +63,6 @@ class SelectTemplateStep extends CSelectTemplateWizardStep
 		
 		$arTemplateOrder = array();
 		
-		// Do not expose v2 in the installation wizard until it is ready for release.
 		foreach (array("sporina_easy_site") as $templateID)
 		{
 			if (in_array($templateID, array_keys($arTemplates)))
@@ -82,12 +79,6 @@ class SelectTemplateStep extends CSelectTemplateWizardStep
 			"sporina_easy_site" => array(
 				"NAME" => GetMessage("WIZ_TEMPLATE_EASY_SITE"),
 				"DESCRIPTION" => GetMessage("WIZ_TEMPLATE_EASY_SITE_DESC"),
-				"PREVIEW" => $wizard->GetPath()."/images/".LANGUAGE_ID."/preview.gif",
-				"SCREENSHOT" => $wizard->GetPath()."/images/".LANGUAGE_ID."/screen.gif",
-			),
-			"sporina_easy_site_v2" => array(
-				"NAME" => "Sporina Easy Site v2",
-				"DESCRIPTION" => "Modern editorial business-card template",
 				"PREVIEW" => $wizard->GetPath()."/images/".LANGUAGE_ID."/preview.gif",
 				"SCREENSHOT" => $wizard->GetPath()."/images/".LANGUAGE_ID."/screen.gif",
 			),
