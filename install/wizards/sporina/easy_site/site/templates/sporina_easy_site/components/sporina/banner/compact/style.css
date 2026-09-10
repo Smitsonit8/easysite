@@ -52,6 +52,7 @@
   justify-content: center;
   text-decoration: none;
   margin-bottom: 15px;
+  background-color: unset;
 }
 
 .sporina-banner-compact__media {

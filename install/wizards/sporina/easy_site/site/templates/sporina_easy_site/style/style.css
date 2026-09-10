@@ -107,7 +107,8 @@ width:100%;
 }
 
 .sporina-banner-form-modal__content .sporina-button.btn-effect-4,
-.block-form .sporina-button.btn-effect-4{
+.block-form .sporina-button.btn-effect-4,
+.search-button.sporina-button.btn-effect-4{
   border-color: var(--primary);
   color: var(--primary);
   background-color: transparent;
@@ -116,7 +117,8 @@ width:100%;
 }
 
 .sporina-banner-form-modal__content .sporina-button.btn-effect-4:hover,
-.block-form .sporina-button.btn-effect-4:hover
+.block-form .sporina-button.btn-effect-4:hover,
+.search-button.sporina-button.btn-effect-4:hover
 {
   color: var(--text-inverse);
 }
