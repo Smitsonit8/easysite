@@ -346,9 +346,6 @@ HTACCESS;
 
 	function UnInstallFiles()
 	{
-		$this->UnInstallPublicFiles();
-
-
 		// Удаляем типы инфоблоков
 		if (CModule::IncludeModule("iblock"))
 		{
