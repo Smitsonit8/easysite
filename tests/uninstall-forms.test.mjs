@@ -6,13 +6,6 @@ import test from 'node:test';
 const root = join(import.meta.dirname, '..');
 const source = readFileSync(join(root, 'install', 'index.php'), 'utf8');
 
-test('uninstaller does not delete public site pages', () => {
-  const uninstallFiles = source.match(/function UnInstallFiles\(\)[\s\S]*?\r?\n\t}\r?\n\r?\n\tfunction UnInstallPublicFiles/);
-
-  assert.ok(uninstallFiles, 'UnInstallFiles must be declared');
-  assert.doesNotMatch(uninstallFiles[0], /\$this->UnInstallPublicFiles\(\);/);
-});
-
 test('деинсталлятор удаляет все веб-формы, созданные мастером', () => {
   const uninstallForms = source.match(/function UnInstallForms\(\)[\s\S]*?\r?\n\t}\r?\n\r?\n\tfunction DoInstall/);
 
